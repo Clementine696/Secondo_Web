@@ -21,7 +21,7 @@ function Signup() {
                             <Row>
                                 <Col md={6}>
                                     <Input
-                                        label="First Name"
+                                        Label="First Name"
                                         placeholder="First Name"
                                         value=""
                                         type="text"
@@ -32,7 +32,7 @@ function Signup() {
 
                                 <Col md={6}>
                                     <Input
-                                        label="Last Name"
+                                        Label="Last Name"
                                         placeholder="Last Name"
                                         value=""
                                         type="text"
@@ -42,7 +42,7 @@ function Signup() {
                                 </Col>
                             </Row>
                             <Input
-                                label="Email"
+                                Label="Email"
                                 placeholder="Enter email"
                                 value=""
                                 type="email"
@@ -51,7 +51,7 @@ function Signup() {
                             />
 
                             <Input
-                                label="Password"
+                                Label="Password"
                                 placeholder="Password"
                                 value=""
                                 type="password"
