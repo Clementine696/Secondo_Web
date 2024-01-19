@@ -4,8 +4,6 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
 import "./index.css";
-// import Signin from '../../container/Signin'
-// import Signup from '../../container/Signup'
 
 function Index() {
   return (
@@ -17,10 +15,10 @@ function Index() {
         padding: "8px 24px 8px 24px",
         alignItems: "center",
         backgroundColor: "#E7EEE8",
-        flexFlow: "column"
+        flexFlow: "column",
       }}
     >
-      <Row style={{width: "100%"}}>
+      <Row style={{ width: "100%" }}>
         <Col
           md={2}
           style={{ height: "40px", textAlign: "center" }}
@@ -46,7 +44,24 @@ function Index() {
           hee
         </Col>
       </Row>
-      <Row style={{ backgroundColor: "pink" }}>Row 2</Row>
+      <Row
+        style={{
+          backgroundColor: "",
+          padding: "0",
+          width: "100%",
+        }}
+      >
+        <Nav className="me-auto justify-content-center" style={{padding: "0"}}>
+          <Nav.Link href="#home">ประกาศขายบน Secondo</Nav.Link>
+          <Nav.Link href="#features">ชื่นชอบ</Nav.Link>
+          <Nav.Link href="#pricing">แชท</Nav.Link>
+          <Nav.Link href="#pricing">สินค้าน่าสนใจ</Nav.Link>
+          <Nav.Link href="#pricing">รับซื้อ</Nav.Link>
+          <Nav.Link href="#pricing">บริจาค</Nav.Link>
+          <Nav.Link href="#pricing">ขอรับบริจาค</Nav.Link>
+          <Nav.Link href="#pricing">ประมูล</Nav.Link>
+        </Nav>
+      </Row>
     </Navbar>
   );
 }
