@@ -10,14 +10,9 @@ import PrivateRoute from "./components/HOC/PrivateRoute";
 function App() {
   return (
     <div className="App">
-      {/* <Home></Home> */}
-      {/* <Signin></Signin> */}
         <Router>
           <Routes>
             <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-            {/* <Route path="/" Component={<PrivateRoute><Home /></PrivateRoute>} /> */}
-            {/* <PrivateRoute path="/" exact Component={Home} /> */}
-            {/* <Route path="/" exact Component={Home} /> */}
             <Route path="/signin" Component={Signin} />
             <Route path="/signup" Component={Signup} />
           </Routes>

@@ -22,7 +22,6 @@ function createCategories(categories, parentId = null){
     }
     
     return categoryList;
-    // return "Yahoo";
 };
 
 exports.addCategory = (req, res) => {
@@ -44,7 +43,6 @@ exports.addCategory = (req, res) => {
 
     cat.save().then(category => {
         category === cat; // true
-        // if(error) return res.status(400).json({ error })
 
         if(category){
             return res.status(201).json({ category });
@@ -52,8 +50,7 @@ exports.addCategory = (req, res) => {
 
     }).catch((error) => {
         return res.status(400).json({ error })
-        console.log(err);
-        // res.send(400, "Bad Request");
+        console.log(error);
     });
     
 }
@@ -61,8 +58,6 @@ exports.addCategory = (req, res) => {
 exports.getCategory = (req, res) => {
     Category.find({})
     .then((categories) => {
-        // if(error) return res.status(400).json({ error })
-
         if(categories){
 
             const categoryList = createCategories(categories);
@@ -71,9 +66,7 @@ exports.getCategory = (req, res) => {
         }
         
     }).catch((error) => {
-        console.log('ERROR HEREEEEEEEEEEEE');
+        console.log('error');
         return res.status(400).json({ error })
-        // console.log(err);
-        // res.send(400, "Bad Request");
     })
 }

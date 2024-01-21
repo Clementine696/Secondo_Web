@@ -28,13 +28,10 @@ export default function Signin() {
         e.preventDefault();
 
         const user = {
-            // email: 'riz@gmail.com', 
-            // password:'123456'
             email, password
         }
 
         dispatch(login(user));
-        // login(user);
     }
 
     if(auth.authenticate){

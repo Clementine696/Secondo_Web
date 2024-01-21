@@ -4,8 +4,6 @@ const slugify = require('slugify')
 
 exports.createProduct = (req, res) => {
 
-    // res.status(200).json( {file: req.files, body: req.body} );
-
     const {
         name, price, quantity, description, category
     } = req.body;
@@ -35,8 +33,7 @@ exports.createProduct = (req, res) => {
         }
     }).catch((error) => {
         return res.status(400).json({ error })
-        console.log(err);
-        // res.send(400, "Bad Request");
+        console.log(error);
     });
     
 }

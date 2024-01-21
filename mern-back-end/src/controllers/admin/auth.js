@@ -26,16 +26,12 @@ exports.signup = (req, res) => {
         });
 
         _user.save().then(data => {
-            data === _user; // true
+            data === _user;
             if(data){
                 return res.status(201).json({
                     message: 'Admin  created Successfully..!'
-                    // user: data
                 });
             }
-            // else return res.status(400).json({
-            //     message: 'zum ting wong'
-            // });
         }).catch((err)=>{
             console.log(err);
         });
@@ -43,48 +39,11 @@ exports.signup = (req, res) => {
     .catch((err)=>{
         console.log(err);
     });
-
-    // User.findOne({email: req.body.email})
-    // .exec((err, user) => {
-    //     if(user) return res.status(400).json({
-    //         message: 'User already registered'
-    //     });
-
-        // const {
-        //     firstName,
-        //     lastName,
-        //     email,
-        //     password
-        // } = req.body;
-
-        // const _user = new User({
-        //     firstName,
-        //     lastName,
-        //     email,
-        //     password,
-        //     username: Math.random().toString()
-        // });
-
-        // _user.save((err, data) => {
-        //     if(err){
-        //         return res.status(400).json({
-        //             message: 'zum ting wong'
-        //         });
-        //     }
-        //     if(data){
-        //         return res.status(201).json({
-        //             user: data
-        //         });
-        //     }
-        // });
-    // });
 }
 
 exports.signin = (req, res) => {
     User.findOne({ email: req.body.email })
     .then((user)=>{
-    // .exec((error, user) => {
-        // if(error) return res.status(400).json({ error });
         if(user){
 
             if(user.authenticate(req.body.password) && user.role === 'admin'){

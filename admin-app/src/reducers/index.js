@@ -6,7 +6,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-// export default (state = {name: 'Riz'}, action) => {
-//     return state;
-// }

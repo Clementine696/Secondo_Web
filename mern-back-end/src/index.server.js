@@ -12,20 +12,13 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
 
-//environment variable or you can say const
 env.config();
 
-//mongodb connection
-//mongodb+srv://root:<password>@cluster0.aqfmri3.mongodb.net/?retryWrites=true&w=majority
-//mongodb+srv://root:<password>@cluster0.aqfmri3.mongodb.net/
 mongoose.connect(
-    // `mongodb+srv://root:${process.env.MONGO_DB_PASSWORD}@cluster0.aqfmri3.mongodb.net/`
-    // `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.aqfmri3.mongodb.net/?retryWrites=true&w=majority`,
     `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.aqfmri3.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
-        // useCreateIndex: true
     }
 ).then(() => {
     console.log('Database connected');

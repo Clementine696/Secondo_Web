@@ -29,13 +29,6 @@ export const login = (user) => {
                 });
             }
         }
-
-        // dispatch({
-        //     type: authConstants.LOGIN_REQUEST,
-        //     payload: {
-        //         ...user
-        //     }
-        // })
     }
 }
 
@@ -56,19 +49,5 @@ export const isUserLoggedIn = () => {
                 payload: { error: 'Failed to login' }
             });
         }
-        // if(token){
-        //     dispatch({
-        //         payload: {
-        //             token
-        //         }
-        //     });
-        // }else{
-        //     dispatch({
-        //         payload: {
-        //             authenticate: false,
-        //             message: 'User needs to login'
-        //         }
-        //     });
-        // }
     }
 }
