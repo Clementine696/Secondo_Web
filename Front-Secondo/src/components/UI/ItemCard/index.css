@@ -35,7 +35,7 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  /* padding: 16px; */
 }
 .ItemName {
   color: var(--Text-Default, #00243d);
@@ -73,6 +73,6 @@
   color: var(--Text-Default, #00243d);
   letter-spacing: 0.5px;
   white-space: nowrap;
-  margin: 21px 0 0 16px;
+  margin: 0 0 0 16px;
   font: 700 14px/143% Kanit, -apple-system, Roboto, Helvetica, sans-serif;
 }
