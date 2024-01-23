@@ -2,12 +2,21 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
+import "./index.css";
+import "../../styles.css";
 
 function Signin() {
   return (
     <Layout>
       <Container>
-        <Row>
+        <Row
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+          }}
+        >
           <Col>
             <div
               style={{ margin: "48px", padding: "48px" }}
@@ -16,9 +25,16 @@ function Signin() {
               <h1>Sign In</h1>
             </div>
           </Col>
-          <Col>
+          <Col
+            style={{
+              borderBlockColor: "#C4C4D0",
+              border: "1px solid",
+              padding: "24px",
+              borderRadius: "16px",
+            }}
+          >
             <Row>
-              <Col md={{ span: 6, offset: 3 }}>
+              <Col>
                 <Form>
                   <Input
                     Label="Email"
@@ -48,17 +64,30 @@ function Signin() {
                     </Col>
                   </Form.Group>
 
-                  <Form.Group as={Row} className="mb-3">
+                  <Row className="mb-3">
                     <Col>
-                      <Button type="submit">เข้าสู่ระบบ</Button>
+                      <button
+                        className="btn-small kanit-paragraphMedium"
+                        type="submit"
+                      >
+                        เข้าสู่ระบบ
+                      </button>
                     </Col>
-                  </Form.Group>
+                  </Row>
 
-                  <Form.Group as={Row} className="mb-3">
+                  <Row className="mb-3">
+                    <div class="or or--x" aria-role="presentation">
+                      Any text
+                    </div>
+                  </Row>
+
+                  <Row className="mb-3">
                     <Col>
-                      <Button type="submit">เข้าสู่ระบบด้วย Google</Button>
+                      <button className="btn-small kanit-paragraphMedium">
+                        เข้าสู่ระบบด้วย Google
+                      </button>
                     </Col>
-                  </Form.Group>
+                  </Row>
                 </Form>
               </Col>
             </Row>
