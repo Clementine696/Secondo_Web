@@ -4,29 +4,15 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
 import "./index.css";
+import "../../styles.css"
 
 function Index() {
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      className="Navbar"
-      style={{
-        padding: "8px 24px 8px 24px",
-        alignItems: "center",
-        backgroundColor: "#E7EEE8",
-        flexFlow: "column",
-      }}
-    >
-      <Row style={{ width: "100%", backgroundColor: "" }}>
-        <Col
-          md={2}
-          xs={8}
-          style={{ height: "40px", textAlign: "center" }}
-          className="Nav-item"
-        >
+    <Navbar collapseOnSelect expand="lg" className="Navbar">
+      <Row className="w-100">
+        <Col md={2} xs={8} className="Nav-item">
           <Container>
-            <Navbar.Brand href="/">Secondo</Navbar.Brand>
+            <Navbar.Brand className="" href="/">Secondo</Navbar.Brand>
           </Container>
         </Col>
         <Col md={8} xs={8}>
@@ -42,24 +28,8 @@ function Index() {
             </div>
           </Form>
         </Col>
-        <Col
-          md={2}
-          xs={2}
-          style={{
-            backgroundColor: "",
-            justifyContent: "space-between",
-            display: "flex",
-          }}
-        >
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+        <Col md={2} xs={2} className="right-menu">
+          <div className="icon-menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -76,15 +46,7 @@ function Index() {
             </svg>
           </div>
 
-          <div
-            style={{
-              width: "40px",
-              height: "40px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <div className="icon-menu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -107,7 +69,9 @@ function Index() {
             </svg>
           </div>
 
-          <Button href="/signin" onclick="activateLasers()">เข้าสู่ระบบ</Button>
+          <Button href="/signin" onclick="activateLasers()">
+            เข้าสู่ระบบ
+          </Button>
 
           <div
             style={{
@@ -119,25 +83,32 @@ function Index() {
           ></div>
         </Col>
       </Row>
-      <Row
-        style={{
-          backgroundColor: "",
-          padding: "0",
-          width: "100%",
-        }}
-      >
-        <Nav
-          className="me-auto justify-content-center"
-          style={{ padding: "0" }}
-        >
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#home">ประกาศขายบน Secondo</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#features">ชื่นชอบ</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">แชท</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">สินค้าน่าสนใจ</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">รับซื้อ</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">บริจาค</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">ขอรับบริจาค</Nav.Link>
-          <Nav.Link style={{paddingLeft: "16px", paddingRight: "16px"}} href="#pricing">ประมูล</Nav.Link>
+      <Row className="Second-Nav">
+        <Nav className="me-auto justify-content-center p-0">
+          <Nav.Link className="Text-menu" href="#home">
+            ประกาศขายบน Secondo
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#features">
+            ชื่นชอบ
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            แชท
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            สินค้าน่าสนใจ
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            รับซื้อ
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            บริจาค
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            ขอรับบริจาค
+          </Nav.Link>
+          <Nav.Link className="Text-menu" href="#pricing">
+            ประมูล
+          </Nav.Link>
         </Nav>
       </Row>
     </Navbar>

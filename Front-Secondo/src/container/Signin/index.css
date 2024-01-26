@@ -1,33 +1,95 @@
-.btn-small {
-    display: inline-flex;
+/* body {
+    padding: 144px 64px ;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+} */
+
+.main-content {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.Row-content {
+    width: 100vw;
+    justify-content: space-between;
+    padding: 96px 128px;
+    gap: 96px;
+}
+
+.Col-left {
+    max-height: 736px;
+    max-width: 624px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+}
+
+.Content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.Col-right {
+    height: 736px;
+    max-width: 624px;
+    border: 1px solid var(--OutlineVariant-color);
+    padding: 24px 32px;
+    border-radius: 16px;
+}
+
+.Title-sign {
+    gap: 16;
+    padding: 0;
+}
+
+.space-padding-bot {
+    padding-bottom: 16px;
+}
+
+.font-color {
+    color: var(--Default-text);
+}
+
+.horizontal-divider {
+    text-align: center;
     width: 100%;
-    padding: 8px 24px 8px 24px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    border-radius: 40px;
-    background-color: var(--Soutline-color);
+    padding: 0 16px;
+}
+.horizontal-divider:before, .horizontal-divider:after {
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 46%;
+}
+.horizontal-divider:before {
+    background: var(--Outline-color);
+    right: .5em;
+    margin-left: -50%;
+}
+.horizontal-divider:after {
+    background: var(--Outline-color);
+    left: .5em;
+    margin-right: -50%;
 }
 
-.btn-small:hover {
-    display: inline-flex;
-    padding: 8px 24px 8px 24px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    border-radius: 40px;
-    background-color: var(--Shover-color);
+.agreement-law-text {
+    text-align: center;
+    color: var(--Default-text);
 }
 
-.btn-small:Clicked {
-    display: inline-flex;
-    padding: 8px 24px 8px 24px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    border-radius: 40px;
-    background-color: var(--SfixedVariant-color);
+.content-3 {
+    gap: 16px;
 }

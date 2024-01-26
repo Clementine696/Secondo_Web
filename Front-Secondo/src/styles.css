@@ -2,7 +2,6 @@
 
 .kanit-Display-Large {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
@@ -11,7 +10,6 @@
   
 .kanit-Display-Medium {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -20,16 +18,38 @@
   
 .kanit-Display-Small {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: 28px;
 }
+
+.kanit-Display-Large-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.kanit-Display-Medium-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.kanit-Display-Small-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
   
 .kanit-H1 {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -38,7 +58,6 @@
   
 .kanit-H2 {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -47,7 +66,6 @@
   
 .kanit-H3 {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -56,7 +74,6 @@
   
 .kanit-H4 {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -65,7 +82,7 @@
   
 .kanit-paragraphBig {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -74,7 +91,6 @@
   
 .kanit-paragraphMedium {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -83,7 +99,6 @@
   
 .kanit-paragraphtextMedium {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -92,7 +107,6 @@
   
 .kanit-paragraphSmall {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -101,7 +115,6 @@
   
 .kanit-paragraphVerySmall {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +123,6 @@
   
 .kanit-subtitle {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -119,7 +131,6 @@
   
 .kanit-valueList {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -128,7 +139,6 @@
   
 .kanit-Bigvalue {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -137,7 +147,6 @@
   
 .kanit-allCap {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -146,7 +155,6 @@
   
 .kanit-LinkBig {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 18px;
     font-style: normal;
     font-weight: 300;
@@ -156,7 +164,6 @@
 
 .kanit-LinkMedium {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 300;
@@ -166,7 +173,6 @@
 
 .kanit-Linksmall {
     font-family: "Kanit", sans-serif;
-    color: var(--text-color);
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
@@ -176,6 +182,10 @@
 
 /* Color style */
 :root {
+    /* Text color */
+    --White-text: #ffffff;
+    --Default-text: #00243D;
+    --Tertiary-text: #D0C58A;
     /* Primary */
     --PfixedVariant-color: #00538F;
     --Poutline-color: #00243D;
@@ -199,13 +209,13 @@
     --Tcontainer-color: #F3F0E2;
 
     /* Neutral */
-    --text-color: #ffffff;
+    --White-color: #ffffff;
     --S10-color: #3C3C3C;
     --OnSurface-color: #1B1B20;
     --SurfaceVariant-color: #45454F;
     --Outline-color: #74747E;
     --OutlineVariant-color: #C4C4D0;
-    --Surface-color: #C4C4D0;
+    --Surface-color: #F7F7FF;
     --Des-color: #E0E0E9;
     --SurfaceBright-color: #F9F9FF;
     --Correct-color: #40BC55;
