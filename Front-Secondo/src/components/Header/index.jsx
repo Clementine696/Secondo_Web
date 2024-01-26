@@ -4,7 +4,7 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
 import "./index.css";
-import "../../styles.css"
+import "../../styles.css";
 
 function Index() {
   return (
@@ -12,7 +12,9 @@ function Index() {
       <Row className="w-100">
         <Col md={2} xs={8} className="Nav-item">
           <Container>
-            <Navbar.Brand className="" href="/">Secondo</Navbar.Brand>
+            <Navbar.Brand className="" href="/">
+              Secondo
+            </Navbar.Brand>
           </Container>
         </Col>
         <Col md={8} xs={8}>
@@ -68,10 +70,9 @@ function Index() {
               />
             </svg>
           </div>
-
-          <Button href="/signin" onclick="activateLasers()">
-            เข้าสู่ระบบ
-          </Button>
+          <Link to="/signin">
+            <button onclick="activateLasers()">เข้าสู่ระบบ</button>
+          </Link>
 
           <div
             style={{

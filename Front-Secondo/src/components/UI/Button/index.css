@@ -76,7 +76,7 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border: solid 1px var(--Soutline-color);
+    border: 1px solid var(--Soutline-color);
     border-radius: 40px;
     background-color: var(--Sdim-color);
 }
@@ -87,8 +87,59 @@
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border: solid 1px var(--OutlineVariant-color);
+    border: 1px solid var(--OutlineVariant-color);
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--OutlineVariant-color);
 }
+
+/* Small link-ghost button */
+.btn-small-link-ghost {
+    display: inline-flex;
+    width: 100%;
+    padding: 8px 24px 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--SfixedVariant-color);
+}
+
+.btn-small-link-ghost:hover {
+    display: inline-flex;
+    padding: 8px 24px 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-small-link-ghost:Clicked {
+    display: inline-flex;
+    padding: 8px 24px 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-small-link-ghost:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Soutline-color);
+    color: var(--OutlineVariant-color);
+}
+
+/* Medium primary button */
