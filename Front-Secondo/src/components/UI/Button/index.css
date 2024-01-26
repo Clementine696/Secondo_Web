@@ -78,7 +78,7 @@
     gap: 8px;
     border: 1px solid var(--Soutline-color);
     border-radius: 40px;
-    background-color: var(--Sdim-color);
+    background-color: var(--SfixedVariant-color);
 }
 
 .btn-small-secondary:disabled {
@@ -132,6 +132,20 @@
 .btn-small-link-ghost:disabled {
     display: inline-flex;
     width: 100%;
+    padding: 8px 24px 8px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--OutlineVariant-color);
+}
+
+/* Medium primary button */
+.btn-medium-primary {
+    display: inline-flex;
+    width: 100%;
     padding: 12px 32px 12px 32px;
     justify-content: center;
     align-items: center;
@@ -139,7 +153,283 @@
     border: none;
     border-radius: 40px;
     background-color: var(--Soutline-color);
+    color: var(--White-color);
+}
+
+.btn-medium-primary:hover {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Shover-color);
+}
+
+.btn-medium-primary:Clicked {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--SfixedVariant-color);
+}
+
+.btn-medium-primary:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--OutlineVariant-color);
+}
+
+/* Medium secondary button */
+.btn-medium-secondary {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--SfixedVariant-color);
+}
+
+.btn-medium-secondary:hover {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: solid 1px var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-medium-secondary:Clicked {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--SfixedVariant-color);
+}
+
+.btn-medium-secondary:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--OutlineVariant-color);
+    border-radius: 40px;
+    background-color: var(--White-color);
     color: var(--OutlineVariant-color);
 }
 
-/* Medium primary button */
+/* Medium link-ghost button */
+.btn-medium-link-ghost {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--SfixedVariant-color);
+}
+
+.btn-medium-link-ghost:hover {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-medium-link-ghost:Clicked {
+    display: inline-flex;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-medium-link-ghost:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 12px 32px 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--OutlineVariant-color);
+}
+
+/* Large primary button */
+.btn-large-primary {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Soutline-color);
+    color: var(--White-color);
+}
+
+.btn-large-primary:hover {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Shover-color);
+}
+
+.btn-large-primary:Clicked {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--SfixedVariant-color);
+}
+
+.btn-large-primary:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--OutlineVariant-color);
+}
+
+/* Large secondary button */
+.btn-large-secondary {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--SfixedVariant-color);
+}
+
+.btn-large-secondary:hover {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: solid 1px var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-large-secondary:Clicked {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--Soutline-color);
+    border-radius: 40px;
+    background-color: var(--SfixedVariant-color);
+}
+
+.btn-large-secondary:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--OutlineVariant-color);
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--OutlineVariant-color);
+}
+
+/* Large link-ghost button */
+.btn-large-link-ghost {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--SfixedVariant-color);
+}
+
+.btn-large-link-ghost:hover {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-large-link-ghost:Clicked {
+    display: inline-flex;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--Sdim-color);
+}
+
+.btn-large-link-ghost:disabled {
+    display: inline-flex;
+    width: 100%;
+    padding: 16px 32px 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 40px;
+    background-color: var(--White-color);
+    color: var(--OutlineVariant-color);
+}
