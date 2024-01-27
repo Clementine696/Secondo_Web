@@ -8,9 +8,9 @@
 .main-content {
     width: 100vw;
     height: 100vh;
+    display: flex;
     justify-content: center;
-    padding: 0;
-    margin: 0;
+    align-items: center;
 }
 
 .Row-content {
@@ -41,10 +41,10 @@
 }
 
 .Col-right {
-    height: 736px;
+    height: auto;
     max-width: 624px;
     border: 1px solid var(--OutlineVariant-color);
-    padding: 24px 32px;
+    padding: 24px 32px 64px 24px;
     border-radius: 16px;
 }
 

@@ -12,7 +12,7 @@ function Index() {
       <Row className="w-100">
         <Col md={2} xs={8} className="Nav-item">
           <Container>
-            <Navbar.Brand className="" href="/">
+            <Navbar.Brand className="kanit-Display-Large-R" href="/">
               Secondo
             </Navbar.Brand>
           </Container>
@@ -71,7 +71,7 @@ function Index() {
             </svg>
           </div>
           <Link to="/signin">
-            <button onclick="activateLasers()">เข้าสู่ระบบ</button>
+            <button className="btn-small-primary kanit-paragraphMedium" onclick="activateLasers()">เข้าสู่ระบบ</button>
           </Link>
 
           <div
@@ -84,7 +84,7 @@ function Index() {
           ></div>
         </Col>
       </Row>
-      <Row className="Second-Nav">
+      <Row className="Second-Nav kanit-paragraphSmall">
         <Nav className="me-auto justify-content-center p-0">
           <Nav.Link className="Text-menu" href="#home">
             ประกาศขายบน Secondo
