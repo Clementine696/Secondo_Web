@@ -1,5 +1,5 @@
 .BG {
-  background-color: #F7F7FF;
+  background-color: #f7f7ff;
   /* object-position: center; */
   /* text-align: center; */
 }
@@ -31,7 +31,7 @@
   width: 100%;
   gap: 20px;
   padding: 24px 16px;
-  text-align:justify
+  text-align: justify;
 }
 /* @media (max-width: 1144px) {
   .span {
@@ -99,4 +99,31 @@
 .RowCard {
   margin-left: 4px;
   margin-right: 4px;
+}
+.FrameCate {
+  background-color: #ffffff;
+  display: flex;
+  width: 1144px;
+  padding-bottom: 24px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  /* gap: 24px; */
+  /* padding-left: 16px;
+  padding-right: 16px; */
+  margin-left: auto;
+  margin-right: auto;
+}
+.TopicCate {
+  color: #000;
+  font: 400 20px/130% Kanit, -apple-system, Roboto, Helvetica, sans-serif;
+  display: flex;
+  padding: 24px 16px;
+  align-items: flex-start;
+  align-self: stretch;
+}
+.GroupCate {
+  gap: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }

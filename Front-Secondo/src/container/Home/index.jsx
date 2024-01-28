@@ -9,72 +9,114 @@ function Home() {
   return (
     <Layout>
       <div className="BG">
-        <div
-          style={{ margin: "48px", padding: "48px" }}
-          className="Title-admin text-center"
-        >
-          <h1>Welcome to Home</h1>
+        <div className="FrameCate">
+          <div className="TopicCate">หมวดหมู่</div>
+          <div className="GroupCate row">
+            <CateCard />
+            <CateCard />
+            <CateCard />
+            <CateCard />
+            <CateCard />
+            <CateCard />
+            <CateCard />
+            <CateCard />
+          </div>
+        </div>
 
-          <div className="GroupCard">
-            <div className="TopicGroup">
-              <div className="div-2 pull-left">สินค้าน่าสนใจ</div>
-              <div className="div-3 pull-right">เพิ่มเติม</div>
-            </div>
-            <div className="div-4">
-              <div className="div-5" />
-            </div>
-            <div className="div-6">
-              <div className="div-7">
-                <div className="RowCard row">
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
+        <div className="GroupCard">
+          <div className="TopicGroup">
+            <div className="div-2 pull-left">สินค้าน่าสนใจ</div>
+            <div className="div-3 pull-right">เพิ่มเติม</div>
+          </div>
+          <div className="div-4">
+            <div className="div-5" />
+          </div>
+          <div className="div-6">
+            <div className="div-7">
+              <div className="RowCard row">
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="GroupCard">
-            <div className="TopicGroup">
-              <div className="div-2 pull-left">สินค้าบริจาคใหม่</div>
-              <div className="div-3 pull-right">เพิ่มเติม</div>
-            </div>
-            <div className="div-4">
-              <div className="div-5" />
-            </div>
-            <div className="div-6">
-              <div className="div-7">
-                <div className="RowCard row">
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
+        <div className="GroupCard">
+          <div className="TopicGroup">
+            <div className="div-2 pull-left">สินค้าบริจาคใหม่</div>
+            <div className="div-3 pull-right">เพิ่มเติม</div>
+          </div>
+          <div className="div-4">
+            <div className="div-5" />
+          </div>
+          <div className="div-6">
+            <div className="div-7">
+              <div className="RowCard row">
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="GroupCard">
-            <div className="TopicGroup">
-              <div className="div-2 pull-left">สินค้ารับบริจาค</div>
-              <div className="div-3 pull-right">เพิ่มเติม</div>
-            </div>
-            <div className="div-4">
-              <div className="div-5" />
-            </div>
-            <div className="div-6">
-              <div className="div-7">
-                <div className="RowCard row">
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
-                  <div className="col-sm-3"> <ItemCard /> </div>
+        <div className="GroupCard">
+          <div className="TopicGroup">
+            <div className="div-2 pull-left">สินค้ารับบริจาค</div>
+            <div className="div-3 pull-right">เพิ่มเติม</div>
+          </div>
+          <div className="div-4">
+            <div className="div-5" />
+          </div>
+          <div className="div-6">
+            <div className="div-7">
+              <div className="RowCard row">
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
+                </div>
+                <div className="col-sm-3">
+                  {" "}
+                  <ItemCard />{" "}
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </Layout>

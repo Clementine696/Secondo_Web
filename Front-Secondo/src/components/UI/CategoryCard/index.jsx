@@ -4,12 +4,13 @@ import "./index.css";
 function CateCard() {
   return (
     <div className="FrameCateCard">
-      <div className="Img">
-        <img
-          loading="lazy"
-          srcSet="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
-          className="img"
-        />
+      <img
+        loading="lazy"
+        srcSet="https://www.pngmart.com/files/1/Sneaker-PNG-Transparent-Image.png"
+        className="imgCate"
+      />
+      <div className="TextCate">
+        ประเภทของสินค้า
       </div>
     </div>
   );
