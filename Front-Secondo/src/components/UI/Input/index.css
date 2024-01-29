@@ -1,12 +1,42 @@
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #C4C4D0;
+    color: var(--Des-color);
     opacity: 1; /* Firefox */
 }
 
 .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #C4C4D0;
+    color: var(--Des-color);
 }
 
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
-    color: #C4C4D0;
+    color: var(--Des-color);
+}
+
+.font-color {
+    color: var(--Default-text);
+}
+
+.Text-field-default {
+    display: flex;
+    height: 60px;
+    padding: 16px;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid var(--Outline-color);
+}
+
+.Text-field-default:focus-within {
+    border: 1px solid var(--Poutline-color);
+}
+
+.Text-field-default:hover {
+    border: 1px solid var(--Poutline-color);
+}
+
+.Text-field-default:disabled {
+    color: 1px solid var(--OutlineVariant-color);
+}
+
+.Text-field-Errored {
+    border: 1px solid var(--Error-color);
 }

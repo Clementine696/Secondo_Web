@@ -5,6 +5,7 @@ import ItemCard from "../../components/UI/ItemCard";
 import CateCard from "../../components/UI/CategoryCard";
 import "./index.css";
 
+
 function Home() {
   return (
     <Layout>

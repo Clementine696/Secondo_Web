@@ -1,3 +1,5 @@
+/* Font style */
+
 .kanit-Display-Large {
     font-family: "Kanit", sans-serif;
     font-size: 28px;
@@ -20,6 +22,30 @@
     font-style: normal;
     font-weight: 700;
     line-height: 28px;
+}
+
+.kanit-Display-Large-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.kanit-Display-Medium-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.kanit-Display-Small-R {
+    font-family: "Kanit", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
 }
   
 .kanit-H1 {
@@ -56,6 +82,7 @@
   
 .kanit-paragraphBig {
     font-family: "Kanit", sans-serif;
+    
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -153,8 +180,14 @@
     text-decoration-line: underline;
 }
 
+/* Color style */
 :root {
-    /* Primary /
+    /* Text color */
+    --White-text: #ffffff;
+    --Default-text: #00243D;
+    --Tertiary-text: #D0C58A;
+
+    /* Primary */
     --PfixedVariant-color: #00538F;
     --Poutline-color: #00243D;
     --Phover-color: #00538F;
@@ -162,7 +195,7 @@
     --Pdim-color: #ADDDFF;
     --Pcontainer-color: #D6EEFF;
 
-    / Secondary /
+    /* Secondary */
     --SfixedVariant-color: #3C5340;
     --Soutline-color: #4D6A52;
     --Shover-color: #5E8264;
@@ -170,19 +203,20 @@
     --Sdim-color: #D0DDD2;
     --Scontainer-color: #E7EEE8;
 
-    / Tertiary /
+    /* Tertiary */
     --TfixedVariant-color: #665C29;
     --Toutline-color: #D0C58A;
     --Thover-color: #E8E2C5;
     --Tcontainer-color: #F3F0E2;
 
-    / Neutral */
+    /* Neutral */
+    --White-color: #ffffff;
     --S10-color: #3C3C3C;
     --OnSurface-color: #1B1B20;
     --SurfaceVariant-color: #45454F;
     --Outline-color: #74747E;
     --OutlineVariant-color: #C4C4D0;
-    --Surface-color: #C4C4D0;
+    --Surface-color: #F7F7FF;
     --Des-color: #E0E0E9;
     --SurfaceBright-color: #F9F9FF;
     --Correct-color: #40BC55;

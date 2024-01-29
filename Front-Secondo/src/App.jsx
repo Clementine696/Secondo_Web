@@ -1,23 +1,29 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.css';
+
 import Home from './container/Home';
 import Signin from './container/Signin';
 import Signup from './container/Signup';
+import RegisPhone from './container/Signup/RegisPhone';
+import Otp from './container/Signup/Otp';
+import Search from './container/Search';
 
-function App() {
+export default function App(){
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" exact Component={Home} />
-          <Route path="/signin" Component={Signin} />
-          <Route path="/signup" Component={Signup} />
-        </Routes>
-      </Router>
-
+    <div>
+      <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path='/' element={<Home />} />
+        <Route path='signin' element={<Signin />} />
+        <Route path='signup' element={<Signup />} />
+        <Route path='signup/regisphone' element={<RegisPhone/>} />
+        <Route path='signup/regisphone/Otp' element={<Otp/>} />
+        <Route path='search' element={<Search/>} />
+      </Routes>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
-
-export default App;

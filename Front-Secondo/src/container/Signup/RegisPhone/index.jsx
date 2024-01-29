@@ -1,13 +1,13 @@
 import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Input from "../../components/UI/Input";
+import Input from "../../../components/UI/Input";
 import { Link } from "react-router-dom";
 
 import "./index.css";
-import "../../styles.css";
-import "../../components/UI/Button/index.css";
+import "../../../styles.css";
+import "../../../components/UI/Input";
 
-function Signin() {
+function RegisPhone() {
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -40,48 +40,28 @@ function Signin() {
                 Secondo
               </div>
               <div className="kanit-Display-Medium-R space-padding-bot font-color">
-                เข้าสู่ระบบ
+                สร้างบัญชีใหม่
               </div>
             </div>
 
             <Col className="p-0">
               <Form>
                 <Input
-                  Label="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
-                  placeholder="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
+                  Label="หมายเลขโทรศัพท์มือถือ"
+                  placeholder="หมายเลขโทรศัพท์มือถือ"
                   value=""
-                  type="email"
+                  type="phone"
                   errorMessage=""
                   onChange={() => {}}
                 />
-
-                <Input
-                  Label="รหัสผ่าน"
-                  placeholder="รหัสผ่าน"
-                  value=""
-                  type="password"
-                  errorMessage=""
-                  onChange={() => {}}
-                />
-
-                {/* <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalCheck"
-                  >
-                    <Col>
-                      <Form.Check label="Remember me" />
-                    </Col>
-                  </Form.Group> */}
 
                 <Row className="mb-3">
                   <Col>
-                    <button
-                      className="btn-small-primary kanit-paragraphMedium"
-                      type="submit"
-                    >
-                      เข้าสู่ระบบ
-                    </button>
+                    <Link to={"/signup/regisphone/Otp"}>
+                      <button className="btn-small-primary kanit-paragraphMedium">
+                        ต่อไป
+                      </button>
+                    </Link>
                   </Col>
                 </Row>
 
@@ -94,27 +74,16 @@ function Signin() {
                 <Row className="mb-3">
                   <Col>
                     <button className="btn-small-secondary kanit-paragraphMedium">
-                      เข้าสู่ระบบด้วย Google
+                      สมัครด้วย Google
                     </button>
                   </Col>
                 </Row>
 
                 <Row className="content-3">
                   <div className="agreement-law-text kanit-paragraphSmall">
-                    <div>การดำเนินการต่อแสดงว่าคุณได้อ่านและยอมรับ</div>
-                    <Link className="" to="#pricing">
-                      ข้อกำหนดการใช้งาน
-                    </Link>{" "}
-                    และ{" "}
-                    <Link className="" to="#pricing">
-                      นโยบายความเป็นส่วนตัว
-                    </Link>
-                  </div>
-
-                  <div className="agreement-law-text kanit-paragraphSmall">
-                    ยังไม่มีบัญชี Secondo ใช่ไหม{" "}
-                    <Link className="" to="/signup/regisphone">
-                      สร้างบัญชีใหม่
+                    คุณมีบัญชีอยู่แล้วหรือไม่ ?{" "}
+                    <Link className="" to="/signin">
+                      เข้าสู่ระบบ
                     </Link>
                   </div>
                 </Row>
@@ -127,4 +96,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default RegisPhone;
