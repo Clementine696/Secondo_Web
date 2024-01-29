@@ -1,0 +1,25 @@
+.FrameCateCard {
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--Etc-Outline, #74747e);
+  background-color: var(--Text-white, #fff);
+  display: flex;
+  flex-direction: column;
+  width: 128px;
+  height: 128px;
+  padding: 0 16px;
+}
+.imgCate {
+  /* aspect-ratio: 1; */
+  object-fit: contain;
+  object-position: center;
+  width: 70px;
+  align-self: center;
+}
+.TextCate {
+  text-align: center;
+  color: #000;
+  letter-spacing: 0.1px;
+  margin-top: 4px;
+  font: 400 14px/143% Kanit, -apple-system, Roboto, Helvetica, sans-serif;
+}
