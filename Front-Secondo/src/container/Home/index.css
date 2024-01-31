@@ -1,7 +1,12 @@
-.BG {
+.background-home {
   background-color: #f7f7ff;
   /* object-position: center; */
   /* text-align: center; */
+}
+.home-slide-banner {
+  margin-bottom: 32px;
+  margin-top: 32px;
+  max-height: 600px;
 }
 .GroupCard {
   max-width: 1144px;
@@ -113,6 +118,7 @@
   padding-right: 16px; */
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 32px;
 }
 .TopicCate {
   color: #000;

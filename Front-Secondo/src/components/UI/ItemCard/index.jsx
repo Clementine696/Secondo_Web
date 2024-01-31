@@ -33,15 +33,15 @@ function ItemCardSell() {
 function ItemCardDonate() {
   return (
     <div className="FrameItemCard">
-      <div className="Img">
+      <div className="ImgCard">
         <img
           loading="lazy"
           srcSet="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
           className="imgItemCard"
         />
       </div>
-      <span className="span">
-        <span className="span2">
+      <span className="card-text-field">
+        <span className="card-item-context">
           <div className="ItemName">ชื่อสินค้า ที่ยาวมากเลยครับยาวสุดๆ ยาวมากถึง 2 บรรทัด</div>
           <div className="Province">จังหวัด</div>
         </span>
