@@ -99,7 +99,7 @@ function Signin() {
                   </Col>
                 </Row>
 
-                <Row className="content-3">
+                <Row className="agreement-law-content">
                   <div className="agreement-law-text kanit-paragraphSmall">
                     <div>การดำเนินการต่อแสดงว่าคุณได้อ่านและยอมรับ</div>
                     <Link className="" to="#pricing">

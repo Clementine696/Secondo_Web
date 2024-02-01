@@ -55,8 +55,8 @@ function Otp() {
                   onChange={() => {}}
                 />
 
-                <Row className="content-3">
-                  <div className="agreement-law-text kanit-paragraphSmall S-P">
+                <Row className="agreement-law-content">
+                  <div className="agreement-law-text kanit-paragraphSmall padding-buttom">
                     พิมพ์รหัสที่ส่งมาทาง SMS เบอร์
                     0800828335(รหัสใช้ได้เพียงครั้งเดียว) ถ้าไม่ได้รับ SMS
                     รหัสยืนยันภายใน 5 นาที สามารถขอรหัสใหม่ หรือ ติดต่อทีมงาน{" "} <br />
