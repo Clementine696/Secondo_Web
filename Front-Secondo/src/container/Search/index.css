@@ -1,5 +1,5 @@
 .search-content {
-    margin: 32px 148px;
+    margin: 32px 172px;
     padding: 0;
 }
 
@@ -61,15 +61,20 @@
 }
 
 .filter {
-    max-width: 258px;
+    max-width: 300px;
     height: 1000px;
     padding: 16px;
     border-radius: 24px;
     background-color: var(--SurfaceBright-color);
 }
 
-.content {
-    padding: 16px;
+.search-result {
+    padding: 24px;
     border-radius: 24px;
     background-color: var(--SurfaceBright-color);
+}
+
+.row-card-search-result {
+    width: 100%;
+    gap: 32px 24px;
 }

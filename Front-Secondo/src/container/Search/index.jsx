@@ -52,9 +52,26 @@ function Search() {
             <Dropdown options={options} />
           </Row>
           <Row className="frame-result">
-            <Col className="filter"></Col>
-            <Col className="content">
-              <Row>
+            <Col className="filter">
+              <div className="kanit-paragraphBig">
+                หมวดหมู่
+                <div className="kanit-paragraphMedium">
+                  Test1
+                </div>
+              </div>
+              <div className="kanit-paragraphMedium">
+                ราคา
+              </div>
+              <div className="kanit-paragraphMedium">
+                ส่งจาก
+              </div>
+              <div className="kanit-paragraphMedium">
+                สภาพสินค้า
+              </div>
+            </Col>
+            <Col className="search-result">
+              <Row className="row-card-search-result">
+                <ItemCard />
                 <ItemCard />
                 <ItemCard />
                 <ItemCard />
