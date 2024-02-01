@@ -1,22 +1,25 @@
-.FrameCateCard {
+.frame-cate-card {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
   border-radius: 8px;
   border: 1px solid var(--Etc-Outline, #74747e);
-  background-color: var(--Text-white, #fff);
-  display: flex;
-  flex-direction: column;
-  width: 128px;
-  height: 128px;
-  padding: 0 16px;
+  background: var(--Text-white, #fff);
+  width: 125px;
+  height: 134px;
 }
-.imgCate {
+.img-category {
   /* aspect-ratio: 1; */
   object-fit: contain;
   object-position: center;
   width: 70px;
   align-self: center;
 }
-.TextCate {
+.text-category {
   text-align: center;
   color: #000;
   letter-spacing: 0.1px;

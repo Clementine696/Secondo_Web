@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
-// import "~slick-carousel/slick/slick.css"; 
+// import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
@@ -11,163 +11,97 @@ import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
 import "./index.css";
 
-
 function Home() {
   return (
     <Layout>
       <div className="background-home">
-
-        <div className="home-slide-banner">
-          {/* <Carousel data-bs-theme="dark">
-            <Carousel.Item>
+        <div className="background-home-banner-category">
+          <div className="home-banner">
+            <div className="home-slide-banner">
+              <BannerSlide />
+            </div>
+            <div className="home-img-banner">
               <img
-                className="d-block"
-                src="https://png.pngtree.com/background/20230619/original/pngtree-lebanese-e-commerce-visualized-in-3d-for-online-platforms-and-social-picture-image_3761208.jpg"
-                alt="First slide"
+                className="img-banner"
+                srcSet="https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg"
               />
-              <Carousel.Caption>
-                <h5>First slide label</h5>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
               <img
-                className="d-block"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlmWblTTk07WNyWkNcgojpIiMKwMoMSqZ-aw&usqp=CAU"
-                alt="Second slide"
+                className="img-banner"
+                srcSet="https://static.vecteezy.com/system/resources/thumbnails/002/006/967/small/young-women-takes-a-shopping-cart-and-enjoy-online-shopping-through-smartphones-choose-to-buy-gifts-valentine-s-day-concepts-website-or-mobile-phone-application-flat-design-illustration-vector.jpg"
               />
-              <Carousel.Caption>
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block"
-                src="https://imageio.forbes.com/specials-images/imageserve/5d95d03767dd830006a295b6/GETTY/960x0.jpg?format=jpg&width=960"
-                alt="Third slide"
-              />
-              <Carousel.Caption>
-                <h5>Third slide label</h5>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel> */}
-          <BannerSlide />
+            </div>
+          </div>
 
-        </div>
-
-        <div className="FrameCate">
-          <div className="TopicCate">หมวดหมู่</div>
-          <div className="GroupCate row">
-            <CateCard />
-            <CateCard />
-            <CateCard />
-            <CateCard />
-            <CateCard />
-            <CateCard />
-            <CateCard />
-            <CateCard />
+          <div className="frame-category">
+            <div className="header-category">หมวดหมู่</div>
+            <div className="group-category row">
+              <CateCard />
+              <CateCard />
+              <CateCard />
+              <CateCard />
+              <CateCard />
+              <CateCard />
+              <CateCard />
+              <CateCard />
+            </div>
+            <div></div>
           </div>
         </div>
 
-        <div className="GroupCard">
-          <div className="TopicGroup">
-            <div className="div-2 pull-left">สินค้าน่าสนใจ</div>
-            <div className="div-3 pull-right">เพิ่มเติม</div>
-          </div>
-          <div className="div-4">
-            <div className="div-5" />
-          </div>
-          <div className="div-6">
-            <div className="div-7">
-              <div className="RowCard row">
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-              </div>
+        <div className="group-card">
+          <div className="group-card-header-item">
+            <div className="group-card-header">
+              <div className="group-card-header-topic">สินค้าน่าสนใจ</div>
+              <div className="group-card-header-other">เพิ่มเติม</div>
+            </div>
+            <div className="group-card-item-line-frame">
+              <div className="group-card-item-line" />
+            </div>
+            <div className="group-card-item">
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
             </div>
           </div>
         </div>
 
-        <div className="GroupCard">
-          <div className="TopicGroup">
-            <div className="div-2 pull-left">สินค้าบริจาคใหม่</div>
-            <div className="div-3 pull-right">เพิ่มเติม</div>
-          </div>
-          <div className="div-4">
-            <div className="div-5" />
-          </div>
-          <div className="div-6">
-            <div className="div-7">
-              <div className="RowCard row">
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-              </div>
+        <div className="group-card">
+          <div className="group-card-header-item">
+            <div className="group-card-header">
+              <div className="group-card-header-topic">สินค้าบริจาคใหม่</div>
+              <div className="group-card-header-other">เพิ่มเติม</div>
+            </div>
+            <div className="group-card-item-line-frame">
+              <div className="group-card-item-line" />
+            </div>
+            <div className="group-card-item">
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
             </div>
           </div>
         </div>
 
-        <div className="GroupCard">
-          <div className="TopicGroup">
-            <div className="div-2 pull-left">สินค้ารับบริจาค</div>
-            <div className="div-3 pull-right">เพิ่มเติม</div>
-          </div>
-          <div className="div-4">
-            <div className="div-5" />
-          </div>
-          <div className="div-6">
-            <div className="div-7">
-              <div className="RowCard row">
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-                <div className="col-sm-3">
-                  {" "}
-                  <ItemCard />{" "}
-                </div>
-              </div>
+        <div className="group-card">
+          <div className="group-card-header-item">
+            <div className="group-card-header">
+              <div className="group-card-header-topic">สินค้ารับบริจาค</div>
+              <div className="group-card-header-other">เพิ่มเติม</div>
+            </div>
+            <div className="group-card-item-line-frame">
+              <div className="group-card-item-line" />
+            </div>
+            <div className="group-card-item">
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
+              <ItemCard />
             </div>
           </div>
         </div>
+
       </div>
     </Layout>
   );
