@@ -2,15 +2,22 @@ import * as React from "react";
 import "./index.css";
 // import Card from 'react-bootstrap/Card';
 // import ListGroup from 'react-bootstrap/ListGroup';
+import { NavLink, Link } from "react-router-dom";
 
 function ItemCard() {
   return (
     <div className="frame-card-item">
       <div className="frame-img-card-item">
-        <img
+        <Link style={{ textDecoration: 'none' }} to="/product" className="link-img-card-item">
+          <img
+            className="img-card-item"
+            src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+          />
+        </Link>
+        {/* <img
           className="img-card-item"
           src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"  
-        />
+        /> */}
         {/* <div className="frame-out-icon-favorite">
           <div className="frame-in-icon-favorite">
             <div className="icon-favorite">
@@ -24,7 +31,7 @@ function ItemCard() {
       <span className="card-text-field">
         <span className="card-item-context">
           <div className="card-item-name">
-            ชื่อสินค้า ที่ยาวมากเลยครับยาวสุดๆ ยาวมากถึง 2 บรรทัด
+            <Link style={{ textDecoration: 'none' }} to="/product" className="card-item-name">ชื่อสินค้า ที่ยาวมากเลยครับยาวสุดๆ ยาวมากถึง 2 บรรทัด</Link>
           </div>
           <div className="card-item-province">จังหวัด</div>
         </span>
@@ -44,7 +51,6 @@ function ItemCardDonate() {
   return (
     <div className="frame-card-item">
       <img
-        loading="lazy"
         srcSet="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
         className="img-card-item"
       />

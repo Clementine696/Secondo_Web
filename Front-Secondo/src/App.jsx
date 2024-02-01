@@ -9,6 +9,7 @@ import Signup from './container/Signup';
 import RegisPhone from './container/Signup/RegisPhone';
 import Otp from './container/Signup/Otp';
 import Search from './container/Search';
+import Product from './container/Product';
 
 export default function App(){
   return (
@@ -22,6 +23,7 @@ export default function App(){
         <Route path='signup/regisphone' element={<RegisPhone/>} />
         <Route path='signup/regisphone/Otp' element={<Otp/>} />
         <Route path='search' element={<Search/>} />
+        <Route path='product' element={<Product/>} />
       </Routes>
       </BrowserRouter>
     </div>
