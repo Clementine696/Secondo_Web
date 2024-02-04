@@ -1,19 +1,15 @@
 import React from "react";
 import Header from "../Header";
-import { Container } from "react-bootstrap";
-
-/*
-* @author
-* @function Layout
-*/
+import Footer from "../Footer";
 
 const Layout = (props) => {
-    return (
-        <>
-            <Header />
-            {props.children}
-        </>
-    )
-}
+  return (
+    <>
+      <Header />
+      {props.children}
+      <Footer />
+    </>
+  );
+};
 
 export default Layout;

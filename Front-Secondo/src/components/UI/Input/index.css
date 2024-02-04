@@ -11,10 +11,6 @@
     color: var(--Des-color);
 }
 
-.font-color {
-    color: var(--Default-text);
-}
-
 .Text-field-default {
     display: flex;
     height: 60px;
