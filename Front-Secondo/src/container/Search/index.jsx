@@ -1,11 +1,20 @@
 import React, { useCallback } from "react";
 import Layout from "../../components/Layout";
-import { Container, Form, Button, Row, Col, FormCheck } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Row,
+  Col,
+  FormCheck,
+  FormControl,
+} from "react-bootstrap";
 import Dropdown from "../../components/UI/Dropdown";
 import ItemCard from "../../components/UI/ItemCard";
 
 import "./index.css";
 import "../../styles.css";
+import { Link } from "react-router-dom";
 
 const options = [
   { value: "option1", label: "ความนิยม" },
@@ -101,9 +110,12 @@ function Search() {
                     alt="suggestion"
                   />
                 </div>
-                <div className="search-page-frame-suggest-content-group-item-card-text">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-suggest-content-group-item-card-text"
+                >
                   โทรศัพท์
-                </div>
+                </Link>
               </div>
               <div className="search-page-frame-suggest-content-group-item-card">
                 <div className="search-page-frame-suggest-content-group-item-card-img-frame">
@@ -113,9 +125,12 @@ function Search() {
                     alt="suggestion"
                   />
                 </div>
-                <div className="search-page-frame-suggest-content-group-item-card-text">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-suggest-content-group-item-card-text"
+                >
                   โทรศัพท์
-                </div>
+                </Link>
               </div>
               <div className="search-page-frame-suggest-content-group-item-card">
                 <div className="search-page-frame-suggest-content-group-item-card-img-frame">
@@ -125,9 +140,12 @@ function Search() {
                     alt="suggestion"
                   />
                 </div>
-                <div className="search-page-frame-suggest-content-group-item-card-text">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-suggest-content-group-item-card-text"
+                >
                   โทรศัพท์
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -140,74 +158,136 @@ function Search() {
                 <div className="search-page-frame-content-all-filter-category-header">
                   หมวดหมู่
                 </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                {/* <div className="search-page-frame-content-all-filter-category-name">
                   เสื้อผ้าและแฟชัน
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </div> */}
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เสื้อผ้าและแฟชัน
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   รองเท้า
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   สุขภาพและความงาม
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   เครื่องประดับ
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   เครื่องใช้ไฟฟ้า
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   อุปกรณ์ IT
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   กล้องและอุปกรณ์
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   รถยนต์
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   รถมอเตอร์ไซต์
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
-                  เครื่องใช้ไฟฟ้า
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   กระเป๋า
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   เฟอร์นิเจอร์
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   ของสะสม
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   หนังสือ
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   กีฬา
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   เครื่องดนตรี
-                </div>
-                <div className="search-page-frame-content-all-filter-category-name">
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
                   แม่และเด็ก
-                </div>
+                </Link>
               </div>
               <div className="search-page-frame-content-all-filter-price">
                 <div className="search-page-frame-content-all-filter-price-header">
                   ราคา
                 </div>
                 <div className="search-page-frame-content-all-filter-price-filter">
-                  <div className="search-page-frame-content-all-filter-price-filter-lower">
+                  {/* <div className="search-page-frame-content-all-filter-price-filter-lower">
                     <div className="search-page-frame-content-all-filter-price-filter-lower-text">
                       ราคาเริ่มต้น
-                    </div>
-                  </div>
+                    </div> 
+                  </div> */}
+                  <Form className="search-page-frame-content-all-filter-price-filter-lower">
+                    <FormControl
+                      className="search-page-frame-content-all-filter-price-filter-lower-text"
+                      type="number"
+                      placeholder="ราคาเริ่มต้น"
+                    />
+                  </Form>
                   <div className="search-page-frame-content-all-filter-price-filter-line"></div>
-                  <div className="search-page-frame-content-all-filter-price-filter-upper">
+                  {/* <div className="search-page-frame-content-all-filter-price-filter-upper">
                     <div className="search-page-frame-content-all-filter-price-filter-upper-text">
                       ราคาสูงสุด
                     </div>
-                  </div>
+                  </div> */}
+                  <Form className="search-page-frame-content-all-filter-price-filter-upper">
+                    <FormControl
+                      className="search-page-frame-content-all-filter-price-filter-upper-text"
+                      type="number"
+                      placeholder="ราคาสูงสุด"
+                    />
+                  </Form>
                 </div>
                 <button
                   className="btn-small-primary kanit-paragraphMedium"
@@ -263,7 +343,7 @@ function Search() {
                 </div>
               </div>
               <div className="search-page-frame-content-all-filter-condition">
-              <div className="search-page-frame-content-all-filter-condition-header">
+                <div className="search-page-frame-content-all-filter-condition-header">
                   สภาพสินค้า
                 </div>
                 <div className="search-page-frame-content-all-filter-condition-group-check row">
