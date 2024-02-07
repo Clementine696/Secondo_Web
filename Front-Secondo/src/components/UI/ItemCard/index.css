@@ -14,22 +14,28 @@
 .frame-img-card-item {
   display: flex;
   padding: 16px 16px 0px 16px;
-  align-items: flex-start;
   gap: 8px;
   align-self: stretch;
   background: var(--Text-white, #fff);
+  justify-content: center;
   /* flex-shrink: 0; */
+  text-align: center;
 }
 .link-img-card-item {
   width:  234px;
+  height: 200px;
+  border-radius: 8px;
+  background: var(--Tertiary-Container, #B3B3B3);
+
 }
 .img-card-item {
-  height: 200px;
-  flex: 1 0 0;
-  border-radius: 8px;
-  background: var(--Tertiary-Container, #f3f0e2);
+  /* height: 100%;
+  width: auto; */
+  object-fit: cover;
+  /* flex: 1 0 0; */
+  /* border-radius: 8px;
+  background: var(--Tertiary-Container, #f3f0e2); */
   /* flex-shrink: 0; */
-  width: 100%;
 }
 
 .frame-out-icon-favorite {
