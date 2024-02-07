@@ -104,13 +104,11 @@ function Search() {
             <div className="search-page-frame-suggest-content-group-item">
               <div className="search-page-frame-suggest-content-group-item-card">
                 <div className="search-page-frame-suggest-content-group-item-card-img-frame">
-                  <Link className="search-page-frame-suggest-content-group-item-card-img-link">
                   <img
                     className="search-page-frame-suggest-content-group-item-card-img"
                     src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
                     alt="suggestion"
                   />
-                  </Link>
                 </div>
                 <Link
                   style={{ textDecoration: "none" }}
