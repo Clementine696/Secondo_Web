@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
-// import "~slick-carousel/slick/slick.css";
+import { Link } from "react-router-dom";
+import HDivider from "../../components/UI/DividerHorizontal";
 // import "~slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
@@ -9,6 +9,7 @@ import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import ItemCard from "../../components/UI/ItemCard";
 import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
+
 import "./index.css";
 
 function Home() {
@@ -33,7 +34,7 @@ function Home() {
           </div>
 
           <div className="frame-category">
-            <div className="header-category">หมวดหมู่</div>
+            <div className="header-category kanit-paragraphBig">หมวดหมู่</div>
             <div className="group-category row">
               <CateCard />
               <CateCard />
@@ -51,12 +52,30 @@ function Home() {
         <div className="group-card">
           <div className="group-card-header-item">
             <div className="group-card-header">
-              <div className="group-card-header-topic">สินค้าน่าสนใจ</div>
-              <div className="group-card-header-other">เพิ่มเติม</div>
+              <div className="group-card-header-topic kanit-paragraphBig">
+                สินค้าน่าสนใจ
+              </div>
+              <Link className="group-card-icon-other">
+                <div className="group-card-header-other">เพิ่มเติม</div>
+                <svg
+                  className="icon-arrow-right-24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                    stroke="#D0C58A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
-            <div className="group-card-item-line-frame">
-              <div className="group-card-item-line" />
-            </div>
+            <HDivider />
             <div className="group-card-item">
               <ItemCard />
               <ItemCard />
@@ -69,12 +88,30 @@ function Home() {
         <div className="group-card">
           <div className="group-card-header-item">
             <div className="group-card-header">
-              <div className="group-card-header-topic">สินค้าบริจาคใหม่</div>
-              <div className="group-card-header-other">เพิ่มเติม</div>
+              <div className="group-card-header-topic kanit-paragraphBig">
+                สินค้าบริจาคใหม่
+              </div>
+              <Link className="group-card-icon-other">
+                <div className="group-card-header-other">เพิ่มเติม</div>
+                <svg
+                  className="icon-arrow-right-24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                    stroke="#D0C58A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
-            <div className="group-card-item-line-frame">
-              <div className="group-card-item-line" />
-            </div>
+            <HDivider />
             <div className="group-card-item">
               <ItemCard />
               <ItemCard />
@@ -87,12 +124,30 @@ function Home() {
         <div className="group-card">
           <div className="group-card-header-item">
             <div className="group-card-header">
-              <div className="group-card-header-topic">สินค้ารับบริจาค</div>
-              <div className="group-card-header-other">เพิ่มเติม</div>
+              <div className="group-card-header-topic kanit-paragraphBig">
+                สินค้ารับบริจาค
+              </div>
+              <Link className="group-card-icon-other">
+                <div className="group-card-header-other">เพิ่มเติม</div>
+                <svg
+                  className="icon-arrow-right-24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                    stroke="#D0C58A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
-            <div className="group-card-item-line-frame">
-              <div className="group-card-item-line" />
-            </div>
+            <HDivider />
             <div className="group-card-item">
               <ItemCard />
               <ItemCard />
@@ -101,7 +156,6 @@ function Home() {
             </div>
           </div>
         </div>
-
       </div>
     </Layout>
   );

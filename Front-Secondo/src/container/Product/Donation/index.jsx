@@ -1,15 +1,14 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import Layout from "../../components/Layout";
-import ItemCard from "../../components/UI/ItemCard";
-import HDivider from "../../components/UI/DividerHorizontal";
-import VDivider from "../../components/UI/DividerVentical";
+import Layout from "../../../components/Layout";
+import ItemCard from "../../../components/UI/ItemCard";
+import HDivider from "../../../components/UI/DividerHorizontal";
+import VDivider from "../../../components/UI/DividerVentical";
 import { Link } from "react-router-dom"; // import "~slick-carousel/slick/slick.css";
 
-import "./index.css";
-import "../../components/UI/Button/index.css";
+import "../../../components/UI/Button/index.css";
 
-function Product() {
+function Donate() {
   return (
     <Layout>
       <div className="background-product-page">
@@ -118,16 +117,9 @@ function Product() {
             <div className="divider-horz-2"></div>
 
             <Row className="product-button-section">
-              <Col>
-                <button className="btn-small-secondary kanit-paragraphMedium">
-                  เสนอราคา
-                </button>
-              </Col>
-              <Col>
-                <button className="btn-small-primary kanit-paragraphMedium">
-                  ซื้อ
-                </button>
-              </Col>
+              <button className="btn-small-primary kanit-paragraphMedium">
+                เสนอบริจาค
+              </button>
             </Row>
           </div>
         </Row>
@@ -194,7 +186,7 @@ function Product() {
                 <Col>ผู้ติดตาม</Col>
                 <Col className="color-ratio">5 พัน</Col>
               </Row>
-            </Col> 
+            </Col>
           </Row>
         </div>
 
@@ -268,4 +260,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Donate;

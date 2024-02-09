@@ -1,6 +1,6 @@
 .background-product-page {
   display: flex;
-  padding: 32px 172px;
+  padding: 32px 240px;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
@@ -41,12 +41,11 @@
   align-items: flex-start;
   gap: 24px;
   align-self: stretch;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .product-page-item-details-group-picture-seller {
   max-width: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -54,6 +53,12 @@
   flex: 1 0 0;
   align-self: stretch;
 }
+
+/* @media (max-width: 1350px) {
+  .product-page-item-details-group-picture-seller {
+    flex-direction: row;
+  }
+} */
 
 .product-page-item-details-group-picture-seller-big-picture {
   background-color: var(--SurfaceBright-color);
@@ -77,8 +82,8 @@
 }
 
 .col-small-pic {
-  background-color: aqua;
-  height: 100px;
+  background-color: var(--OutlineVariant-color);
+  height: 116px;
   width: 50%;
   border-radius: 16px;
 }
@@ -107,6 +112,12 @@
   margin-bottom: 16px;
 }
 
+.seller-product {
+  width: auto;
+  text-decoration: none;
+  color: var(--SfixedVariant-color);
+}
+
 .product-price-cc {
   display: flex;
   align-items: flex-start;
@@ -132,10 +143,6 @@
   align-self: stretch;
 }
 
-.about-seller {
-  gap: 64px;
-}
-
 .product-detail {
   height: auto;
 }
@@ -159,18 +166,26 @@
   max-width: 300px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .about-seller {
   width: 100%;
-  height: 100px;
+  height: 100%;
 }
 
 .seller-detail {
-  display: block;
+  width: auto;
   padding: 16px;
-  gap: 16px;
+}
+
+.color-ratio {
+  color: var(--SfixedVariant-color);
+  padding-bottom: 4px;
+}
+
+.top-seller-detail {
+  margin-bottom: 16px;
 }
 
 .seller-name-etc {
@@ -179,6 +194,10 @@
 
 .vent-divider {
   padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
 }
 
 .seller-name-online-button {
@@ -189,10 +208,6 @@
 
 .seller-name-online {
   width: auto;
-}
-
-.color-ratio {
-  color: var(--SfixedVariant-color)
 }
 
 .product-page-item-description {
