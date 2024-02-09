@@ -30,6 +30,7 @@
   background: var(--Tertiary-Container, #f3f0e2);
   /* flex-shrink: 0; */
   width: 100%;
+  object-fit: cover;
 }
 
 .frame-out-icon-favorite {

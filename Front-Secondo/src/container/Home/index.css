@@ -45,6 +45,7 @@
   margin-right: auto; */
   height: 165px;
   width: 568px;
+  object-fit: cover;
 }
 
 /* category */
@@ -149,4 +150,13 @@
   gap: 16px;
   align-self: stretch;
   justify-content: center;
+}
+
+@media screen and (max-width: 480px) {
+  .home-img-banner {
+    flex-direction: column;
+  }
+  .img-banner {
+    max-width: 448px;
+  }
 }
