@@ -1,0 +1,85 @@
+.profile-page {
+    height: 1000px;
+    margin-left: 300px;
+    padding: 32px;
+    flex-direction: column;
+    display: flex;
+    gap: 24px;
+    color: var(--Default-text);
+    /* background-color: aqua; */
+}
+
+.profile-display {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    border-radius: 16px;
+    background-color: var(--SurfaceBright-color);
+}
+
+.profile-show-detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.profile-detail-point {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex: 1 0 0;
+    border-radius: 40px;
+    border: 1px solid var(--Poutline-color);
+}
+
+.user-profile-detail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+p {
+    margin: 0;
+}
+
+.profile-pic-name-button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    color: var(--Default-text);
+}
+
+.button-upload-pic {
+    color: var(--SfixedVariant-color);
+}
+
+.profile-privacy {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+    border-radius: 16px;
+    background-color: var(--SurfaceBright-color);
+}
+
+.input-profile {
+    width: 100%;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+}

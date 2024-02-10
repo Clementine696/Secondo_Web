@@ -16,6 +16,8 @@ import Product from './container/Product';
 import Offersale from './container/Product/Offersale';
 import Offerbuy from './container/Product/Offerbuy';
 import Donate from './container/Product/Donation';
+
+import Profile from './container/Profile';
  
 export default function App(){
   return (
@@ -31,11 +33,13 @@ export default function App(){
         <Route path='signup/regisphone/Otp' element={<Otp/>} />
 
         <Route path='search' element={<Search/>} />
-        
+
         <Route path='product' element={<Product/>} />
         <Route path='product/offersale' element={<Offersale/>} />
         <Route path='product/offerbuy' element={<Offerbuy/>} />
         <Route path='product/donate' element={<Donate/>} />
+
+        <Route path='profile' element={<Profile/>} />
       </Routes>
       </BrowserRouter>
     </div>
