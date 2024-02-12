@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Link } from "react-router-dom";
 import HDivider from "../../components/UI/DividerHorizontal";
+// import { Container, Row, Col, ListGroup } from "react-bootstrap";
+// import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
@@ -9,7 +11,6 @@ import HDivider from "../../components/UI/DividerHorizontal";
 import ItemCard from "../../components/UI/ItemCard";
 import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
-
 import "./index.css";
 
 function Home() {
