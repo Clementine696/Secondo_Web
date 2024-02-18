@@ -1,12 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from "react";
+import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
+import DropdownItem from "../../components/UI/DropdownProfile";
+
+import user from "../../icon/user.png";
+import bag from "../../icon/bag.png";
+import tag from "../../icon/tag.png";
+import donate from "../../icon/donate.png";
+import recive from "../../icon/recive.png";
+import bid from "../../icon/bid.png";
+import co2 from "../../icon/co2.png";
+import like from "../../icon/like.png";
+import setting from "../../icon/setting.png";
 
 import "./index.css";
 import "../../styles.css";
 
 function Index() {
+  const [open, setOpen] = useState(false);
+
+  let menuRef = useRef();
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuRef.current.contains(e.target)) {
+        setOpen(false);
+        // console.log(menuRef.current)
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return() => {
+      document.removeEventListener("mousedown", handler);
+    }
+  });
+
   return (
     <Navbar collapseOnSelect expand="lg" className="Navbar">
       <Row className="w-100">
@@ -92,14 +122,37 @@ function Index() {
               </button>
             </Link>
 
-            <div
-              style={{
-                backgroundColor: "black",
-                height: "40px",
-                width: "40px",
-                borderRadius: "24px",
-              }}
-            ></div>
+            <div className="menu-container" ref={menuRef}>
+              <div
+                className="menu-trigger"
+                onClick={() => {
+                  setOpen(!open);
+                }}
+              >
+                <img
+                  className="profile-img"
+                  src="/images/userprofile.jpg"
+                ></img>
+              </div>
+
+              <div
+                className={`dropdown-menu-profile ${
+                  open ? "active" : "inactive"
+                }`}
+              >
+                <ul className="kanit-paragraphtextMedium">
+                  <DropdownItem img={user} text={"ข้อมูลส่วนตัว"} link={"/profile"} />
+                  <DropdownItem img={bag} text={"การซื้อของฉัน"} link={"/"} />
+                  <DropdownItem img={tag} text={"การขายของฉัน"} link={"#"} />
+                  <DropdownItem img={donate} text={"การบริจาคของฉัน"} link={"#"} />
+                  <DropdownItem img={recive} text={"ขอรับบริจาคของฉัน"} link={"#"} />
+                  <DropdownItem img={bid} text={"การประมูลของฉัน"} link={"#"} />
+                  <DropdownItem img={co2} text={"แต้มคะแนน Carbon credits"} link={"#"} />
+                  <DropdownItem img={like} text={"รายการโปรด"} link={"#"} />
+                  <DropdownItem img={setting} text={"ตั้งค่า"} link={"#"} />
+                </ul>
+              </div>
+            </div>
 
             <div className="icon-hamburger">
               <svg
