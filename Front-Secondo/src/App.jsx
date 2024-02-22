@@ -18,6 +18,7 @@ import Offerbuy from './container/Product/Offerbuy';
 import Donate from './container/Product/Donation';
 
 import Profile from './container/Profile';
+import SellProduct from './container/SellProduct';
  
 export default function App(){
   return (
@@ -40,6 +41,7 @@ export default function App(){
         <Route path='product/donate' element={<Donate/>} />
 
         <Route path='profile' element={<Profile/>} />
+        <Route path='account/sell/additem' element={<SellProduct/>} />
       </Routes>
       </BrowserRouter>
     </div>

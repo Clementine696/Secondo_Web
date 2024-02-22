@@ -1,0 +1,47 @@
+.background-sell-product-page {
+    display: flex;
+    padding: 32px 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+}
+
+.sell-product-topic {
+    color: var(--Text-Default, #00243D);
+
+    /* Display Large */
+    font-family: Kanit;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px; /* 128.571% */
+    letter-spacing: -0.25px;
+}
+
+.sell-product-content-upload-image {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.sell-product-content-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1 0 0;
+}
+
+.sell-product-content-info-item-input {
+    width: 100%;
+}
+
+.sell-product-content-info-item-input-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+}
