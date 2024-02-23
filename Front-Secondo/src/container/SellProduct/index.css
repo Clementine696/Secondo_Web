@@ -15,8 +15,15 @@
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
-    line-height: 36px; /* 128.571% */
+    line-height: 36px;
     letter-spacing: -0.25px;
+}
+
+.sell-product-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
 }
 
 .sell-product-content-upload-image {

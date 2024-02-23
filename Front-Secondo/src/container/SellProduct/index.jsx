@@ -3,9 +3,26 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import Layout from "../../components/Layout";
 
+import { useState, useEffect } from "react";
+
 import "./index.css";
 
 function SellProduct() {
+
+  const [images, setImages] = useState([]);
+  const [imageURLs, setImageURLs] = useState([]);
+
+  useEffect(() => {
+    if (images.length < 1) return;
+    const newImageURLs = [];
+    images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
+    setImageURLs(newImageURLs);
+  }, [images]);
+
+  function onImageChange(e) {
+    setImages([...e.target.files]);
+  }
+
   return (
     <Layout>
       <div className="background-sell-product-page">
@@ -62,7 +79,12 @@ function SellProduct() {
         </div>
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
-          <div className="sell-product-content-upload-image"></div>
+          <div className="sell-product-content-upload-image">
+            <input type="file" multiple accept="image/*" onChange={onImageChange}/>
+            {imageURLs.map((imageSrc) => (
+              < img width="268" height="200" src={imageSrc} />
+            ))};
+          </div>
           <div className="sell-product-content-info-item">
             <Col className="sell-product-content-info-item-group">
               <Form className="sell-product-content-info-item-input">
@@ -84,14 +106,14 @@ function SellProduct() {
                   onChange={() => {}}
                 />
                 <Input
-                Label="รายละเอียดสินค้า"
-                placeholder="ระบุรายละเอียดของสินค้า"
-                value=""
-                type="text"
-                errorMessage=""
-                onChange={() => {}}
-              />
-              <Input
+                  Label="รายละเอียดสินค้า"
+                  placeholder="ระบุรายละเอียดของสินค้า"
+                  value=""
+                  type="text"
+                  errorMessage=""
+                  onChange={() => {}}
+                />
+                <Input
                   Label="ค่าจัดส่ง"
                   placeholder="ระบุค่าจัดส่ง"
                   value=""
