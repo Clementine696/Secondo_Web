@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 import { Link } from "react-router-dom";
@@ -8,6 +8,12 @@ import "../../../styles.css";
 import "../../../components/UI/Input";
 
 function Otp() {
+  const [confirmOtp, setConfirmOtp] = useState("");
+
+  const checkOtp = () => {
+    console.log(confirmOtp);
+  };
+
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -49,17 +55,20 @@ function Otp() {
                 <Input
                   Label=""
                   placeholder="หมายเลข OTP"
-                  value=""
-                  type="phone"
+                  value={confirmOtp}
+                  type="number"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setConfirmOtp(e.target.value);
+                  }}
                 />
 
                 <Row className="agreement-law-content">
                   <div className="agreement-law-text kanit-paragraphSmall padding-buttom">
                     พิมพ์รหัสที่ส่งมาทาง SMS เบอร์
                     0800828335(รหัสใช้ได้เพียงครั้งเดียว) ถ้าไม่ได้รับ SMS
-                    รหัสยืนยันภายใน 5 นาที สามารถขอรหัสใหม่ หรือ ติดต่อทีมงาน{" "} <br />
+                    รหัสยืนยันภายใน 5 นาที สามารถขอรหัสใหม่ หรือ ติดต่อทีมงาน{" "}
+                    <br />
                     <Link className="" to="#pricing">
                       ขอรหัสใหม่
                     </Link>
@@ -69,7 +78,10 @@ function Otp() {
                 <Row className="mb-3">
                   <Col>
                     <Link to={"/signup"}>
-                      <button className="btn-small-primary kanit-paragraphMedium">
+                      <button
+                        className="btn-small-primary kanit-paragraphMedium"
+                        onClick={checkOtp}
+                      >
                         ต่อไป
                       </button>
                     </Link>

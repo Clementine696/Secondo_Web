@@ -5,6 +5,7 @@
   padding: 8px 24px;
   align-items: center;
   background-color: var(--Scontainer-color);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   flex-flow: column;
 }
 
@@ -52,8 +53,10 @@
 }
 
 .search-icon{
+  height: 24px;
+  width: 24px;
   position: absolute;
-  top: 25%;
+  top: 20%;
   right: 16px;
 }
 

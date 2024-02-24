@@ -1,14 +1,16 @@
 import React from "react";
 
 import "./index.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-function Sidemenu() {
+const Sidemenu = () => {
+  const location = useLocation();
+
   return (
     <div className="profile-sidebar">
       <ul className="nav-profile-sidebar kanit-paragraphtextMedium">
-        <li className="menu-sidebar">
-          <Link className="link-menu" to="#privacy">
+        <li className={location.pathname === "/profile" ? "active" : ""}>
+          <Link className="link-menu" to="/profile">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -32,8 +34,8 @@ function Sidemenu() {
             ข้อมูลส่วนตัว
           </Link>
         </li>
-        <li className="menu-sidebar">
-          <Link className="link-menu" to="#buy">
+        <li className={location.pathname === "/buystate" ? "active" : ""}>
+          <Link className="link-menu" to="/buystate">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +68,7 @@ function Sidemenu() {
             การซื้อของฉัน
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -85,7 +87,7 @@ function Sidemenu() {
             การขายของฉัน
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -108,7 +110,7 @@ function Sidemenu() {
             การบริจาคของฉัน
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -148,7 +150,7 @@ function Sidemenu() {
             ขอรับบริจาคของฉัน
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -184,7 +186,7 @@ function Sidemenu() {
             การประมูลของฉัน
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -203,7 +205,7 @@ function Sidemenu() {
             แต้มคะแนน Carbon credits
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -222,7 +224,7 @@ function Sidemenu() {
             รายการโปรด
           </Link>
         </li>
-        <li className="menu-sidebar">
+        <li className={location.pathname === "#" ? "active" : ""}>
           <Link className="link-menu" to="#">
             <div className="icon-menu-sidebar">
               <svg
@@ -244,6 +246,6 @@ function Sidemenu() {
       </ul>
     </div>
   );
-}
+};
 
 export default Sidemenu;
