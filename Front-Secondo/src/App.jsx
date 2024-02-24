@@ -19,6 +19,7 @@ import Donate from "./container/Product/Donation";
 
 import Profile from "./container/UserPage/Profile";
 import BuyState from "./container/UserPage/BuyStatus";
+import SellProduct from "./container/SellProduct";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />
+          <Route path="account/sell/additem" element={<SellProduct />} />
         </Routes>
       </BrowserRouter>
     </div>

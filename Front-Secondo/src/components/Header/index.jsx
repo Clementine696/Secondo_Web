@@ -185,7 +185,7 @@ function Index() {
       </Row>
       <Row className="Second-Nav kanit-paragraphtextMedium">
         <Nav className="me-auto justify-content-center p-0">
-          <Link className="text-menu" href="#home">
+          <Link to="/account/sell/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
           </Link>
           <Link className="text-menu" href="#features">
