@@ -9,19 +9,31 @@ import "./index.css";
 
 function SellProduct() {
 
-  const [images, setImages] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
+  // const [images, setImages] = useState([]);
+  // const [imageURLs, setImageURLs] = useState([]);
 
-  useEffect(() => {
-    if (images.length < 1) return;
-    const newImageURLs = [];
-    images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
-    setImageURLs(newImageURLs);
-  }, [images]);
+  // useEffect(() => {
+  //   if (images.length < 1) return;
+  //   const newImageURLs = [];
+  //   images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
+  //   setImageURLs(newImageURLs);
+  // }, [images]);
 
-  function onImageChange(e) {
-    setImages([...e.target.files]);
-  }
+  // function onImageChange(e) {
+  //   setImages([...e.target.files]);
+  // }
+
+  const [selectedImages, setSelectedImages] = useState([]);
+  const onSelectFile = (event) => {
+    const selectedFiles = event.target.files;
+    const selectedFilesArray = Array.from(selectedFiles);
+
+    const imagesArray = selectedFilesArray.map((file) => {
+      return URL.createObjectURL(file);
+    });
+    
+    setSelectedImages(imagesArray);
+  };
 
   return (
     <Layout>
@@ -80,10 +92,41 @@ function SellProduct() {
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-            <input type="file" multiple accept="image/*" onChange={onImageChange}/>
+            {/* <input type="file" multiple accept="image/*" onChange={onImageChange}/>
             {imageURLs.map((imageSrc) => (
               < img width="268" height="200" src={imageSrc} />
-            ))};
+            ))}; */}
+
+            <label className="sell-product-content-upload-image-label kanit-Display-Large">
+              Click to add images
+              <input className="sell-product-content-upload-image-input"
+                type="file"
+                name="images"
+                onChange={onSelectFile}
+                multiple
+                accept="image/*"
+              />
+            </label>
+            <div className="sell-product-content-upload-image-preview">
+              {selectedImages &&
+                selectedImages.map((image, index) => {
+                  return (
+                    <div className="sell-product-content-upload-image-preview-frame" key="image">
+                      <img src={image} height="200" alt="upload" />
+                      <button
+                        onClick={() =>
+                          setSelectedImages(selectedImages.filter((e) => e !== image))
+                        }
+                      >
+                        Remove image
+                      </button>
+                      <p>{index}</p>
+                    </div>
+                  );
+                })
+              };
+            </div>
+
           </div>
           <div className="sell-product-content-info-item">
             <Col className="sell-product-content-info-item-group">
