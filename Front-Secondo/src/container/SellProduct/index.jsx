@@ -32,7 +32,7 @@ function SellProduct() {
       return URL.createObjectURL(file);
     });
     
-    setSelectedImages(imagesArray);
+    setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
   return (
@@ -107,12 +107,32 @@ function SellProduct() {
                 accept="image/*"
               />
             </label>
+            <br/>
+            {selectedImages.lenght > 0 &&
+              (selectedImages.length > 10 ? (
+                <p>
+                  You can't upload more than 10 images!
+                  <span>
+                    please delete <b> {selectedImages.length - 10} </b> of them{" "}
+                  </span>
+                </p>
+              ) : (
+                <button
+                  onClick={() => {
+                    console.log("UPLOAD IMAGESS");
+                  }}
+                >
+                  UPLOAD {selectedImages.length}
+                  {selectedImages.lenght === 1 ? "" : "S"}
+                </button>
+              ))
+            }
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
                 selectedImages.map((image, index) => {
                   return (
                     <div className="sell-product-content-upload-image-preview-frame" key="image">
-                      <img src={image} height="200" alt="upload" />
+                      <img src={image} height="268" alt="upload" />
                       <button
                         onClick={() =>
                           setSelectedImages(selectedImages.filter((e) => e !== image))
@@ -120,11 +140,11 @@ function SellProduct() {
                       >
                         Remove image
                       </button>
-                      <p>{index}</p>
+                      <p>{index + 1}</p>
                     </div>
                   );
                 })
-              };
+              }
             </div>
 
           </div>
