@@ -1,3 +1,14 @@
+.user-page-buy {
+  height: 1040px;
+  margin-left: 300px;
+  padding: 32px 64px;
+  flex-direction: column;
+  display: flex;
+  gap: 24px;
+  color: var(--Default-text);
+  /* background-color: aqua; */
+}
+
 .search-container-filter {
     width: 326px;
     display: flex;
@@ -57,4 +68,127 @@
 .add-icon {
     height: 16px;
     width: 16px;
+}
+
+.header-table-data {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 16px;
+  gap: 16px;
+  align-items: stretch;
+  border-radius: 12px;
+  background-color: var(--Scontainer-color);
+}
+
+.background-data-table {
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 16px;
+  background-color: var(--SurfaceBright-color);
+}
+
+.header-item {
+  display: flex;
+}
+
+.data-table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 16px;
+  align-self: stretch;
+  background-color: var(--SurfaceBright-color);
+}
+
+.product-name-desc-status, .product-status-time {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+}
+
+p.date-col {
+  min-width: 86px;
+}
+
+div.desc-col, p.desc-col {
+  display: flex;
+  min-width: 318px;
+  flex-direction: row;
+}
+
+div.status-col, p.status-col {
+  min-width: 200px;
+}
+
+p.status-time {
+  color: var(--Soutline-color);
+}
+
+p.point-col {
+  min-width: 80px;
+}
+
+p.price-col {
+  min-width: 104px;
+}
+
+div.func-col, p.func-col {
+  min-width: 120px;
+}
+
+@media (min-width: 1500px) {
+  div.desc-col, p.desc-col {
+    min-width: 30%;
+  }
+  p.date-col {
+    min-width: 10%;
+  }
+  div.status-col, p.status-col {
+    min-width: 20%;
+  }
+  p.point-col {
+    min-width: 5%;
+  }
+  p.price-col {
+    min-width: 5%;
+  }
+  div.func-col, p.func-col {
+    min-width: 20%;
+  }
+}
+
+.func-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.func-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.touch-point {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+img.pic-product-table {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
 }

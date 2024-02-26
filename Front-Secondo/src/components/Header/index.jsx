@@ -8,7 +8,7 @@ import user from "../../icon/user.png";
 import bag from "../../icon/bag.png";
 import tag from "../../icon/tag.png";
 import donate from "../../icon/donate.png";
-import recive from "../../icon/recive.png";
+import receive from "../../icon/receive.png";
 import bid from "../../icon/bid.png";
 import co2 from "../../icon/co2.png";
 import like from "../../icon/like.png";
@@ -141,7 +141,7 @@ function Index() {
                     link={"#"}
                   />
                   <DropdownItem
-                    img={recive}
+                    img={receive}
                     text={"ขอรับบริจาคของฉัน"}
                     link={"#"}
                   />

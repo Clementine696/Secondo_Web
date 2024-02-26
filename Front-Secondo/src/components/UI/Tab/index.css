@@ -1,0 +1,18 @@
+.bloc-tab {
+    display: flex;
+}
+
+.active-tabs {
+    color: var(--SfixedVariant-color);
+    border-bottom: 1px solid var(--SfixedVariant-color);
+    transition: 0.25s all;
+}
+
+.content {
+    display: none;
+    width: 100%;
+}
+
+.active-content {
+    display: flex;
+}

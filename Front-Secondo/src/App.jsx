@@ -19,6 +19,11 @@ import Donate from "./container/Product/Donation";
 
 import Profile from "./container/UserPage/Profile";
 import BuyState from "./container/UserPage/BuyStatus";
+import SellState from "./container/UserPage/SellStatus";
+import DonateState from "./container/UserPage/DonateStatus";
+import ReceiveState from "./container/UserPage/ReceiveStatus";
+import BidState from "./container/UserPage/BidStatus";
+
 import SellProduct from "./container/SellProduct";
 
 export default function App() {
@@ -43,7 +48,13 @@ export default function App() {
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />
+          <Route path="sellstate" element={<SellState />} />
+          <Route path="donatestate" element={<DonateState />} />
+          <Route path="receivestate" element={<ReceiveState />} />
+          <Route path="bidstate" element={<BidState />} />
+
           <Route path="account/sell/additem" element={<SellProduct />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

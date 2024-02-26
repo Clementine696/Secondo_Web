@@ -68,8 +68,8 @@ const Sidemenu = () => {
             การซื้อของฉัน
           </Link>
         </li>
-        <li className={location.pathname === "#" ? "active" : ""}>
-          <Link className="link-menu" to="#">
+        <li className={location.pathname === "/sellstate" ? "active" : ""}>
+          <Link className="link-menu" to="/sellstate">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +87,8 @@ const Sidemenu = () => {
             การขายของฉัน
           </Link>
         </li>
-        <li className={location.pathname === "#" ? "active" : ""}>
-          <Link className="link-menu" to="#">
+        <li className={location.pathname === "/donatestate" ? "active" : ""}>
+          <Link className="link-menu" to="/donatestate">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,8 +110,8 @@ const Sidemenu = () => {
             การบริจาคของฉัน
           </Link>
         </li>
-        <li className={location.pathname === "#" ? "active" : ""}>
-          <Link className="link-menu" to="#">
+        <li className={location.pathname === "/receivestate" ? "active" : ""}>
+          <Link className="link-menu" to="/receivestate">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,8 +150,8 @@ const Sidemenu = () => {
             ขอรับบริจาคของฉัน
           </Link>
         </li>
-        <li className={location.pathname === "#" ? "active" : ""}>
-          <Link className="link-menu" to="#">
+        <li className={location.pathname === "/bidstate" ? "active" : ""}>
+          <Link className="link-menu" to="/bidstate">
             <div className="icon-menu-sidebar">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

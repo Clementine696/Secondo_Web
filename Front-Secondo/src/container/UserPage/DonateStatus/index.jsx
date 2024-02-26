@@ -14,25 +14,24 @@ import searchy from "../../../icon/search-y.png";
 import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
-import discount from "../../../icon/discount.png";
+import shipping from "../../../icon/shipping.png";
+import donate from "../../../icon/donate.png";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
   { label: "รอตรวจสอบ", value: "1" },
-  { label: "รับซื้อ", value: "2" },
-  { label: "มีการเสนอขาย", value: "3" },
-  { label: "เสนอราคา", value: "4" },
+  { label: "ไม่ผ่าน", value: "2" },
+  { label: "ประกาศบริจาค", value: "3" },
+  { label: "มีการขอรับ", value: "4" },
   { label: "ที่ต้องจัดส่ง", value: "5" },
-  { label: "ที่ต้องได้รับ", value: "6" },
+  { label: "กำลังนำส่ง", value: "6" },
   { label: "รอยืนยันสินค้า", value: "7" },
   { label: "สำเร็จ", value: "8" },
-  { label: "ยกเลิก", value: "9" },
-  { label: "คืนเงิน/คืนสินค้า", value: "10" },
 ];
 
 // fillter ใน backend
 
-function BuyState() {
+function donateState() {
   const [font, setFont] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -59,7 +58,7 @@ function BuyState() {
     <Layout>
       <div className="user-page-buy">
         <Sidebar />
-        <div className="buy-page-title kanit-Display-Large">การซื้อของฉัน</div>
+        <div className="buy-page-title kanit-Display-Large">การบริจาคของฉัน</div>
 
         <Pills
           pillOption={filterItems}
@@ -123,7 +122,10 @@ function BuyState() {
 
             <div className="data-item func-col">
               <Link className="touch-point" to="#">
-                <img className="func-icon" src={discount}></img>
+                <img className="func-icon" src={shipping}></img>
+              </Link>
+              <Link className="touch-point" to="#">
+                <img className="func-icon" src={donate}></img>
               </Link>
               <Link className="touch-point" to="#">
                 <img className="func-icon" src={edit}></img>
@@ -139,4 +141,4 @@ function BuyState() {
   );
 }
 
-export default BuyState;
+export default donateState;
