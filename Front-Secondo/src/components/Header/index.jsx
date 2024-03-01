@@ -133,25 +133,37 @@ function Index() {
                     text={"ข้อมูลส่วนตัว"}
                     link={"/profile"}
                   />
-                  <DropdownItem img={bag} text={"การซื้อของฉัน"} link={"/"} />
-                  <DropdownItem img={tag} text={"การขายของฉัน"} link={"#"} />
+                  <DropdownItem
+                    img={bag}
+                    text={"การซื้อของฉัน"}
+                    link={"/buystate"}
+                  />
+                  <DropdownItem
+                    img={tag}
+                    text={"การขายของฉัน"}
+                    link={"/sellstate"}
+                  />
                   <DropdownItem
                     img={donate}
                     text={"การบริจาคของฉัน"}
-                    link={"#"}
+                    link={"/donatestate"}
                   />
                   <DropdownItem
                     img={receive}
                     text={"ขอรับบริจาคของฉัน"}
-                    link={"#"}
+                    link={"/receivestate"}
                   />
-                  <DropdownItem img={bid} text={"การประมูลของฉัน"} link={"#"} />
+                  <DropdownItem
+                    img={bid}
+                    text={"การประมูลของฉัน"}
+                    link={"/bidstate"}
+                  />
                   <DropdownItem
                     img={co2}
                     text={"แต้มคะแนน Carbon credits"}
-                    link={"#"}
+                    link={"/co2point"}
                   />
-                  <DropdownItem img={like} text={"รายการโปรด"} link={"#"} />
+                  <DropdownItem img={like} text={"รายการโปรด"} link={"/fav"} />
                   <DropdownItem img={setting} text={"ตั้งค่า"} link={"#"} />
                 </ul>
               </div>

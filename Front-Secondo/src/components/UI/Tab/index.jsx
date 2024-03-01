@@ -9,7 +9,7 @@ function tabs({ tabMenu, active, onClick }) {
         <button
           key={val.value}
           className={`tabs kanit-paragraphMedium ${
-            active === val ? "active" : ""
+            active === val.value ? "active" : ""
           }`}
           onClick={() => onClick(val.value)}
         >

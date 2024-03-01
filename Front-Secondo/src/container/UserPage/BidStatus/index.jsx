@@ -33,7 +33,6 @@ const tabItems = [
 ];
 
 // fillter ใน backend
-
 function bidState() {
   //set Tab
   const [tab, setTab] = useState(1);
@@ -46,6 +45,13 @@ function bidState() {
     console.log("Current Tab:", tab);
     console.log("Toggle Tab Clicked!");
   }, [tab]);
+
+  //set filter
+  const [filter, setFilter] = useState(filterItems[0]);
+
+  useEffect(() => {
+    console.log("Current Filter:", filter);
+  }, [filter]);
 
   //set font size
   const [font, setFont] = useState(window.innerWidth < 1200);
@@ -66,13 +72,6 @@ function bidState() {
     ? "kanit-paragraphtextMedium"
     : "kanit-paragraphMedium";
 
-  //set filter
-  const [filter, setFilter] = useState(filterItems[0]);
-
-  useEffect(() => {
-    console.log("Current Filter:", filter);
-  }, [filter]);
-
   return (
     <Layout>
       <div className="user-page-buy">
@@ -86,21 +85,6 @@ function bidState() {
           active={tab}
           onClick={(selectrdTab) => toggleTab(selectrdTab)}
         ></Tabs>
-
-        {/* <div className="bloc-tab">
-          <div
-            className={tab === 1 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(1)}
-          >
-            Tab 1
-          </div>
-          <div
-            className={tab === 2 ? "tabs active-tabs" : "tabs"}
-            onClick={() => toggleTab(2)}
-          >
-            Tab 2
-          </div>
-        </div> */}
 
         <Pills
           pillOption={filterItems}
@@ -119,9 +103,10 @@ function bidState() {
           </Form>
           <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
             <img src={add} className="add-icon"></img>
-            เพิ่มสินค้ารับซื้อ
+            เพิ่มสินค้าเปิดประมูล
           </Link>
         </div>
+
         <div className={tab === 1 ? "active-content" : "content"}>
           <div className="background-data-table">
             <div className="header-table-data kanit-paragraphMedium">
@@ -173,6 +158,7 @@ function bidState() {
             </div>
           </div>
         </div>
+        
         <div className={tab === 2 ? "active-content" : "content"}>
           <div className="background-data-table">
             <div className="header-table-data kanit-paragraphMedium">

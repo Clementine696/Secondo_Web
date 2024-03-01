@@ -23,6 +23,8 @@ import SellState from "./container/UserPage/SellStatus";
 import DonateState from "./container/UserPage/DonateStatus";
 import ReceiveState from "./container/UserPage/ReceiveStatus";
 import BidState from "./container/UserPage/BidStatus";
+import Co2Point from "./container/UserPage/Co2Point";
+import Fav from "./container/UserPage/FavPage";
 
 import SellProduct from "./container/SellProduct";
 
@@ -52,6 +54,8 @@ export default function App() {
           <Route path="donatestate" element={<DonateState />} />
           <Route path="receivestate" element={<ReceiveState />} />
           <Route path="bidstate" element={<BidState />} />
+          <Route path="co2point" element={<Co2Point />} />
+          <Route path="fav" element={<Fav />} />
 
           <Route path="account/sell/additem" element={<SellProduct />} />
           

@@ -77,7 +77,7 @@ function sellState() {
           </Form>
           <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
             <img src={add} className="add-icon"></img>
-            เพิ่มสินค้ารับซื้อ
+            เพิ่มสินค้าขาย
           </Link>
         </div>
 
