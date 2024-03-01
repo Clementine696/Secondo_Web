@@ -58,10 +58,15 @@
 }
 
 .sell-product-content-info-item-input {
-  width: 100%
+  width: 100%;
+  gap: 24px;
 }
 
-.sell-product-content-info-item-input-options-category{
+.sell-product-content-info-item-input-options-topic {
+  padding-bottom: 8px;
+}
+
+.sell-product-content-info-item-input-options-category {
   display: flex;
   padding: 16px;
   height: 60px;

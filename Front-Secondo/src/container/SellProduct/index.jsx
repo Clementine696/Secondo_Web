@@ -172,15 +172,13 @@ function SellProduct() {
                 />
 
                 <div className="sell-product-content-info-item-input-options">
-                  <p className="kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
+                  <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
                   <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" onChange={HandleSelect}>
                     {optionsCategory.map(optionsCategory => (
                       <option  value={optionsCategory.value}>{optionsCategory.label}</option>
                     ))}
                   </select>
-                  {/* <p className="kanit-paragraphtextMedium">{value}</p> */}
                 </div>
-                
                 <Input
                   Label="ราคาสินค้า"
                   placeholder="ระบุราคาของสินค้า"
