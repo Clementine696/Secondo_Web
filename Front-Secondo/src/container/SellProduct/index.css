@@ -1,13 +1,27 @@
 .background-sell-product-page {
   display: flex;
-  padding: 32px 240px;
+  padding: 32px 184px;
   flex-direction: column;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   gap: 16px;
-  align-self: stretch;
+  /* align-self: stretch; */
+}
+
+.product-page-path-way{
+  display: flex;
+  width: 1440px;
+  /* padding: 0px 148px; */
+  align-items: center;
+  gap: 16px;
 }
 
 .sell-product-topic {
+  display: flex;
+  /* padding: 0px 148px; */
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+
   color: var(--Text-Default, #00243d);
 
   /* Display Large */
@@ -23,7 +37,7 @@
   display: flex;
   align-items: flex-start;
   gap: 24px;
-  align-self: stretch;
+  align-self: center;
 }
 
 .sell-product-content-upload-image {
@@ -39,13 +53,27 @@
   align-items: flex-start;
   gap: 24px;
   flex: 1 0 0;
+  align-self: stretch;
+  width: 560px;
 }
 
 .sell-product-content-info-item-input {
-  width: 100%;
+  width: 100%
 }
 
-.sell-product-content-info-item-input-button {
+.sell-product-content-info-item-input-options-category{
+  display: flex;
+  padding: 16px;
+  height: 60px;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+  
+  border-radius: 16px;
+  border: 1px solid var(--Outline-color);
+}
+
+.sell-product-content-info-item-input-button-group {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -58,10 +86,10 @@
   align-items: flex-start;
   gap: 24px;
   align-self: stretch;
+  width: 560px;
 }
 
 .sell-product-content-upload-image-label {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,5 +103,32 @@
 }
 
 .sell-product-content-upload-image-input {
-    display: none;
+  display: none;
+}
+
+.sell-product-content-upload-image-preview{
+  /* display: flex; */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sell-product-content-upload-image-preview-frame{
+  position: relative;
+}
+
+.sell-product-content-upload-image-preview-frame-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 268px;
+  height: 200px;
+  border-radius: 24px;
+  object-fit: cover;
+  position: relative;
+}
+
+.sell-product-content-upload-image-preview-frame-image-button {
+  padding-bottom: 24px;
 }
