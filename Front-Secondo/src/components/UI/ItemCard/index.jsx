@@ -6,7 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 
 function ItemCard() {
   return (
-    <div className="frame-card-item">
+    <div className="frame-card-item tp-transform">
       <div className="frame-img-card-item">
         <Link style={{ textDecoration: 'none' }} to="/product" className="link-img-card-item">
           <img
