@@ -28,6 +28,8 @@ import Fav from "./container/UserPage/FavPage";
 
 import SellProduct from "./container/SellProduct";
 
+import CheckOut from "./container/CheckOut";
+
 export default function App() {
   return (
     <div>
@@ -58,6 +60,8 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
 
           <Route path="account/sell/additem" element={<SellProduct />} />
+
+          <Route path="account/checkout" element={<CheckOut />} />
           
         </Routes>
       </BrowserRouter>
