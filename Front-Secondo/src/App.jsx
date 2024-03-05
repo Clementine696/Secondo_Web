@@ -29,6 +29,8 @@ import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
 
+import CheckOut from "./container/CheckOut";
+
 export default function App() {
   return (
     <div>
@@ -60,6 +62,8 @@ export default function App() {
           <Route path="setting" element={<Setting />} />
 
           <Route path="account/sell/additem" element={<SellProduct />} />
+
+          <Route path="account/checkout" element={<CheckOut />} />
           
         </Routes>
       </BrowserRouter>
