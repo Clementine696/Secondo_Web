@@ -84,8 +84,8 @@ const Sidemenu = () => {
             รายการโปรด
           </Link>
         </li>
-        <li className={location.pathname === "#" ? "active" : ""}>
-          <Link className="link-menu" to="#">
+        <li className={location.pathname === "/setting" ? "active" : ""}>
+          <Link className="link-menu" to="/setting">
             <div className="icon-menu-sidebar">
             <img src={setting} className="sidemenu-icon"></img>
             </div>

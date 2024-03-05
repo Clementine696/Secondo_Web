@@ -164,7 +164,11 @@ function Index() {
                     link={"/co2point"}
                   />
                   <DropdownItem img={like} text={"รายการโปรด"} link={"/fav"} />
-                  <DropdownItem img={setting} text={"ตั้งค่า"} link={"#"} />
+                  <DropdownItem
+                    img={setting}
+                    text={"ตั้งค่า"}
+                    link={"/setting"}
+                  />
                 </ul>
               </div>
             </div>

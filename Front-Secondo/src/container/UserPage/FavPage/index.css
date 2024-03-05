@@ -1,82 +1,89 @@
-.point-detail-title-icon {
+.item-fav {
     display: flex;
-    align-items: center;
     gap: 16px;
     align-self: stretch;
 }
 
-.my-coupon-detail-title-icon {
+.item-fav-detail {
     display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 1 0 0;
     align-self: stretch;
 }
 
-.my-coupon-detail {
+.img-fav {
+    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+}
+
+.fav-title-seller-price {
     display: flex;
-    padding: 24px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    border-radius: 16px;
-    background-color: var(--SurfaceBright-color);
+    gap: 4px;
+    align-self: stretch;
 }
 
-.size-icon {
+.title-product-fav {
     display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: space-between;
+}
+
+div.title-product-fav {
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    flex: 1 0 0;
+}
+
+p.seller-product-fav {
+    color: var(--Outline-color);
+}
+
+.status-product {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.status-color.green {
+    background-color: var(--Correct-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-color.red {
+    background-color: var(--Error-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.button-section {
+    min-width: 390px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-fav {
+    display: flex;
+    padding: 0;
+    min-width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--SurfaceBright-color);
+    border: none;
+}
+
+.btn-fav-icon {
     width: 24px;
     height: 24px;
-    justify-content: center;
-    align-items: center;
-}
-
-/* .title-store-cc {
-
-} */
-
-.picture-store {
-    display: flex;
-    width: 56px;
-    height: 56px;
-    justify-content: center;
-    align-items: center;
-}
-
-.title-pic {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 16px;
-
-}
-
-.store-coupon-exchange {
-    display: flex;
-    padding: 16px;
-    gap: 16px;
-    align-self: stretch;
-    flex-direction: column;
-    border-radius: 24px;
-    border: 1px solid var(--OutlineVariant-color);
-}
-
-.title-of-coupon {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-self: stretch;
-}
-
-.title-store-cc {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-}
-
-.card-coupon {
-    display: flex;
-    gap: 16px;
-    align-self: stretch;
-    flex-direction: row;
 }

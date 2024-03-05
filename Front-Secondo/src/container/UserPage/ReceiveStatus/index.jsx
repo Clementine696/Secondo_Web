@@ -24,7 +24,7 @@ const filterItems = [
   { label: "ที่ต้องจัดส่ง", value: "4" },
   { label: "ที่ต้องได้รับ", value: "5" },
   { label: "รอยืนยันสินค้า", value: "6" },
-  { label: "สำเร็จ", value: "7" }
+  { label: "สำเร็จ", value: "7" },
 ];
 
 // fillter ใน backend
@@ -54,82 +54,84 @@ function receiveStatus() {
 
   return (
     <Layout>
-      <div className="user-page-buy">
+      <div className="user-page">
         <Sidebar />
-        <div className="buy-page-title kanit-Display-Large">
-          การขอรับบริจาคของฉัน
-        </div>
-
-        <Pills
-          pillOption={filterItems}
-          active={filter}
-          onClick={(selectedFilter) => setFilter(selectedFilter)}
-        ></Pills>
-
-        <div className="search-add-button">
-          <Form className="search-container-filter">
-            <Form.Control
-              className="search-bar-filter kanit-paragraphSmall"
-              type="text"
-              placeholder="ค้นหาสินค้า ชื่อผู้ขาย หมายเลขคำสั่งซื้อ"
-            />
-            <img src={searchy} className="search-icon-filter"></img>
-          </Form>
-          <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
-            <img src={add} className="add-icon"></img>
-            เพิ่มสินค้าขอรับบริจาค
-          </Link>
-        </div>
-
-        <div className="background-data-table">
-          <div className="header-table-data kanit-paragraphMedium">
-            <p className="header-item date-col">วันที่ซื้อ</p>
-            <p className="header-item desc-col">รายละเอียดสินค้า</p>
-            <p className="header-item status-col">สถานะ</p>
-            <p className="header-item point-col">แต้ม CC</p>
-            <p className="header-item price-col">ราคา (บาท)</p>
-            <p className="header-item func-col"></p>
+        <div className="user-content">
+          <div className="buy-page-title kanit-Display-Large">
+            การขอรับบริจาคของฉัน
           </div>
 
-          <div className={`data-table ${resizeFontClass}`}>
-            <p className="data-item date-col">20/07/2021</p>
+          <Pills
+            pillOption={filterItems}
+            active={filter}
+            onClick={(selectedFilter) => setFilter(selectedFilter)}
+          ></Pills>
 
-            <div className="data-item desc-col">
-              <img
-                src="../../../../public/images/pant.jpg"
-                className="pic-product-table"
-              ></img>
-              <div className="product-name-desc-status">
-                <p className="kanit-paragraphMedium">กระเป๋ากางเกง</p>
-                <p className="kanit-paragraphSmall">
-                  กระเป๋ากางเกงที่เก็บเอาไว้จนเก่า
-                </p>
-              </div>
+          <div className="search-add-button">
+            <Form className="search-container-filter">
+              <Form.Control
+                className="search-bar-filter kanit-paragraphSmall"
+                type="text"
+                placeholder="ค้นหาสินค้า ชื่อผู้ขาย หมายเลขคำสั่งซื้อ"
+              />
+              <img src={searchy} className="search-icon-filter"></img>
+            </Form>
+            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
+              <img src={add} className="add-icon"></img>
+              เพิ่มสินค้าขอรับบริจาค
+            </Link>
+          </div>
+
+          <div className="background-data-table">
+            <div className="header-table-data kanit-paragraphMedium">
+              <p className="header-item date-col">วันที่ซื้อ</p>
+              <p className="header-item desc-col">รายละเอียดสินค้า</p>
+              <p className="header-item status-col">สถานะ</p>
+              <p className="header-item point-col">แต้ม CC</p>
+              <p className="header-item price-col">ราคา (บาท)</p>
+              <p className="header-item func-col"></p>
             </div>
 
-            <div className="data-item status-col">
-              <div className="product-status-time">
-                <p className="kanit-paragraphMedium">รอตรวจสอบ</p>
-                <p className="status-time kanit-paragraphSmall">
-                  ระยะเวลาที่เหลือ 02:10:02
-                </p>
+            <div className={`data-table ${resizeFontClass}`}>
+              <p className="data-item date-col">20/07/2021</p>
+
+              <div className="data-item desc-col">
+                <img
+                  src="../../../../public/images/pant.jpg"
+                  className="pic-product-table"
+                ></img>
+                <div className="product-name-desc-status">
+                  <p className="kanit-paragraphMedium">กระเป๋ากางเกง</p>
+                  <p className="kanit-paragraphSmall">
+                    กระเป๋ากางเกงที่เก็บเอาไว้จนเก่า
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <p className="data-item point-col">100</p>
+              <div className="data-item status-col">
+                <div className="product-status-time">
+                  <p className="kanit-paragraphMedium">รอตรวจสอบ</p>
+                  <p className="status-time kanit-paragraphSmall">
+                    ระยะเวลาที่เหลือ 02:10:02
+                  </p>
+                </div>
+              </div>
 
-            <p className="data-item price-col">500</p>
+              <p className="data-item point-col">100</p>
 
-            <div className="data-item func-col">
-              <Link className="touch-point" to="#">
-                <img className="func-icon" src={receive}></img>
-              </Link>
-              <Link className="touch-point" to="#">
-                <img className="func-icon" src={edit}></img>
-              </Link>
-              <Link className="touch-point" to="#">
-                <img className="func-icon" src={chevronRight}></img>
-              </Link>
+              <p className="data-item price-col">500</p>
+
+              <div className="data-item func-col">
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={receive}></img>
+                </Link>
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={edit}></img>
+                </Link>
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={chevronRight}></img>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

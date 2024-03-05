@@ -25,6 +25,7 @@ import ReceiveState from "./container/UserPage/ReceiveStatus";
 import BidState from "./container/UserPage/BidStatus";
 import Co2Point from "./container/UserPage/Co2Point";
 import Fav from "./container/UserPage/FavPage";
+import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
 
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="bidstate" element={<BidState />} />
           <Route path="co2point" element={<Co2Point />} />
           <Route path="fav" element={<Fav />} />
+          <Route path="setting" element={<Setting />} />
 
           <Route path="account/sell/additem" element={<SellProduct />} />
           
