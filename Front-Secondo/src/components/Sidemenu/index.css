@@ -1,20 +1,14 @@
 .profile-sidebar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
-    padding: 112px 24px;
-    height: 1000px;
-    width: 300px;
+    padding: 24px;
+    min-width: 300px;
     background-color: var(--Scontainer-color);
     box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-}
-
-.menu-sidebar {
-    display: flex;
-    width: 100%;
 }
 
 .icon-menu-sidebar {
@@ -26,13 +20,26 @@
 }
 
 .link-menu {
+    display: flex;
     width: 100%;
     padding: 16px;
-    display: flex;
-    gap: 16px;
     text-decoration: none;
+    gap: 16px;
     color: var(--Default-text);
     border-radius: 16px;
+    transition: all 0.2s ease-in;
+}
+
+.link-menu:hover {
+    background-color: var(--Ssecondary-color);
+    transition: 0.25s all;
+    box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+}
+
+li.active {
+    border-radius: 16px;
+    background-color: var(--Ssecondary-color);
+    box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-profile-sidebar {
@@ -40,16 +47,15 @@
     margin: 0;  
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     width: 100%;
     list-style-type: none;
 }
-  
-.link-menu:hover {
-    background-color: var(--Ssecondary-color);
-}
 
-.link-menu::selection {
-    background-color: var(--Ssecondary-color);
+.sidemenu-icon {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
 }
-  

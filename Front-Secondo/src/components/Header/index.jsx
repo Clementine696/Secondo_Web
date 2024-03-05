@@ -8,11 +8,12 @@ import user from "../../icon/user.png";
 import bag from "../../icon/bag.png";
 import tag from "../../icon/tag.png";
 import donate from "../../icon/donate.png";
-import recive from "../../icon/recive.png";
+import receive from "../../icon/receive.png";
 import bid from "../../icon/bid.png";
 import co2 from "../../icon/co2.png";
 import like from "../../icon/like.png";
 import setting from "../../icon/setting.png";
+import searchb from "../../icon/search-b.png";
 
 import "./index.css";
 import "../../styles.css";
@@ -32,9 +33,9 @@ function Index() {
 
     document.addEventListener("mousedown", handler);
 
-    return() => {
+    return () => {
       document.removeEventListener("mousedown", handler);
-    }
+    };
   });
 
   return (
@@ -54,21 +55,7 @@ function Index() {
               type="text"
               placeholder="ค้นหา สินค้าที่คุณสนใจ"
             />
-            <svg
-              className="search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M8.89605 2.00635e-08C7.47737 0.000120883 6.07928 0.339506 4.81844 0.989841C3.5576 1.64018 2.47056 2.5826 1.64802 3.73849C0.825473 4.89438 0.291278 6.23022 0.0899992 7.63455C-0.111279 9.03888 0.0261946 10.471 0.490952 11.8114C0.955709 13.1518 1.73427 14.3616 2.76169 15.3399C3.7891 16.3182 5.03557 17.0366 6.39711 17.4352C7.75864 17.8338 9.19576 17.901 10.5886 17.6313C11.9813 17.3615 13.2894 16.7626 14.4037 15.8845L18.2262 19.7069C18.4236 19.8976 18.688 20.0031 18.9624 20.0007C19.2369 19.9983 19.4994 19.8883 19.6934 19.6942C19.8875 19.5001 19.9976 19.2376 20 18.9632C20.0023 18.6887 19.8968 18.4243 19.7062 18.2269L15.8837 14.4044C16.9178 13.0926 17.5617 11.516 17.7417 9.85528C17.9216 8.19453 17.6304 6.51667 16.9013 5.01371C16.1722 3.51075 15.0347 2.24341 13.619 1.35674C12.2033 0.470072 10.5665 -0.000112145 8.89605 2.00635e-08ZM2.09261 8.8968C2.09261 7.09242 2.8094 5.36194 4.08529 4.08605C5.36118 2.81015 7.09166 2.09337 8.89605 2.09337C10.7004 2.09337 12.4309 2.81015 13.7068 4.08605C14.9827 5.36194 15.6995 7.09242 15.6995 8.8968C15.6995 10.7012 14.9827 12.4317 13.7068 13.7076C12.4309 14.9835 10.7004 15.7002 8.89605 15.7002C7.09166 15.7002 5.36118 14.9835 4.08529 13.7076C2.8094 12.4317 2.09261 10.7012 2.09261 8.8968Z"
-                fill="#00243D"
-              />
-            </svg>
+            <img src={searchb} className="search-icon"></img>
           </Form>
         </Col>
 
@@ -141,15 +128,47 @@ function Index() {
                 }`}
               >
                 <ul className="kanit-paragraphtextMedium">
-                  <DropdownItem img={user} text={"ข้อมูลส่วนตัว"} link={"/profile"} />
-                  <DropdownItem img={bag} text={"การซื้อของฉัน"} link={"/"} />
-                  <DropdownItem img={tag} text={"การขายของฉัน"} link={"#"} />
-                  <DropdownItem img={donate} text={"การบริจาคของฉัน"} link={"#"} />
-                  <DropdownItem img={recive} text={"ขอรับบริจาคของฉัน"} link={"#"} />
-                  <DropdownItem img={bid} text={"การประมูลของฉัน"} link={"#"} />
-                  <DropdownItem img={co2} text={"แต้มคะแนน Carbon credits"} link={"#"} />
-                  <DropdownItem img={like} text={"รายการโปรด"} link={"#"} />
-                  <DropdownItem img={setting} text={"ตั้งค่า"} link={"#"} />
+                  <DropdownItem
+                    img={user}
+                    text={"ข้อมูลส่วนตัว"}
+                    link={"/profile"}
+                  />
+                  <DropdownItem
+                    img={bag}
+                    text={"การซื้อของฉัน"}
+                    link={"/buystate"}
+                  />
+                  <DropdownItem
+                    img={tag}
+                    text={"การขายของฉัน"}
+                    link={"/sellstate"}
+                  />
+                  <DropdownItem
+                    img={donate}
+                    text={"การบริจาคของฉัน"}
+                    link={"/donatestate"}
+                  />
+                  <DropdownItem
+                    img={receive}
+                    text={"ขอรับบริจาคของฉัน"}
+                    link={"/receivestate"}
+                  />
+                  <DropdownItem
+                    img={bid}
+                    text={"การประมูลของฉัน"}
+                    link={"/bidstate"}
+                  />
+                  <DropdownItem
+                    img={co2}
+                    text={"แต้มคะแนน Carbon credits"}
+                    link={"/co2point"}
+                  />
+                  <DropdownItem img={like} text={"รายการโปรด"} link={"/fav"} />
+                  <DropdownItem
+                    img={setting}
+                    text={"ตั้งค่า"}
+                    link={"/setting"}
+                  />
                 </ul>
               </div>
             </div>
@@ -182,7 +201,7 @@ function Index() {
       </Row>
       <Row className="Second-Nav kanit-paragraphtextMedium">
         <Nav className="me-auto justify-content-center p-0">
-          <Link className="text-menu" href="#home">
+          <Link to="/account/sell/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
           </Link>
           <Link className="text-menu" href="#features">

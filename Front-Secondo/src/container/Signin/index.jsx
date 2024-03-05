@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
@@ -8,6 +8,14 @@ import "../../styles.css";
 import "../../components/UI/Button/index.css";
 
 function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // connect api to save data
+  const logIn = () => {
+    console.log(email);
+    console.log(password);
+  };
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -49,19 +57,23 @@ function Signin() {
                 <Input
                   Label="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
                   placeholder="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
-                  value=""
+                  value={email}
                   type="email"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
 
                 <Input
                   Label="รหัสผ่าน"
                   placeholder="รหัสผ่าน"
-                  value=""
+                  value={password}
                   type="password"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
 
                 {/* <Form.Group
@@ -79,6 +91,7 @@ function Signin() {
                     <button
                       className="btn-small-primary kanit-paragraphMedium"
                       type="submit"
+                      onClick={logIn}
                     >
                       เข้าสู่ระบบ
                     </button>

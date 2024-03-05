@@ -1,19 +1,43 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../components/Layout";
 import { Link } from "react-router-dom";
+
 import HDivider from "../../components/UI/DividerHorizontal";
-// import { Container, Row, Col, ListGroup } from "react-bootstrap";
-// import "~slick-carousel/slick/slick.css";
-// import "~slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
-// import ExampleCarouselImage from 'components/ExampleCarouselImage';
-// import Carousel from 'react-bootstrap/Carousel';
 import ItemCard from "../../components/UI/ItemCard";
 import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
+
 import "./index.css";
+import chevronDown from "../../icon/chevron-down.png";
+
+const categoryItem = [
+  { label: "เสื้อผ้าและแฟชั่น", value: "0" },
+  { label: "รองเท้า", value: "1" },
+  { label: "ความงามและของใช้ส่วนตัว", value: "2" },
+  { label: "เครื่องประดับ", value: "3" },
+  { label: "เครื่องใช้ไฟฟ้า", value: "4" },
+  { label: "อุปกรณ์ IT", value: "5" },
+  { label: "กล้องและอุปกรณ์", value: "6" },
+  { label: "รถยนต์", value: "7" },
+  { label: "มอเตอร์ไซต์", value: "8" },
+  { label: "กระเป๋า", value: "9" },
+  { label: "เฟอร์นิเจอร์", value: "10" },
+  { label: "หนังสือ", value: "11" },
+  { label: "กีฬา", value: "12" },
+  { label: "เครื่องดนตรี", value: "13" },
+  { label: "แม่และเด็ก", value: "14" },
+  { label: "อื่นๆ", value: "15" }
+];
 
 function Home() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  // const moreCategory = useRef(null);
+
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+    console.log("toggle:", isExpanded);
+  };
+
   return (
     <Layout>
       <div className="background-home">
@@ -36,17 +60,33 @@ function Home() {
 
           <div className="frame-category">
             <div className="header-category kanit-paragraphBig">หมวดหมู่</div>
-            <div className="group-category row">
-              <CateCard />
-              <CateCard />
-              <CateCard />
-              <CateCard />
-              <CateCard />
-              <CateCard />
-              <CateCard />
-              <CateCard />
+            <div className="category-section">
+              <div className="group-category-1">
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+              </div>
+              <div
+                className={`group-category-2 ${isExpanded ? "expanded" : ""}`}
+              >
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+                <CateCard />
+              </div>
+              <button className="btn-category" onClick={handleToggleExpand}>
+                <img src={chevronDown} alt="Chevron" />
+              </button>
             </div>
-            <div></div>
           </div>
         </div>
 

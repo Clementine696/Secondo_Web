@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 import { Link } from "react-router-dom";
@@ -8,6 +8,11 @@ import "../../../styles.css";
 import "../../../components/UI/Input";
 
 function RegisPhone() {
+  const [regisTel, setRegisTel] = useState("");
+
+  const confirmTel = () => {
+    console.log(confirmOtp);
+  };
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -49,15 +54,17 @@ function RegisPhone() {
                 <Input
                   Label="หมายเลขโทรศัพท์มือถือ"
                   placeholder="หมายเลขโทรศัพท์มือถือ"
-                  value=""
-                  type="phone"
+                  value={regisTel}
+                  type="number"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setRegisTel(e.target.value);
+                  }}
                 />
 
                 <Row className="mb-3">
                   <Col>
-                    <Link to={"/signup/regisphone/Otp"}>
+                    <Link to={"/signup/regisphone/Otp"} onClick={confirmTel}>
                       <button className="btn-small-primary kanit-paragraphMedium">
                         ต่อไป
                       </button>

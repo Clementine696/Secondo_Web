@@ -8,6 +8,16 @@ import "../../styles.css";
 import "../../components/UI/Button/index.css";
 
 function Signin() {
+  const [regisEmail, setRegisEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [regisPassword, setRegisPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  // connect api to save data
+  const userRegister = () => {
+    console.log(regisEmail);
+    console.log(regisPassword);
+  };
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -49,37 +59,45 @@ function Signin() {
                 <Input
                   Label="อีเมล"
                   placeholder="อีเมล"
-                  value=""
+                  value={regisEmail}
                   type="email"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setRegisEmail(e.target.value);
+                  }}
                 />
 
                 <Input
                   Label="ยืนยันอีเมล"
                   placeholder="ยืนยันอีเมล"
-                  value=""
+                  value={confirmEmail}
                   type="confirm-email"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setConfirmEmail(e.target.value);
+                  }}
                 />
 
                 <Input
                   Label="รหัสผ่าน"
                   placeholder="รหัสผ่าน"
-                  value=""
+                  value={regisPassword}
                   type="password"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setRegisPassword(e.target.value);
+                  }}
                 />
 
                 <Input
                   Label="ยืนยันรหัสผ่าน"
                   placeholder="ยืนยันรหัสผ่าน"
-                  value=""
+                  value={confirmPassword}
                   type="confirm-password"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
                 />
 
                 {/* <Form.Group
@@ -97,6 +115,7 @@ function Signin() {
                     <button
                       className="btn-small-primary kanit-paragraphMedium"
                       type="submit"
+                      onClick={userRegister}
                     >
                       สร้างบัญชี
                     </button>

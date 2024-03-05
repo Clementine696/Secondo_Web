@@ -10,6 +10,7 @@
     border-radius: 40px;
     background-color: var(--Soutline-color);
     color: var(--White-color);
+    transition: all 0.2s ease;
 }
 
 .btn-small-primary:hover {
@@ -34,7 +35,7 @@
     background-color: var(--OutlineVariant-color-color);
 }
 
-.btn-small-primary:disabled {
+.btn-small-primary-disabled {
     display: inline-flex;
     padding: 8px 24px 8px 24px;
     justify-content: center;
@@ -57,6 +58,7 @@
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-small-secondary:hover {
@@ -81,7 +83,7 @@
     background-color: var(--SfixedVariant-color);
 }
 
-.btn-small-secondary:disabled {
+.btn-small-secondary-disabled {
     display: inline-flex;
     padding: 8px 24px 8px 24px;
     justify-content: center;
@@ -96,15 +98,15 @@
 /* Small link-ghost button */
 .btn-small-link-ghost {
     display: inline-flex;
-    width: 100%;
+    width: auto;
     padding: 8px 24px 8px 24px;
     justify-content: center;
     align-items: center;
     gap: 8px;
     border: none;
     border-radius: 40px;
-    background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-small-link-ghost:hover {
@@ -129,7 +131,7 @@
     background-color: var(--Sdim-color);
 }
 
-.btn-small-link-ghost:disabled {
+.btn-small-link-ghost-disabled {
     display: inline-flex;
     width: 100%;
     padding: 8px 24px 8px 24px;
@@ -154,6 +156,7 @@
     border-radius: 40px;
     background-color: var(--Soutline-color);
     color: var(--White-color);
+    transition: all 0.2s ease;
 }
 
 .btn-medium-primary:hover {
@@ -178,7 +181,7 @@
     background-color: var(--SfixedVariant-color);
 }
 
-.btn-medium-primary:disabled {
+.btn-medium-primary-disabled {
     display: inline-flex;
     width: 100%;
     padding: 12px 32px 12px 32px;
@@ -202,6 +205,7 @@
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-medium-secondary:hover {
@@ -226,7 +230,7 @@
     background-color: var(--SfixedVariant-color);
 }
 
-.btn-medium-secondary:disabled {
+.btn-medium-secondary-disabled {
     display: inline-flex;
     width: 100%;
     padding: 12px 32px 12px 32px;
@@ -251,6 +255,7 @@
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-medium-link-ghost:hover {
@@ -275,7 +280,7 @@
     background-color: var(--Sdim-color);
 }
 
-.btn-medium-link-ghost:disabled {
+.btn-medium-link-ghost-disabled {
     display: inline-flex;
     width: 100%;
     padding: 12px 32px 12px 32px;
@@ -300,6 +305,7 @@
     border-radius: 40px;
     background-color: var(--Soutline-color);
     color: var(--White-color);
+    transition: all 0.2s ease;
 }
 
 .btn-large-primary:hover {
@@ -324,7 +330,7 @@
     background-color: var(--SfixedVariant-color);
 }
 
-.btn-large-primary:disabled {
+.btn-large-primary-disabled {
     display: inline-flex;
     width: 100%;
     padding: 16px 32px 16px 32px;
@@ -348,6 +354,7 @@
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-large-secondary:hover {
@@ -372,7 +379,7 @@
     background-color: var(--SfixedVariant-color);
 }
 
-.btn-large-secondary:disabled {
+.btn-large-secondary-disabled {
     display: inline-flex;
     width: 100%;
     padding: 16px 32px 16px 32px;
@@ -397,6 +404,7 @@
     border-radius: 40px;
     background-color: var(--White-color);
     color: var(--SfixedVariant-color);
+    transition: all 0.2s ease;
 }
 
 .btn-large-link-ghost:hover {
@@ -421,7 +429,7 @@
     background-color: var(--Sdim-color);
 }
 
-.btn-large-link-ghost:disabled {
+.btn-large-link-ghost-disabled {
     display: inline-flex;
     width: 100%;
     padding: 16px 32px 16px 32px;
