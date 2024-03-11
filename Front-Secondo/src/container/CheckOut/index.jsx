@@ -24,13 +24,13 @@ function checkOut() {
                       ข้อมูลการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      ที่อยู่การจัดส่ง
+                      บ้านฉัน
                     </div>
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
                   <div className="checkout-page-content-method-address-group-edit-text">
-                    กรุณาเพิ่มที่อยู่การจัดส่ง
+                    แก้ไข
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -106,13 +106,13 @@ function checkOut() {
                       วิธีการชำระเงิน
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      วิธีการชำระเงิน
+                      Master Card ending 1123
                     </div>
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
                   <div className="checkout-page-content-method-address-group-edit-text">
-                    กรุณาเพิ่มวิธีการชำระเงิน
+                    แก้ไข
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
