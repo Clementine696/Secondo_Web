@@ -45,6 +45,7 @@ function checkOut() {
     },
   ];
 
+  const [visibleAddress, setVisibleAddress] = useState(false);
   const [visibleDev, setVisibleDev] = useState(false);
   const [visiblePayment, setVisiblePayment] = useState(false);
 
@@ -58,7 +59,7 @@ function checkOut() {
         </div>
         <div className="checkout-page-content">
           <div className="checkout-page-content-method">
-            <div className="checkout-page-content-method-address">
+            {/* <div className="checkout-page-content-method-address">
               <div className="checkout-page-content-method-address-group">
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
@@ -98,6 +99,76 @@ function checkOut() {
                   </Link>
                 </div>
               </div>
+              <div className="checkout-page-content-method-address-line-frame">
+                <div className="checkout-page-content-method-address-line"></div>
+              </div>
+            </div> */}
+
+            <div className="checkout-page-content-method-address">
+              <div className="checkout-page-content-method-address-group">
+                <div className="checkout-page-content-method-address-group-detail">
+                  <div className="checkout-page-content-method-address-group-detail-number">
+                    1
+                  </div>
+                  <div className="checkout-page-content-method-address-group-detail-group">
+                    <div className="checkout-page-content-method-address-group-detail-group-topic">
+                      ข้อมูลการจัดส่ง
+                    </div>
+                    <div className="checkout-page-content-method-address-group-detail-group-desc">
+                      ที่อยู่การจัดส่ง
+                    </div>
+                  </div>
+                </div>
+                <div className="checkout-page-content-method-address-group-edit">
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to=""
+                    className="checkout-page-content-method-address-group-edit-text"
+                    onClick={() => setVisibleAddress(true)}
+                  >
+                    แก้ไข
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                        stroke="#B3261E"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+              {visibleAddress && (
+                <div className="checkout-page-content-method-hide">
+                  <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
+                    การจัดส่ง
+                  </div>
+                  {addressOption.map((address) => (
+                    <div
+                      className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
+                      key={address.value}
+                    >
+                      <input
+                        name="addressMethod"
+                        type="radio"
+                        value={address.value}
+                        id={address.value}
+                        checked={value === address.value}
+                        onChange={(e) => setValue(e.target.value)}
+                        onClick={() => setVisibleAddress(false)}
+                      />
+                      <label htmlFor={address.value}>{address.label}</label>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="checkout-page-content-method-address-line-frame">
                 <div className="checkout-page-content-method-address-line"></div>
               </div>
@@ -144,55 +215,16 @@ function checkOut() {
                   </Link>
                 </div>
               </div>
-              <div className="checkout-page-content-method-address-line-frame">
-                <div className="checkout-page-content-method-address-line"></div>
-              </div>
-            </div>
-
-            { visibleDev && (
-              <div className="checkout-page-content-method-address">
-                <div className="checkout-page-content-method-address-group">
-                  <div className="checkout-page-content-method-address-group-detail">
-                    <div className="checkout-page-content-method-address-group-detail-number">
-                      2
-                    </div>
-                    <div className="checkout-page-content-method-address-group-detail-group">
-                      <div className="checkout-page-content-method-address-group-detail-group-topic">
-                        วิธีการจัดส่ง
-                      </div>
-                    </div>
-                  </div>
-                  <div className="checkout-page-content-method-address-group-edit">
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      to=""
-                      className="checkout-page-content-method-address-group-edit-text"
-                    >
-                      แก้ไข
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M4 6.00098L6.58579 8.58676C7.36684 9.36781 8.63317 9.36781 9.41421 8.58676L12 6.00098"
-                          stroke="#665C29"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-                <div className="checkout-page-content-method-address-option">
-                  <div className="checkout-page-content-method-address-option-header">
+              {visibleDev && (
+                <div className="checkout-page-content-method-hide">
+                  <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
                     การจัดส่ง
                   </div>
                   {deliveryOption.map((delivery) => (
-                    <div key={delivery.value}>
+                    <div
+                      className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
+                      key={delivery.value}
+                    >
                       <input
                         name="deliveryMethod"
                         type="radio"
@@ -206,11 +238,11 @@ function checkOut() {
                     </div>
                   ))}
                 </div>
-                <div className="checkout-page-content-method-address-line-frame">
-                  <div className="checkout-page-content-method-address-line"></div>
-                </div>
+              )}
+              <div className="checkout-page-content-method-address-line-frame">
+                <div className="checkout-page-content-method-address-line"></div>
               </div>
-            )}
+            </div>
 
             <div className="checkout-page-content-method-address">
               <div className="checkout-page-content-method-address-group">
@@ -232,6 +264,7 @@ function checkOut() {
                     style={{ textDecoration: "none" }}
                     to=""
                     className="checkout-page-content-method-address-group-edit-text"
+                    onClick={() => setVisiblePayment(true)}
                   >
                     แก้ไข
                     <svg
@@ -252,11 +285,36 @@ function checkOut() {
                   </Link>
                 </div>
               </div>
+              {visiblePayment && (
+                <div className="checkout-page-content-method-hide">
+                  <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
+                    การจัดส่ง
+                  </div>
+                  {paymentOption.map((payment) => (
+                    <div
+                      className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
+                      key={payment.value}
+                    >
+                      <input
+                        name="paymentMethod"
+                        type="radio"
+                        value={payment.value}
+                        id={payment.value}
+                        checked={value === payment.value}
+                        onChange={(e) => setValue(e.target.value)}
+                        onClick={() => setVisiblePayment(false)}
+                      />
+                      <label htmlFor={payment.value}>{payment.label}</label>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="checkout-page-content-method-address-line-frame">
                 <div className="checkout-page-content-method-address-line"></div>
               </div>
             </div>
           </div>
+
           <div className="checkout-page-content-order">
             <div className="checkout-page-content-order-topic kanit-Display-Medium-R">
               Order Summary
