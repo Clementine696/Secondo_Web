@@ -4,17 +4,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./containers/Home";
 import Signin from "./containers/Signin";
 import Signup from "./containers/Signup";
+import PrivateRoute from "./components/HOC/PrivateRoute";
+
 
 function App() {
   return (
     <div className="App">
-      {/* <Home></Home> */}
-      {/* <Signin></Signin> */}
         <Router>
           <Routes>
-            <Route path="/" exact element={Home} />
-            <Route path="/signin" element={Signin} />
-            <Route path="/signup" element={Signup} />
+            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+            <Route path="/signin" Component={Signin} />
+            <Route path="/signup" Component={Signup} />
           </Routes>
         </Router>
     </div>
