@@ -31,6 +31,8 @@ import SellProduct from "./container/SellProduct";
 
 import CheckOut from "./container/CheckOut";
 
+import Test from "./container/Test";
+
 export default function App() {
   return (
     <div>
@@ -64,6 +66,8 @@ export default function App() {
           <Route path="account/sell/additem" element={<SellProduct />} />
 
           <Route path="account/checkout" element={<CheckOut />} />
+
+          <Route path="test" element={<Test />} />
           
         </Routes>
       </BrowserRouter>

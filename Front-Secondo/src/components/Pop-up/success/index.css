@@ -1,0 +1,21 @@
+.popup {
+    display: flex;
+    width: 302px;
+    height: 154px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 24px;
+    border: 1px solid var(--OutlineVariant-color);
+    background: var(--White-color);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    color: var(--Default-text);
+}
+
+.text-title-desc-pop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
