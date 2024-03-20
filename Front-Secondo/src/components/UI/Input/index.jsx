@@ -9,7 +9,7 @@ const Input = (props) => {
         {props.Label}
       </Form.Label>
       <Form.Control
-        className="kanit-paragraphSmall Text-field-default"
+        className="kanit-paragraphSmall text-field-default"
         type={props.type}
         placeholder={props.placeholder}
         value={props.value}

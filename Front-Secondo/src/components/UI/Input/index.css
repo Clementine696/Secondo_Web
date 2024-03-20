@@ -11,7 +11,7 @@
     color: var(--Des-color);
 }
 
-.Text-field-default {
+.text-field-default {
     display: flex;
     height: 60px;
     padding: 16px;
@@ -21,18 +21,18 @@
     border: 1px solid var(--Outline-color);
 }
 
-.Text-field-default:focus-within {
+.text-field-default:focus-within {
     border: 1px solid var(--Poutline-color);
 }
 
-.Text-field-default:hover {
+.text-field-default:hover {
     border: 1px solid var(--Poutline-color);
 }
 
-.Text-field-default:disabled {
+.text-field-default:disabled {
     color: 1px solid var(--OutlineVariant-color);
 }
 
-.Text-field-Errored {
+.text-field-errored {
     border: 1px solid var(--Error-color);
 }
