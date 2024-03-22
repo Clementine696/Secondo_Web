@@ -9,20 +9,6 @@ import "./index.css";
 
 function SellProduct() {
 
-  // const [images, setImages] = useState([]);
-  // const [imageURLs, setImageURLs] = useState([]);
-
-  // useEffect(() => {
-  //   if (images.length < 1) return;
-  //   const newImageURLs = [];
-  //   images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
-  //   setImageURLs(newImageURLs);
-  // }, [images]);
-
-  // function onImageChange(e) {
-  //   setImages([...e.target.files]);
-  // }
-
   const [selectedImages, setSelectedImages] = useState([]);
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
@@ -137,6 +123,7 @@ function SellProduct() {
                 </button>
               ))
             } */}
+            
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
                 selectedImages.map((image, index) => {

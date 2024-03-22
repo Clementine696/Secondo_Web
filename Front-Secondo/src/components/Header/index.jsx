@@ -204,26 +204,23 @@ function Index() {
           <Link to="/account/sell/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
           </Link>
-          <Link className="text-menu" href="#features">
+          <Link to="/fav" className="text-menu" href="#features">
             ชื่นชอบ
           </Link>
-          <Link className="text-menu" href="#pricing">
+          <Link to="" className="text-menu" href="#pricing">
             แชท
           </Link>
-          <Link className="text-menu" href="#pricing">
+          <Link to="" className="text-menu" href="#pricing">
             สินค้าน่าสนใจ
           </Link>
-          <Link className="text-menu" href="#pricing">
+          <Link to="" className="text-menu" href="#pricing">
             รับซื้อ
           </Link>
-          <Link className="text-menu" href="#pricing">
+          <Link to="" className="text-menu" href="#pricing">
             บริจาค
           </Link>
-          <Link className="text-menu" href="#pricing">
+          <Link to="" className="text-menu" href="#pricing">
             ขอรับบริจาค
-          </Link>
-          <Link className="text-menu" href="#pricing">
-            ประมูล
           </Link>
         </Nav>
       </Row>
