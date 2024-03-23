@@ -199,7 +199,7 @@ function Index() {
           </div>
         </Col>
       </Row>
-      <Row className="Second-Nav kanit-paragraphtextMedium">
+      <Row className="second-nav kanit-paragraphtextMedium">
         <Nav className="me-auto justify-content-center p-0">
           <Link to="/account/sell/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
