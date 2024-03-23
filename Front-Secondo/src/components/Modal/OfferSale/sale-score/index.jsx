@@ -1,7 +1,8 @@
 import React from "react";
 import "./index.css";
+import { Link } from "react-router-dom";
 
-import cancel from "../../../icon/cancel.png";
+import cancel from "../../../../icon/cancel.png";
 
 const ModalSale = (props) => {
   if (!props.open) return null;
@@ -12,17 +13,25 @@ const ModalSale = (props) => {
         <div className="close-button" onClick={props.onClose}>
           <img src={cancel} className="cancel-icon" />
         </div>
+
         <div className="model-content">
           <img src={props.img} className="tag-icon" />
           <div className="text-title-desc-modal">
             <div className="kanit-paragraphBig">{props.label}</div>
             <p className="kanit-paragraphSmall">{props.desc}</p>
           </div>
-          <div className="button-pop">
+
+          <div className="button-pop kanit-paragraphMedium">
             <button className="btn-small-primary">
-              เสนอจากของที่คุณขายอยู่
+              <Link className="link-to" to="#">
+                เสนอจากของที่คุณขายอยู่
+              </Link>
             </button>
-            <button className="btn-small-secondary">ลงขายสินค้าใหม่</button>
+            <button className="btn-small-secondary">
+              <Link className="link-to2" to="#">
+                ลงขายสินค้าใหม่
+              </Link>
+            </button>
           </div>
         </div>
       </div>

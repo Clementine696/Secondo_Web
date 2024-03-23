@@ -76,16 +76,6 @@ function Signin() {
                   }}
                 />
 
-                {/* <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalCheck"
-                  >
-                    <Col>
-                      <Form.Check label="Remember me" />
-                    </Col>
-                  </Form.Group> */}
-
                 <Row className="mb-3">
                   <Col>
                     <button

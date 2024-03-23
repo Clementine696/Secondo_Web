@@ -44,3 +44,13 @@ img.tag-icon {
     gap: 8px;
     align-self: stretch;
 }
+
+.link-to {
+    text-decoration: none;
+    color: var(--White-color);
+}
+
+.link-to2 {
+    text-decoration: none;
+    color: var(--SfixedVariant-color);
+}
