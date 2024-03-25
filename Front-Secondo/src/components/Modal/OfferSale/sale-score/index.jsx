@@ -27,7 +27,7 @@ const ModalSale = (props) => {
                 เสนอจากของที่คุณขายอยู่
               </Link>
             </button>
-            <button className="btn-small-secondary">
+            <button className="btn-small-secondary" onClick={props.onClick}>
               <Link className="link-to2" to="#">
                 ลงขายสินค้าใหม่
               </Link>
