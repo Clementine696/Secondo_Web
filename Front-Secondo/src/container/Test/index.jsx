@@ -9,9 +9,12 @@ import ModalS from "../../components/Modal/success";
 import ModalSale from "../../components/Modal/OfferSale/sale-score";
 import ModalSelectItem from "../../components/Modal/OfferSale/selectProduct";
 import ModalDonate from "../../components/Modal/Donate";
+import ModalSellerRate from "../../components/Modal/SellerRate";
+import ModalSellerTag from "../../components/Modal/SellerTag";
 
 import success from "../../icon/success-check.png";
 import tag from "../../icon/tag.png";
+import shipping from "../../icon/shipping.png";
 import productpic from "../../../public/images/product.jpg";
 
 function Test() {
@@ -25,6 +28,8 @@ function Test() {
 
   const [sellerRate, setSellerRate] = useState(false);
 
+  const [sellerTag, setSellerTag] = useState(false);
+
   return (
     <Layout>
       <div>
@@ -32,7 +37,14 @@ function Test() {
         <button onClick={() => setOpenModelSale(true)}>Modal 2</button>
         <button onClick={() => setOpenModelSelectItem(true)}>Modal 3</button>
         <button onClick={() => setOpenModalDonate(true)}>Modal 4</button>
-        <button onClick={() => setSellerRate(false)}>Modal 5</button>
+        <button onClick={() => setSellerRate(true)}>Modal 5</button>
+        <button onClick={() => setSellerTag(true)}>Modal 6</button>
+
+        <ModalSellerTag
+          img={shipping}
+          open={sellerTag}
+          onClose={() => setSellerTag(false)}
+        />
 
         <ModalDonate
           label="บริจาคตู้เย็น"
@@ -63,6 +75,12 @@ function Test() {
           open={openModelSelectItem}
           onClose={() => setOpenModelSelectItem(false)}
         />
+
+        <ModalSellerRate 
+          desc="กิตติพึก เพชรตะพด"
+          open={sellerRate}
+          onClose={() => setSellerRate(false)}
+          />
       </div>
     </Layout>
   );
