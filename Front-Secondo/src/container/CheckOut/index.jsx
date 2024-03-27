@@ -120,6 +120,58 @@ function checkOut() {
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
+                  {/* เงื่อนไข
+                  {product.products.lenght > 0 ? (
+                    product.products.map((product) => (
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to="/setting"
+                        className="checkout-page-content-method-address-group-edit-text"
+                      >
+                        กรุณาเพิ่มที่อยู่การจัดส่ง
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                            stroke="#B3261E"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    ))
+                  ) : (
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to=""
+                      className="checkout-page-content-method-address-group-edit-text"
+                      onClick={() => setVisibleAddress(true)}
+                    >
+                      แก้ไข
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                          stroke="#B3261E"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </Link>
+                  )} */}
+
                   <Link
                     style={{ textDecoration: "none" }}
                     to=""
@@ -260,6 +312,57 @@ function checkOut() {
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
+                  {/* เงื่อนไข
+                  {product.products.lenght > 0 ? (
+                    product.products.map((product) => (
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to="/setting"
+                        className="checkout-page-content-method-address-group-edit-text"
+                      >
+                        กรุณาเพิ่มวิธีการชำระเงิน
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                            stroke="#B3261E"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    ))
+                  ) : (
+                    <Link
+                    style={{ textDecoration: "none" }}
+                    to=""
+                    className="checkout-page-content-method-address-group-edit-text"
+                    onClick={() => setVisiblePayment(true)}
+                  >
+                    แก้ไข
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                        stroke="#B3261E"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                  )} */}
                   <Link
                     style={{ textDecoration: "none" }}
                     to=""

@@ -65,6 +65,12 @@ function Test() {
           img={tag}
           open={openModelSale}
           onClose={() => setOpenModelSale(false)}
+
+          //2 actions
+          onClick={() => {
+            setOpenModelSelectItem(true),
+            setOpenModelSale(false)
+          }} 
         />
 
         <ModalSelectItem
