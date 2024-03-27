@@ -29,12 +29,20 @@ export const login = (user) => {
                 });
             }
         }
+
+        // dispatch({
+        //     type: authConstants.LOGIN_REQUEST,
+        //     payload: {
+        //         ...user
+        //     }
+        // })
     }
 }
 
+
 export const isUserLoggedIn = () => {
     return async dispatch => {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         if(token){
             const user = JSON.parse(localStorage.getItem('user'));
             dispatch({
@@ -49,5 +57,40 @@ export const isUserLoggedIn = () => {
                 payload: { error: 'Failed to login' }
             });
         }
+        // if(token){
+        //     dispatch({
+        //         payload: {
+        //             token
+        //         }
+        //     });
+        // }else{
+        //     dispatch({
+        //         payload: {
+        //             authenticate: false,
+        //             message: 'User needs to login'
+        //         }
+        //     });
+        // }
+    }
+}
+
+export const signout = () => {
+    return async dispatch => {
+
+        dispatch({ type: authConstants.LOGOUT_REQUEST })
+        const res = await axios.post(`/admin/signout`);
+
+        if(res.status === 200){
+            localStorage.clear();
+            dispatch({
+                type: authConstants.LOGOUT_SUCCESS
+            })
+        }else{
+            dispatch({
+                type: authConstants.LOGOUT_FAILURE,
+                payload: { error: res.data.error }
+            })
+        }
+
     }
 }
