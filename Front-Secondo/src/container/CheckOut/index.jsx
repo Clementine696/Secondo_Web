@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 function checkOut() {
   const [value, setValue] = useState("");
-  const addressOption = [
+  const [addressOption, setAddressOption] = useState([
     {
       value: "1",
       label: "บ้านคเณศ",
@@ -21,33 +21,52 @@ function checkOut() {
       value: "3",
       label: "บ้านฐิติพงศ์",
     },
-  ];
+  ]);
 
-  const deliveryOption = [
+  const [deliveryOption, setDeliveryOption] = useState([
     {
-      value: "1",
+      value: "4",
       label: "ส่งแบบมาตรฐาน",
     },
     {
-      value: "2",
+      value: "5",
       label: "ส่งด่วน",
     },
-  ];
+  ]);
 
-  const paymentOption = [
+  const [paymentOption, setPaymentOption] = useState([
     {
-      value: "1",
+      value: "6",
       label: "Master Card ending 1123",
     },
     {
-      value: "2",
+      value: "7",
       label: "Master Card ending 3968",
     },
-  ];
+  ]);
+
+  const [selectedAddress, setSelectedAddress] = useState("");
+  const [selectedDelivery, setSelectedDelivery] = useState("");
+  const [selectedPayment, setSelectedPayment] = useState("");
+  const handleAddressChange = (event) => {
+    setSelectedAddress(event.target.value);
+  };
+
+  const handleDeliveryChange = (event) => {
+    setSelectedDelivery(event.target.value);
+  };
+
+  const handlePaymentChange = (event) => {
+    setSelectedPayment(event.target.value);
+  };
 
   const [visibleAddress, setVisibleAddress] = useState(false);
   const [visibleDev, setVisibleDev] = useState(false);
   const [visiblePayment, setVisiblePayment] = useState(false);
+
+  // useEffect(() => {
+  //   setValue(addressOption[0].value);
+  // }, [addressOption, deliveryOption, paymentOption]);
 
   return (
     <Layout>
@@ -115,7 +134,11 @@ function checkOut() {
                       ข้อมูลการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      ที่อยู่การจัดส่ง
+                      {selectedAddress
+                        ? addressOption.find(
+                            (address) => address.value === selectedAddress
+                          )?.label
+                        : "ที่อยู่จัดส่ง"}
                     </div>
                   </div>
                 </div>
@@ -212,8 +235,9 @@ function checkOut() {
                         type="radio"
                         value={address.value}
                         id={address.value}
-                        checked={value === address.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedAddress === address.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handleAddressChange}
                         onClick={() => setVisibleAddress(false)}
                       />
                       <label htmlFor={address.value}>{address.label}</label>
@@ -237,7 +261,11 @@ function checkOut() {
                       วิธีการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      ส่งแบบมาตรฐาน
+                    {selectedDelivery
+                        ? deliveryOption.find(
+                            (deliver) => deliver.value === selectedDelivery
+                          )?.label
+                        : "วิธีการจัดส่ง"}
                     </div>
                   </div>
                 </div>
@@ -282,8 +310,9 @@ function checkOut() {
                         type="radio"
                         value={delivery.value}
                         id={delivery.value}
-                        checked={value === delivery.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedDelivery === delivery.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
                       />
                       <label htmlFor={delivery.value}>{delivery.label}</label>
@@ -307,7 +336,11 @@ function checkOut() {
                       วิธีการชำระเงิน
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      Master Card ending 1123
+                    {selectedPayment
+                        ? paymentOption.find(
+                            (payment) => payment.value === selectedPayment
+                          )?.label
+                        : "วิธีการชำระเงิน"}
                     </div>
                   </div>
                 </div>
@@ -403,8 +436,9 @@ function checkOut() {
                         type="radio"
                         value={payment.value}
                         id={payment.value}
-                        checked={value === payment.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedPayment === payment.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handlePaymentChange}
                         onClick={() => setVisiblePayment(false)}
                       />
                       <label htmlFor={payment.value}>{payment.label}</label>

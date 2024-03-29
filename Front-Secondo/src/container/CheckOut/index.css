@@ -32,6 +32,7 @@
   align-items: flex-start;
   gap: 24px;
   align-self: stretch;
+  min-height: 500px;
 }
 
 .checkout-page-content-method {
