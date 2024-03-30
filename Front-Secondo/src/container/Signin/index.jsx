@@ -3,6 +3,10 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
 
+import { login } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
 import "./index.css";
 import "../../styles.css";
 import "../../components/UI/Button/index.css";
@@ -11,8 +15,19 @@ function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [error, setError] = useState('');
+  // const auth = useSelector(state => state.auth)
+  // const dispatch = useDispatch();
   // connect api to save data
-  const logIn = () => {
+  const logIn = (e) => {
+    e.preventDefault();
+
+    const user = {email, password}
+    // dispatch(login(user));
+    login(user);
+    // if(auth.authenticate){
+    //   return <Navigate to="/" />
+    // }
     console.log(email);
     console.log(password);
   };
