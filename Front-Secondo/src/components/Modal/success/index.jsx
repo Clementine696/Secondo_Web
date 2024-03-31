@@ -9,11 +9,15 @@ const ModalS = (props) => {
       setIsVisible(true);
       const timer = setTimeout(() => {
         setIsVisible(false);
+        props.onClose(); 
       }, props.closeDelay || 3000);
 
       return () => clearTimeout(timer);
+    } else {
+      setIsVisible(false);
+      document.body.style.overflow = "auto";
     }
-  }, [props.open, props.closeDelay]);
+  }, [props.open, props.closeDelay, props.onClose]);
 
   return (
     <>

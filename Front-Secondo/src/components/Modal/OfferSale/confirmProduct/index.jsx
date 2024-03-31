@@ -5,6 +5,7 @@ import cancel from "../../../../icon/cancel.png";
 
 const ModalConfirmItem = (props) => {
   if (!props.open) return null;
+  // console.log(props);
 
   return (
     <div className="overlay">
@@ -23,7 +24,7 @@ const ModalConfirmItem = (props) => {
           </div>
 
           <div className="button-pop kanit-paragraphMedium">
-            <button className="btn-small-primary">เสนอขาย</button>
+            <button className="btn-small-primary" onClick={props.onClick}>เสนอขาย</button>
             <button className="btn-small-secondary">ลงขายสินค้าใหม่</button>
           </div>
         </div>

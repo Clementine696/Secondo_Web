@@ -1,14 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
 import VDivider from "../../../components/UI/DividerVentical";
-import { Link } from "react-router-dom"; // import "~slick-carousel/slick/slick.css";
+import ModalS from "../../../components/Modal/success";
+import ModalSale from "../../../components/Modal/OfferSale/sale-score";
+import ModalSelectItem from "../../../components/Modal/OfferSale/selectProduct";
+import ModalConfirmItem from "../../../components/Modal/OfferSale/confirmProduct";
+
+import success from "../../../icon/success-check.png";
+import tag from "../../../icon/tag.png";
+import productpic from "../../../../public/images/product.jpg";
 
 import "../../../components/UI/Button/index.css";
 
+const product = [
+  {
+    img: productpic,
+    label:
+      "GATERON Milky Yellow PRO Switch (10ชิ้น/ซอง) 5 pin สวิตช์ Linear สำหรับ คีย์บอร์ด Mechanical keyboard Linear Switch",
+    price: "0",
+  },
+  { label: "สินค้าชิ้นที่ 1", price: "1" },
+  { label: "สินค้าชิ้นที่ 2", price: "2" },
+  { label: "สินค้าชิ้นที่ 3", price: "3" },
+];
+
 function Productsale() {
+  //Modal
+  const [openModel, setOpenModel] = useState(false);
+
+  const [openModelSale, setOpenModelSale] = useState(false);
+
+  const [openModalSelectItem, setOpenModalSelectItem] = useState(false);
+
+  const [openModelConfirmItem, setOpenModelConfirmItem] = useState(false);
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const handleProductSelect = (product) => {
+    setSelectedProduct(product);
+    setOpenModalSelectItem(false); // Close the select product modal
+    setOpenModelConfirmItem(true); // Open the confirm product modal
+    // console.log(product);
+  };
+
+  //scroll
+  useEffect(() => {
+    if (
+      openModel ||
+      openModelSale ||
+      openModalSelectItem ||
+      openModelConfirmItem
+    ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openModel, openModelSale, openModalSelectItem, openModelConfirmItem]);
+
+  // console.log(openModel);
+
   return (
     <Layout>
       <div className="background-product-page">
@@ -115,9 +168,12 @@ function Productsale() {
             </Row>
 
             <div className="divider-horz-2"></div>
-            
+
             <Row className="product-button-section">
-              <button className="btn-small-primary kanit-paragraphMedium">
+              <button
+                className="btn-small-primary kanit-paragraphMedium"
+                onClick={() => setOpenModelSale(true)}
+              >
                 เสนอขาย
               </button>
             </Row>
@@ -186,7 +242,7 @@ function Productsale() {
                 <Col>ผู้ติดตาม</Col>
                 <Col className="color-ratio">5 พัน</Col>
               </Row>
-            </Col> 
+            </Col>
           </Row>
         </div>
 
@@ -256,6 +312,47 @@ function Productsale() {
           </div>
         </div>
       </div>
+
+      <ModalS
+        label="เสนอขายสินค้าสำเร็จ"
+        desc="สินค้าได้รับการเสนอขายแล้ว"
+        img={success}
+        open={openModel}
+        onClose={() => setOpenModel(false)}
+      />
+
+      <ModalSale
+        label="เสนอขายสินค้า"
+        desc="ซื้อโทรศัพท์ iphone14"
+        img={tag}
+        open={openModelSale}
+        onClose={() => setOpenModelSale(false)}
+        //2 actions
+        onClick={() => {
+          setOpenModalSelectItem(true), setOpenModelSale(false);
+        }}
+      />
+
+      <ModalSelectItem
+        label="เลือกสินค้าจากรายการขายของคุณ"
+        open={openModalSelectItem}
+        products={product}
+        onProductSelect={handleProductSelect}
+        onClose={() => setOpenModalSelectItem(false)}
+      />
+
+      {selectedProduct && (
+        <ModalConfirmItem
+          label="คุณต้องการที่จะเสนอขายสินค้าชิ้นนี้"
+          img={selectedProduct.img}
+          title={selectedProduct.label}
+          open={openModelConfirmItem}
+          onClose={() => setOpenModelConfirmItem(false)}
+          onClick={() => {
+            setOpenModelConfirmItem(false), setOpenModel(true);
+          }}
+        />
+      )}
     </Layout>
   );
 }

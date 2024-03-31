@@ -16,6 +16,7 @@ import Product from "./container/Product";
 import Offersale from "./container/Product/Offersale";
 import Offerbuy from "./container/Product/Offerbuy";
 import Donate from "./container/Product/Donation";
+import RequireDonate from "./container/Product/Requiredonate";
 
 import Profile from "./container/UserPage/Profile";
 import BuyState from "./container/UserPage/BuyStatus";
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="product/offersale" element={<Offersale />} />
           <Route path="product/offerbuy" element={<Offerbuy />} />
           <Route path="product/donate" element={<Donate />} />
+          <Route path="product/requiredonate" element={<RequireDonate />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />

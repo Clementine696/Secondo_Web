@@ -51,7 +51,10 @@ function Test() {
     setSelectedProduct(product);
     setOpenModalSelectItem(false); // Close the select product modal
     setOpenModelConfirmItem(true); // Open the confirm product modal
+    // console.log(product);
   };
+
+  // console.log(selectedProduct)
 
   return (
     <Layout>
@@ -116,10 +119,13 @@ function Test() {
         {selectedProduct && (
           <ModalConfirmItem
             label="คุณต้องการที่จะเสนอขายสินค้าชิ้นนี้"
-            img={selectedProduct.image}
+            img={selectedProduct.img}
             title={selectedProduct.label}
             open={openModelConfirmItem}
             onClose={() => setOpenModelConfirmItem(false)}
+            onClick={() => {
+              setOpenModelConfirmItem(false), setOpenModel(true);
+            }}
           />
         )}
 

@@ -6,7 +6,14 @@ import Form from "react-bootstrap/Form";
 
 import { useState, useEffect } from "react";
 
+import ModalS from "../../components/Modal/success";
+
+import success from "../../icon/success-check.png";
+
 function checkOut() {
+  //Modal
+  const [openModel, setOpenModel] = useState(false);
+
   const [value, setValue] = useState("");
   const [addressOption, setAddressOption] = useState([
     {
@@ -261,7 +268,7 @@ function checkOut() {
                       วิธีการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                    {selectedDelivery
+                      {selectedDelivery
                         ? deliveryOption.find(
                             (deliver) => deliver.value === selectedDelivery
                           )?.label
@@ -336,7 +343,7 @@ function checkOut() {
                       วิธีการชำระเงิน
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                    {selectedPayment
+                      {selectedPayment
                         ? paymentOption.find(
                             (payment) => payment.value === selectedPayment
                           )?.label
@@ -507,11 +514,20 @@ function checkOut() {
                 </div>
               </div>
             </div>
-            <button className="btn-small-primary kanit-paragraphMedium">
+            <button
+              className="btn-small-primary kanit-paragraphMedium"
+              onClick={() => setOpenModel(true)}
+            >
               ชำระเงิน
             </button>
           </div>
         </div>
+        <ModalS
+          label="ชำระเงินสำเร็จ"
+          desc="ชำระเงินเข้าสู่ระบบแล้ว"
+          img={success}
+          open={openModel}
+        />
       </div>
     </Layout>
   );

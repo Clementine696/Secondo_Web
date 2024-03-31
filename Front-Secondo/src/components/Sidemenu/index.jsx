@@ -60,14 +60,14 @@ const Sidemenu = () => {
             ขอรับบริจาคของฉัน
           </Link>
         </li>
-        <li className={location.pathname === "/bidstate" ? "active" : ""}>
+        {/* <li className={location.pathname === "/bidstate" ? "active" : ""}>
           <Link className="link-menu" to="/bidstate">
             <div className="icon-menu-sidebar">
               <img src={bid} className="sidemenu-icon"></img>
             </div>
             การประมูลของฉัน
           </Link>
-        </li>
+        </li> */}
         <li className={location.pathname === "/co2point" ? "active" : ""}>
           <Link className="link-menu" to="/co2point">
             <div className="icon-menu-sidebar">

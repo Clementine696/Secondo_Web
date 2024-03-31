@@ -153,11 +153,11 @@ function Index() {
                     text={"ขอรับบริจาคของฉัน"}
                     link={"/receivestate"}
                   />
-                  <DropdownItem
+                  {/* <DropdownItem
                     img={bid}
                     text={"การประมูลของฉัน"}
                     link={"/bidstate"}
-                  />
+                  /> */}
                   <DropdownItem
                     img={co2}
                     text={"แต้มคะแนน Carbon credits"}
@@ -205,7 +205,7 @@ function Index() {
             ประกาศขายบน Secondo
           </Link>
           <Link to="/fav" className="text-menu" href="#features">
-            ชื่นชอบ
+            รายการโปรด
           </Link>
           <Link to="" className="text-menu" href="#pricing">
             แชท

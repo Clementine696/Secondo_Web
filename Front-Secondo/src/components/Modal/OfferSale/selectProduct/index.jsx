@@ -9,6 +9,7 @@ const ModalSelectItem = (props) => {
   const handleProductSelect = (selectedProduct) => {
     props.onProductSelect(selectedProduct);
     props.onClose();
+    // console.log(selectedProduct)
   };
 
   return (

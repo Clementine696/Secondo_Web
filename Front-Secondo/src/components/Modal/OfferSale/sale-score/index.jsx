@@ -24,7 +24,7 @@ const ModalSale = (props) => {
           <div className="button-pop kanit-paragraphtextMedium">
             <button className="btn-small-primary" onClick={props.onClick}>
               <Link className="link-to" to="#">
-                เสนอจากของที่คุณขายอยู่
+                เสนอจากของที่คุณมีอยู่
               </Link>
             </button>
             <button className="btn-small-secondary">

@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
 import VDivider from "../../../components/UI/DividerVentical";
-import { Link } from "react-router-dom";
+import ModalS from "../../../components/Modal/success";
+import ModalDonate from "../../../components/Modal/Donate";
+
+import success from "../../../icon/success-check.png";
 
 import "../../../components/UI/Button/index.css";
 
-function Productbuy() {
+function RequireDonate() {
+  //Modal
+  const [openModel, setOpenModel] = useState(false);
+
+  const [openModalDonate, setOpenModalDonate] = useState(false);
+
+  useEffect(() => {
+    if (
+      openModel ||
+      openModalDonate
+    ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openModel, openModalDonate]);
+
+
   return (
     <Layout>
       <div className="background-product-page">
@@ -117,8 +138,11 @@ function Productbuy() {
             <div className="divider-horz-2"></div>
 
             <Row className="product-button-section">
-              <button className="btn-small-primary kanit-paragraphMedium">
-                เสนอซื้อ
+              <button
+                className="btn-small-primary kanit-paragraphMedium"
+                onClick={() => setOpenModalDonate(true)}
+              >
+                เสนอบริจาค
               </button>
             </Row>
           </div>
@@ -256,8 +280,24 @@ function Productbuy() {
           </div>
         </div>
       </div>
+
+      <ModalS
+        label="ขอรับบริจาคสินค้าสำเร็จ"
+        desc="คำขอของคุณถูกส่งเรียบร้อยแล้ว"
+        img={success}
+        open={openModel}
+        onClose={() => setOpenModel(false)}
+      />
+
+      <ModalDonate
+        label="บริจาคตู้เย็น"
+        open={openModalDonate}
+        onClick={() => {
+          setOpenModalDonate(false), setOpenModel(true);
+        }}
+      />
     </Layout>
   );
 }
 
-export default Productbuy;
+export default RequireDonate;
