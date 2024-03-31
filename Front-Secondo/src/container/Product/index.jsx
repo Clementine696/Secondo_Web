@@ -91,7 +91,7 @@ function Product() {
 
             <Row className="product-price-cc">
               <Col className="kanit-Display-Medium price">1000 บาท</Col>
-              <Col className="kanit-Display-Medium cc">20 CCKg eq</Col>
+              <Col className="kanit-Display-Medium cc">20 CO₂ Credit</Col>
             </Row>
 
             <Row className="product-decription">
@@ -120,7 +120,7 @@ function Product() {
             <Row className="product-button-section">
               <Col>
                 <button className="btn-small-secondary kanit-paragraphMedium">
-                  เสนอราคา
+                  เพิ่มลงในรายการโปรด
                 </button>
               </Col>
               <Col>
