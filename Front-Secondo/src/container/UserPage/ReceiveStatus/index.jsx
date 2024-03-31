@@ -87,7 +87,7 @@ function receiveStatus() {
               <p className="header-item date-col">วันที่ซื้อ</p>
               <p className="header-item desc-col">รายละเอียดสินค้า</p>
               <p className="header-item status-col">สถานะ</p>
-              <p className="header-item point-col">แต้ม CC</p>
+              <p className="header-item point-col">CO₂ Credit</p>
               <p className="header-item price-col">ราคา (บาท)</p>
               <p className="header-item func-col"></p>
             </div>
