@@ -14,23 +14,26 @@ import "../../components/UI/Button/index.css";
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const [error, setError] = useState('');
-  // const auth = useSelector(state => state.auth)
-  // const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch();
   // connect api to save data
   const logIn = (e) => {
     e.preventDefault();
 
     const user = {email, password}
-    // dispatch(login(user));
-    login(user);
-    // if(auth.authenticate){
-    //   return <Navigate to="/" />
-    // }
+    dispatch(login(user));
+    // login(user);
+    
     console.log(email);
     console.log(password);
   };
+
+  if(auth.authenticate){
+    return <Navigate to="/" />
+  }
+  
   return (
     <Container className="main-content">
       <Row className="Row-content">

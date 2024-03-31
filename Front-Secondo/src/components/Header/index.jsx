@@ -15,10 +15,45 @@ import like from "../../icon/like.png";
 import setting from "../../icon/setting.png";
 import searchb from "../../icon/search-b.png";
 
+import { useDispatch, useSelector } from 'react-redux';
+import { signout } from '../../actions';
+
 import "./index.css";
 import "../../styles.css";
 
 function Index() {
+
+  //login logout
+  const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(signout());
+  }
+
+  const renderLoggedInLinks = () => {
+    return (
+      <Nav>
+        <li className="nav-item">
+          <span className='nav-link' onClick={logout}>Sign out</span>
+        </li>
+      </Nav>
+    );
+  }
+
+  const renderNonLoggedInLinks = () => {
+    return (
+      <Link className="btn-signin" to="/signin">
+        <button
+          className="btn-small-primary kanit-paragraphMedium"
+          onclick="activateLasers()"
+        >
+          เข้าสู่ระบบ
+        </button>
+      </Link>
+    );
+  }
+
   const [open, setOpen] = useState(false);
 
   let menuRef = useRef();
@@ -100,15 +135,16 @@ function Index() {
                 />
               </svg>
             </div>
-            <Link className="btn-signin" to="/signin">
+            {/* <Link className="btn-signin" to="/signin">
               <button
                 className="btn-small-primary kanit-paragraphMedium"
                 onclick="activateLasers()"
               >
                 เข้าสู่ระบบ
               </button>
-            </Link>
-
+            </Link> */}
+            {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
+            
             <div className="menu-container" ref={menuRef}>
               <div
                 className="menu-trigger"

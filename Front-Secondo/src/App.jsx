@@ -35,18 +35,22 @@ import Test from "./container/Test";
 
 import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
 
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategory, getInitialData, isUserLoggedIn } from './actions';
+
 export default function App() {
 
   // // Authenticate
-  // const dispatch = useDispatch();
-  // const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
 
-  // useEffect(() => {
-  //   if (!auth.authenticate) {
-  //     dispatch(isUserLoggedIn());
-  //   }
-  //   dispatch(getInitialData());
-  // }, []);
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+    dispatch(getInitialData());
+  }, []);
 
   return (
     <div>
