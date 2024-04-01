@@ -128,6 +128,27 @@ function setting() {
     }
   }, [tab, selectedAddress, selectedPayment, selectedBank]);
 
+  //add address
+  const [addAddress, setAddAddress] = useState(false);
+
+  const [addressname, setAddressname] = useState("");
+  const [username, setUsername] = useState("");
+  const [tel, setTel] = useState("");
+  const [addressNumber, setAddressNumber] = useState("");
+  const [addressProvince, setAddressProvince] = useState("");
+  const [zipcode, setZipcode] = useState("");
+
+  const saveAddress = () => {
+    console.log(addressname);
+    console.log(username);
+    console.log(tel);
+    console.log(addressNumber);
+    console.log(addressProvince);
+    console.log(zipcode);
+  };
+
+  //add payment
+
   return (
     <Layout>
       <div className="user-page">
@@ -148,7 +169,10 @@ function setting() {
               <div className="setting-title-add">
                 <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
 
-                <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                <Link
+                  className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                  onClick={() => setAddAddress(true)}
+                >
                   <img src={add} className="add-icon"></img>
                   เพิ่มที่อยู่
                 </Link>
@@ -189,6 +213,32 @@ function setting() {
               </div>
             </div>
           </div>
+          {addAddress && (
+            <div className="setting-add-address">
+              <div className="setting-add-address-title kanit-paragraphBig">
+                ที่อยู่ใหม่
+              </div>
+              <div className="setting-add-address-form">
+
+              </div>
+              <div className="setting-add-address-button">
+                <button
+                  className="btn-small-secondary kanit-paragraphMedium"
+                  type="submit"
+                  onClick={() => setAddAddress(false)}
+                >
+                  ยกเลิก
+                </button>
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  type="submit"
+                  onClick={saveAddress}
+                >
+                  บันทึก
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className={tab === 2 ? "active-content" : "content"}>
             <div className="background-data-table">
