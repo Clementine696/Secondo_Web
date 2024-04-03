@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import "./index.css";
 import "../../../styles.css";
@@ -9,6 +11,7 @@ import "../../../components/UI/Button/index.css";
 import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
 import Tabs from "../../../components/UI/Tab";
+import Input from "../../../components/UI/Input";
 
 import add from "../../../icon/add.png";
 import masterCard from "../../../../public/images/mastercard.jpg";
@@ -148,6 +151,19 @@ function setting() {
   };
 
   //add payment
+  const [addPayment, setAddPayment] = useState(false);
+
+  const [cardNumber, setCardNumber] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [CVV, setCVV] = useState("");
+  const [ownCardName, setOwnCardName] = useState("");
+
+  const savePayment = () => {
+    console.log(cardNumber);
+    console.log(expDate);
+    console.log(CVV);
+    console.log(ownCardName);
+  };
 
   return (
     <Layout>
@@ -219,7 +235,82 @@ function setting() {
                 ที่อยู่ใหม่
               </div>
               <div className="setting-add-address-form">
-
+                <Form>
+                  <Row className="setting-add-address-form-row">
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="ชื่อที่อยู่"
+                        value={addressname}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setAddressname(e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="ชื่อ นามสกุล"
+                        value={username}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="เบอร์โทร"
+                        value={tel}
+                        type="number"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setTel(e.target.value);
+                        }}
+                      />
+                    </Col>
+                  </Row>
+                  <Input
+                    className=""
+                    placeholder="บ้านเลขที่ ซอย หมู่"
+                    value={addressNumber}
+                    type="number"
+                    errorMessage=""
+                    onChange={(e) => {
+                      setAddressNumber(e.target.value);
+                    }}
+                  />
+                  <Row className="setting-add-address-form-row">
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="ตำบล อำเภอ จังหวัด"
+                        value={addressProvince}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setAddressProvince(e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="รหัสไปรษณีย์"
+                        value={zipcode}
+                        type="number"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setZipcode(e.target.value);
+                        }}
+                      />
+                    </Col>
+                  </Row>
+                </Form>
               </div>
               <div className="setting-add-address-button">
                 <button
@@ -245,7 +336,7 @@ function setting() {
               <div className="setting-title-add">
                 <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต</p>
 
-                <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium" onClick={() => setAddPayment(true)}>
                   <img src={add} className="add-icon"></img>
                   เพิ่มบัตร/บัญชี
                 </Link>
@@ -287,6 +378,79 @@ function setting() {
               </div>
             </div>
           </div>
+          {addPayment && (
+            <div className="setting-add-address">
+              <div className="setting-add-address-title kanit-paragraphBig">
+                เพิ่มบัตร
+              </div>
+              <div className="setting-add-address-form">
+                <Form>
+                  <Input
+                    className=""
+                    placeholder="หมายเลขบัตร"
+                    value={cardNumber}
+                    type="number"
+                    errorMessage=""
+                    onChange={(e) => {
+                      setCardNumber(e.target.value);
+                    }}
+                  />
+                  <Row className="setting-add-address-form-row">
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="วันหมดอายุ (ดด/ปป)"
+                        value={expDate}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setExpDate(e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col>
+                      <Input
+                        className=""
+                        placeholder="CVV"
+                        value={CVV}
+                        type="number"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setCVV(e.target.value);
+                        }}
+                      />
+                    </Col>
+                  </Row>
+                  <Input
+                    className=""
+                    placeholder="ชื่อเจ้าของบัตร"
+                    value={ownCardName}
+                    type="number"
+                    errorMessage=""
+                    onChange={(e) => {
+                      setOwnCardName(e.target.value);
+                    }}
+                  />
+                </Form>
+              </div>
+              <div className="setting-add-address-button">
+                <button
+                  className="btn-small-secondary kanit-paragraphMedium"
+                  type="submit"
+                  onClick={() => setAddPayment(false)}
+                >
+                  ยกเลิก
+                </button>
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  type="submit"
+                  onClick={saveAddress}
+                >
+                  บันทึก
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className={tab === 3 ? "active-content" : "content"}>
             <div className="background-data-table">

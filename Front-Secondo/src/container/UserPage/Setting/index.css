@@ -88,7 +88,6 @@ button.d-btn {
 
 .setting-add-address {
   display: flex;
-  height: 424px;
   padding: 16px;
   flex-direction: column;
   align-items: flex-start;
@@ -96,6 +95,15 @@ button.d-btn {
   align-self: stretch;
   border-radius: 16px;
   background: var(--Etc-Surface-Bright, #f9f9ff);
+  min-height: 424px;
+}
+
+.setting-add-address-form {
+  width: 100%;
+}
+
+.setting-add-address-form-row {
+  gap: 10px;
 }
 
 .setting-add-address-button {
@@ -105,3 +113,4 @@ button.d-btn {
   gap: 10px;
   /* align-self: stretch; */
 }
+
