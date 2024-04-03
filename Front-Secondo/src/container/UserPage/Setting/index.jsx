@@ -165,6 +165,19 @@ function setting() {
     console.log(ownCardName);
   };
 
+  //add withdraw
+  const [addWithdraw, setAddWithdraw] = useState(false);
+
+  const [bank, setBank] = useState("");
+  const [bankName, setBankName] = useState("");
+  const [accountNumber, setaccountNumber] = useState("");
+
+  const saveWithdraw = () => {
+    console.log(bank);
+    console.log(bankName);
+    console.log(accountNumber);
+  };
+
   return (
     <Layout>
       <div className="user-page">
@@ -181,302 +194,185 @@ function setting() {
           ></Tabs>
 
           <div className={tab === 1 ? "active-content" : "content"}>
-            <div className="background-data-table">
-              <div className="setting-title-add">
-                <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+            <div className="setting-tab-group">
+              <div className="background-data-table">
+                <div className="setting-title-add">
+                  <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
 
-                <Link
-                  className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                  onClick={() => setAddAddress(true)}
-                >
-                  <img src={add} className="add-icon"></img>
-                  เพิ่มที่อยู่
-                </Link>
-              </div>
-
-              <div className="my-address">
-                {addresses.map((address, index) => (
-                  <div
-                    className={`address-item ${
-                      selectedAddress === index ? "select" : ""
-                    }`}
-                    key={index}
+                  <Link
+                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                    onClick={() => setAddAddress(true)}
                   >
-                    <div className="text-address kanit-paragraphtextMedium">
-                      <p>
-                        {address.name} {address.phone}
-                      </p>
-                      <p>{address.address}</p>
-                    </div>
+                    <img src={add} className="add-icon"></img>
+                    เพิ่มที่อยู่
+                  </Link>
+                </div>
 
-                    <div className="btn-setting-address-group">
-                      <button className="f-btn btn-small-primary kanit-paragraphMedium">
-                        แก้ไข
-                      </button>
-                      <button
-                        className={`s-btn ${
-                          selectedAddress === index
-                            ? "btn-small-secondary-disabled"
-                            : "btn-small-secondary"
-                        } kanit-paragraphMedium`}
-                        onClick={() => toggleSelectAddress(index)}
-                      >
-                        ตั้งเป็นค่าเริ่มต้น
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          {addAddress && (
-            <div className="setting-add-address">
-              <div className="setting-add-address-title kanit-paragraphBig">
-                ที่อยู่ใหม่
-              </div>
-              <div className="setting-add-address-form">
-                <Form>
-                  <Row className="setting-add-address-form-row">
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="ชื่อที่อยู่"
-                        value={addressname}
-                        type="text"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setAddressname(e.target.value);
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="ชื่อ นามสกุล"
-                        value={username}
-                        type="text"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setUsername(e.target.value);
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="เบอร์โทร"
-                        value={tel}
-                        type="number"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setTel(e.target.value);
-                        }}
-                      />
-                    </Col>
-                  </Row>
-                  <Input
-                    className=""
-                    placeholder="บ้านเลขที่ ซอย หมู่"
-                    value={addressNumber}
-                    type="number"
-                    errorMessage=""
-                    onChange={(e) => {
-                      setAddressNumber(e.target.value);
-                    }}
-                  />
-                  <Row className="setting-add-address-form-row">
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="ตำบล อำเภอ จังหวัด"
-                        value={addressProvince}
-                        type="text"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setAddressProvince(e.target.value);
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="รหัสไปรษณีย์"
-                        value={zipcode}
-                        type="number"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setZipcode(e.target.value);
-                        }}
-                      />
-                    </Col>
-                  </Row>
-                </Form>
-              </div>
-              <div className="setting-add-address-button">
-                <button
-                  className="btn-small-secondary kanit-paragraphMedium"
-                  type="submit"
-                  onClick={() => setAddAddress(false)}
-                >
-                  ยกเลิก
-                </button>
-                <button
-                  className="btn-small-primary kanit-paragraphMedium"
-                  type="submit"
-                  onClick={saveAddress}
-                >
-                  บันทึก
-                </button>
-              </div>
-            </div>
-          )}
-
-          <div className={tab === 2 ? "active-content" : "content"}>
-            <div className="background-data-table">
-              <div className="setting-title-add">
-                <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต</p>
-
-                <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium" onClick={() => setAddPayment(true)}>
-                  <img src={add} className="add-icon"></img>
-                  เพิ่มบัตร/บัญชี
-                </Link>
-              </div>
-
-              <div className="my-address">
-                {paymentMethods.map((payment, index) => (
-                  <div
-                    className={`address-item ${
-                      selectedPayment === index ? "select" : ""
-                    }`}
-                    key={index}
-                  >
-                    <div className="text-address kanit-paragraphMedium">
-                      <div className="img-card-cardid">
-                        <img src={payment.img} className="card-pic"></img>
-                        <div className="card-name">{payment.cardName}</div>
-                        <div className="card-id">{payment.cardId}</div>
-                      </div>
-                    </div>
-
-                    <div className="btn-setting-address-group">
-                      <button className="d-btn kanit-paragraphMedium btn-small-link-ghost">
-                        ลบ
-                      </button>
-                      <button
-                        className={`s-btn ${
-                          selectedPayment === index
-                            ? "btn-small-secondary-disabled"
-                            : "btn-small-secondary"
-                        } kanit-paragraphMedium`}
-                        onClick={() => toggleSelectPayment(index)}
-                      >
-                        ตั้งเป็นค่าเริ่มต้น
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          {addPayment && (
-            <div className="setting-add-address">
-              <div className="setting-add-address-title kanit-paragraphBig">
-                เพิ่มบัตร
-              </div>
-              <div className="setting-add-address-form">
-                <Form>
-                  <Input
-                    className=""
-                    placeholder="หมายเลขบัตร"
-                    value={cardNumber}
-                    type="number"
-                    errorMessage=""
-                    onChange={(e) => {
-                      setCardNumber(e.target.value);
-                    }}
-                  />
-                  <Row className="setting-add-address-form-row">
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="วันหมดอายุ (ดด/ปป)"
-                        value={expDate}
-                        type="text"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setExpDate(e.target.value);
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <Input
-                        className=""
-                        placeholder="CVV"
-                        value={CVV}
-                        type="number"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setCVV(e.target.value);
-                        }}
-                      />
-                    </Col>
-                  </Row>
-                  <Input
-                    className=""
-                    placeholder="ชื่อเจ้าของบัตร"
-                    value={ownCardName}
-                    type="number"
-                    errorMessage=""
-                    onChange={(e) => {
-                      setOwnCardName(e.target.value);
-                    }}
-                  />
-                </Form>
-              </div>
-              <div className="setting-add-address-button">
-                <button
-                  className="btn-small-secondary kanit-paragraphMedium"
-                  type="submit"
-                  onClick={() => setAddPayment(false)}
-                >
-                  ยกเลิก
-                </button>
-                <button
-                  className="btn-small-primary kanit-paragraphMedium"
-                  type="submit"
-                  onClick={saveAddress}
-                >
-                  บันทึก
-                </button>
-              </div>
-            </div>
-          )}
-
-          <div className={tab === 3 ? "active-content" : "content"}>
-            <div className="background-data-table">
-              <div className="setting-title-add">
-                <p className="kanit-paragraphBig">บัญชีธนาคาร</p>
-
-                <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
-                  <img src={add} className="add-icon"></img>
-                  เพิ่มบัญชีธนาคาร
-                </Link>
-              </div>
-
-              <div className="my-address">
                 <div className="my-address">
-                  {bankAccounts.map((bank, index) => (
+                  {addresses.map((address, index) => (
                     <div
                       className={`address-item ${
-                        selectedBank === index ? "select" : ""
+                        selectedAddress === index ? "select" : ""
+                      }`}
+                      key={index}
+                    >
+                      <div className="text-address kanit-paragraphtextMedium">
+                        <p>
+                          {address.name} {address.phone}
+                        </p>
+                        <p>{address.address}</p>
+                      </div>
+
+                      <div className="btn-setting-address-group">
+                        <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                          แก้ไข
+                        </button>
+                        <button
+                          className={`s-btn ${
+                            selectedAddress === index
+                              ? "btn-small-secondary-disabled"
+                              : "btn-small-secondary"
+                          } kanit-paragraphMedium`}
+                          onClick={() => toggleSelectAddress(index)}
+                        >
+                          ตั้งเป็นค่าเริ่มต้น
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {addAddress && (
+                <div className="setting-add-address">
+                  <div className="setting-add-address-title kanit-paragraphBig">
+                    ที่อยู่ใหม่
+                  </div>
+                  <div className="setting-add-address-form">
+                    <Form>
+                      <Row className="setting-add-address-form-row">
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="ชื่อที่อยู่"
+                            value={addressname}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setAddressname(e.target.value);
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="ชื่อ นามสกุล"
+                            value={username}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="เบอร์โทร"
+                            value={tel}
+                            type="number"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setTel(e.target.value);
+                            }}
+                          />
+                        </Col>
+                      </Row>
+                      <Input
+                        className=""
+                        placeholder="บ้านเลขที่ ซอย หมู่"
+                        value={addressNumber}
+                        type="number"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setAddressNumber(e.target.value);
+                        }}
+                      />
+                      <Row className="setting-add-address-form-row">
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="ตำบล อำเภอ จังหวัด"
+                            value={addressProvince}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setAddressProvince(e.target.value);
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="รหัสไปรษณีย์"
+                            value={zipcode}
+                            type="number"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setZipcode(e.target.value);
+                            }}
+                          />
+                        </Col>
+                      </Row>
+                    </Form>
+                  </div>
+                  <div className="setting-add-address-button">
+                    <button
+                      className="btn-small-secondary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={() => setAddAddress(false)}
+                    >
+                      ยกเลิก
+                    </button>
+                    <button
+                      className="btn-small-primary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={saveAddress}
+                    >
+                      บันทึก
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className={tab === 2 ? "active-content" : "content"}>
+            <div className="setting-tab-group">
+              <div className="background-data-table">
+                <div className="setting-title-add">
+                  <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต</p>
+                  <Link
+                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                    onClick={() => setAddPayment(true)}
+                  >
+                    <img src={add} className="add-icon"></img>
+                    เพิ่มบัตร/บัญชี
+                  </Link>
+                </div>
+
+                <div className="my-address">
+                  {paymentMethods.map((payment, index) => (
+                    <div
+                      className={`address-item ${
+                        selectedPayment === index ? "select" : ""
                       }`}
                       key={index}
                     >
                       <div className="text-address kanit-paragraphMedium">
                         <div className="img-card-cardid">
-                          <img src={bank.img} className="card-pic"></img>
-                          <div className="card-name">{bank.bankName}</div>
-                          <div className="card-id">{bank.accountName}</div>
+                          <img src={payment.img} className="card-pic"></img>
+                          <div className="card-name">{payment.cardName}</div>
+                          <div className="card-id">{payment.cardId}</div>
                         </div>
                       </div>
 
@@ -486,11 +382,11 @@ function setting() {
                         </button>
                         <button
                           className={`s-btn ${
-                            selectedBank === index
+                            selectedPayment === index
                               ? "btn-small-secondary-disabled"
                               : "btn-small-secondary"
                           } kanit-paragraphMedium`}
-                          onClick={() => toggleSelectBank(index)}
+                          onClick={() => toggleSelectPayment(index)}
                         >
                           ตั้งเป็นค่าเริ่มต้น
                         </button>
@@ -499,6 +395,193 @@ function setting() {
                   ))}
                 </div>
               </div>
+              {addPayment && (
+                <div className="setting-add-address">
+                  <div className="setting-add-address-title kanit-paragraphBig">
+                    เพิ่มบัตร
+                  </div>
+                  <div className="setting-add-address-form">
+                    <Form>
+                      <Input
+                        className=""
+                        placeholder="หมายเลขบัตร"
+                        value={cardNumber}
+                        type="number"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setCardNumber(e.target.value);
+                        }}
+                      />
+                      <Row className="setting-add-address-form-row">
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="วันหมดอายุ (ดด/ปป)"
+                            value={expDate}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setExpDate(e.target.value);
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="CVV"
+                            value={CVV}
+                            type="number"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setCVV(e.target.value);
+                            }}
+                          />
+                        </Col>
+                      </Row>
+                      <Input
+                        className=""
+                        placeholder="ชื่อเจ้าของบัตร"
+                        value={ownCardName}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setOwnCardName(e.target.value);
+                        }}
+                      />
+                    </Form>
+                  </div>
+                  <div className="setting-add-address-button">
+                    <button
+                      className="btn-small-secondary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={() => setAddPayment(false)}
+                    >
+                      ยกเลิก
+                    </button>
+                    <button
+                      className="btn-small-primary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={savePayment}
+                    >
+                      บันทึก
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className={tab === 3 ? "active-content" : "content"}>
+            <div className="setting-tab-group">
+              <div className="background-data-table">
+                <div className="setting-title-add">
+                  <p className="kanit-paragraphBig">บัญชีธนาคาร</p>
+
+                  <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium" onClick={() => setAddWithdraw(true)}>
+                    <img src={add} className="add-icon"></img>
+                    เพิ่มบัญชีธนาคาร
+                  </Link>
+                </div>
+
+                <div className="my-address">
+                  <div className="my-address">
+                    {bankAccounts.map((bank, index) => (
+                      <div
+                        className={`address-item ${
+                          selectedBank === index ? "select" : ""
+                        }`}
+                        key={index}
+                      >
+                        <div className="text-address kanit-paragraphMedium">
+                          <div className="img-card-cardid">
+                            <img src={bank.img} className="card-pic"></img>
+                            <div className="card-name">{bank.bankName}</div>
+                            <div className="card-id">{bank.accountName}</div>
+                          </div>
+                        </div>
+
+                        <div className="btn-setting-address-group">
+                          <button className="d-btn kanit-paragraphMedium btn-small-link-ghost">
+                            ลบ
+                          </button>
+                          <button
+                            className={`s-btn ${
+                              selectedBank === index
+                                ? "btn-small-secondary-disabled"
+                                : "btn-small-secondary"
+                            } kanit-paragraphMedium`}
+                            onClick={() => toggleSelectBank(index)}
+                          >
+                            ตั้งเป็นค่าเริ่มต้น
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {/* here */}
+              {addWithdraw && (
+                <div className="setting-add-address">
+                  <div className="setting-add-address-title kanit-paragraphBig">
+                    เพิ่มบัญชีธนาคาร
+                  </div>
+                  <div className="setting-add-address-form">
+                    <Form>
+                      <Row className="setting-add-address-form-row">
+                          <Input
+                            className=""
+                            placeholder="ธนาคาร"
+                            value={bank}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setBank(e.target.value);
+                            }}
+                          />
+                      </Row>
+                      <Input
+                        className=""
+                        placeholder="ชื่อ"
+                        value={bankName}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setBankName(e.target.value);
+                        }}
+                      />
+                      <Row className="setting-add-address-form-row">
+                          <Input
+                            className=""
+                            placeholder="หมายเลขบัญชีธนาคาร"
+                            value={accountNumber}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setaccountNumber(e.target.value);
+                            }}
+                          />
+                      </Row>
+                    </Form>
+                  </div>
+                  <div className="setting-add-address-button">
+                    <button
+                      className="btn-small-secondary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={() => setAddWithdraw(false)}
+                    >
+                      ยกเลิก
+                    </button>
+                    <button
+                      className="btn-small-primary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={saveWithdraw}
+                    >
+                      บันทึก
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
