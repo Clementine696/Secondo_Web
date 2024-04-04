@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRef } from 'react';
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -197,6 +198,9 @@ function setting() {
     console.log(addAccountNumber);
   };
 
+  //scroll
+  // const scrollToRef = useRef<HTMLDivElement>(null);
+
   return (
     <Layout>
       <div className="user-page">
@@ -220,13 +224,24 @@ function setting() {
 
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => setAddAddress(true)}
+                    onClick={() => {
+                      setAddAddress(true)
+                    }}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มที่อยู่
                   </Link>
+                  {/* <Link
+                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                    onClick={() => {
+                      setAddAddress(true),
+                      scrollToRef.current?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    <img src={add} className="add-icon"></img>
+                    เพิ่มที่อยู่
+                  </Link> */}
                 </div>
-
                 <div className="my-address">
                   {addresses.map((address, index) => (
                     <div
@@ -263,6 +278,7 @@ function setting() {
               </div>
               {addAddress && (
                 <div className="setting-add-address">
+                {/* <div ref={scrollToRef} className="setting-add-address"> */}
                   <div className="setting-add-address-title kanit-paragraphBig">
                     ที่อยู่ใหม่
                   </div>
@@ -369,7 +385,7 @@ function setting() {
             <div className="setting-tab-group">
               <div className="background-data-table">
                 <div className="setting-title-add">
-                  <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต</p>
+                  <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต/บัญชีธนาคาร</p>
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => setAddPayment(true)}
