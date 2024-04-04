@@ -150,6 +150,25 @@ function setting() {
     console.log(zipcode);
   };
 
+  //edit address
+  const [editAddress, setEditAddress] = useState(false);
+
+  const [editAddressname, setEditressname] = useState("");
+  const [editUsername, setEditUsername] = useState("");
+  const [editTel, setEditTel] = useState("");
+  const [editAddressNumber, setEditAddressNumber] = useState("");
+  const [editAddressProvince, setEditAddressProvince] = useState("");
+  const [editZipcode, setEditZipcode] = useState("");
+
+  const saveEditAddress = () => {
+    console.log(editAddressname);
+    console.log(editUsername);
+    console.log(editTel);
+    console.log(editAddressNumber);
+    console.log(editAddressProvince);
+    console.log(editZipcode);
+  };
+
   //add payment
   const [addPayment, setAddPayment] = useState(false);
 
@@ -168,14 +187,14 @@ function setting() {
   //add withdraw
   const [addWithdraw, setAddWithdraw] = useState(false);
 
-  const [bank, setBank] = useState("");
-  const [bankName, setBankName] = useState("");
-  const [accountNumber, setaccountNumber] = useState("");
+  const [addBank, setAddBank] = useState("");
+  const [addBankName, setAddBankName] = useState("");
+  const [addAccountNumber, setAddAccountNumber] = useState("");
 
   const saveWithdraw = () => {
-    console.log(bank);
-    console.log(bankName);
-    console.log(accountNumber);
+    console.log(addBank);
+    console.log(addBankName);
+    console.log(addAccountNumber);
   };
 
   return (
@@ -377,8 +396,8 @@ function setting() {
                       </div>
 
                       <div className="btn-setting-address-group">
-                        <button className="d-btn kanit-paragraphMedium btn-small-link-ghost">
-                          ลบ
+                        <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                          แก้ไข
                         </button>
                         <button
                           className={`s-btn ${
@@ -477,7 +496,10 @@ function setting() {
                 <div className="setting-title-add">
                   <p className="kanit-paragraphBig">บัญชีธนาคาร</p>
 
-                  <Link className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium" onClick={() => setAddWithdraw(true)}>
+                  <Link
+                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                    onClick={() => setAddWithdraw(true)}
+                  >
                     <img src={add} className="add-icon"></img>
                     เพิ่มบัญชีธนาคาร
                   </Link>
@@ -501,8 +523,8 @@ function setting() {
                         </div>
 
                         <div className="btn-setting-address-group">
-                          <button className="d-btn kanit-paragraphMedium btn-small-link-ghost">
-                            ลบ
+                          <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                            แก้ไข
                           </button>
                           <button
                             className={`s-btn ${
@@ -529,38 +551,38 @@ function setting() {
                   <div className="setting-add-address-form">
                     <Form>
                       <Row className="setting-add-address-form-row">
-                          <Input
-                            className=""
-                            placeholder="ธนาคาร"
-                            value={bank}
-                            type="text"
-                            errorMessage=""
-                            onChange={(e) => {
-                              setBank(e.target.value);
-                            }}
-                          />
+                        <Input
+                          className=""
+                          placeholder="ธนาคาร"
+                          value={addBank}
+                          type="text"
+                          errorMessage=""
+                          onChange={(e) => {
+                            setAddBank(e.target.value);
+                          }}
+                        />
                       </Row>
                       <Input
                         className=""
                         placeholder="ชื่อ"
-                        value={bankName}
+                        value={addBankName}
                         type="text"
                         errorMessage=""
                         onChange={(e) => {
-                          setBankName(e.target.value);
+                          setAddBankName(e.target.value);
                         }}
                       />
                       <Row className="setting-add-address-form-row">
-                          <Input
-                            className=""
-                            placeholder="หมายเลขบัญชีธนาคาร"
-                            value={accountNumber}
-                            type="text"
-                            errorMessage=""
-                            onChange={(e) => {
-                              setaccountNumber(e.target.value);
-                            }}
-                          />
+                        <Input
+                          className=""
+                          placeholder="หมายเลขบัญชีธนาคาร"
+                          value={addAccountNumber}
+                          type="text"
+                          errorMessage=""
+                          onChange={(e) => {
+                            setAddAccountNumber(e.target.value);
+                          }}
+                        />
                       </Row>
                     </Form>
                   </div>
