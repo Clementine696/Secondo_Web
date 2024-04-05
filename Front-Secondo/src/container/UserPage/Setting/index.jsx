@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -199,7 +198,7 @@ function setting() {
   };
 
   //scroll
-  // const scrollToRef = useRef<HTMLDivElement>(null);
+  const scrollToAddAddress = useRef(null);
 
   return (
     <Layout>
@@ -222,25 +221,25 @@ function setting() {
                 <div className="setting-title-add">
                   <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
 
-                  <Link
+                  {/* <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => {
                       setAddAddress(true)
                     }}
                   >
                     <img src={add} className="add-icon"></img>
-                    เพิ่มที่อยู่
-                  </Link>
-                  {/* <Link
+                    เพิ่มที่อยู่ 
+                  </Link> */}
+                  <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => {
                       setAddAddress(true),
-                      scrollToRef.current?.scrollIntoView({ behavior: "smooth" });
+                      scrollToAddAddress.current?.scrollIntoView({ behavior: "smooth" })
                     }}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มที่อยู่
-                  </Link> */}
+                  </Link>
                 </div>
                 <div className="my-address">
                   {addresses.map((address, index) => (
@@ -277,13 +276,13 @@ function setting() {
                 </div>
               </div>
               {addAddress && (
-                <div className="setting-add-address">
-                {/* <div ref={scrollToRef} className="setting-add-address"> */}
+                // <div className="setting-add-address">
+                <div ref={scrollToAddAddress} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
                     ที่อยู่ใหม่
                   </div>
                   <div className="setting-add-address-form">
-                    <Form>
+                    <Form ref={scrollToRef}>
                       <Row className="setting-add-address-form-row">
                         <Col>
                           <Input

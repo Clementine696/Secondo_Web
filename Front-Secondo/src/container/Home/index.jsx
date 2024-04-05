@@ -43,6 +43,8 @@ function Home() {
     console.log("toggle:", isExpanded);
   };
 
+  // const scrollToRef = useRef(null);
+
   return (
     <Layout>
       <div className="background-home">
@@ -51,7 +53,12 @@ function Home() {
             <div className="home-slide-banner">
               <BannerSlide />
             </div>
-            <div className="home-img-banner">
+            <div
+              className="home-img-banner"
+              // onClick={() =>
+              //           scrollToRef.current?.scrollIntoView({ behavior: "smooth" })
+              //         }
+            >
               <img
                 className="img-banner"
                 srcSet="https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg"
