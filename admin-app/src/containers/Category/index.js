@@ -69,11 +69,7 @@ function Category(props) {
       form.append('type', item.type);
       form.append('parentId', item.parentId ? item.parentId : "");
     })
-    dispatch(updateCategories(form))
-    .then(result => {
-      dispatch(getAllCategory())
-    })
-
+    dispatch(updateCategories(form));
     setShowUpdateCategory(false)
   }
 

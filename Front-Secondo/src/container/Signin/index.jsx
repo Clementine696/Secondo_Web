@@ -26,8 +26,8 @@ function Signin() {
     dispatch(login(user));
     // login(user);
     
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
   };
 
   if(auth.authenticate){
@@ -134,7 +134,8 @@ function Signin() {
 
                   <div className="agreement-law-text kanit-paragraphSmall">
                     ยังไม่มีบัญชี Secondo ใช่ไหม{" "}
-                    <Link className="" to="/signup/regisphone">
+                    {/* <Link className="" to="/signup/regisphone"> */}
+                    <Link className="" to="/signup">
                       สร้างบัญชีใหม่
                     </Link>
                   </div>

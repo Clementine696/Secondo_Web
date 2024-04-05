@@ -150,7 +150,7 @@ function Products(props) {
           </tr>
         </thead>
         <tbody>
-          {
+        {
             product.products.length > 0 ?
               product.products.map(product => 
                 <tr onClick={() => showProductDetailsModal(product)} key={product._id}>
@@ -162,7 +162,7 @@ function Products(props) {
                   <td>Table</td>
                   <td>{product.category ? product.category.name : null}</td>
                 </tr>
-                
+
               ) : null
           }
         </tbody>
