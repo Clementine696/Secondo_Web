@@ -10,23 +10,28 @@ import BannerSlide from "../../components/UI/Banner";
 import "./index.css";
 import chevronDown from "../../icon/chevron-down.png";
 
-const categoryItem = [
-  { label: "เสื้อผ้าและแฟชั่น", value: "0" },
-  { label: "รองเท้า", value: "1" },
-  { label: "ความงามและของใช้ส่วนตัว", value: "2" },
-  { label: "เครื่องประดับ", value: "3" },
-  { label: "เครื่องใช้ไฟฟ้า", value: "4" },
-  { label: "อุปกรณ์ IT", value: "5" },
-  { label: "กล้องและอุปกรณ์", value: "6" },
-  { label: "รถยนต์", value: "7" },
-  { label: "มอเตอร์ไซต์", value: "8" },
-  { label: "กระเป๋า", value: "9" },
-  { label: "เฟอร์นิเจอร์", value: "10" },
-  { label: "หนังสือ", value: "11" },
-  { label: "กีฬา", value: "12" },
-  { label: "เครื่องดนตรี", value: "13" },
-  { label: "แม่และเด็ก", value: "14" },
-  { label: "อื่นๆ", value: "15" }
+import productFav from "../../../public/images/pant.jpg";
+
+const categoryItem1 = [
+  { img: productFav, label: "เสื้อผ้าและแฟชั่น", value: "0" },
+  { img: productFav, label: "รองเท้า", value: "1" },
+  { img: productFav, label: "ความงามและของใช้ส่วนตัว", value: "2" },
+  { img: productFav, label: "เครื่องประดับ", value: "3" },
+  { img: productFav, label: "เครื่องใช้ไฟฟ้า", value: "4" },
+  { img: productFav, label: "อุปกรณ์ IT", value: "5" },
+  { img: productFav, label: "กล้องและอุปกรณ์", value: "6" },
+  { img: productFav, label: "รถยนต์", value: "7" },
+];
+
+const categoryItem2 = [
+  { img: productFav, label: "มอเตอร์ไซต์", value: "8" },
+  { img: productFav, label: "กระเป๋า", value: "9" },
+  { img: productFav, label: "เฟอร์นิเจอร์", value: "10" },
+  { img: productFav, label: "หนังสือ", value: "11" },
+  { img: productFav, label: "กีฬา", value: "12" },
+  { img: productFav, label: "เครื่องดนตรี", value: "13" },
+  { img: productFav, label: "แม่และเด็ก", value: "14" },
+  { img: productFav, label: "อื่นๆ", value: "15" },
 ];
 
 function Home() {
@@ -62,26 +67,16 @@ function Home() {
             <div className="header-category kanit-paragraphBig">หมวดหมู่</div>
             <div className="category-section">
               <div className="group-category-1">
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
+                {categoryItem1.map((item, index) => (
+                  <CateCard key={index} img={item.img} title={item.label} />
+                ))}
               </div>
               <div
                 className={`group-category-2 ${isExpanded ? "expanded" : ""}`}
               >
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
-                <CateCard />
+                {categoryItem2.map((item, index) => (
+                  <CateCard key={index} img={item.img} title={item.label} />
+                ))}
               </div>
               <button className="btn-category" onClick={handleToggleExpand}>
                 <img src={chevronDown} alt="Chevron" />
