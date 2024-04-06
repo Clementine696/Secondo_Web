@@ -28,13 +28,19 @@ const tabItems = [
 const addresses = [
   {
     name: "นายคเณศ บุญศิริ",
+    addressName: "",
     phone: "0981597450",
-    address: "คอนโดสวนธน ซอยพุทธบูชา 47 กรุงเทพมหานคร 10140",
+    address: "คอนโดสวนธน ซอยพุทธบูชา 47",
+    province: "กรุงเทพมหานคร",
+    zip: "10140"
   },
   {
     name: "นายพุฒิพงศ์ แซ่ลู่",
+    addressName: "",
     phone: "0831464895",
-    address: "Mixue ซอยพุทธบูชา 45 กรุงเทพมหานคร 10140",
+    address: "Mixue ซอยพุทธบูชา 45",
+    province: "กรุงเทพมหานคร",
+    zip: "10140"
   },
 ];
 
@@ -43,27 +49,38 @@ const paymentMethods = [
     img: masterCard,
     cardName: "Master card",
     cardId: "1234 5678 9101 1121",
+    cardExp: "",
+    cardCVV: "",
+    ownCard: ""
   },
   {
     img: visa,
     cardName: "Visa",
     cardId: "1234 5678 9101 1121",
+    cardExp: "",
+    cardCVV: "",
+    ownCard: ""
   },
   {
     img: kbank,
     cardName: "ธนาคารกสิกรไทย",
     cardId: "1234 5678 9101 1121",
+    cardExp: "",
+    cardCVV: "",
+    ownCard: ""
   },
 ];
 
 const bankAccounts = [
   {
     img: kbank,
+    ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountName: "1234 5678 9101 1121",
   },
   {
     img: ttb,
+    ownAccount: "",
     bankName: "ธนาคารทหารไทย",
     accountName: "1234 5678 9101 1121",
   },
@@ -151,23 +168,23 @@ function setting() {
   };
 
   //edit address
-  const [editAddress, setEditAddress] = useState(false);
+  // const [editAddress, setEditAddress] = useState(false);
 
-  const [editAddressname, setEditressname] = useState("");
-  const [editUsername, setEditUsername] = useState("");
-  const [editTel, setEditTel] = useState("");
-  const [editAddressNumber, setEditAddressNumber] = useState("");
-  const [editAddressProvince, setEditAddressProvince] = useState("");
-  const [editZipcode, setEditZipcode] = useState("");
+  // const [editAddressname, setEditressname] = useState("");
+  // const [editUsername, setEditUsername] = useState("");
+  // const [editTel, setEditTel] = useState("");
+  // const [editAddressNumber, setEditAddressNumber] = useState("");
+  // const [editAddressProvince, setEditAddressProvince] = useState("");
+  // const [editZipcode, setEditZipcode] = useState("");
 
-  const saveEditAddress = () => {
-    console.log(editAddressname);
-    console.log(editUsername);
-    console.log(editTel);
-    console.log(editAddressNumber);
-    console.log(editAddressProvince);
-    console.log(editZipcode);
-  };
+  // const saveEditAddress = () => {
+  //   console.log(editAddressname);
+  //   console.log(editUsername);
+  //   console.log(editTel);
+  //   console.log(editAddressNumber);
+  //   console.log(editAddressProvince);
+  //   console.log(editZipcode);
+  // };
 
   //add payment
   const [addPayment, setAddPayment] = useState(false);
@@ -253,7 +270,7 @@ function setting() {
                         <p>
                           {address.name} {address.phone}
                         </p>
-                        <p>{address.address}</p>
+                        <p>{address.address} {address.province} {address.zip}</p>
                       </div>
 
                       <div className="btn-setting-address-group">
@@ -282,7 +299,7 @@ function setting() {
                     ที่อยู่ใหม่
                   </div>
                   <div className="setting-add-address-form">
-                    <Form ref={scrollToRef}>
+                    <Form>
                       <Row className="setting-add-address-form-row">
                         <Col>
                           <Input
