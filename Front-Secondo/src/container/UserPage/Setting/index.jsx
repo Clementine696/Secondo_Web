@@ -27,58 +27,65 @@ const tabItems = [
 
 const addresses = [
   {
+    id: "0",
     name: "นายคเณศ บุญศิริ",
     addressName: "",
     phone: "0981597450",
     address: "คอนโดสวนธน ซอยพุทธบูชา 47",
     province: "กรุงเทพมหานคร",
-    zip: "10140"
+    zip: "10140",
   },
   {
+    id: "1",
     name: "นายพุฒิพงศ์ แซ่ลู่",
     addressName: "",
     phone: "0831464895",
     address: "Mixue ซอยพุทธบูชา 45",
     province: "กรุงเทพมหานคร",
-    zip: "10140"
+    zip: "10140",
   },
 ];
 
 const paymentMethods = [
   {
+    id: "0",
     img: masterCard,
     cardName: "Master card",
     cardId: "1234 5678 9101 1121",
     cardExp: "",
     cardCVV: "",
-    ownCard: ""
+    ownCard: "",
   },
   {
+    id: "1",
     img: visa,
     cardName: "Visa",
     cardId: "1234 5678 9101 1121",
     cardExp: "",
     cardCVV: "",
-    ownCard: ""
+    ownCard: "",
   },
   {
+    id: "2",
     img: kbank,
     cardName: "ธนาคารกสิกรไทย",
     cardId: "1234 5678 9101 1121",
     cardExp: "",
     cardCVV: "",
-    ownCard: ""
+    ownCard: "",
   },
 ];
 
 const bankAccounts = [
   {
+    id: "0",
     img: kbank,
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountName: "1234 5678 9101 1121",
   },
   {
+    id: "1",
     img: ttb,
     ownAccount: "",
     bankName: "ธนาคารทหารไทย",
@@ -167,24 +174,14 @@ function setting() {
     console.log(zipcode);
   };
 
-  //edit address
-  // const [editAddress, setEditAddress] = useState(false);
-
-  // const [editAddressname, setEditressname] = useState("");
-  // const [editUsername, setEditUsername] = useState("");
-  // const [editTel, setEditTel] = useState("");
-  // const [editAddressNumber, setEditAddressNumber] = useState("");
-  // const [editAddressProvince, setEditAddressProvince] = useState("");
-  // const [editZipcode, setEditZipcode] = useState("");
-
-  // const saveEditAddress = () => {
-  //   console.log(editAddressname);
-  //   console.log(editUsername);
-  //   console.log(editTel);
-  //   console.log(editAddressNumber);
-  //   console.log(editAddressProvince);
-  //   console.log(editZipcode);
-  // };
+  const saveEditAddress = () => {
+    console.log(addresses.addressName);
+    console.log(addresses.name);
+    console.log(addresses.phone);
+    console.log(addresses.address);
+    console.log(addresses.province);
+    console.log(addresses.zip);
+  };
 
   //add payment
   const [addPayment, setAddPayment] = useState(false);
@@ -217,6 +214,28 @@ function setting() {
   //scroll
   const scrollToAddAddress = useRef(null);
 
+  //edit address
+  const [editAddressId, setEditAddressId] = useState("");
+
+  const handleEditAddress = (id) => {
+    setEditAddressId(id);
+  };
+
+  const addressesRef = useRef(addresses);
+  const handleSaveAddress = (editedAddress) => {
+    
+    const index = addresses.findIndex(
+      (address) => address.id === editedAddress.id
+    );
+    
+    const updatedAddresses = [...addresses];
+    updatedAddresses[index] = editedAddress;
+    
+    addressesRef.current = updatedAddresses;
+    
+    setEditAddressId(null);
+  };
+
   return (
     <Layout>
       <div className="user-page">
@@ -237,21 +256,13 @@ function setting() {
               <div className="background-data-table">
                 <div className="setting-title-add">
                   <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-
-                  {/* <Link
-                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => {
-                      setAddAddress(true)
-                    }}
-                  >
-                    <img src={add} className="add-icon"></img>
-                    เพิ่มที่อยู่ 
-                  </Link> */}
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => {
                       setAddAddress(true),
-                      scrollToAddAddress.current?.scrollIntoView({ behavior: "smooth" })
+                        scrollToAddAddress.current?.scrollIntoView({
+                          behavior: "smooth",
+                        });
                     }}
                   >
                     <img src={add} className="add-icon"></img>
@@ -270,11 +281,16 @@ function setting() {
                         <p>
                           {address.name} {address.phone}
                         </p>
-                        <p>{address.address} {address.province} {address.zip}</p>
+                        <p>
+                          {address.address} {address.province} {address.zip}
+                        </p>
                       </div>
 
                       <div className="btn-setting-address-group">
-                        <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                        <button
+                          className="f-btn btn-small-primary kanit-paragraphMedium"
+                          onClick={() => handleEditAddress(address.id)}
+                        >
                           แก้ไข
                         </button>
                         <button
@@ -292,7 +308,121 @@ function setting() {
                   ))}
                 </div>
               </div>
-              {addAddress && (
+              {editAddressId &&
+                addresses.map((address) => (
+                  <div className="setting-add-address" key={address.id}>
+                    {editAddressId === address.id ? (
+                      <addresses address={address} onSave={handleSaveAddress} />
+                    ) : (
+                      <div
+                        ref={scrollToAddAddress}
+                        className="setting-add-address"
+                      >
+                        <div className="setting-title-add">
+                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                            ลบ
+                          </button>
+                        </div>
+                        <div className="setting-add-address-form">
+                          <Form>
+                            <Row className="setting-add-address-form-row">
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="ชื่อที่อยู่"
+                                  value={address.addressName}
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setAddressname(e.target.value);
+                                  }}
+                                />
+                              </Col>
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="ชื่อ นามสกุล"
+                                  value={address.name}
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setUsername(e.target.value);
+                                  }}
+                                />
+                              </Col>
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="เบอร์โทร"
+                                  value={address.phone}
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setTel(e.target.value);
+                                  }}
+                                />
+                              </Col>
+                            </Row>
+                            <Input
+                              className=""
+                              placeholder="บ้านเลขที่ ซอย หมู่"
+                              value={address.address}
+                              type="text"
+                              errorMessage=""
+                              onChange={(e) => {
+                                setAddressNumber(e.target.value);
+                              }}
+                            />
+                            <Row className="setting-add-address-form-row">
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="ตำบล อำเภอ จังหวัด"
+                                  value={address.province}
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setAddressProvince(e.target.value);
+                                  }}
+                                />
+                              </Col>
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="รหัสไปรษณีย์"
+                                  value={address.zip}
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setZipcode(e.target.value);
+                                  }}
+                                />
+                              </Col>
+                            </Row>
+                          </Form>
+                        </div>
+                        <div className="setting-add-address-button">
+                          <button
+                            className="btn-small-secondary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => setEditAddressId(null)}
+                          >
+                            ยกเลิก
+                          </button>
+                          <button
+                            className="btn-small-primary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={saveEditAddress}
+                          >
+                            บันทึก
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {addAddress && (
                 // <div className="setting-add-address">
                 <div ref={scrollToAddAddress} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
@@ -342,7 +472,7 @@ function setting() {
                         className=""
                         placeholder="บ้านเลขที่ ซอย หมู่"
                         value={addressNumber}
-                        type="number"
+                        type="text"
                         errorMessage=""
                         onChange={(e) => {
                           setAddressNumber(e.target.value);
@@ -401,7 +531,9 @@ function setting() {
             <div className="setting-tab-group">
               <div className="background-data-table">
                 <div className="setting-title-add">
-                  <p className="kanit-paragraphBig">บัตรเครดิต/บัตรเดบิต/บัญชีธนาคาร</p>
+                  <p className="kanit-paragraphBig">
+                    บัตรเครดิต/บัตรเดบิต/บัญชีธนาคาร
+                  </p>
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => setAddPayment(true)}
