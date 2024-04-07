@@ -39,26 +39,30 @@ function Signup() {
     dispatch(signup(user));
     
     // const userlogin = {
+    //   email, password
+    // }
+    // dispatch(login(userlogin));
+    // const userlogin = {
     //     email, password
     // }
     // dispatch(login(userlogin));
 
   };
 
-  if(auth.authenticate){
-    return <Navigate to="/" />
-  }
+  // const userLogin = (e) => {
+  //   const userlogin = {
+  //     email, password
+  //   }
+  //   dispatch(login(userlogin));
+  // }
 
-  if(user.loading){
-    // const userlogin = {
-    //     email, password
-    // }
-    // console.log(user)
-    // dispatch(login(user));
-    // if(auth.authenticate){
-    //   return <Navigate to="/" />
-    // }
-    return <Navigate to="/" />
+  // if(auth.authenticate){
+  //   return <Navigate to="/" />
+  // }
+
+  if(user.signupsuccess){
+    // userLogin()
+    return <Navigate to="/Signin" />
     // return <p>Loading...!</p>
   }
 

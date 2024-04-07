@@ -10,26 +10,57 @@ import BannerSlide from "../../components/UI/Banner";
 import "./index.css";
 import chevronDown from "../../icon/chevron-down.png";
 
-const categoryItem = [
-  { label: "เสื้อผ้าและแฟชั่น", value: "0" },
-  { label: "รองเท้า", value: "1" },
-  { label: "ความงามและของใช้ส่วนตัว", value: "2" },
-  { label: "เครื่องประดับ", value: "3" },
-  { label: "เครื่องใช้ไฟฟ้า", value: "4" },
-  { label: "อุปกรณ์ IT", value: "5" },
-  { label: "กล้องและอุปกรณ์", value: "6" },
-  { label: "รถยนต์", value: "7" },
-  { label: "มอเตอร์ไซต์", value: "8" },
-  { label: "กระเป๋า", value: "9" },
-  { label: "เฟอร์นิเจอร์", value: "10" },
-  { label: "หนังสือ", value: "11" },
-  { label: "กีฬา", value: "12" },
-  { label: "เครื่องดนตรี", value: "13" },
-  { label: "แม่และเด็ก", value: "14" },
-  { label: "อื่นๆ", value: "15" }
+// import { useDispatch, useSelector } from "react-redux";
+
+const categoryItem1 = [
+  { img: productFav, label: "เสื้อผ้าและแฟชั่น", value: "0" },
+  { img: productFav, label: "รองเท้า", value: "1" },
+  { img: productFav, label: "ความงามและของใช้ส่วนตัว", value: "2" },
+  { img: productFav, label: "เครื่องประดับ", value: "3" },
+  { img: productFav, label: "เครื่องใช้ไฟฟ้า", value: "4" },
+  { img: productFav, label: "อุปกรณ์ IT", value: "5" },
+  { img: productFav, label: "กล้องและอุปกรณ์", value: "6" },
+  { img: productFav, label: "รถยนต์", value: "7" },
+];
+
+const categoryItem2 = [
+  { img: productFav, label: "มอเตอร์ไซต์", value: "8" },
+  { img: productFav, label: "กระเป๋า", value: "9" },
+  { img: productFav, label: "เฟอร์นิเจอร์", value: "10" },
+  { img: productFav, label: "หนังสือ", value: "11" },
+  { img: productFav, label: "กีฬา", value: "12" },
+  { img: productFav, label: "เครื่องดนตรี", value: "13" },
+  { img: productFav, label: "แม่และเด็ก", value: "14" },
+  { img: productFav, label: "อื่นๆ", value: "15" },
 ];
 
 function Home() {
+
+  // const category = useSelector((state) => state.category);
+  // console.log(category)
+  // const dispatch = useDispatch();
+
+  // const renderCategories = (categories) => {
+  //   let myCategories = [];
+  //   for (let category of categories) {
+  //     if(category.parentId === null){
+  //       myCategories.push(
+  //         {
+  //           label: category.name,
+  //           value: category._id,
+  //           children: category.children.length > 0 && renderCategories(category.children)
+  //         }
+  //       );
+  //     }
+  //   }
+
+  //   return myCategories;
+  // };
+
+  // const categoryList = createCategoryList(category.categories)
+  // console.log("SHeeshshshshshshshhs")
+  // console.log(categoryList)
+
   const [isExpanded, setIsExpanded] = useState(false);
   // const moreCategory = useRef(null);
 
