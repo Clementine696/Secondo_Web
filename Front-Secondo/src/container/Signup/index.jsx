@@ -1,23 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
+
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions';
+import { signup } from '../../actions';
 
 import "./index.css";
 import "../../styles.css";
 import "../../components/UI/Button/index.css";
 
-function Signin() {
-  const [regisEmail, setRegisEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
+function Signup() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [regisPassword, setRegisPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const auth = useSelector(state => state.auth)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch();
+
   // connect api to save data
-  const userRegister = () => {
-    console.log(regisEmail);
-    console.log(regisPassword);
+  const userRegister = (e) => {
+    e.preventDefault();
+
+    // console.log(email);
+    // console.log(regisPassword);
+    const password = regisPassword
+    const user = {
+        // email: 'riz@gmail.com', 
+        // password:'123456'
+        firstName, lastName, email, password
+    }
+    // console.log(user);
+    dispatch(signup(user));
+    
+    // const userlogin = {
+    //   email, password
+    // }
+    // dispatch(login(userlogin));
+    // const userlogin = {
+    //     email, password
+    // }
+    // dispatch(login(userlogin));
+
   };
+
+  // const userLogin = (e) => {
+  //   const userlogin = {
+  //     email, password
+  //   }
+  //   dispatch(login(userlogin));
+  // }
+
+  // if(auth.authenticate){
+  //   return <Navigate to="/" />
+  // }
+
+  if(user.signupsuccess){
+    // userLogin()
+    return <Navigate to="/Signin" />
+    // return <p>Loading...!</p>
+  }
+
   return (
     <Container className="main-content">
       <Row className="Row-content">
@@ -56,25 +104,41 @@ function Signin() {
 
             <Col className="p-0">
               <Form>
+                <Row>
+                  <Col>
+                    <Input
+                      Label="ชื่อ"
+                      placeholder="ชื่อ"
+                      value={firstName}
+                      type="text"
+                      errorMessage=""
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                    />
+                  </Col>
+                  <Col>
+                    <Input
+                      Label="นามสกุล"
+                      placeholder="นามสกุล"
+                      value={lastName}
+                      type="text"
+                      errorMessage=""
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                      }}
+                    />
+                  </Col>
+                </Row>
+
                 <Input
                   Label="อีเมล"
                   placeholder="อีเมล"
-                  value={regisEmail}
+                  value={email}
                   type="email"
                   errorMessage=""
                   onChange={(e) => {
-                    setRegisEmail(e.target.value);
-                  }}
-                />
-
-                <Input
-                  Label="ยืนยันอีเมล"
-                  placeholder="ยืนยันอีเมล"
-                  value={confirmEmail}
-                  type="confirm-email"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setConfirmEmail(e.target.value);
+                    setEmail(e.target.value);
                   }}
                 />
 
@@ -93,7 +157,7 @@ function Signin() {
                   Label="ยืนยันรหัสผ่าน"
                   placeholder="ยืนยันรหัสผ่าน"
                   value={confirmPassword}
-                  type="confirm-password"
+                  type="password"
                   errorMessage=""
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
@@ -164,4 +228,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signup;

@@ -35,6 +35,32 @@ const categoryItem2 = [
 ];
 
 function Home() {
+
+  // const category = useSelector((state) => state.category);
+  // console.log(category)
+  // const dispatch = useDispatch();
+
+  // const renderCategories = (categories) => {
+  //   let myCategories = [];
+  //   for (let category of categories) {
+  //     if(category.parentId === null){
+  //       myCategories.push(
+  //         {
+  //           label: category.name,
+  //           value: category._id,
+  //           children: category.children.length > 0 && renderCategories(category.children)
+  //         }
+  //       );
+  //     }
+  //   }
+
+  //   return myCategories;
+  // };
+
+  // const categoryList = createCategoryList(category.categories)
+  // console.log("SHeeshshshshshshshhs")
+  // console.log(categoryList)
+
   const [isExpanded, setIsExpanded] = useState(false);
   // const moreCategory = useRef(null);
 

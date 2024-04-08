@@ -7,7 +7,7 @@ import Input from '../../components/UI/Input';
 import { login } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { isUserLoggedIn } from '../../actions';
+
 
 export default function Signin() {
 
@@ -18,20 +18,23 @@ export default function Signin() {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if(!auth.authenticate){
-            dispatch(isUserLoggedIn());
-        }
-    }, []);
+    // useEffect(() => {
+    //     if(!auth.authenticate){
+    //         dispatch(isUserLoggedIn());
+    //     }
+    // }, []);
 
     const userLogin = (e) => {
         e.preventDefault();
 
         const user = {
+            // email: 'riz@gmail.com', 
+            // password:'123456'
             email, password
         }
 
         dispatch(login(user));
+        // login(user);
     }
 
     if(auth.authenticate){

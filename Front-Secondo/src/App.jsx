@@ -34,7 +34,25 @@ import CheckOut from "./container/CheckOut";
 
 import Test from "./container/Test";
 
+import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategory, getInitialData, isUserLoggedIn } from './actions';
+
 export default function App() {
+
+  // // Authenticate
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+    dispatch(getInitialData());
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
@@ -42,12 +60,19 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
 
+          {/* <Route path="/signin" Component={Signin} /> */}
+          {/* <Route path="/category" element={<PrivateRoute> <Category/> </PrivateRoute>} /> */}
+          {/* <Route index element={<PrivateRoute> <Home/> </PrivateRoute>} />
+          <Route path="/" element={<PrivateRoute> <Home/> </PrivateRoute>} /> */}
+
+
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
           <Route path="signup/regisphone" element={<RegisPhone />} />
           <Route path="signup/regisphone/Otp" element={<Otp />} />
 
           <Route path="search" element={<Search />} />
+          {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
           <Route path="product" element={<Product />} />
           <Route path="product/offersale" element={<Offersale />} />
@@ -65,12 +90,15 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
           <Route path="setting" element={<Setting />} />
 
-          <Route path="account/sell/additem" element={<SellProduct />} />
+          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
+          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
+          <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
 
           <Route path="account/checkout" element={<CheckOut />} />
 
           <Route path="test" element={<Test />} />
           
+
         </Routes>
       </BrowserRouter>
     </div>
