@@ -25,7 +25,7 @@ const tabItems = [
   { label: "ถอนเงิน", value: 3 },
 ];
 
-const addresses = [
+const Address = [
   {
     id: "0",
     name: "นายคเณศ บุญศิริ",
@@ -45,6 +45,8 @@ const addresses = [
     zip: "10140",
   },
 ];
+
+// const addressesRef = useRef(addresses);
 
 const paymentMethods = [
   {
@@ -158,29 +160,42 @@ function setting() {
   //add address
   const [addAddress, setAddAddress] = useState(false);
 
-  const [addressname, setAddressname] = useState("");
-  const [username, setUsername] = useState("");
-  const [tel, setTel] = useState("");
-  const [addressNumber, setAddressNumber] = useState("");
-  const [addressProvince, setAddressProvince] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  const [addresses, setAddresses] = useState(Address);
+
+  const [newAddress, setNewAddress] = useState({
+    id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
+    name: "",
+    addressName: "",
+    phone: "",
+    address: "",
+    province: "",
+    zip: "",
+  });
 
   const saveAddress = () => {
-    console.log(addressname);
-    console.log(username);
-    console.log(tel);
-    console.log(addressNumber);
-    console.log(addressProvince);
-    console.log(zipcode);
-  };
-
-  const saveEditAddress = () => {
-    console.log(addresses.addressName);
-    console.log(addresses.name);
-    console.log(addresses.phone);
-    console.log(addresses.address);
-    console.log(addresses.province);
-    console.log(addresses.zip);
+    if (
+      newAddress.name &&
+      newAddress.addressName &&
+      newAddress.phone &&
+      newAddress.address &&
+      newAddress.province &&
+      newAddress.zip
+    ) {
+      const updatedAddresses = [...addresses, newAddress];
+      setAddresses(updatedAddresses);
+      setNewAddress({
+        id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
+        name: "",
+        addressName: "",
+        phone: "",
+        address: "",
+        province: "",
+        zip: "",
+      });
+      setAddAddress(false);
+    } else {
+      alert("กรอกข้อมูล");
+    }
   };
 
   //add payment
@@ -214,26 +229,25 @@ function setting() {
   //scroll
   const scrollToAddAddress = useRef(null);
 
+  //ใช้เปิด-ปิดฟอร์ม
+  const [editAddressForm, setEditAddressForm] = useState("");
+
   //edit address
-  const [editAddressId, setEditAddressId] = useState("");
 
+  const [editedAddress, setEditedAddress] = useState({});
   const handleEditAddress = (id) => {
-    setEditAddressId(id);
+    setEditAddressForm(id);
+    const editedAddress = addresses.find((address) => address.id === id);
+    setEditedAddress({
+      ...editedAddress,
+      [id]: { ...editedAddress, id: id },
+    });
   };
-
-  const addressesRef = useRef(addresses);
-  const handleSaveAddress = (editedAddress) => {
-    
-    const index = addresses.findIndex(
-      (address) => address.id === editedAddress.id
+  const handleSaveAddress = () => {
+    const updatedAddresses = addresses.map((address) =>
+      address.id === editedAddress.id ? editedAddress : address
     );
-    
-    const updatedAddresses = [...addresses];
-    updatedAddresses[index] = editedAddress;
-    
-    addressesRef.current = updatedAddresses;
-    
-    setEditAddressId(null);
+    setAddresses(updatedAddresses);
   };
 
   return (
@@ -308,12 +322,10 @@ function setting() {
                   ))}
                 </div>
               </div>
-              {editAddressId &&
+              {editAddressForm &&
                 addresses.map((address) => (
-                  <div className="setting-add-address" key={address.id}>
-                    {editAddressId === address.id ? (
-                      <addresses address={address} onSave={handleSaveAddress} />
-                    ) : (
+                  <div className="w-100" key={address.id}>
+                    {editAddressForm === address.id ? (
                       <div
                         ref={scrollToAddAddress}
                         className="setting-add-address"
@@ -331,72 +343,95 @@ function setting() {
                                 <Input
                                   className=""
                                   placeholder="ชื่อที่อยู่"
-                                  value={address.addressName}
+                                  value={
+                                    editedAddress.addressName ||
+                                    address.addressName
+                                  }
                                   type="text"
                                   errorMessage=""
-                                  onChange={(e) => {
-                                    setAddressname(e.target.value);
-                                  }}
+                                  onChange={(e) =>
+                                    setEditedAddress({
+                                      ...editedAddress,
+                                      addressName: e.target.value,
+                                    })
+                                  }
                                 />
                               </Col>
                               <Col>
                                 <Input
                                   className=""
                                   placeholder="ชื่อ นามสกุล"
-                                  value={address.name}
+                                  value={editedAddress.name || address.name}
                                   type="text"
                                   errorMessage=""
-                                  onChange={(e) => {
-                                    setUsername(e.target.value);
-                                  }}
+                                  onChange={(e) =>
+                                    setEditedAddress({
+                                      ...editedAddress,
+                                      name: e.target.value,
+                                    })
+                                  }
                                 />
                               </Col>
                               <Col>
                                 <Input
                                   className=""
                                   placeholder="เบอร์โทร"
-                                  value={address.phone}
+                                  value={editedAddress.phone || address.phone}
                                   type="number"
                                   errorMessage=""
-                                  onChange={(e) => {
-                                    setTel(e.target.value);
-                                  }}
+                                  onChange={(e) =>
+                                    setEditedAddress({
+                                      ...editedAddress,
+                                      phone: e.target.value,
+                                    })
+                                  }
                                 />
                               </Col>
                             </Row>
                             <Input
                               className=""
                               placeholder="บ้านเลขที่ ซอย หมู่"
-                              value={address.address}
+                              value={editedAddress.address || address.address}
                               type="text"
                               errorMessage=""
-                              onChange={(e) => {
-                                setAddressNumber(e.target.value);
-                              }}
+                              onChange={(e) =>
+                                setEditedAddress({
+                                  ...editedAddress,
+                                  address: e.target.value,
+                                })
+                              }
                             />
                             <Row className="setting-add-address-form-row">
                               <Col>
                                 <Input
                                   className=""
                                   placeholder="ตำบล อำเภอ จังหวัด"
-                                  value={address.province}
+                                  value={
+                                    editedAddress.province || address.province
+                                  }
                                   type="text"
                                   errorMessage=""
-                                  onChange={(e) => {
-                                    setAddressProvince(e.target.value);
-                                  }}
+                                  onChange={(e) =>
+                                    setEditedAddress({
+                                      ...editedAddress,
+                                      province: e.target.value,
+                                    })
+                                  }
                                 />
                               </Col>
                               <Col>
                                 <Input
                                   className=""
                                   placeholder="รหัสไปรษณีย์"
-                                  value={address.zip}
+                                  value={editedAddress.zip || address.zip}
                                   type="number"
                                   errorMessage=""
-                                  onChange={(e) => {
-                                    setZipcode(e.target.value);
-                                  }}
+                                  onChange={(e) =>
+                                    setEditedAddress({
+                                      ...editedAddress,
+                                      zip: e.target.value,
+                                    })
+                                  }
                                 />
                               </Col>
                             </Row>
@@ -406,23 +441,28 @@ function setting() {
                           <button
                             className="btn-small-secondary kanit-paragraphMedium"
                             type="submit"
-                            onClick={() => setEditAddressId(null)}
+                            onClick={() => setEditAddressForm(null)}
                           >
                             ยกเลิก
                           </button>
                           <button
                             className="btn-small-primary kanit-paragraphMedium"
                             type="submit"
-                            onClick={saveEditAddress}
+                            onClick={() => {
+                              handleSaveAddress(address.id),
+                                setEditAddressForm(null),
+                                console.log(address.id, editedAddress.id),
+                                console.log(address.zip, editedAddress.zip);
+                            }}
                           >
                             บันทึก
                           </button>
                         </div>
                       </div>
-                    )}
+                    ) : null}
                   </div>
                 ))}
-                {addAddress && (
+              {addAddress && (
                 // <div className="setting-add-address">
                 <div ref={scrollToAddAddress} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
@@ -435,11 +475,15 @@ function setting() {
                           <Input
                             className=""
                             placeholder="ชื่อที่อยู่"
-                            value={addressname}
+                            value={newAddress.addressName}
                             type="text"
                             errorMessage=""
                             onChange={(e) => {
-                              setAddressname(e.target.value);
+                              // setAddressname(e.target.value);
+                              setNewAddress({
+                                ...newAddress,
+                                addressName: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -447,11 +491,15 @@ function setting() {
                           <Input
                             className=""
                             placeholder="ชื่อ นามสกุล"
-                            value={username}
+                            value={newAddress.name}
                             type="text"
                             errorMessage=""
                             onChange={(e) => {
-                              setUsername(e.target.value);
+                              // setUsername(e.target.value);
+                              setNewAddress({
+                                ...newAddress,
+                                name: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -459,11 +507,14 @@ function setting() {
                           <Input
                             className=""
                             placeholder="เบอร์โทร"
-                            value={tel}
+                            value={newAddress.phone}
                             type="number"
                             errorMessage=""
                             onChange={(e) => {
-                              setTel(e.target.value);
+                              setNewAddress({
+                                ...newAddress,
+                                phone: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -471,11 +522,14 @@ function setting() {
                       <Input
                         className=""
                         placeholder="บ้านเลขที่ ซอย หมู่"
-                        value={addressNumber}
+                        value={newAddress.address}
                         type="text"
                         errorMessage=""
                         onChange={(e) => {
-                          setAddressNumber(e.target.value);
+                          setNewAddress({
+                            ...newAddress,
+                            address: e.target.value,
+                          });
                         }}
                       />
                       <Row className="setting-add-address-form-row">
@@ -483,11 +537,14 @@ function setting() {
                           <Input
                             className=""
                             placeholder="ตำบล อำเภอ จังหวัด"
-                            value={addressProvince}
+                            value={newAddress.province}
                             type="text"
                             errorMessage=""
                             onChange={(e) => {
-                              setAddressProvince(e.target.value);
+                              setNewAddress({
+                                ...newAddress,
+                                province: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -495,11 +552,14 @@ function setting() {
                           <Input
                             className=""
                             placeholder="รหัสไปรษณีย์"
-                            value={zipcode}
+                            value={newAddress.zip}
                             type="number"
                             errorMessage=""
                             onChange={(e) => {
-                              setZipcode(e.target.value);
+                              setNewAddress({
+                                ...newAddress,
+                                zip: e.target.value,
+                              });
                             }}
                           />
                         </Col>
