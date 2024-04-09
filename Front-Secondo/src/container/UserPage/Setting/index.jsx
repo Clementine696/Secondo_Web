@@ -46,14 +46,12 @@ const Address = [
   },
 ];
 
-// const addressesRef = useRef(addresses);
-
-const paymentMethods = [
+const paymentMethod = [
   {
     id: "0",
     img: masterCard,
     cardName: "Master card",
-    cardId: "1234 5678 9101 1121",
+    cardId: "1234567891011121",
     cardExp: "",
     cardCVV: "",
     ownCard: "",
@@ -62,7 +60,7 @@ const paymentMethods = [
     id: "1",
     img: visa,
     cardName: "Visa",
-    cardId: "1234 5678 9101 1121",
+    cardId: "1234567891011121",
     cardExp: "",
     cardCVV: "",
     ownCard: "",
@@ -71,27 +69,27 @@ const paymentMethods = [
     id: "2",
     img: kbank,
     cardName: "ธนาคารกสิกรไทย",
-    cardId: "1234 5678 9101 1121",
+    cardId: "1234567891011121",
     cardExp: "",
     cardCVV: "",
     ownCard: "",
   },
 ];
 
-const bankAccounts = [
+const bankAccount = [
   {
     id: "0",
     img: kbank,
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
-    accountName: "1234 5678 9101 1121",
+    accountNumber: "1234567891011121",
   },
   {
     id: "1",
     img: ttb,
     ownAccount: "",
     bankName: "ธนาคารทหารไทย",
-    accountName: "1234 5678 9101 1121",
+    accountNumber: "1234567891011121",
   },
 ];
 
@@ -201,29 +199,66 @@ function setting() {
   //add payment
   const [addPayment, setAddPayment] = useState(false);
 
-  const [cardNumber, setCardNumber] = useState("");
-  const [expDate, setExpDate] = useState("");
-  const [CVV, setCVV] = useState("");
-  const [ownCardName, setOwnCardName] = useState("");
+  const [paymentMethods, setPaymentMethods] = useState(paymentMethod);
+
+  const [newPayment, setNewPayment] = useState({
+    id: (parseInt(paymentMethods[paymentMethods.length - 1].id) + 1).toString(),
+    cardId: "",
+    cardExp: "",
+    cardCVV: "",
+    ownCardName: "",
+  });
 
   const savePayment = () => {
-    console.log(cardNumber);
-    console.log(expDate);
-    console.log(CVV);
-    console.log(ownCardName);
+    if (
+      newPayment.cardId &&
+      newPayment.cardExp &&
+      newPayment.cardCVV &&
+      newPayment.ownCard
+    ) {
+      const updatedPayment = [...paymentMethods, newPayment];
+      setPaymentMethods(updatedPayment);
+      setNewPayment({
+        id: (
+          parseInt(paymentMethods[paymentMethods.length - 1].id) + 1
+        ).toString(),
+        cardId: "",
+        cardExp: "",
+        cardCVV: "",
+        ownCard: "",
+      });
+      setAddPayment(false);
+    } else {
+      alert("กรอกข้อมูล");
+    }
   };
 
-  //add withdraw
-  const [addWithdraw, setAddWithdraw] = useState(false);
+  //add bankAccount
+  const [addBank, setAddBank] = useState(false);
 
-  const [addBank, setAddBank] = useState("");
-  const [addBankName, setAddBankName] = useState("");
-  const [addAccountNumber, setAddAccountNumber] = useState("");
+  const [bankAccounts, setBankAccounts] = useState(bankAccount);
 
-  const saveWithdraw = () => {
-    console.log(addBank);
-    console.log(addBankName);
-    console.log(addAccountNumber);
+  const [newBank, setNewBank] = useState({
+    id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
+    bankName: "",
+    ownAccount: "",
+    accountNumber: "",
+  });
+
+  const saveBank = () => {
+    if (newBank.ownAccount && newBank.bankName && newBank.accountNumber) {
+      const updatedBank = [...bankAccounts, newBank];
+      setBankAccounts(updatedBank);
+      setNewBank({
+        id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
+        bankName: "",
+        ownAccount: "",
+        accountNumber: "",
+      });
+      setAddBank(false);
+    } else {
+      alert("กรอกข้อมูล");
+    }
   };
 
   //scroll
@@ -231,9 +266,10 @@ function setting() {
 
   //ใช้เปิด-ปิดฟอร์ม
   const [editAddressForm, setEditAddressForm] = useState("");
+  const [editPaymentForm, setEditPaymentForm] = useState("");
+  const [editBankForm, setEditBankForm] = useState("");
 
   //edit address
-
   const [editedAddress, setEditedAddress] = useState({});
   const handleEditAddress = (id) => {
     setEditAddressForm(id);
@@ -248,6 +284,40 @@ function setting() {
       address.id === editedAddress.id ? editedAddress : address
     );
     setAddresses(updatedAddresses);
+  };
+
+  //edit payment
+  const [editedPayment, setEditedPayment] = useState({});
+  const handleEditPayment = (id) => {
+    setEditPaymentForm(id);
+    const editedPayment = paymentMethods.find((payment) => payment.id === id);
+    setEditedPayment({
+      ...editedPayment,
+      [id]: { ...editedPayment, id: id },
+    });
+  };
+  const handleSavePayment = () => {
+    const updatedPayment = paymentMethods.map((payment) =>
+      payment.id === editedPayment.id ? editedPayment : payment
+    );
+    setPaymentMethods(updatedPayment);
+  };
+
+  //edit bankaccount
+  const [editedBank, setEditedBank] = useState({});
+  const handleEditBank = (id) => {
+    setEditBankForm(id);
+    const editedBank = bankAccounts.find((bank) => bank.id === id);
+    setEditedBank({
+      ...editedBank,
+      [id]: { ...editedBank, id: id },
+    });
+  };
+  const handleSaveBank = () => {
+    const updatedBank = bankAccounts.map((bank) =>
+      bank.id === editedBank.id ? editedBank : bank
+    );
+    setBankAccounts(updatedBank);
   };
 
   return (
@@ -620,7 +690,10 @@ function setting() {
                       </div>
 
                       <div className="btn-setting-address-group">
-                        <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                        <button
+                          className="f-btn btn-small-primary kanit-paragraphMedium"
+                          onClick={() => handleEditPayment(payment.id)}
+                        >
                           แก้ไข
                         </button>
                         <button
@@ -638,6 +711,106 @@ function setting() {
                   ))}
                 </div>
               </div>
+              {editPaymentForm &&
+                paymentMethods.map((payment) => (
+                  <div className="w-100" key={payment.id}>
+                    {editPaymentForm === payment.id ? (
+                      <div className="setting-add-address">
+                        <div className="setting-title-add">
+                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                            ลบ
+                          </button>
+                        </div>
+                        <div className="setting-add-address-form">
+                          <Form>
+                            <Input
+                              className=""
+                              placeholder="หมายเลขบัตร"
+                              value={editedPayment.cardId || payment.cardId}
+                              type="number"
+                              errorMessage=""
+                              onChange={(e) => {
+                                setEditedPayment({
+                                  ...editedPayment,
+                                  cardId: e.target.value,
+                                });
+                              }}
+                            />
+                            <Row className="setting-add-address-form-row">
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="วันหมดอายุ (ดด/ปป)"
+                                  value={
+                                    editedPayment.cardExp || payment.cardExp
+                                  }
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedPayment({
+                                      ...editedPayment,
+                                      cardExp: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Col>
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="CVV"
+                                  value={
+                                    editedPayment.cardCVV || payment.cardCVV
+                                  }
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedPayment({
+                                      ...editedPayment,
+                                      cardCVV: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Col>
+                            </Row>
+                            <Input
+                              className=""
+                              placeholder="ชื่อเจ้าของบัตร"
+                              value={editedPayment.ownCard || payment.ownCard}
+                              type="text"
+                              errorMessage=""
+                              onChange={(e) => {
+                                setEditedPayment({
+                                  ...editedPayment,
+                                  ownCard: e.target.value,
+                                });
+                              }}
+                            />
+                          </Form>
+                        </div>
+                        <div className="setting-add-address-button">
+                          <button
+                            className="btn-small-secondary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => setEditPaymentForm(false)}
+                          >
+                            ยกเลิก
+                          </button>
+                          <button
+                            className="btn-small-primary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => {
+                              handleSavePayment(payment.id),
+                                setEditPaymentForm(false);
+                            }}
+                          >
+                            บันทึก
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
               {addPayment && (
                 <div className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
@@ -648,11 +821,14 @@ function setting() {
                       <Input
                         className=""
                         placeholder="หมายเลขบัตร"
-                        value={cardNumber}
+                        value={newPayment.cardId}
                         type="number"
                         errorMessage=""
                         onChange={(e) => {
-                          setCardNumber(e.target.value);
+                          setNewPayment({
+                            ...newPayment,
+                            cardId: e.target.value,
+                          });
                         }}
                       />
                       <Row className="setting-add-address-form-row">
@@ -660,11 +836,14 @@ function setting() {
                           <Input
                             className=""
                             placeholder="วันหมดอายุ (ดด/ปป)"
-                            value={expDate}
+                            value={newPayment.cardExp}
                             type="text"
                             errorMessage=""
                             onChange={(e) => {
-                              setExpDate(e.target.value);
+                              setNewPayment({
+                                ...newPayment,
+                                cardExp: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -672,11 +851,14 @@ function setting() {
                           <Input
                             className=""
                             placeholder="CVV"
-                            value={CVV}
+                            value={newPayment.cardCVV}
                             type="number"
                             errorMessage=""
                             onChange={(e) => {
-                              setCVV(e.target.value);
+                              setNewPayment({
+                                ...newPayment,
+                                cardCVV: e.target.value,
+                              });
                             }}
                           />
                         </Col>
@@ -684,11 +866,14 @@ function setting() {
                       <Input
                         className=""
                         placeholder="ชื่อเจ้าของบัตร"
-                        value={ownCardName}
+                        value={newPayment.ownCard}
                         type="text"
                         errorMessage=""
                         onChange={(e) => {
-                          setOwnCardName(e.target.value);
+                          setNewPayment({
+                            ...newPayment,
+                            ownCard: e.target.value,
+                          });
                         }}
                       />
                     </Form>
@@ -722,7 +907,7 @@ function setting() {
 
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => setAddWithdraw(true)}
+                    onClick={() => setAddBank(true)}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มบัญชีธนาคาร
@@ -742,12 +927,15 @@ function setting() {
                           <div className="img-card-cardid">
                             <img src={bank.img} className="card-pic"></img>
                             <div className="card-name">{bank.bankName}</div>
-                            <div className="card-id">{bank.accountName}</div>
+                            <div className="card-id">{bank.accountNumber}</div>
                           </div>
                         </div>
 
                         <div className="btn-setting-address-group">
-                          <button className="f-btn btn-small-primary kanit-paragraphMedium">
+                          <button
+                            className="f-btn btn-small-primary kanit-paragraphMedium"
+                            onClick={() => handleEditBank(bank.id)}
+                          >
                             แก้ไข
                           </button>
                           <button
@@ -766,8 +954,89 @@ function setting() {
                   </div>
                 </div>
               </div>
-              {/* here */}
-              {addWithdraw && (
+              {editBankForm &&
+                bankAccounts.map((bank) => (
+                  <div className="w-100" key={bank.id}>
+                    {editBankForm === bank.id ? (
+                      <div className="setting-add-address">
+                        <div className="setting-title-add">
+                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                            ลบ
+                          </button>
+                        </div>
+                        <div className="setting-add-address-form">
+                          <Form>
+                            <Row className="setting-add-address-form-row">
+                              <Input
+                                className=""
+                                placeholder="ธนาคาร"
+                                value={editedBank.bankName || bank.bankName}
+                                type="text"
+                                errorMessage=""
+                                onChange={(e) => {
+                                  setEditedBank({
+                                    ...editedBank,
+                                    bankName: e.target.value,
+                                  });
+                                }}
+                              />
+                            </Row>
+                            <Input
+                              className=""
+                              placeholder="ชื่อ"
+                              value={editedBank.ownAccount || bank.ownAccount}
+                              type="text"
+                              errorMessage=""
+                              onChange={(e) => {
+                                setEditedBank({
+                                  ...editedBank,
+                                  ownAccount: e.target.value,
+                                });
+                              }}
+                            />
+                            <Row className="setting-add-address-form-row">
+                              <Input
+                                className=""
+                                placeholder="หมายเลขบัญชีธนาคาร"
+                                value={
+                                  editedBank.accountNumber || bank.accountNumber
+                                }
+                                type="number"
+                                errorMessage=""
+                                onChange={(e) => {
+                                  setEditedBank({
+                                    ...editedBank,
+                                    accountNumber: e.target.value,
+                                  });
+                                }}
+                              />
+                            </Row>
+                          </Form>
+                        </div>
+                        <div className="setting-add-address-button">
+                          <button
+                            className="btn-small-secondary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => setEditPaymentForm(false)}
+                          >
+                            ยกเลิก
+                          </button>
+                          <button
+                            className="btn-small-primary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => {
+                              handleSaveBank(bank.id), setEditBankForm(false);
+                            }}
+                          >
+                            บันทึก
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              {addBank && (
                 <div className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัญชีธนาคาร
@@ -778,33 +1047,42 @@ function setting() {
                         <Input
                           className=""
                           placeholder="ธนาคาร"
-                          value={addBank}
+                          value={newBank.bankName}
                           type="text"
                           errorMessage=""
                           onChange={(e) => {
-                            setAddBank(e.target.value);
+                            setNewBank({
+                              ...newBank,
+                              bankName: e.target.value,
+                            });
                           }}
                         />
                       </Row>
                       <Input
                         className=""
                         placeholder="ชื่อ"
-                        value={addBankName}
+                        value={newBank.ownAccount}
                         type="text"
                         errorMessage=""
                         onChange={(e) => {
-                          setAddBankName(e.target.value);
+                          setNewBank({
+                            ...newBank,
+                            ownAccount: e.target.value,
+                          });
                         }}
                       />
                       <Row className="setting-add-address-form-row">
                         <Input
                           className=""
                           placeholder="หมายเลขบัญชีธนาคาร"
-                          value={addAccountNumber}
-                          type="text"
+                          value={newBank.accountNumber}
+                          type="number"
                           errorMessage=""
                           onChange={(e) => {
-                            setAddAccountNumber(e.target.value);
+                            setNewBank({
+                              ...newBank,
+                              accountNumber: e.target.value,
+                            });
                           }}
                         />
                       </Row>
@@ -814,14 +1092,14 @@ function setting() {
                     <button
                       className="btn-small-secondary kanit-paragraphMedium"
                       type="submit"
-                      onClick={() => setAddWithdraw(false)}
+                      onClick={() => setAddBank(false)}
                     >
                       ยกเลิก
                     </button>
                     <button
                       className="btn-small-primary kanit-paragraphMedium"
                       type="submit"
-                      onClick={saveWithdraw}
+                      onClick={saveBank}
                     >
                       บันทึก
                     </button>
