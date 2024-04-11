@@ -10,29 +10,31 @@ import BannerSlide from "../../components/UI/Banner";
 import "./index.css";
 import chevronDown from "../../icon/chevron-down.png";
 
+import { useDispatch, useSelector } from "react-redux";
+
 import productFav from "../../../public/images/pant.jpg";
 
-const categoryItem1 = [
-  { img: productFav, label: "เสื้อผ้าและแฟชั่น", value: "0" },
-  { img: productFav, label: "รองเท้า", value: "1" },
-  { img: productFav, label: "ความงามและของใช้ส่วนตัว", value: "2" },
-  { img: productFav, label: "เครื่องประดับ", value: "3" },
-  { img: productFav, label: "เครื่องใช้ไฟฟ้า", value: "4" },
-  { img: productFav, label: "อุปกรณ์ IT", value: "5" },
-  { img: productFav, label: "กล้องและอุปกรณ์", value: "6" },
-  { img: productFav, label: "รถยนต์", value: "7" },
-];
+// const categoryItem1 = [
+//   { img: productFav, label: "เสื้อผ้าและแฟชั่น", value: "0" },
+//   { img: productFav, label: "รองเท้า", value: "1" },
+//   { img: productFav, label: "ความงามและของใช้ส่วนตัว", value: "2" },
+//   { img: productFav, label: "เครื่องประดับ", value: "3" },
+//   { img: productFav, label: "เครื่องใช้ไฟฟ้า", value: "4" },
+//   { img: productFav, label: "อุปกรณ์ IT", value: "5" },
+//   { img: productFav, label: "กล้องและอุปกรณ์", value: "6" },
+//   { img: productFav, label: "รถยนต์", value: "7" },
+// ];
 
-const categoryItem2 = [
-  { img: productFav, label: "มอเตอร์ไซต์", value: "8" },
-  { img: productFav, label: "กระเป๋า", value: "9" },
-  { img: productFav, label: "เฟอร์นิเจอร์", value: "10" },
-  { img: productFav, label: "หนังสือ", value: "11" },
-  { img: productFav, label: "กีฬา", value: "12" },
-  { img: productFav, label: "เครื่องดนตรี", value: "13" },
-  { img: productFav, label: "แม่และเด็ก", value: "14" },
-  { img: productFav, label: "อื่นๆ", value: "15" },
-];
+// const categoryItem2 = [
+//   { img: productFav, label: "มอเตอร์ไซต์", value: "8" },
+//   { img: productFav, label: "กระเป๋า", value: "9" },
+//   { img: productFav, label: "เฟอร์นิเจอร์", value: "10" },
+//   { img: productFav, label: "หนังสือ", value: "11" },
+//   { img: productFav, label: "กีฬา", value: "12" },
+//   { img: productFav, label: "เครื่องดนตรี", value: "13" },
+//   { img: productFav, label: "แม่และเด็ก", value: "14" },
+//   { img: productFav, label: "อื่นๆ", value: "15" },
+// ];
 
 const itemInterest = [
   {
@@ -129,27 +131,34 @@ const itemReceive = [
 
 function Home() {
 
-  // const category = useSelector((state) => state.category);
-  // console.log(category)
+  const category = useSelector((state) => state.category);
+  console.log(category)
   // const dispatch = useDispatch();
 
-  // const renderCategories = (categories) => {
-  //   let myCategories = [];
-  //   for (let category of categories) {
-  //     if(category.parentId === null){
-  //       myCategories.push(
-  //         {
-  //           label: category.name,
-  //           value: category._id,
-  //           children: category.children.length > 0 && renderCategories(category.children)
-  //         }
-  //       );
-  //     }
-  //   }
+  const renderCategories = (categories) => {
+    let myCategories = [];
+    for (let category of categories) {
+      if(category.parentId == null){
+        myCategories.push(
+          {
+            img: category.image,
+            label: category.name,
+            value: category._id,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          }
+        );
+      }
+    }
 
-  //   return myCategories;
-  // };
+    return myCategories;
+  };
 
+  const categoryItem = renderCategories(category.categories)
+  // console.log(categoryItem)
+
+  const slicedArray1 = categoryItem.slice(0, 8);
+  const slicedArray2 = categoryItem.slice(8, 16);
+  // console.log(slicedArray)
   // const categoryList = createCategoryList(category.categories)
   // console.log("SHeeshshshshshshshhs")
   // console.log(categoryList)
@@ -193,14 +202,14 @@ function Home() {
             <div className="header-category kanit-paragraphBig">หมวดหมู่</div>
             <div className="category-section">
               <div className="group-category-1">
-                {categoryItem1.map((item, index) => (
+                {slicedArray1.map((item, index) => (
                   <CateCard key={index} img={item.img} title={item.label} />
                 ))}
               </div>
               <div
                 className={`group-category-2 ${isExpanded ? "expanded" : ""}`}
               >
-                {categoryItem2.map((item, index) => (
+                {slicedArray2.map((item, index) => (
                   <CateCard key={index} img={item.img} title={item.label} />
                 ))}
               </div>

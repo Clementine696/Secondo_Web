@@ -6,6 +6,7 @@ function CateCard(props) {
     <div className="frame-cate-card">
       <img
         className="img-category"
+        // src="https://www.pngmart.com/files/1/Sneaker-PNG-Transparent-Image.png"
         src={props.img}
       />
       <div className="text-category">
