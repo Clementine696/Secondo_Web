@@ -19,13 +19,46 @@
   box-shadow: 0 0 0 1.5px var(--Ssecondary-color), 4px 4px 0 0 var(--Ssecondary-color);
 }
 
+.frame-out-icon-favorite {
+  position: absolute;
+  display: inline-flex;
+  top: 24px;
+  right: 24px;
+  z-index: 1;
+  padding: 4px;
+  justify-content: center;
+  border-radius: 50%;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.btn-fav-card-product {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  background: #ffffff00;
+}
+
+.frame-out-icon-favorite:hover {
+  background-color: var(--White-color);
+}
+
+.btn-fav-icon-card-product {
+  width: 24px;
+  height: 24px;
+}
+
 .frame-img-card-item {
   display: flex;
   padding: 16px 16px 0px 16px;
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
-  background: var(--Text-white, #fff);
+  background: var(--White-color);
   /* flex-shrink: 0; */
 }
 .link-img-card-item {
@@ -35,19 +68,10 @@
   height: 200px;
   flex: 1 0 0;
   border-radius: 8px;
-  background: var(--Tertiary-Container, #f3f0e2);
+  background: var(--Tcontainer-color);
   /* flex-shrink: 0; */
   width: 100%;
   object-fit: cover;
-}
-
-.frame-out-icon-favorite {
-  display: inline-flex;
-  padding: 4px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.5);
 }
 
 .frame-in-icon-favorite {
@@ -64,12 +88,12 @@
   width: 20px;
   height: 18px;
   flex-shrink: 0;
-  fill: var(--Primary-Outline, #00243d);
+  fill: var(--Poutline-color);
 }
 
 .card-text-field {
   align-items: start;
-  background-color: var(--Text-white, #fff);
+  background-color: var(--White-color);
   display: flex;
   width: 100%;
   padding-bottom: 24px;
@@ -86,7 +110,7 @@
 }
 
 .card-item-name {
-  color: var(--Text-Default, #00243d);
+  color: var(--Default-text);
   letter-spacing: 0.1px;
   white-space: nowrap;
   font: 400 14px/20px Kanit, -apple-system, Roboto, Helvetica, sans-serif;
@@ -98,8 +122,8 @@
 }
 
 .card-item-province {
-  color: var(--Des, #e0e0e9);
-  color: var(--Des, #e0e0e9);
+  color: var(--Des-color);
+  color: var(--Des-color);
   font-family: Kanit;
   font-size: 14px;
   font-style: normal;
@@ -112,17 +136,17 @@
   display: flex;
   width: 266px;
   align-items: center;
-  background: var(--Etc-Outline-var, #c4c4d0);
+  background: var(--OutlineVariant-color);
 }
 
 .card-item-line {
   height: 1px;
   flex: 1 0 0;
-  background: var(--Etc-Outline, #74747e);
+  background: var(--OutlineVariant-color);
 }
 
 .card-item-price {
-  color: var(--Text-Default, #00243d);
+  color: var(--Default-text);
   letter-spacing: 0.5px;
   white-space: nowrap;
   margin: 0 0 0 2px;
@@ -138,7 +162,7 @@
 }
 
 .card-item-credit-price {
-  color: var(--Text-Default, #00243d);
+  color: var(--Default-text);
   /* valueList */
   font-family: Kanit;
   font-size: 14px;
@@ -150,7 +174,7 @@
 }
 
 .card-item-credit-carbon {
-  color: var(--Secondary-Outline, #4d6a52);
+  color: var(--Soutline-color);
   text-align: right;
   /* subtitle */
   font-family: Kanit;
