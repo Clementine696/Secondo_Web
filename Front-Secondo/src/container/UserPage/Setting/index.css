@@ -88,11 +88,11 @@ button.d-btn {
 
 .setting-tab-group {
   display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 24px;
-flex: 1 0 0;
-/* align-self: stretch; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  /* align-self: stretch; */
 }
 
 .setting-add-address {
@@ -105,6 +105,7 @@ flex: 1 0 0;
   border-radius: 16px;
   background: var(--Etc-Surface-Bright, #f9f9ff);
   min-height: 424px;
+  /* height: 1000px; */
 }
 
 .setting-add-address-form {
@@ -122,4 +123,3 @@ flex: 1 0 0;
   gap: 10px;
   /* align-self: stretch; */
 }
-
