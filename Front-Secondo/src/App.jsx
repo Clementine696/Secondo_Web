@@ -90,9 +90,8 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
           <Route path="setting" element={<Setting />} />
 
-          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+          <Route path="account/sell/additem" element={<SellProduct />} />
+          {/* <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} /> */}
 
           <Route path="account/checkout" element={<CheckOut />} />
 
