@@ -33,6 +33,7 @@ function SellProduct() {
     console.log(productDetail);
     console.log(shippingCost);
     console.log(optionsCategory.label);
+    console.log(selectedImages);
   };
 
   const [value, setValue] = useState('')
