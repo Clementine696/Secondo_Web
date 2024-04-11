@@ -21,6 +21,20 @@ function SellProduct() {
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDetail, setProductDetail] = useState("");
+  const [shippingCost, setShippingCost] = useState("");
+
+  // connect api to save data
+  const addProduct = () => {
+    console.log(productName);
+    console.log(productPrice);
+    console.log(productDetail);
+    console.log(shippingCost);
+    console.log(optionsCategory.label);
+  };
+
   const [value, setValue] = useState('')
   const optionsCategory = [
     {label: "เสื้อผ้าและแฟชั่น", value: 1},
@@ -32,6 +46,7 @@ function SellProduct() {
   }
 
   return (
+    
     <Layout>
       <div className="background-sell-product-page">
         <div className="product-page-path-way">
@@ -152,10 +167,12 @@ function SellProduct() {
                 <Input
                   Label="ชื่อสินค้า"
                   placeholder="ระบุชื่อของสินค้า"
-                  value=""
+                  value={productName}
                   type="text"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setProductName(e.target.value);
+                  }}
                 />
 
                 <div className="sell-product-content-info-item-input-options">
@@ -169,26 +186,32 @@ function SellProduct() {
                 <Input
                   Label="ราคาสินค้า"
                   placeholder="ระบุราคาของสินค้า"
-                  value=""
+                  value={productPrice}
                   type="text"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setProductPrice(e.target.value);
+                  }}
                 />
                 <Input
                   Label="รายละเอียดสินค้า"
                   placeholder="ระบุรายละเอียดของสินค้า"
-                  value=""
+                  value={productDetail}
                   type="text"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setProductDetail(e.target.value);
+                  }}
                 />
                 <Input
                   Label="ค่าจัดส่ง"
                   placeholder="ระบุค่าจัดส่ง"
-                  value=""
+                  value={shippingCost}
                   type="text"
                   errorMessage=""
-                  onChange={() => {}}
+                  onChange={(e) => {
+                    setShippingCost(e.target.value);
+                  }}
                 />
                 <div className="sell-product-content-info-item-input-button-group">
                   <button
@@ -200,6 +223,7 @@ function SellProduct() {
                   <button
                     className="btn-small-primary kanit-paragraphMedium"
                     type="submit"
+                    onClick={addProduct}
                   >
                     ลงขาย
                   </button>
