@@ -94,8 +94,7 @@
 .product-page-item-details-group-item-description {
   display: flex;
   width: 100%;
-  min-height: 568px;
-  height: auto;
+  min-height: fit-content;
   padding: 24px;
   flex-direction: column;
   align-items: flex-start;
@@ -151,8 +150,42 @@
 }
 
 .product-button-section {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 16px;
+  align-self: stretch;
+}
+
+.btn-fav {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn-fav:hover {
+  transform: scale(1.2);
+}
+
+.btn-fav-icon {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.1s ease; 
+}
+
+.btn-fav-icon.fade-in {
+  opacity: 1;
+}
+
+.btn-fav-icon.fade-out {
+  opacity: 0;
+}
+
+.main-product-button {
+  display: flex;
+  width: 100%;
+  align-self: stretch;
 }
 
 .seller-detail-in-product {

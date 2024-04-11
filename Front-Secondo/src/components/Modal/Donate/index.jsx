@@ -40,7 +40,13 @@ const ModalDonate = (props) => {
           <button className="btn-small-secondary" onClick={props.onClose}>
             ยกเลิก
           </button>
-          <button className="btn-small-primary" onClick={Description}>
+          <button
+            className="btn-small-primary"
+            onClick={() => {
+              Description();
+              props.onClick();
+            }}
+          >
             ขอรับบริจาค
           </button>
         </div>

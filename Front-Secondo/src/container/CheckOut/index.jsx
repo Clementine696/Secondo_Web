@@ -6,9 +6,16 @@ import Form from "react-bootstrap/Form";
 
 import { useState, useEffect } from "react";
 
+import ModalS from "../../components/Modal/success";
+
+import success from "../../icon/success-check.png";
+
 function checkOut() {
+  //Modal
+  const [openModel, setOpenModel] = useState(false);
+
   const [value, setValue] = useState("");
-  const addressOption = [
+  const [addressOption, setAddressOption] = useState([
     {
       value: "1",
       label: "บ้านคเณศ",
@@ -21,33 +28,52 @@ function checkOut() {
       value: "3",
       label: "บ้านฐิติพงศ์",
     },
-  ];
+  ]);
 
-  const deliveryOption = [
+  const [deliveryOption, setDeliveryOption] = useState([
     {
-      value: "1",
+      value: "4",
       label: "ส่งแบบมาตรฐาน",
     },
     {
-      value: "2",
+      value: "5",
       label: "ส่งด่วน",
     },
-  ];
+  ]);
 
-  const paymentOption = [
+  const [paymentOption, setPaymentOption] = useState([
     {
-      value: "1",
+      value: "6",
       label: "Master Card ending 1123",
     },
     {
-      value: "2",
+      value: "7",
       label: "Master Card ending 3968",
     },
-  ];
+  ]);
+
+  const [selectedAddress, setSelectedAddress] = useState("");
+  const [selectedDelivery, setSelectedDelivery] = useState("");
+  const [selectedPayment, setSelectedPayment] = useState("");
+  const handleAddressChange = (event) => {
+    setSelectedAddress(event.target.value);
+  };
+
+  const handleDeliveryChange = (event) => {
+    setSelectedDelivery(event.target.value);
+  };
+
+  const handlePaymentChange = (event) => {
+    setSelectedPayment(event.target.value);
+  };
 
   const [visibleAddress, setVisibleAddress] = useState(false);
   const [visibleDev, setVisibleDev] = useState(false);
   const [visiblePayment, setVisiblePayment] = useState(false);
+
+  // useEffect(() => {
+  //   setValue(addressOption[0].value);
+  // }, [addressOption, deliveryOption, paymentOption]);
 
   return (
     <Layout>
@@ -115,11 +141,67 @@ function checkOut() {
                       ข้อมูลการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      ที่อยู่การจัดส่ง
+                      {selectedAddress
+                        ? addressOption.find(
+                            (address) => address.value === selectedAddress
+                          )?.label
+                        : "ที่อยู่จัดส่ง"}
                     </div>
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
+                  {/* เงื่อนไข
+                  {product.products.lenght > 0 ? (
+                    product.products.map((product) => (
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to="/setting"
+                        className="checkout-page-content-method-address-group-edit-text"
+                      >
+                        กรุณาเพิ่มที่อยู่การจัดส่ง
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                            stroke="#B3261E"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    ))
+                  ) : (
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to=""
+                      className="checkout-page-content-method-address-group-edit-text"
+                      onClick={() => setVisibleAddress(true)}
+                    >
+                      แก้ไข
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                          stroke="#B3261E"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </Link>
+                  )} */}
+
                   <Link
                     style={{ textDecoration: "none" }}
                     to=""
@@ -160,8 +242,9 @@ function checkOut() {
                         type="radio"
                         value={address.value}
                         id={address.value}
-                        checked={value === address.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedAddress === address.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handleAddressChange}
                         onClick={() => setVisibleAddress(false)}
                       />
                       <label htmlFor={address.value}>{address.label}</label>
@@ -185,7 +268,11 @@ function checkOut() {
                       วิธีการจัดส่ง
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      ส่งแบบมาตรฐาน
+                      {selectedDelivery
+                        ? deliveryOption.find(
+                            (deliver) => deliver.value === selectedDelivery
+                          )?.label
+                        : "วิธีการจัดส่ง"}
                     </div>
                   </div>
                 </div>
@@ -230,8 +317,9 @@ function checkOut() {
                         type="radio"
                         value={delivery.value}
                         id={delivery.value}
-                        checked={value === delivery.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedDelivery === delivery.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
                       />
                       <label htmlFor={delivery.value}>{delivery.label}</label>
@@ -255,11 +343,66 @@ function checkOut() {
                       วิธีการชำระเงิน
                     </div>
                     <div className="checkout-page-content-method-address-group-detail-group-desc">
-                      Master Card ending 1123
+                      {selectedPayment
+                        ? paymentOption.find(
+                            (payment) => payment.value === selectedPayment
+                          )?.label
+                        : "วิธีการชำระเงิน"}
                     </div>
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
+                  {/* เงื่อนไข
+                  {product.products.lenght > 0 ? (
+                    product.products.map((product) => (
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        to="/setting"
+                        className="checkout-page-content-method-address-group-edit-text"
+                      >
+                        กรุณาเพิ่มวิธีการชำระเงิน
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                            stroke="#B3261E"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    ))
+                  ) : (
+                    <Link
+                    style={{ textDecoration: "none" }}
+                    to=""
+                    className="checkout-page-content-method-address-group-edit-text"
+                    onClick={() => setVisiblePayment(true)}
+                  >
+                    แก้ไข
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                        stroke="#B3261E"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                  )} */}
                   <Link
                     style={{ textDecoration: "none" }}
                     to=""
@@ -300,8 +443,9 @@ function checkOut() {
                         type="radio"
                         value={payment.value}
                         id={payment.value}
-                        checked={value === payment.value}
-                        onChange={(e) => setValue(e.target.value)}
+                        checked={selectedPayment === payment.value}
+                        // onChange={(e) => setValue(e.target.value)}
+                        onChange={handlePaymentChange}
                         onClick={() => setVisiblePayment(false)}
                       />
                       <label htmlFor={payment.value}>{payment.label}</label>
@@ -370,11 +514,20 @@ function checkOut() {
                 </div>
               </div>
             </div>
-            <button className="btn-small-primary kanit-paragraphMedium">
+            <button
+              className="btn-small-primary kanit-paragraphMedium"
+              onClick={() => setOpenModel(true)}
+            >
               ชำระเงิน
             </button>
           </div>
         </div>
+        <ModalS
+          label="ชำระเงินสำเร็จ"
+          desc="ชำระเงินเข้าสู่ระบบแล้ว"
+          img={success}
+          open={openModel}
+        />
       </div>
     </Layout>
   );

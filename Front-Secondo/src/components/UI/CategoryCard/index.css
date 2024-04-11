@@ -15,7 +15,7 @@
 }
 .img-category {
   /* aspect-ratio: 1; */
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   width: 70px;
   align-self: center;

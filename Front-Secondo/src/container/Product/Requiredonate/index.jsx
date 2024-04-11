@@ -1,66 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
 import VDivider from "../../../components/UI/DividerVentical";
 import ModalS from "../../../components/Modal/success";
-import ModalDonate from "../../../components/Modal/OfferSale/sale-score";
-import ModalSelectItem from "../../../components/Modal/OfferSale/selectProduct";
-import ModalConfirmItem from "../../../components/Modal/OfferSale/confirmProduct";
+import ModalDonate from "../../../components/Modal/Donate";
 
 import success from "../../../icon/success-check.png";
-import donate from "../../../icon/donate.png";
-import productpic from "../../../../public/images/product.jpg";
 
 import "../../../components/UI/Button/index.css";
 
-const product = [
-  {
-    img: productpic,
-    label:
-      "GATERON Milky Yellow PRO Switch (10ชิ้น/ซอง) 5 pin สวิตช์ Linear สำหรับ คีย์บอร์ด Mechanical keyboard Linear Switch",
-    price: "0",
-  },
-  { label: "สินค้าชิ้นที่ 1", price: "1" },
-  { label: "สินค้าชิ้นที่ 2", price: "2" },
-  { label: "สินค้าชิ้นที่ 3", price: "3" },
-];
-
-function Donate() {
+function RequireDonate() {
   //Modal
   const [openModel, setOpenModel] = useState(false);
 
-  const [openModelSale, setOpenModelSale] = useState(false);
+  const [openModalDonate, setOpenModalDonate] = useState(false);
 
-  const [openModalSelectItem, setOpenModalSelectItem] = useState(false);
-
-  const [openModelConfirmItem, setOpenModelConfirmItem] = useState(false);
-
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const handleProductSelect = (product) => {
-    setSelectedProduct(product);
-    setOpenModalSelectItem(false); // Close the select product modal
-    setOpenModelConfirmItem(true); // Open the confirm product modal
-    // console.log(product);
-  };
-
-  //scroll
   useEffect(() => {
     if (
       openModel ||
-      openModelSale ||
-      openModalSelectItem ||
-      openModelConfirmItem
+      openModalDonate
     ) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [openModel, openModelSale, openModalSelectItem, openModelConfirmItem]);
+  }, [openModel, openModalDonate]);
 
-  // console.log(openModel);
 
   return (
     <Layout>
@@ -143,7 +111,7 @@ function Donate() {
 
             <Row className="product-price-cc">
               <Col className="kanit-Display-Medium price">1000 บาท</Col>
-              <Col className="kanit-Display-Medium cc">20 CO₂ Credit</Col>
+              <Col className="kanit-Display-Medium cc">20 CCKg eq</Col>
             </Row>
 
             <Row className="product-decription">
@@ -172,7 +140,7 @@ function Donate() {
             <Row className="product-button-section">
               <button
                 className="btn-small-primary kanit-paragraphMedium"
-                onClick={() => setOpenModelSale(true)}
+                onClick={() => setOpenModalDonate(true)}
               >
                 เสนอบริจาค
               </button>
@@ -314,47 +282,22 @@ function Donate() {
       </div>
 
       <ModalS
-        label="เสนอบริจาคสินค้าสำเร็จ"
-        desc="สินค้าได้รับการเสนอบริจาคแล้ว"
+        label="ขอรับบริจาคสินค้าสำเร็จ"
+        desc="คำขอของคุณถูกส่งเรียบร้อยแล้ว"
         img={success}
         open={openModel}
         onClose={() => setOpenModel(false)}
       />
 
       <ModalDonate
-        label="เสนอจากของที่คุณบริจาคอยู่"
-        desc="ซื้อโทรศัพท์ iphone14"
-        img={donate}
-        open={openModelSale}
-        onClose={() => setOpenModelSale(false)}
-        //2 actions
+        label="บริจาคตู้เย็น"
+        open={openModalDonate}
         onClick={() => {
-          setOpenModalSelectItem(true), setOpenModelSale(false);
+          setOpenModalDonate(false), setOpenModel(true);
         }}
       />
-
-      <ModalSelectItem
-        label="เลือกสินค้าจากรายการบริจาคของคุณ"
-        open={openModalSelectItem}
-        products={product}
-        onProductSelect={handleProductSelect}
-        onClose={() => setOpenModalSelectItem(false)}
-      />
-
-      {selectedProduct && (
-        <ModalConfirmItem
-          label="คุณต้องการที่จะบริจาคสินค้าชิ้นนี้"
-          img={selectedProduct.img}
-          title={selectedProduct.label}
-          open={openModelConfirmItem}
-          onClose={() => setOpenModelConfirmItem(false)}
-          onClick={() => {
-            setOpenModelConfirmItem(false), setOpenModel(true);
-          }}
-        />
-      )}
     </Layout>
   );
 }
 
-export default Donate;
+export default RequireDonate;

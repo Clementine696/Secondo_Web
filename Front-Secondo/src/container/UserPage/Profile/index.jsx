@@ -36,7 +36,7 @@ function Profile() {
           <div className="profile-display">
             <div className="profile-show-detail kanit-paragraphMedium">
               <div className="profile-detail-point">
-                Cabon Credits 96 CO2 Equ
+                Cabon Credits 96 CO₂ Credit
               </div>
               <div className="profile-detail-point">
                 เงินที่มีอยู่ 4,000 บาท

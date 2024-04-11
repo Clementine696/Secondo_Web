@@ -21,13 +21,13 @@ const filterItems = [
   { label: "รอตรวจสอบ", value: "1" },
   { label: "รับซื้อ", value: "2" },
   { label: "มีการเสนอขาย", value: "3" },
-  { label: "เสนอราคา", value: "4" },
-  { label: "ที่ต้องจัดส่ง", value: "5" },
-  { label: "ที่ต้องได้รับ", value: "6" },
-  { label: "รอยืนยันสินค้า", value: "7" },
-  { label: "สำเร็จ", value: "8" },
-  { label: "ยกเลิก", value: "9" },
-  { label: "คืนเงิน/คืนสินค้า", value: "10" },
+  // { label: "เสนอราคา", value: "4" },
+  { label: "ที่ต้องจัดส่ง", value: "4" },
+  { label: "ที่ต้องได้รับ", value: "5" },
+  { label: "รอยืนยันสินค้า", value: "6" },
+  { label: "สำเร็จ", value: "7" },
+  { label: "ยกเลิก", value: "8" },
+  { label: "คืนเงิน/คืนสินค้า", value: "9" },
 ];
 
 // fillter ใน backend
@@ -90,7 +90,7 @@ function BuyState() {
               <p className="header-item date-col">วันที่ซื้อ</p>
               <p className="header-item desc-col">รายละเอียดสินค้า</p>
               <p className="header-item status-col">สถานะ</p>
-              <p className="header-item point-col">แต้ม CC</p>
+              <p className="header-item point-col">CO₂ Credit</p>
               <p className="header-item price-col">ราคา (บาท)</p>
               <p className="header-item func-col"></p>
             </div>

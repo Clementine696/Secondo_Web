@@ -189,11 +189,11 @@ function Index() {
                     text={"ขอรับบริจาคของฉัน"}
                     link={"/receivestate"}
                   />
-                  <DropdownItem
+                  {/* <DropdownItem
                     img={bid}
                     text={"การประมูลของฉัน"}
                     link={"/bidstate"}
-                  />
+                  /> */}
                   <DropdownItem
                     img={co2}
                     text={"แต้มคะแนน Carbon credits"}
@@ -235,13 +235,13 @@ function Index() {
           </div>
         </Col>
       </Row>
-      <Row className="Second-Nav kanit-paragraphtextMedium">
+      <Row className="second-nav kanit-paragraphtextMedium">
         <Nav className="me-auto justify-content-center p-0">
           <Link to="/account/sell/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
           </Link>
           <Link to="/fav" className="text-menu" href="#features">
-            ชื่นชอบ
+            รายการโปรด
           </Link>
           <Link to="" className="text-menu" href="#pricing">
             แชท

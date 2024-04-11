@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
 import VDivider from "../../../components/UI/DividerVentical";
-import { Link } from "react-router-dom"; // import "~slick-carousel/slick/slick.css";
+import { Link } from "react-router-dom";
+
+import favBold from "../../../icon/like-bold.png";
+import fav from "../../../icon/like.png";
 
 import "../../../components/UI/Button/index.css";
 
 function Productbuy() {
+  const [isFav, setIsFav] = useState(false);
+  //transition
+  const [fade, setFade] = useState(false);
+
+  // console.log("isout:", isFav);
+
+  const handleFavClick = () => {
+    //change state
+    setIsFav(!isFav);
+    setFade(true);
+
+    // console.log("isin:", isFav);
+
+    setTimeout(() => {
+      setFade(false);
+    }, 300);
+
+    if (isFav) {
+      console.log("Unlike");
+    } else {
+      console.log("Like");
+    }
+  };
+
   return (
     <Layout>
       <div className="background-product-page">
@@ -90,7 +117,7 @@ function Productbuy() {
 
             <Row className="product-price-cc">
               <Col className="kanit-Display-Medium price">1000 บาท</Col>
-              <Col className="kanit-Display-Medium cc">20 CCKg eq</Col>
+              <Col className="kanit-Display-Medium cc">20 CO₂ Credit</Col>
             </Row>
 
             <Row className="product-decription">
@@ -116,11 +143,22 @@ function Productbuy() {
 
             <div className="divider-horz-2"></div>
 
-            <Row className="product-button-section">
-              <button className="btn-small-primary kanit-paragraphMedium">
-                เสนอซื้อ
-              </button>
-            </Row>
+            <div className="product-button-section">
+              <div className="main-product-button">
+                <button className="btn-small-primary kanit-paragraphMedium">
+                  เสนอซื้อ
+                </button>
+              </div>
+              <div>
+                <button className="btn-fav" onClick={handleFavClick}>
+                  <img
+                    src={isFav ? favBold : fav}
+                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
+                    alt="Favorite"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </Row>
 

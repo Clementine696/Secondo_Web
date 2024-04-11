@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import ItemCard from "../../components/UI/ItemCard";
 import HDivider from "../../components/UI/DividerHorizontal";
 import VDivider from "../../components/UI/DividerVentical";
-import { Link } from "react-router-dom"; // import "~slick-carousel/slick/slick.css";
+import { Link } from "react-router-dom";
+
+import favBold from "../../icon/like-bold.png";
+import fav from "../../icon/like.png";
 
 import "./index.css";
 import "../../components/UI/Button/index.css";
 
 function Product() {
+  const [isFav, setIsFav] = useState(false);
+  //transition
+  const [fade, setFade] = useState(false);
+
+  // console.log("isout:", isFav);
+
+  const handleFavClick = () => {
+    //change state
+    setIsFav(!isFav);
+    setFade(true);
+
+    // console.log("isin:", isFav);
+
+    setTimeout(() => {
+      setFade(false);
+    }, 300);
+
+    if (isFav) {
+      console.log("Unlike");
+    } else {
+      console.log("Like");
+    }
+  };
   return (
     <Layout>
       <div className="background-product-page">
@@ -65,7 +91,7 @@ function Product() {
           </div>
         </div>
 
-        <Row className="product-page-item-details">
+        <div className="product-page-item-details">
           <div className="product-page-item-details-group-picture-seller">
             <div className="product-page-item-details-group-picture-seller-big-picture">
               <img
@@ -91,7 +117,7 @@ function Product() {
 
             <Row className="product-price-cc">
               <Col className="kanit-Display-Medium price">1000 บาท</Col>
-              <Col className="kanit-Display-Medium cc">20 CCKg eq</Col>
+              <Col className="kanit-Display-Medium cc">20 CO₂ Credit</Col>
             </Row>
 
             <Row className="product-decription">
@@ -117,20 +143,24 @@ function Product() {
 
             <div className="divider-horz-2"></div>
 
-            <Row className="product-button-section">
-              <Col>
-                <button className="btn-small-secondary kanit-paragraphMedium">
-                  เสนอราคา
-                </button>
-              </Col>
-              <Col>
+            <div className="product-button-section">
+              <div className="main-product-button">
                 <button className="btn-small-primary kanit-paragraphMedium">
                   ซื้อ
                 </button>
-              </Col>
-            </Row>
+              </div>
+              <div>
+                <button className="btn-fav" onClick={handleFavClick}>
+                  <img
+                    src={isFav ? favBold : fav}
+                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
+                    alt="Favorite"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
-        </Row>
+        </div>
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
@@ -194,7 +224,7 @@ function Product() {
                 <Col>ผู้ติดตาม</Col>
                 <Col className="color-ratio">5 พัน</Col>
               </Row>
-            </Col> 
+            </Col>
           </Row>
         </div>
 

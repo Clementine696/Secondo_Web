@@ -36,6 +36,99 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
+const itemInterest = [
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
+
+const itemDonate = [
+  {
+    img: "",
+    title: "สินค้าบริจาค 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้าบริจาค 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้าบริจาค 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้าบริจาค 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
+
+const itemReceive = [
+  {
+    img: "",
+    title: "สินค้ารับบริจาค 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้ารับบริจาค 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้ารับบริจาค 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้ารับบริจาค 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
+
 function Home() {
 
   const category = useSelector((state) => state.category);
@@ -78,6 +171,8 @@ function Home() {
     console.log("toggle:", isExpanded);
   };
 
+  // const scrollToRef = useRef(null);
+
   return (
     <Layout>
       <div className="background-home">
@@ -86,7 +181,12 @@ function Home() {
             <div className="home-slide-banner">
               <BannerSlide />
             </div>
-            <div className="home-img-banner">
+            <div
+              className="home-img-banner"
+              // onClick={() =>
+              //           scrollToRef.current?.scrollIntoView({ behavior: "smooth" })
+              //         }
+            >
               <img
                 className="img-banner"
                 srcSet="https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg"
@@ -148,10 +248,16 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+              {itemInterest.map((item, index) => (
+                <ItemCard
+                  key={index}
+                  img={item.img}
+                  title={item.title}
+                  province={item.province}
+                  price={item.price}
+                  credit={item.credit}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -184,10 +290,16 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+              {itemDonate.map((item, index) => (
+                <ItemCard
+                  key={index}
+                  img={item.img}
+                  title={item.title}
+                  province={item.province}
+                  price={item.price}
+                  credit={item.credit}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -220,10 +332,16 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+              {itemReceive.map((item, index) => (
+                <ItemCard
+                  key={index}
+                  img={item.img}
+                  title={item.title}
+                  province={item.province}
+                  price={item.price}
+                  credit={item.credit}
+                />
+              ))}
             </div>
           </div>
         </div>

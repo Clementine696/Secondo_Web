@@ -13,14 +13,14 @@
     align-items: center;
 }
 
-.Row-content {
+.row-content {
     width: 100vw;
     justify-content: space-between;
     padding: 96px 128px;
     gap: 96px;
 }
 
-.Col-left {
+.col-left {
     max-height: 736px;
     max-width: 624px;
     justify-content: center;
@@ -32,7 +32,7 @@
 
 }
 
-.Content-left {
+.content-left {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +40,7 @@
     gap: 16px;
 }
 
-.Col-right {
+.col-right {
     height: auto;
     max-width: 624px;
     border: 1px solid var(--OutlineVariant-color);
@@ -48,7 +48,7 @@
     border-radius: 16px;
 }
 
-.Title-sign {
+.title-sign {
     gap: 16;
     padding: 0;
 }
