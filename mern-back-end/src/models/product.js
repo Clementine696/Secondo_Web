@@ -15,9 +15,15 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    quantity: {
-        type: Number,
-        required: true
+    // quantity: {
+    //     type: Number,
+    //     required: true
+    // },
+    specifications: {
+        type: String
+        // required: false,
+        // trim: true
+        // max: 5000
     },
     description: {
         type: String,

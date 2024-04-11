@@ -132,7 +132,7 @@ const itemReceive = [
 function Home() {
 
   const category = useSelector((state) => state.category);
-  console.log(category)
+  // console.log(category)
   // const dispatch = useDispatch();
 
   const renderCategories = (categories) => {
