@@ -49,7 +49,7 @@ const Address = [
 const paymentMethod = [
   {
     id: "0",
-    img: masterCard,
+    // img: masterCard,
     cardName: "Master card",
     cardId: "1234567891011121",
     cardExp: "",
@@ -58,7 +58,7 @@ const paymentMethod = [
   },
   {
     id: "1",
-    img: visa,
+    // img: visa,
     cardName: "Visa",
     cardId: "1234567891011121",
     cardExp: "",
@@ -67,7 +67,7 @@ const paymentMethod = [
   },
   {
     id: "2",
-    img: kbank,
+    // img: kbank,
     cardName: "ธนาคารกสิกรไทย",
     cardId: "1234567891011121",
     cardExp: "",
@@ -79,18 +79,27 @@ const paymentMethod = [
 const bankAccount = [
   {
     id: "0",
-    img: kbank,
+    // img: kbank,
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountNumber: "1234567891011121",
   },
   {
     id: "1",
-    img: ttb,
+    // img: ttb,
     ownAccount: "",
     bankName: "ธนาคารทหารไทย",
     accountNumber: "1234567891011121",
   },
+];
+
+const withdrawMoney = [
+  {
+    id: "0",
+    ownAccount: "",
+    bankName: "ธนาคารกสิกรไทย",
+    accountNumber: "1234567891011121",
+  }
 ];
 
 // fillter ใน backend
@@ -138,6 +147,18 @@ function setting() {
     });
   };
 
+  //set Withdraw Money
+  const [selectedWithdrawMethod, setSelectedWithdrawMethod] = useState(null);
+
+  const toggleSelectWithdrawMethod = (index) => {
+    setSelectedWithdrawMethod((prevSelectedWithdrawMethod) => {
+      if (bankAccounts.length === 1) {
+        return prevSelectedWithdrawMethod !== null ? prevSelectedWithdrawMethod : 0;
+      }
+      return prevSelectedWithdrawMethod === index ? null : index;
+    });
+  };
+
   useEffect(() => {
     // console.log("Current Tab:", tab);
     // console.log("Toggle Tab Clicked!");
@@ -146,14 +167,14 @@ function setting() {
       setSelectedAddress(0);
     }
 
-    if (paymentMethods.length > 0 && selectedPayment === null) {
+    if ((paymentMethods.length > 0 && selectedPayment === null) || (bankAccounts.length > 0 && selectedBank === null)) {
       setSelectedPayment(0);
     }
 
-    if (bankAccounts.length > 0 && selectedBank === null) {
-      setSelectedBank(0);
+    if (withdrawMoneys.length > 0 && selectedWithdrawMethod === null) {
+      setSelectedWithdrawMethod(0);
     }
-  }, [tab, selectedAddress, selectedPayment, selectedBank]);
+  }, [tab, selectedAddress, selectedPayment, selectedBank, selectedWithdrawMethod]);
 
   //add address
   const [addAddress, setAddAddress] = useState(false);
@@ -261,6 +282,34 @@ function setting() {
     }
   };
 
+//add withdrawMethod
+const [addWithdrawMethod, setAddWithdrawMethod] = useState(false);
+
+const [withdrawMoneys, setWithdrawMoneys] = useState(withdrawMoney);
+
+const [newWithdrawMethod, setNewWithdrawMethod] = useState({
+  id: (parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1).toString(),
+  bankName: "",
+  ownAccount: "",
+  accountNumber: "",
+});
+
+const saveWithdrawMethod = () => {
+  if (newWithdrawMethod.ownAccount && newWithdrawMethod.bankName && newWithdrawMethod.accountNumber) {
+    const updatedWithdrawMethod = [...withdrawMoneys, newWithdrawMethod];
+    setWithdrawMoneys(updatedWithdrawMethod);
+    setNewWithdrawMethod({
+      id: (parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1).toString(),
+      bankName: "",
+      ownAccount: "",
+      accountNumber: "",
+    });
+    setAddWithdrawMethod(false);
+  } else {
+    alert("กรอกข้อมูล");
+  }
+};
+
   //scroll
   const scrollToAddAddress = useRef(null);
 
@@ -268,6 +317,7 @@ function setting() {
   const [editAddressForm, setEditAddressForm] = useState("");
   const [editPaymentForm, setEditPaymentForm] = useState("");
   const [editBankForm, setEditBankForm] = useState("");
+  const [editWithdrawForm, setEditWithdrawForm] = useState("");
 
   //edit address
   const [editedAddress, setEditedAddress] = useState({});
@@ -318,6 +368,23 @@ function setting() {
       bank.id === editedBank.id ? editedBank : bank
     );
     setBankAccounts(updatedBank);
+  };
+
+  //edit withdraw
+  const [editedWithdraw, setEditedWithdraw] = useState({});
+  const handleEditWithdrawMethod = (id) => {
+    setEditWithdrawForm(id);
+    const editedWithdraw = withdrawMoneys.find((withdraw) => withdraw.id === id);
+    setEditedWithdraw({
+      ...editedWithdraw,
+      [id]: { ...editedWithdraw, id: id },
+    });
+  };
+  const handleSaveWithdrawMethod = () => {
+    const updatedWithdrawMethod = withdrawMoneys.map((withdraw) =>
+    withdraw.id === editedWithdraw.id ? editedWithdraw : withdraw
+    );
+    setWithdrawMoneys(updatedWithdrawMethod);
   };
 
   return (
@@ -683,7 +750,6 @@ function setting() {
                     >
                       <div className="text-address kanit-paragraphMedium">
                         <div className="img-card-cardid">
-                          <img src={payment.img} className="card-pic"></img>
                           <div className="card-name">{payment.cardName}</div>
                           <div className="card-id">{payment.cardId}</div>
                         </div>
@@ -896,11 +962,6 @@ function setting() {
                   </div>
                 </div>
               )}
-            </div>
-          </div>
-
-          <div className={tab === 3 ? "active-content" : "content"}>
-            <div className="setting-tab-group">
               <div className="background-data-table">
                 <div className="setting-title-add">
                   <p className="kanit-paragraphBig">บัญชีธนาคาร</p>
@@ -925,12 +986,10 @@ function setting() {
                       >
                         <div className="text-address kanit-paragraphMedium">
                           <div className="img-card-cardid">
-                            <img src={bank.img} className="card-pic"></img>
                             <div className="card-name">{bank.bankName}</div>
                             <div className="card-id">{bank.accountNumber}</div>
                           </div>
                         </div>
-
                         <div className="btn-setting-address-group">
                           <button
                             className="f-btn btn-small-primary kanit-paragraphMedium"
@@ -1100,6 +1159,214 @@ function setting() {
                       className="btn-small-primary kanit-paragraphMedium"
                       type="submit"
                       onClick={saveBank}
+                    >
+                      บันทึก
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className={tab === 3 ? "active-content" : "content"}>
+            <div className="setting-tab-group">
+              <div className="background-data-table">
+                <div className="setting-title-add">
+                  <p className="kanit-paragraphBig">บัญชีธนาคาร</p>
+
+                  <Link
+                    className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                    onClick={() => setAddWithdrawMethod(true)}
+                  >
+                    <img src={add} className="add-icon"></img>
+                    เพิ่มบัญชีธนาคาร
+                  </Link>
+                </div>
+
+                <div className="my-address">
+                  <div className="my-address">
+                    {withdrawMoneys.map((withdraw, index) => (
+                      <div
+                        className={`address-item ${
+                          selectedWithdrawMethod === index ? "select" : ""
+                        }`}
+                        key={index}
+                      >
+                        <div className="text-address kanit-paragraphMedium">
+                          <div className="img-card-cardid">
+                            <div className="card-name">{withdraw.bankName}</div>
+                            <div className="card-id">{withdraw.accountNumber}</div>
+                          </div>
+                        </div>
+                        <div className="btn-setting-address-group">
+                          <button
+                            className="f-btn btn-small-primary kanit-paragraphMedium"
+                            onClick={() => handleEditWithdrawMethod(withdraw.id)}
+                          >
+                            แก้ไข
+                          </button>
+                          <button
+                            className={`s-btn ${
+                              selectedWithdrawMethod === index
+                                ? "btn-small-secondary-disabled"
+                                : "btn-small-secondary"
+                            } kanit-paragraphMedium`}
+                            onClick={() => toggleSelectWithdrawMethod(index)}
+                          >
+                            ตั้งเป็นค่าเริ่มต้น
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {editWithdrawForm &&
+                withdrawMoneys.map((withdraw) => (
+                  <div className="w-100" key={withdraw.id}>
+                    {editWithdrawForm === withdraw.id ? (
+                      <div className="setting-add-address">
+                        <div className="setting-title-add">
+                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                            ลบ
+                          </button>
+                        </div>
+                        <div className="setting-add-address-form">
+                          <Form>
+                            <Row className="setting-add-address-form-row">
+                              <Input
+                                className=""
+                                placeholder="ธนาคาร"
+                                value={editedWithdraw.bankName || withdraw.bankName}
+                                type="text"
+                                errorMessage=""
+                                onChange={(e) => {
+                                  setEditedWithdraw({
+                                    ...editedWithdraw,
+                                    bankName: e.target.value,
+                                  });
+                                }}
+                              />
+                            </Row>
+                            <Input
+                              className=""
+                              placeholder="ชื่อ"
+                              value={editedWithdraw.ownAccount || withdraw.ownAccount}
+                              type="text"
+                              errorMessage=""
+                              onChange={(e) => {
+                                setEditedWithdraw({
+                                  ...editedWithdraw,
+                                  ownAccount: e.target.value,
+                                });
+                              }}
+                            />
+                            <Row className="setting-add-address-form-row">
+                              <Input
+                                className=""
+                                placeholder="หมายเลขบัญชีธนาคาร"
+                                value={
+                                  editedWithdraw.accountNumber || withdraw.accountNumber
+                                }
+                                type="number"
+                                errorMessage=""
+                                onChange={(e) => {
+                                  setEditedWithdraw({
+                                    ...editedWithdraw,
+                                    accountNumber: e.target.value,
+                                  });
+                                }}
+                              />
+                            </Row>
+                          </Form>
+                        </div>
+                        <div className="setting-add-address-button">
+                          <button
+                            className="btn-small-secondary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => setEditWithdrawForm(false)}
+                          >
+                            ยกเลิก
+                          </button>
+                          <button
+                            className="btn-small-primary kanit-paragraphMedium"
+                            type="submit"
+                            onClick={() => {
+                              handleSaveWithdrawMethod(withdraw.id), setEditWithdrawForm(false);
+                            }}
+                          >
+                            บันทึก
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              {addWithdrawMethod && (
+                <div className="setting-add-address">
+                  <div className="setting-add-address-title kanit-paragraphBig">
+                    เพิ่มบัญชีธนาคาร
+                  </div>
+                  <div className="setting-add-address-form">
+                    <Form>
+                      <Row className="setting-add-address-form-row">
+                        <Input
+                          className=""
+                          placeholder="ธนาคาร"
+                          value={newWithdrawMethod.bankName}
+                          type="text"
+                          errorMessage=""
+                          onChange={(e) => {
+                            setNewWithdrawMethod({
+                              ...newWithdrawMethod,
+                              bankName: e.target.value,
+                            });
+                          }}
+                        />
+                      </Row>
+                      <Input
+                        className=""
+                        placeholder="ชื่อ"
+                        value={newWithdrawMethod.ownAccount}
+                        type="text"
+                        errorMessage=""
+                        onChange={(e) => {
+                          setNewWithdrawMethod({
+                            ...newWithdrawMethod,
+                            ownAccount: e.target.value,
+                          });
+                        }}
+                      />
+                      <Row className="setting-add-address-form-row">
+                        <Input
+                          className=""
+                          placeholder="หมายเลขบัญชีธนาคาร"
+                          value={newWithdrawMethod.accountNumber}
+                          type="number"
+                          errorMessage=""
+                          onChange={(e) => {
+                            setNewWithdrawMethod({
+                              ...newWithdrawMethod,
+                              accountNumber: e.target.value,
+                            });
+                          }}
+                        />
+                      </Row>
+                    </Form>
+                  </div>
+                  <div className="setting-add-address-button">
+                    <button
+                      className="btn-small-secondary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={() => setAddWithdrawMethod(false)}
+                    >
+                      ยกเลิก
+                    </button>
+                    <button
+                      className="btn-small-primary kanit-paragraphMedium"
+                      type="submit"
+                      onClick={saveWithdrawMethod}
                     >
                       บันทึก
                     </button>
