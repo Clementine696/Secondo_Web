@@ -99,7 +99,7 @@ const withdrawMoney = [
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountNumber: "1234567891011121",
-  }
+  },
 ];
 
 // fillter ใน backend
@@ -153,7 +153,9 @@ function setting() {
   const toggleSelectWithdrawMethod = (index) => {
     setSelectedWithdrawMethod((prevSelectedWithdrawMethod) => {
       if (bankAccounts.length === 1) {
-        return prevSelectedWithdrawMethod !== null ? prevSelectedWithdrawMethod : 0;
+        return prevSelectedWithdrawMethod !== null
+          ? prevSelectedWithdrawMethod
+          : 0;
       }
       return prevSelectedWithdrawMethod === index ? null : index;
     });
@@ -167,14 +169,23 @@ function setting() {
       setSelectedAddress(0);
     }
 
-    if ((paymentMethods.length > 0 && selectedPayment === null) || (bankAccounts.length > 0 && selectedBank === null)) {
+    if (
+      (paymentMethods.length > 0 && selectedPayment === null) ||
+      (bankAccounts.length > 0 && selectedBank === null)
+    ) {
       setSelectedPayment(0);
     }
 
     if (withdrawMoneys.length > 0 && selectedWithdrawMethod === null) {
       setSelectedWithdrawMethod(0);
     }
-  }, [tab, selectedAddress, selectedPayment, selectedBank, selectedWithdrawMethod]);
+  }, [
+    tab,
+    selectedAddress,
+    selectedPayment,
+    selectedBank,
+    selectedWithdrawMethod,
+  ]);
 
   //add address
   const [addAddress, setAddAddress] = useState(false);
@@ -282,33 +293,39 @@ function setting() {
     }
   };
 
-//add withdrawMethod
-const [addWithdrawMethod, setAddWithdrawMethod] = useState(false);
+  //add withdrawMethod
+  const [addWithdrawMethod, setAddWithdrawMethod] = useState(false);
 
-const [withdrawMoneys, setWithdrawMoneys] = useState(withdrawMoney);
+  const [withdrawMoneys, setWithdrawMoneys] = useState(withdrawMoney);
 
-const [newWithdrawMethod, setNewWithdrawMethod] = useState({
-  id: (parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1).toString(),
-  bankName: "",
-  ownAccount: "",
-  accountNumber: "",
-});
+  const [newWithdrawMethod, setNewWithdrawMethod] = useState({
+    id: (parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1).toString(),
+    bankName: "",
+    ownAccount: "",
+    accountNumber: "",
+  });
 
-const saveWithdrawMethod = () => {
-  if (newWithdrawMethod.ownAccount && newWithdrawMethod.bankName && newWithdrawMethod.accountNumber) {
-    const updatedWithdrawMethod = [...withdrawMoneys, newWithdrawMethod];
-    setWithdrawMoneys(updatedWithdrawMethod);
-    setNewWithdrawMethod({
-      id: (parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1).toString(),
-      bankName: "",
-      ownAccount: "",
-      accountNumber: "",
-    });
-    setAddWithdrawMethod(false);
-  } else {
-    alert("กรอกข้อมูล");
-  }
-};
+  const saveWithdrawMethod = () => {
+    if (
+      newWithdrawMethod.ownAccount &&
+      newWithdrawMethod.bankName &&
+      newWithdrawMethod.accountNumber
+    ) {
+      const updatedWithdrawMethod = [...withdrawMoneys, newWithdrawMethod];
+      setWithdrawMoneys(updatedWithdrawMethod);
+      setNewWithdrawMethod({
+        id: (
+          parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1
+        ).toString(),
+        bankName: "",
+        ownAccount: "",
+        accountNumber: "",
+      });
+      setAddWithdrawMethod(false);
+    } else {
+      alert("กรอกข้อมูล");
+    }
+  };
 
   //scroll
   const scrollToAddAddress = useRef(null);
@@ -374,7 +391,9 @@ const saveWithdrawMethod = () => {
   const [editedWithdraw, setEditedWithdraw] = useState({});
   const handleEditWithdrawMethod = (id) => {
     setEditWithdrawForm(id);
-    const editedWithdraw = withdrawMoneys.find((withdraw) => withdraw.id === id);
+    const editedWithdraw = withdrawMoneys.find(
+      (withdraw) => withdraw.id === id
+    );
     setEditedWithdraw({
       ...editedWithdraw,
       [id]: { ...editedWithdraw, id: id },
@@ -382,7 +401,7 @@ const saveWithdrawMethod = () => {
   };
   const handleSaveWithdrawMethod = () => {
     const updatedWithdrawMethod = withdrawMoneys.map((withdraw) =>
-    withdraw.id === editedWithdraw.id ? editedWithdraw : withdraw
+      withdraw.id === editedWithdraw.id ? editedWithdraw : withdraw
     );
     setWithdrawMoneys(updatedWithdrawMethod);
   };
@@ -790,19 +809,41 @@ const saveWithdrawMethod = () => {
                         </div>
                         <div className="setting-add-address-form">
                           <Form>
-                            <Input
-                              className=""
-                              placeholder="หมายเลขบัตร"
-                              value={editedPayment.cardId || payment.cardId}
-                              type="number"
-                              errorMessage=""
-                              onChange={(e) => {
-                                setEditedPayment({
-                                  ...editedPayment,
-                                  cardId: e.target.value,
-                                });
-                              }}
-                            />
+                            <Row className="setting-add-address-form-row">
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="ประเภทของบัตร"
+                                  value={
+                                    editedPayment.cardName || payment.cardName
+                                  }
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedPayment({
+                                      ...editedPayment,
+                                      cardName: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Col>
+                              <Col>
+                                <Input
+                                  className=""
+                                  placeholder="หมายเลขบัตร"
+                                  value={editedPayment.cardId || payment.cardId}
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedPayment({
+                                      ...editedPayment,
+                                      cardId: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Col>
+                            </Row>
+
                             <Row className="setting-add-address-form-row">
                               <Col>
                                 <Input
@@ -884,19 +925,39 @@ const saveWithdrawMethod = () => {
                   </div>
                   <div className="setting-add-address-form">
                     <Form>
-                      <Input
-                        className=""
-                        placeholder="หมายเลขบัตร"
-                        value={newPayment.cardId}
-                        type="number"
-                        errorMessage=""
-                        onChange={(e) => {
-                          setNewPayment({
-                            ...newPayment,
-                            cardId: e.target.value,
-                          });
-                        }}
-                      />
+                      <Row className="setting-add-address-form-row">
+                      <Col>
+                          <Input
+                            className=""
+                            placeholder="ประเภทของบัตร"
+                            value={newPayment.cardName}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setNewPayment({
+                                ...newPayment,
+                                cardName: e.target.value,
+                              });
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="หมายเลขบัตร"
+                            value={newPayment.cardId}
+                            type="number"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setNewPayment({
+                                ...newPayment,
+                                cardId: e.target.value,
+                              });
+                            }}
+                          />
+                        </Col>
+                      </Row>
+
                       <Row className="setting-add-address-form-row">
                         <Col>
                           <Input
@@ -1077,7 +1138,7 @@ const saveWithdrawMethod = () => {
                           <button
                             className="btn-small-secondary kanit-paragraphMedium"
                             type="submit"
-                            onClick={() => setEditPaymentForm(false)}
+                            onClick={() => setEditBankForm(false)}
                           >
                             ยกเลิก
                           </button>
@@ -1195,13 +1256,17 @@ const saveWithdrawMethod = () => {
                         <div className="text-address kanit-paragraphMedium">
                           <div className="img-card-cardid">
                             <div className="card-name">{withdraw.bankName}</div>
-                            <div className="card-id">{withdraw.accountNumber}</div>
+                            <div className="card-id">
+                              {withdraw.accountNumber}
+                            </div>
                           </div>
                         </div>
                         <div className="btn-setting-address-group">
                           <button
                             className="f-btn btn-small-primary kanit-paragraphMedium"
-                            onClick={() => handleEditWithdrawMethod(withdraw.id)}
+                            onClick={() =>
+                              handleEditWithdrawMethod(withdraw.id)
+                            }
                           >
                             แก้ไข
                           </button>
@@ -1238,7 +1303,9 @@ const saveWithdrawMethod = () => {
                               <Input
                                 className=""
                                 placeholder="ธนาคาร"
-                                value={editedWithdraw.bankName || withdraw.bankName}
+                                value={
+                                  editedWithdraw.bankName || withdraw.bankName
+                                }
                                 type="text"
                                 errorMessage=""
                                 onChange={(e) => {
@@ -1252,7 +1319,9 @@ const saveWithdrawMethod = () => {
                             <Input
                               className=""
                               placeholder="ชื่อ"
-                              value={editedWithdraw.ownAccount || withdraw.ownAccount}
+                              value={
+                                editedWithdraw.ownAccount || withdraw.ownAccount
+                              }
                               type="text"
                               errorMessage=""
                               onChange={(e) => {
@@ -1267,7 +1336,8 @@ const saveWithdrawMethod = () => {
                                 className=""
                                 placeholder="หมายเลขบัญชีธนาคาร"
                                 value={
-                                  editedWithdraw.accountNumber || withdraw.accountNumber
+                                  editedWithdraw.accountNumber ||
+                                  withdraw.accountNumber
                                 }
                                 type="number"
                                 errorMessage=""
@@ -1293,7 +1363,8 @@ const saveWithdrawMethod = () => {
                             className="btn-small-primary kanit-paragraphMedium"
                             type="submit"
                             onClick={() => {
-                              handleSaveWithdrawMethod(withdraw.id), setEditWithdrawForm(false);
+                              handleSaveWithdrawMethod(withdraw.id),
+                                setEditWithdrawForm(false);
                             }}
                           >
                             บันทึก
