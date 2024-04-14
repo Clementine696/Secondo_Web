@@ -22,7 +22,7 @@ function SellProduct() {
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return URL.createObjectURL(file);
+      return file;
     });
 
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
@@ -161,7 +161,7 @@ function SellProduct() {
                       </div>
                       <img
                         className="sell-product-content-upload-image-preview-frame-image"
-                        src={image}
+                        src={URL.createObjectURL(image)}
                         alt="upload"
                       />
                     </div>
