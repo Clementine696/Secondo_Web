@@ -1,6 +1,6 @@
 .background-product-page {
   display: flex;
-  padding: 32px 240px;
+  padding: 32px 148px;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
@@ -44,7 +44,7 @@
 }
 
 .product-page-item-details-group-picture-seller {
-  max-width: 500px;
+  max-width: 560px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,9 @@
 }
 
 .col-small-pic {
-  background-color: var(--OutlineVariant-color);
+  display: flex;
+  justify-content: center;
+  background-color: var(--Surface-color);
   height: 116px;
   width: 50%;
   border-radius: 16px;

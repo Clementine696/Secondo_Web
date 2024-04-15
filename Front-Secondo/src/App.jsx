@@ -32,6 +32,8 @@ import SellProduct from "./container/SellProduct";
 
 import CheckOut from "./container/CheckOut";
 
+import ShippingStatus from "./container/ShippingStatus";
+
 import Test from "./container/Test";
 
 import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
@@ -95,6 +97,8 @@ export default function App() {
           <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
 
           <Route path="account/checkout" element={<CheckOut />} />
+
+          <Route path="account/shippingstatus" element={<ShippingStatus />} />
 
           <Route path="test" element={<Test />} />
           

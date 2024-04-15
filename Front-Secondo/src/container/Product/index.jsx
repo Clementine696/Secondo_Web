@@ -102,6 +102,7 @@ function Product() {
             <Row className="product-page-item-details-group-picture-seller-small-picture">
               <Col className="col-small-pic"></Col>
               <Col className="col-small-pic"></Col>
+              <Col className="col-small-pic"></Col>
             </Row>
           </div>
           <div className="product-page-item-details-group-item-description">
