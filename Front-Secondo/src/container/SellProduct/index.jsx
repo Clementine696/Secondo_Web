@@ -9,13 +9,9 @@ import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
 import "./index.css";
+import { Link } from "react-router-dom";
 
 function SellProduct() {
-  const [isCancel, setIsCancel] = useState(false);
-  const handleCancel = () => {
-    setIsCancel(!isCancel);
-  };
-
   const [selectedImages, setSelectedImages] = useState([]);
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
@@ -44,9 +40,13 @@ function SellProduct() {
         <div className="product-page-path-way">
           <div className="product-page-group-path-way">
             <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
+              <Link
+                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                style={{ textDecoration: "none" }}
+                to={"/profile"}
+              >
                 บัญชี
-              </div>
+              </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +66,13 @@ function SellProduct() {
               </div>
             </div>
             <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
+              <Link
+                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                style={{ textDecoration: "none" }}
+                to={"/sellstate"}
+              >
                 การขายของฉัน
-              </div>
+              </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,15 +91,17 @@ function SellProduct() {
                 </svg>
               </div>
             </div>
-            <div className="product-page-group-path-way-last-path kanit-paragraphtextMedium">
+            <Link
+              className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+              style={{ textDecoration: "none" }}
+            >
               เพิ่มสินค้าขาย
-            </div>
+            </Link>
           </div>
         </div>
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-
             <label className="sell-product-content-upload-image-label kanit-Display-Large">
               Click to add images
               <input
@@ -147,7 +153,6 @@ function SellProduct() {
           </div>
 
           <div className="sell-product-content-info-item">
-            {/* <Col className="sell-product-content-info-item-group"> */}
             <Form className="sell-product-content-info-item-input">
               <Input
                 Label="ชื่อสินค้า"
@@ -204,12 +209,23 @@ function SellProduct() {
                 >
                   ยกเลิก
                 </button>
-                <button
-                  className="btn-small-primary kanit-paragraphMedium"
-                  type="submit"
-                >
-                  ลงขาย
-                </button>
+                {selectedImages.length > 10 ? (
+                  <button
+                    className="btn-small-primary-disabled kanit-paragraphMedium"
+                    disabled={true}
+                  >
+                    รูปภาพเกินกำหนด
+                  </button>
+                ) : (
+                  <button
+                    className="btn-small-primary kanit-paragraphMedium"
+                    onClick={() => {
+                      console.log(selectedImages), "ddd";
+                    }}
+                  >
+                    ลงขาย
+                  </button>
+                )}
               </div>
             </Form>
             {/* </Col> */}

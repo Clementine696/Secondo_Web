@@ -44,6 +44,7 @@
     border: none;
     border-radius: 40px;
     background-color: var(--OutlineVariant-color);
+    width: 100%;
 }
 
 /* Small secondary button */
