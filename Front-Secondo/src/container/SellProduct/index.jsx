@@ -4,44 +4,90 @@ import Input from "../../components/UI/Input";
 import Layout from "../../components/Layout";
 
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../../actions";
 
 import "./index.css";
 
 function SellProduct() {
 
+  const category = useSelector((state) => state.category);
+  // console.log(category)
+  const dispatch = useDispatch();
+
+  const renderCategories = (categories) => {
+    let myCategories = [];
+    for (let category of categories) {
+      if(category.parentId == null){
+        myCategories.push(
+          {
+            // img: category.image,
+            label: category.name,
+            value: category._id,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          }
+        );
+      }
+    }
+
+    return myCategories;
+  };
+
+  // const categoryItem = renderCategories(category.categories)
+
   const [selectedImages, setSelectedImages] = useState([]);
+  
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return URL.createObjectURL(file);
+      return file
     });
-    
+    // setProductPictures([...productPictures, e.target.files[0]]);
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDetail, setProductDetail] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [shippingCost, setShippingCost] = useState("");
 
   // connect api to save data
-  const addProduct = () => {
+  const addProductForm = () => {
     console.log(productName);
     console.log(productPrice);
     console.log(productDetail);
     console.log(shippingCost);
-    console.log(optionsCategory.label);
-    console.log(selectedImages);
+    console.log(categoryId);
+    // console.log(selectedImages);
+
+    for (let pic of selectedImages) {
+      console.log("Test")
+      console.log(pic.name)
+    }
+    const form = new FormData();
+    form.append("name", productName);
+    form.append("price", productPrice);
+    form.append("specifications", "Spec");
+    form.append("description", productDetail);
+    form.append("shippingCost", shippingCost);
+    form.append("category", categoryId);
+    for (let pic of selectedImages) {
+      form.append("productPicture", pic);
+    }
+    dispatch(addProduct(form));
   };
 
   const [value, setValue] = useState('')
-  const optionsCategory = [
-    {label: "เสื้อผ้าและแฟชั่น", value: 1},
-    {label: "รองเท้า", value: 2},
-    {label: "ความงามและของใช้ส่วนตัว", value: 3},
-  ];
+  // const optionsCategory = [
+  //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
+  //   {label: "รองเท้า", value: 2},
+  //   {label: "ความงามและของใช้ส่วนตัว", value: 3},
+  // ];
+  const optionsCategory = renderCategories(category.categories);
+
   function HandleSelect(event) {
     setValue(event.target.value)
   }
@@ -145,7 +191,7 @@ function SellProduct() {
                 selectedImages.map((image, index) => {
                   return (
                     <div className="sell-product-content-upload-image-preview-frame" key="image">
-                      <img className="sell-product-content-upload-image-preview-frame-image" src={image} alt="upload" />
+                      <img className="sell-product-content-upload-image-preview-frame-image" src={URL.createObjectURL(image)} alt="upload" />
                       {/* <br/> */}
                       <button className="sell-product-content-upload-image-preview-frame-button"
                         onClick={() =>
@@ -178,9 +224,11 @@ function SellProduct() {
 
                 <div className="sell-product-content-info-item-input-options">
                   <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
-                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" onChange={HandleSelect}>
+                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" 
+                  // onChange={HandleSelect}
+                  onChange={(e) => setCategoryId(e.target.value)} >
                     {optionsCategory.map(optionsCategory => (
-                      <option  value={optionsCategory.value}>{optionsCategory.label}</option>
+                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
                     ))}
                   </select>
                 </div>
@@ -224,7 +272,7 @@ function SellProduct() {
                   <button
                     className="btn-small-primary kanit-paragraphMedium"
                     type="submit"
-                    onClick={addProduct}
+                    onClick={addProductForm}
                   >
                     ลงขาย
                   </button>
