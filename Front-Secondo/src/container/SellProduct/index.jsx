@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import { useState, useEffect } from "react";
 
 import Cancel from "../../icon/cancel.png";
-import fav from "../../icon/like.png";
+import RedCancel from "../../icon/close.png";
 
 import "./index.css";
 
@@ -95,10 +95,6 @@ function SellProduct() {
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-            {/* <input type="file" multiple accept="image/*" onChange={onImageChange}/>
-            {imageURLs.map((imageSrc) => (
-              < img width="268" height="200" src={imageSrc} />
-            ))}; */}
 
             <label className="sell-product-content-upload-image-label kanit-Display-Large">
               Click to add images
@@ -111,26 +107,6 @@ function SellProduct() {
                 accept="image/*"
               />
             </label>
-            {/* <br/>
-            {selectedImages.lenght > 0 &&
-              (selectedImages.length > 10 ? (
-                <p>
-                  You can't upload more than 10 images!
-                  <span>
-                    please delete <b> {selectedImages.length - 10} </b> of them{" "}
-                  </span>
-                </p>
-              ) : (
-                <button
-                  onClick={() => {
-                    console.log("UPLOAD IMAGESS");
-                  }}
-                >
-                  UPLOAD {selectedImages.length}
-                  {selectedImages.lenght === 1 ? "" : "S"}
-                </button>
-              ))
-            } */}
 
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
@@ -154,7 +130,7 @@ function SellProduct() {
                             className="btn-cancel-icon-sell-product"
                           />
                           <img
-                            src={fav}
+                            src={RedCancel}
                             className="btn-cancel-icon-sell-product-hover"
                           />
                         </button>
