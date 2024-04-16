@@ -13,33 +13,35 @@ import bid from "../../icon/bid.png";
 import co2 from "../../icon/co2.png";
 import like from "../../icon/like.png";
 import setting from "../../icon/setting.png";
+import logouticon from "../../icon/logout.png";
 import searchb from "../../icon/search-b.png";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { signout } from '../../actions';
+import { useDispatch, useSelector } from "react-redux";
+import { signout } from "../../actions";
 
 import "./index.css";
 import "../../styles.css";
 
 function Index() {
-
   //login logout
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logout = () => {
     dispatch(signout());
-  }
+  };
 
   const renderLoggedInLinks = () => {
     return (
       <Nav>
         <li className="nav-item">
-          <span className='nav-link' onClick={logout}>Sign out</span>
+          <span className="nav-link" onClick={logout}>
+            Sign out
+          </span>
         </li>
       </Nav>
     );
-  }
+  };
 
   const renderNonLoggedInLinks = () => {
     return (
@@ -52,7 +54,7 @@ function Index() {
         </button>
       </Link>
     );
-  }
+  };
 
   const [open, setOpen] = useState(false);
 
@@ -143,8 +145,10 @@ function Index() {
                 เข้าสู่ระบบ
               </button>
             </Link> */}
-            {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
-            
+            {auth.authenticate
+              ? renderLoggedInLinks()
+              : renderNonLoggedInLinks()}
+
             <div className="menu-container" ref={menuRef}>
               <div
                 className="menu-trigger"
@@ -205,11 +209,16 @@ function Index() {
                     text={"ตั้งค่า"}
                     link={"/setting"}
                   />
+                  <DropdownItem
+                    img={logouticon}
+                    text={"ออกจากระบบ"}
+                    link={"/"}
+                  />
                 </ul>
               </div>
             </div>
 
-            <div className="icon-hamburger">
+            {/* <div className="icon-hamburger">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -231,7 +240,7 @@ function Index() {
                   </clipPath>
                 </defs>
               </svg>
-            </div>
+            </div> */}
           </div>
         </Col>
       </Row>
