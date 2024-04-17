@@ -9,7 +9,7 @@ import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
 import "./index.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 function SellProduct() {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -32,6 +32,12 @@ function SellProduct() {
   ];
   function HandleSelect(event) {
     setValue(event.target.value);
+  }
+
+  const navigate = useNavigate();
+
+  const nevigateToSellstate=()=>{
+    navigate("/sellstate");
   }
 
   return (
@@ -205,7 +211,8 @@ function SellProduct() {
               <div className="sell-product-content-info-item-input-button-group">
                 <button
                   className="btn-small-secondary kanit-paragraphMedium"
-                  type="submit"
+                  // onClick={nevigateToSellstate}
+                  onClick={() => navigate(-1)}
                 >
                   ยกเลิก
                 </button>

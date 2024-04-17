@@ -36,6 +36,9 @@ function Product() {
       console.log("Like");
     }
   };
+
+  const pathway = ["หน้าหลัก", "เสื้อผ้า", "เสื้อ COTTON แบรนด์ญี่ปุ่น"];
+
   return (
     <Layout>
       <div className="background-product-page">

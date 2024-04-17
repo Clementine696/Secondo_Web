@@ -93,7 +93,7 @@ export default function App() {
           <Route path="setting" element={<Setting />} />
 
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
+          <Route path="sellstate/additem" element={<SellProduct />} />
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
 
           <Route path="account/checkout" element={<CheckOut />} />
