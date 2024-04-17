@@ -33,6 +33,14 @@ import SellProduct from "./container/SellProduct";
 import CheckOut from "./container/CheckOut";
 
 import ShippingStatus from "./container/ShippingStatus";
+//Buy
+import ShippingStatusBuy from "./container/ShippingStatus/Buy/Buyinfo";
+import ShippingStatusConfirm from "./container/ShippingStatus/Buy/ConfirmRecieve";
+import ShippingSellerRevirw from "./container/ShippingStatus/Buy/SellerReview";
+//Sell
+import ShippingSellSucess from "./container/ShippingStatus/Sell/SuccessProcess";
+import ShippingStatusSell from "./container/ShippingStatus/Sell/Sellinfo";
+
 
 import Test from "./container/Test";
 
@@ -92,17 +100,22 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
           <Route path="setting" element={<Setting />} />
 
+          <Route path="account/checkout" element={<CheckOut />} />
+
+          <Route path="account/shippingstatus" element={<ShippingStatus />} />
+          {/* Buy */}
+          <Route path="account/shippingstatus/buyinfo" element={<ShippingStatusBuy />} />
+          <Route path="account/shippingstatus/confirmrecieve" element={<ShippingStatusConfirm />} />
+          <Route path="account/shippingstatus/sellerreview" element={<ShippingSellerRevirw />} />
+          {/* Sell */}
+          <Route path="account/shippingstatus/sellinfo" element={<ShippingStatusSell />} />
+          <Route path="account/shippingstatus/successprocess" element={<ShippingSellSucess />} />
+
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
 
-          <Route path="account/checkout" element={<CheckOut />} />
-
-          <Route path="account/shippingstatus" element={<ShippingStatus />} />
-
           <Route path="test" element={<Test />} />
-          
-
         </Routes>
       </BrowserRouter>
     </div>

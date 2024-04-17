@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import Layout from "../../components/Layout";
-import StatusCheck from "../../components/UI/ShippingCheck";
-import NextStep from "../../components/UI/NextStep";
+import Layout from "../../../../components/Layout";
+import StatusCheck from "../../../../components/UI/ShippingCheck";
+import NextStep from "../../../../components/UI/NextStep";
 import { Link } from "react-router-dom";
 
-import "./index.css";
-import "../../components/UI/Button/index.css";
+import "../../index.css";
+import "../../../../components/UI/Button/index.css";
 
 const product = {
   orderID: "123564798",
@@ -65,7 +65,7 @@ const shipping = [
   },
 ];
 
-function ShippingStatus() {
+function SellerReview() {
   const {
     orderID,
     sellername,
@@ -85,7 +85,7 @@ function ShippingStatus() {
   return (
     <Layout>
       <div className="shipping-bg-page">
-        <div className="kanit-Display-Medium-R">Template Page</div>
+        <div className="kanit-Display-Medium-R">ข้อมูลการขายสินค้า</div>
         <div className="shipping-content">
           <div className="shipping-left-content">
             <div className="product-page-item-details-group-picture-seller">
@@ -118,7 +118,7 @@ function ShippingStatus() {
             </div>
             <div className="shipping-button-group">
               <button className="btn-small-primary kanit-paragraphMedium">
-                Template
+                ให้คะแนนผู้ขาย
               </button>
             </div>
           </div>
@@ -236,4 +236,4 @@ function ShippingStatus() {
   );
 }
 
-export default ShippingStatus;
+export default SellerReview;
