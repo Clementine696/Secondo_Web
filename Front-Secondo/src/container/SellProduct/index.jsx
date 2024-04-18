@@ -47,9 +47,10 @@ function SellProduct() {
           <div className="product-page-group-path-way">
             <div className="product-page-group-path-way-before-path">
               <Link
-                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
                 to={"/profile"}
+                // onClick={"/profile"}
               >
                 บัญชี
               </Link>
@@ -73,7 +74,7 @@ function SellProduct() {
             </div>
             <div className="product-page-group-path-way-before-path">
               <Link
-                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
                 to={"/sellstate"}
               >
@@ -98,7 +99,7 @@ function SellProduct() {
               </div>
             </div>
             <Link
-              className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+              className="product-page-group-path-way-before-path-text kanit-paragraphBig"
               style={{ textDecoration: "none" }}
             >
               เพิ่มสินค้าขาย

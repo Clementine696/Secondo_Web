@@ -252,9 +252,9 @@ function Index() {
           <Link to="/fav" className="text-menu" href="#features">
             รายการโปรด
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          {/* <Link to="" className="text-menu" href="#pricing">
             แชท
-          </Link>
+          </Link> */}
           <Link to="" className="text-menu" href="#pricing">
             สินค้าน่าสนใจ
           </Link>

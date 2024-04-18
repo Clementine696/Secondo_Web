@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import ItemCard from "../../components/UI/ItemCard";
 import HDivider from "../../components/UI/DividerHorizontal";
 import VDivider from "../../components/UI/DividerVentical";
+import Pathway from "../../components/UI/Pathway";
 import { Link } from "react-router-dom";
 
 import favBold from "../../icon/like-bold.png";
@@ -11,6 +12,12 @@ import fav from "../../icon/like.png";
 
 import "./index.css";
 import "../../components/UI/Button/index.css";
+
+const pathway = [
+  { label: "หน้าหลัก", value: 1, nevigate: "/" },
+  { label: "เสื้อผ้า", value: 2, nevigate: "/search" },
+  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 3, nevigate: "/product" },
+];
 
 function Product() {
   const [isFav, setIsFav] = useState(false);
@@ -37,12 +44,16 @@ function Product() {
     }
   };
 
-  const pathway = ["หน้าหลัก", "เสื้อผ้า", "เสื้อ COTTON แบรนด์ญี่ปุ่น"];
+  // const [orderPathway, setOrderPathway] = useState(1);
+
+  // const clickPathway = (index) => {
+  //   setOrderPathway(index);
+  // };
 
   return (
     <Layout>
       <div className="background-product-page">
-        <div className="product-page-path-way">
+        {/* <div className="product-page-path-way">
           <div className="product-page-group-path-way">
             <div className="product-page-group-path-way-before-path">
               <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
@@ -92,6 +103,9 @@ function Product() {
               เสื้อ COTTON แบรนด์ญี่ปุ่น
             </div>
           </div>
+        </div> */}
+        <div className="background-product-page-pathway">
+          <Pathway pathwayList={pathway} />
         </div>
 
         <div className="product-page-item-details">
@@ -148,11 +162,15 @@ function Product() {
             <div className="divider-horz-2"></div>
 
             <div className="product-button-section">
-              <div className="main-product-button">
+              <Link
+                className="main-product-button"
+                style={{ textDecoration: "none" }}
+                to="/account/checkout"
+              >
                 <button className="btn-small-primary kanit-paragraphMedium">
                   ซื้อ
                 </button>
-              </div>
+              </Link>
               <div>
                 <button className="btn-fav" onClick={handleFavClick}>
                   <img
