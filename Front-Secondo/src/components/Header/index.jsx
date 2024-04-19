@@ -246,15 +246,15 @@ function Index() {
       </Row>
       <Row className="second-nav kanit-paragraphtextMedium">
         <Nav className="me-auto justify-content-center p-0">
-          <Link to="/account/sell/additem" className="text-menu" href="#home">
+          <Link to="/sellstate/additem" className="text-menu" href="#home">
             ประกาศขายบน Secondo
           </Link>
           <Link to="/fav" className="text-menu" href="#features">
             รายการโปรด
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          {/* <Link to="" className="text-menu" href="#pricing">
             แชท
-          </Link>
+          </Link> */}
           <Link to="" className="text-menu" href="#pricing">
             สินค้าน่าสนใจ
           </Link>

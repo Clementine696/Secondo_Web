@@ -9,7 +9,7 @@ import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
 import "./index.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 function SellProduct() {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -34,6 +34,12 @@ function SellProduct() {
     setValue(event.target.value);
   }
 
+  const navigate = useNavigate();
+
+  const nevigateToSellstate=()=>{
+    navigate("/sellstate");
+  }
+
   return (
     <Layout>
       <div className="background-sell-product-page">
@@ -41,9 +47,10 @@ function SellProduct() {
           <div className="product-page-group-path-way">
             <div className="product-page-group-path-way-before-path">
               <Link
-                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
                 to={"/profile"}
+                // onClick={"/profile"}
               >
                 บัญชี
               </Link>
@@ -67,7 +74,7 @@ function SellProduct() {
             </div>
             <div className="product-page-group-path-way-before-path">
               <Link
-                className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
                 to={"/sellstate"}
               >
@@ -92,7 +99,7 @@ function SellProduct() {
               </div>
             </div>
             <Link
-              className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium"
+              className="product-page-group-path-way-before-path-text kanit-paragraphBig"
               style={{ textDecoration: "none" }}
             >
               เพิ่มสินค้าขาย
@@ -205,7 +212,8 @@ function SellProduct() {
               <div className="sell-product-content-info-item-input-button-group">
                 <button
                   className="btn-small-secondary kanit-paragraphMedium"
-                  type="submit"
+                  // onClick={nevigateToSellstate}
+                  onClick={() => navigate(-1)}
                 >
                   ยกเลิก
                 </button>

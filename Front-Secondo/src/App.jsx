@@ -124,7 +124,7 @@ export default function App() {
           <Route path="account/shippingstatus/recievesuccess" element={<ShippingRecieveSucess />} />
 
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
+          <Route path="sellstate/additem" element={<SellProduct />} />
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
 
           <Route path="test" element={<Test />} />

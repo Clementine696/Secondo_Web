@@ -4,6 +4,7 @@ import Layout from "../../components/Layout";
 import ItemCard from "../../components/UI/ItemCard";
 import HDivider from "../../components/UI/DividerHorizontal";
 import VDivider from "../../components/UI/DividerVentical";
+import Pathway from "../../components/UI/Pathway";
 import { Link } from "react-router-dom";
 
 import favBold from "../../icon/like-bold.png";
@@ -11,6 +12,12 @@ import fav from "../../icon/like.png";
 
 import "./index.css";
 import "../../components/UI/Button/index.css";
+
+const pathway = [
+  { label: "หน้าหลัก", value: 1, nevigate: "/" },
+  { label: "เสื้อผ้า", value: 2, nevigate: "/search" },
+  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 3, nevigate: "/product" },
+];
 
 function Product() {
   const [isFav, setIsFav] = useState(false);
@@ -36,59 +43,12 @@ function Product() {
       console.log("Like");
     }
   };
+
   return (
     <Layout>
       <div className="background-product-page">
-        <div className="product-page-path-way">
-          <div className="product-page-group-path-way">
-            <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
-                หน้าหลัก
-              </div>
-              <div className="product-page-group-path-way-before-path-arrow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M9 18.001L13.5858 13.4152C14.3668 12.6341 14.3668 11.3678 13.5858 10.5868L9 6.00098"
-                    stroke="#00243D"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
-                เสื้อผ้า
-              </div>
-              <div className="product-page-group-path-way-before-path-arrow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M9 18.001L13.5858 13.4152C14.3668 12.6341 14.3668 11.3678 13.5858 10.5868L9 6.00098"
-                    stroke="#00243D"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div className="product-page-group-path-way-last-path kanit-paragraphtextMedium">
-              เสื้อ COTTON แบรนด์ญี่ปุ่น
-            </div>
-          </div>
+        <div className="background-product-page-pathway">
+          <Pathway pathwayList={pathway} />
         </div>
 
         <div className="product-page-item-details">
@@ -145,11 +105,15 @@ function Product() {
             <div className="divider-horz-2"></div>
 
             <div className="product-button-section">
-              <div className="main-product-button">
+              <Link
+                className="main-product-button"
+                style={{ textDecoration: "none" }}
+                to="/account/checkout"
+              >
                 <button className="btn-small-primary kanit-paragraphMedium">
                   ซื้อ
                 </button>
-              </div>
+              </Link>
               <div>
                 <button className="btn-fav" onClick={handleFavClick}>
                   <img
