@@ -40,6 +40,12 @@ import ShippingSellerRevirw from "./container/ShippingStatus/Buy/SellerReview";
 //Sell
 import ShippingSellSucess from "./container/ShippingStatus/Sell/SuccessProcess";
 import ShippingStatusSell from "./container/ShippingStatus/Sell/Sellinfo";
+//Donate & Recieve
+import ShippingStatusDonate from "./container/ShippingStatus/Donate-Recieve/DonateInfo";
+import ShippingDonateSucess from "./container/ShippingStatus/Donate-Recieve/DonnateSuccess";
+import ShippingStatusRecieve from "./container/ShippingStatus/Donate-Recieve/RecieveInfo";
+import ShippingStatusRConfirm from "./container/ShippingStatus/Donate-Recieve/ConfirmRecieve";
+import ShippingRecieveSucess from "./container/ShippingStatus/Donate-Recieve/RecieveSuccess";
 
 
 import Test from "./container/Test";
@@ -110,6 +116,12 @@ export default function App() {
           {/* Sell */}
           <Route path="account/shippingstatus/sellinfo" element={<ShippingStatusSell />} />
           <Route path="account/shippingstatus/successprocess" element={<ShippingSellSucess />} />
+          {/* Donate & Recieve */}
+          <Route path="account/shippingstatus/donateinfo" element={<ShippingStatusDonate />} />
+          <Route path="account/shippingstatus/donatesuccess" element={<ShippingDonateSucess />} />
+          <Route path="account/shippingstatus/recieveinfo" element={<ShippingStatusRecieve />} />
+          <Route path="account/shippingstatus/confirmrecievedonate" element={<ShippingStatusRConfirm />} />
+          <Route path="account/shippingstatus/recievesuccess" element={<ShippingRecieveSucess />} />
 
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
