@@ -48,9 +48,9 @@ import ShippingStatusRConfirm from "./container/ShippingStatus/Donate-Recieve/Co
 import ShippingRecieveSucess from "./container/ShippingStatus/Donate-Recieve/RecieveSuccess";
 
 import Offer from "./container/Offer";
-// import OfferDonate from "./container/Offer/Donate";
-// import OfferRecieve from "./container/Offer/Recieve";
-// import OfferSell from "./container/Offer/Sell";
+import OfferDonate from "./container/Offer/Donate";
+import OfferRecieve from "./container/Offer/Recieve";
+import OfferSell from "./container/Offer/Sell";
 
 import Test from "./container/Test";
 
@@ -128,9 +128,9 @@ export default function App() {
           <Route path="account/shippingstatus/recievesuccess" element={<ShippingRecieveSucess />} />
 
           <Route path="offer" element={<Offer />} />
-          {/* <Route path="offer/donate" element={<OfferDonate />} />
+          <Route path="offer/donate" element={<OfferDonate />} />
           <Route path="offer/recieve" element={<OfferRecieve />} />
-          <Route path="offer/sell" element={<OfferSell />} /> */}
+          <Route path="offer/sell" element={<OfferSell />} />
 
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           <Route path="sellstate/additem" element={<SellProduct />} />

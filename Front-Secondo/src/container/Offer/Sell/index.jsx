@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 
-import "./index.css";
-import "../../styles.css";
+import "../index.css";
+import "../../../styles.css";
 
-import DropdownList from "../../components/UI/DropdownList";
-import "../../components/UI/Button/index.css";
+import DropdownList from "../../../components/UI/DropdownList";
+import "../../../components/UI/Button/index.css";
 
 const user = [
   {
@@ -30,7 +30,7 @@ function Offer() {
     <Layout>
       <div className="offer-sell-bg">
         <div className="" path-way>
-          test
+          test sell
         </div>
         <div className="offer-content">
           <div className="offer-left-content">

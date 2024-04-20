@@ -1,14 +1,17 @@
 .offer-sell-bg {
     display: flex;
+    flex-direction: column;
     padding: 32px 148px;
+    gap: 24px;
     align-items: flex-start;
-    gap: 32px;
     color: var(--Default-text);
 }
 
-/* .offer-left-content {
-
-} */
+.offer-content {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
 
 .offer-right-content {
     display: flex;
