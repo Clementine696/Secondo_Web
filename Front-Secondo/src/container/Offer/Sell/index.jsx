@@ -5,6 +5,7 @@ import "../index.css";
 import "../../../styles.css";
 
 import DropdownList from "../../../components/UI/DropdownList";
+import Pathway from "../../../components/UI/Pathway";
 import "../../../components/UI/Button/index.css";
 
 const user = [
@@ -25,12 +26,18 @@ const user = [
   },
 ];
 
+const pathway = [
+  { label: "หน้าหลัก", value: 1, nevigate: "/" },
+  { label: "เสื้อผ้า", value: 2, nevigate: "/search" },
+  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 3, nevigate: "/product" },
+];
+
 function Offer() {
   return (
     <Layout>
       <div className="offer-sell-bg">
-        <div className="" path-way>
-          test sell
+        <div className="background-product-page-pathway">
+          <Pathway pathwayList={pathway} />
         </div>
         <div className="offer-content">
           <div className="offer-left-content">
