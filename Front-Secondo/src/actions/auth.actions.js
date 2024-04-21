@@ -9,9 +9,13 @@ export const login = (user) => {
         dispatch({ type: authConstants.LOGIN_REQUEST });
         const res = await axios.post(`/admin/signin`, {
             ...user
-        })
+        }) //เหมือนไม่ส่งมา
+        // console.log("Fail0");
+        // console.log(res);
+        // console.log(res.status);
+        // console.log("Fail1");
 
-        if(res.status === 200){
+        if(res.status && res.status === 200){
             const { token, user } = res.data;
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
@@ -21,14 +25,35 @@ export const login = (user) => {
                     token, user
                 }
             });
+            // return "Tee";
         }else{
-            if(res.status === 400){
-                dispatch({
-                    type: authConstants.LOGIN_FAILURE,
-                    payload: { error: res.data.error }
-                });
-            }
+            dispatch({
+                type: authConstants.LOGIN_FAILURE,
+                payload: { error: res.data.error }
+            });
         }
+        // }else if(res.status == undefined){
+        //     console.log("Yes");
+        //     dispatch({
+        //         type: authConstants.LOGIN_FAILURE,
+        //         payload: { error: res.data.error }
+        //     });
+        //     // if(res.status === 400){
+        //     //     dispatch({
+        //     //         type: authConstants.LOGIN_FAILURE,
+        //     //         payload: { error: res.data.error }
+        //     //     });
+        //     //     // return "Too";
+        //     // }
+        //     // else{
+        //     //     dispatch({
+        //     //         type: authConstants.LOGIN_FAILURE,
+        //     //         payload: { error: res.data.error }
+        //     //     });
+        //     // }
+            
+        //     // return "Too";
+        // }
 
         // dispatch({
         //     type: authConstants.LOGIN_REQUEST,

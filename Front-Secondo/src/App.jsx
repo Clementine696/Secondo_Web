@@ -51,7 +51,7 @@ export default function App() {
       dispatch(isUserLoggedIn());
     }
     dispatch(getInitialData());
-  }, []);
+  }, [auth.authenticate]);
 
   return (
     <div>

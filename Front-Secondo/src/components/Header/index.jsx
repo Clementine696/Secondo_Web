@@ -35,6 +35,9 @@ function Index() {
     return (
       <Nav>
         <li className="nav-item">
+          <span className='nav-link'> {auth.user.firstName} </span>
+        </li>
+        <li className="nav-item">
           <span className='nav-link' onClick={logout}>Sign out</span>
         </li>
       </Nav>
