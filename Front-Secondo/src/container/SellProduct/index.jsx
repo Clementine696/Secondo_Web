@@ -212,29 +212,32 @@ function SellProduct() {
               
             </Form>
             <div className="sell-product-content-info-item-input-button-group">
-                <button
+                <Link
                   className="btn-small-secondary kanit-paragraphMedium"
-                  // onClick={nevigateToSellstate}
-                  onClick={() => navigate(-1)}
+                  style={{ textDecoration: "none" }}
+                  to="/"
                 >
                   ยกเลิก
-                </button>
+                </Link>
                 {selectedImages.length > 10 ? (
-                  <button
+                  <Link
                     className="btn-small-primary-disabled kanit-paragraphMedium"
                     disabled={true}
+                    style={{ textDecoration: "none" }}
                   >
                     รูปภาพเกินกำหนด
-                  </button>
+                  </Link>
                 ) : (
-                  <button
+                  <Link
                     className="btn-small-primary kanit-paragraphMedium"
-                    onClick={() => {
-                      console.log(selectedImages), "ddd";
-                    }}
+                    // onClick={() => {
+                    //   console.log(selectedImages), "ddd";
+                    // }}
+                    style={{ textDecoration: "none" }}
+                    to=""
                   >
                     ลงขาย
-                  </button>
+                  </Link>
                 )}
               </div>
             {/* </Col> */}

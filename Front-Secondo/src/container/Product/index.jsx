@@ -86,6 +86,17 @@ function Product() {
     }
   };
 
+  const [selectedImg, setSelectedImg] = useState(productDetail[0].img[0]);
+  const [smallImgs, setSmallImgs] = useState(productDetail[0].img.slice(1));
+
+  const handleImgClick = (img) => {
+    setSelectedImg(img);
+    setSmallImgs((prevImgs) => {
+      const updatedImgs = prevImgs.filter((smallImg) => smallImg !== img);
+      return [selectedImg, ...updatedImgs];
+    });
+  };
+
   return (
     <Layout>
       <div className="background-product-page">
@@ -96,13 +107,17 @@ function Product() {
         <div className="product-page-item-details">
           <div className="product-page-item-details-group-picture-seller">
             <div className="product-page-item-details-group-picture-seller-big-picture">
-              <img className="big-img" src={productDetail[0].img[0]} />
+              <img className="big-img" src={selectedImg} />
             </div>
             <div className="product-page-item-details-group-picture-seller-small-picture">
               <div className="small-img-container">
-                {productDetail[0].img.slice(1).map((img, index) => (
+                {smallImgs.map((img, index) => (
                   <div key={index} className="col-small-pic">
-                    <img className="small-img-product" src={img} />
+                    <img
+                      className="small-img-product"
+                      src={img}
+                      onClick={() => handleImgClick(img)}
+                    />
                   </div>
                 ))}
               </div>
