@@ -19,10 +19,7 @@ axiosIntance.interceptors.request.use((request) => {
       request.headers.Authorization = `Bearer ${auth.token}`;
     }
     return request;
-  } ,(error) => {
-      return Promise.reject(error);
-    }
-  );
+  });
 
 // Add a response interceptor
 axiosIntance.interceptors.response.use((response) => {
@@ -32,7 +29,7 @@ axiosIntance.interceptors.response.use((response) => {
     return response;
   }, (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // console.log(error.response)
+    console.log(error.response)
     const { status } = error.response;
     if(status === 500){
       localStorage.clear();

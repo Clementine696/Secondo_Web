@@ -282,6 +282,14 @@ function SellProduct() {
           </div>
         </div>
       </div>
+
+      {/* <button
+          className="btn-small-primary kanit-paragraphMedium"
+          type="submit"
+          onClick={addProductForm}
+        >
+          ลงขาย
+        </button> */}
     </Layout>
   );
 }

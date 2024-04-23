@@ -181,6 +181,8 @@ function Home() {
     for (let product of products) {
         myProducts.push(
           {
+            _id: product._id,
+            slug: product.slug, 
             img: product.productPictures,
             title: product.name,
             province: "กรุงเทพ",
@@ -274,6 +276,8 @@ function Home() {
                 <ItemCard
                   key={index}
                   img={item.img}
+                  _id={item._id}
+                  slug={item.slug}
                   title={item.title}
                   province={item.province}
                   price={item.price}

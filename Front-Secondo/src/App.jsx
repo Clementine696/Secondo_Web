@@ -75,6 +75,7 @@ export default function App() {
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
           <Route path="product" element={<Product />} />
+          <Route path="/:productSlug/:productId/p" element={<Product />} />
           <Route path="product/offersale" element={<Offersale />} />
           <Route path="product/offerbuy" element={<Offerbuy />} />
           <Route path="product/donate" element={<Donate />} />

@@ -19,9 +19,19 @@ exports.createProduct = (req, res) => {
         })
     }
 
+    let slug = slugify(name);
+    // console.log(name, slug)
+    console.log(slug.length)
+    if(slug.length == 0){
+        console.log("Slug is 0");
+        slug = name.split(" ")[0];
+    }
+
+    console.log(name, slug)
+
     const product = new Product({
         name: req.body.name,
-        slug: slugify(name),
+        slug: slug,
         price,
         // quantity,
         specifications,
@@ -37,8 +47,8 @@ exports.createProduct = (req, res) => {
             res.status(201).json({ product });
         }
     }).catch((error) => {
-        return res.status(400).json({ error })
         console.log(err);
+        return res.status(400).json({ error })
         // res.send(400, "Bad Request");
     });
     
