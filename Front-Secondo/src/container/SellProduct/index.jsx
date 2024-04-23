@@ -209,7 +209,9 @@ function SellProduct() {
                 errorMessage=""
                 onChange={() => {}}
               />
-              <div className="sell-product-content-info-item-input-button-group">
+              
+            </Form>
+            <div className="sell-product-content-info-item-input-button-group">
                 <button
                   className="btn-small-secondary kanit-paragraphMedium"
                   // onClick={nevigateToSellstate}
@@ -235,7 +237,6 @@ function SellProduct() {
                   </button>
                 )}
               </div>
-            </Form>
             {/* </Col> */}
           </div>
         </div>
