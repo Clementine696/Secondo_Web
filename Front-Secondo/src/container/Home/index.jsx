@@ -130,30 +130,27 @@ const itemReceive = [
 ];
 
 function Home() {
-
   const category = useSelector((state) => state.category);
-  console.log(category)
+  console.log(category);
   // const dispatch = useDispatch();
 
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+      if (category.parentId == null) {
+        myCategories.push({
+          img: category.image,
+          label: category.name,
+          value: category._id,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
       }
     }
 
     return myCategories;
   };
 
-  const categoryItem = renderCategories(category.categories)
+  const categoryItem = renderCategories(category.categories);
   // console.log(categoryItem)
 
   const slicedArray1 = categoryItem.slice(0, 8);

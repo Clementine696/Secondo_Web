@@ -9,7 +9,7 @@ import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
 import "./index.css";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SellProduct() {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -36,9 +36,9 @@ function SellProduct() {
 
   const navigate = useNavigate();
 
-  const nevigateToSellstate=()=>{
+  const nevigateToSellstate = () => {
     navigate("/sellstate");
-  }
+  };
 
   return (
     <Layout>
