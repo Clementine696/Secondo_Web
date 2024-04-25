@@ -47,7 +47,7 @@ const items = [
     point: 100,
     price: 500,
     icons: [discount, chevronRight],
-    Link: ["/", "/"],
+    Link: [],
   },
   {
     date: "21/07/2021",
@@ -63,7 +63,7 @@ const items = [
     point: 100,
     price: 500,
     icons: [edit, chevronRight],
-    Link: ["/", "/"],
+    Link: [],
   },
   {
     date: "22/07/2021",
@@ -79,10 +79,19 @@ const items = [
     point: 100,
     price: 500,
     icons: chevronRight,
-    Link: "/",
+    Link: [],
   },
 ];
 
+items.forEach((item) => {
+  switch (item.status.name) {
+    case "":
+      item.icons = [discount, chevronRight];
+      item.Link = ["/", "/"];
+      break;
+    
+  }
+});
 // fillter ใน backend
 
 function BuyState() {

@@ -15,14 +15,25 @@ import like from "../../icon/like.png";
 import setting from "../../icon/setting.png";
 import logouticon from "../../icon/logout.png";
 import searchb from "../../icon/search-b.png";
+import chevronDown from "../../icon/chevron-down.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../../actions";
 
+import userPic from "../../../public/images/userprofile.jpg";
+
 import "./index.css";
 import "../../styles.css";
 
+const userprofile = {
+  png: userPic,
+  name: "Ttb",
+  credit: 12,
+} 
+
 function Index() {
+  const { png, name, credit } = userprofile;
+
   //login logout
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -115,7 +126,7 @@ function Index() {
               </svg>
             </div>
 
-            <div className="icon-menu">
+            {/* <div className="icon-menu">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -136,7 +147,7 @@ function Index() {
                   stroke-linejoin="round"
                 />
               </svg>
-            </div>
+            </div> */}
             {/* <Link className="btn-signin" to="/signin">
               <button
                 className="btn-small-primary kanit-paragraphMedium"
@@ -151,15 +162,22 @@ function Index() {
 
             <div className="menu-container" ref={menuRef}>
               <div
-                className="menu-trigger"
+                className="menu-trigger menu-dropdown-profile"
                 onClick={() => {
                   setOpen(!open);
                 }}
               >
                 <img
                   className="profile-img"
-                  src="/images/userprofile.jpg"
+                  src={png}
                 ></img>
+                <div>
+                  <p className="kanit-paragraphtextMedium">{name}</p>
+                  <p className="kanit-paragraphSmall">{credit} Credit</p>
+                </div>
+                <div className="icon-profile">
+                  <img src={chevronDown}></img>
+                </div>
               </div>
 
               <div
