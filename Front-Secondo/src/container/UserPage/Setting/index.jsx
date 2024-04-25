@@ -345,6 +345,8 @@ function setting() {
       ...editedAddress,
       [id]: { ...editedAddress, id: id },
     });
+    editAddressForm(false);
+    setAddAddress(false);
   };
   const handleSaveAddress = () => {
     const updatedAddresses = addresses.map((address) =>
@@ -478,146 +480,148 @@ function setting() {
                   ))}
                 </div>
               </div>
-              {editAddressForm &&
-                addresses.map((address) => (
-                  <div className="w-100" key={address.id}>
-                    {editAddressForm === address.id ? (
-                      <div
-                        ref={scrollToAddAddress}
-                        className="setting-add-address"
-                      >
-                        <div className="setting-title-add">
-                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
-                            ลบ
-                          </button>
+              <div className="setting-add-edit-group">
+                {editAddressForm &&
+                  addresses.map((address) => (
+                    <div className="w-100" key={address.id}>
+                      {editAddressForm === address.id ? (
+                        <div
+                          ref={scrollToAddAddress}
+                          className="setting-add-address"
+                        >
+                          <div className="setting-title-add">
+                            <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                            <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                              ลบ
+                            </button>
+                          </div>
+                          <div className="setting-add-address-form">
+                            <Form>
+                              <Row className="setting-add-address-form-row">
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="ชื่อที่อยู่"
+                                    value={
+                                      editedAddress.addressName ||
+                                      address.addressName
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        addressName: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="ชื่อ นามสกุล"
+                                    value={editedAddress.name || address.name}
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        name: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="เบอร์โทร"
+                                    value={editedAddress.phone || address.phone}
+                                    type="number"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        phone: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                              </Row>
+                              <Input
+                                className=""
+                                placeholder="บ้านเลขที่ ซอย หมู่"
+                                value={editedAddress.address || address.address}
+                                type="text"
+                                errorMessage=""
+                                onChange={(e) =>
+                                  setEditedAddress({
+                                    ...editedAddress,
+                                    address: e.target.value,
+                                  })
+                                }
+                              />
+                              <Row className="setting-add-address-form-row">
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="ตำบล อำเภอ จังหวัด"
+                                    value={
+                                      editedAddress.province || address.province
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        province: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="รหัสไปรษณีย์"
+                                    value={editedAddress.zip || address.zip}
+                                    type="number"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        zip: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                              </Row>
+                            </Form>
+                          </div>
+                          <div className="setting-add-address-button">
+                            <button
+                              className="btn-small-secondary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => setEditAddressForm(null)}
+                            >
+                              ยกเลิก
+                            </button>
+                            <button
+                              className="btn-small-primary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => {
+                                handleSaveAddress(address.id),
+                                  setEditAddressForm(null),
+                                  console.log(address.id, editedAddress.id),
+                                  console.log(address.zip, editedAddress.zip);
+                              }}
+                            >
+                              บันทึก
+                            </button>
+                          </div>
                         </div>
-                        <div className="setting-add-address-form">
-                          <Form>
-                            <Row className="setting-add-address-form-row">
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="ชื่อที่อยู่"
-                                  value={
-                                    editedAddress.addressName ||
-                                    address.addressName
-                                  }
-                                  type="text"
-                                  errorMessage=""
-                                  onChange={(e) =>
-                                    setEditedAddress({
-                                      ...editedAddress,
-                                      addressName: e.target.value,
-                                    })
-                                  }
-                                />
-                              </Col>
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="ชื่อ นามสกุล"
-                                  value={editedAddress.name || address.name}
-                                  type="text"
-                                  errorMessage=""
-                                  onChange={(e) =>
-                                    setEditedAddress({
-                                      ...editedAddress,
-                                      name: e.target.value,
-                                    })
-                                  }
-                                />
-                              </Col>
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="เบอร์โทร"
-                                  value={editedAddress.phone || address.phone}
-                                  type="number"
-                                  errorMessage=""
-                                  onChange={(e) =>
-                                    setEditedAddress({
-                                      ...editedAddress,
-                                      phone: e.target.value,
-                                    })
-                                  }
-                                />
-                              </Col>
-                            </Row>
-                            <Input
-                              className=""
-                              placeholder="บ้านเลขที่ ซอย หมู่"
-                              value={editedAddress.address || address.address}
-                              type="text"
-                              errorMessage=""
-                              onChange={(e) =>
-                                setEditedAddress({
-                                  ...editedAddress,
-                                  address: e.target.value,
-                                })
-                              }
-                            />
-                            <Row className="setting-add-address-form-row">
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="ตำบล อำเภอ จังหวัด"
-                                  value={
-                                    editedAddress.province || address.province
-                                  }
-                                  type="text"
-                                  errorMessage=""
-                                  onChange={(e) =>
-                                    setEditedAddress({
-                                      ...editedAddress,
-                                      province: e.target.value,
-                                    })
-                                  }
-                                />
-                              </Col>
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="รหัสไปรษณีย์"
-                                  value={editedAddress.zip || address.zip}
-                                  type="number"
-                                  errorMessage=""
-                                  onChange={(e) =>
-                                    setEditedAddress({
-                                      ...editedAddress,
-                                      zip: e.target.value,
-                                    })
-                                  }
-                                />
-                              </Col>
-                            </Row>
-                          </Form>
-                        </div>
-                        <div className="setting-add-address-button">
-                          <button
-                            className="btn-small-secondary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => setEditAddressForm(null)}
-                          >
-                            ยกเลิก
-                          </button>
-                          <button
-                            className="btn-small-primary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => {
-                              handleSaveAddress(address.id),
-                                setEditAddressForm(null),
-                                console.log(address.id, editedAddress.id),
-                                console.log(address.zip, editedAddress.zip);
-                            }}
-                          >
-                            บันทึก
-                          </button>
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
+                      ) : null}
+                    </div>
+                  ))}
+              </div>
               {addAddress && (
                 // <div className="setting-add-address">
                 <div ref={scrollToAddAddress} className="setting-add-address">
@@ -796,128 +800,132 @@ function setting() {
                   ))}
                 </div>
               </div>
-              {editPaymentForm &&
-                paymentMethods.map((payment) => (
-                  <div className="w-100" key={payment.id}>
-                    {editPaymentForm === payment.id ? (
-                      <div className="setting-add-address">
-                        <div className="setting-title-add">
-                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
-                            ลบ
-                          </button>
-                        </div>
-                        <div className="setting-add-address-form">
-                          <Form>
-                            <Row className="setting-add-address-form-row">
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="ประเภทของบัตร"
-                                  value={
-                                    editedPayment.cardName || payment.cardName
-                                  }
-                                  type="text"
-                                  errorMessage=""
-                                  onChange={(e) => {
-                                    setEditedPayment({
-                                      ...editedPayment,
-                                      cardName: e.target.value,
-                                    });
-                                  }}
-                                />
-                              </Col>
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="หมายเลขบัตร"
-                                  value={editedPayment.cardId || payment.cardId}
-                                  type="number"
-                                  errorMessage=""
-                                  onChange={(e) => {
-                                    setEditedPayment({
-                                      ...editedPayment,
-                                      cardId: e.target.value,
-                                    });
-                                  }}
-                                />
-                              </Col>
-                            </Row>
+              <div className="setting-add-edit-group">
+                {editPaymentForm &&
+                  paymentMethods.map((payment) => (
+                    <div className="w-100" key={payment.id}>
+                      {editPaymentForm === payment.id ? (
+                        <div className="setting-add-address">
+                          <div className="setting-title-add">
+                            <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                            <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                              ลบ
+                            </button>
+                          </div>
+                          <div className="setting-add-address-form">
+                            <Form>
+                              <Row className="setting-add-address-form-row">
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="ประเภทของบัตร"
+                                    value={
+                                      editedPayment.cardName || payment.cardName
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) => {
+                                      setEditedPayment({
+                                        ...editedPayment,
+                                        cardName: e.target.value,
+                                      });
+                                    }}
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="หมายเลขบัตร"
+                                    value={
+                                      editedPayment.cardId || payment.cardId
+                                    }
+                                    type="number"
+                                    errorMessage=""
+                                    onChange={(e) => {
+                                      setEditedPayment({
+                                        ...editedPayment,
+                                        cardId: e.target.value,
+                                      });
+                                    }}
+                                  />
+                                </Col>
+                              </Row>
 
-                            <Row className="setting-add-address-form-row">
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="วันหมดอายุ (ดด/ปป)"
-                                  value={
-                                    editedPayment.cardExp || payment.cardExp
-                                  }
-                                  type="text"
-                                  errorMessage=""
-                                  onChange={(e) => {
-                                    setEditedPayment({
-                                      ...editedPayment,
-                                      cardExp: e.target.value,
-                                    });
-                                  }}
-                                />
-                              </Col>
-                              <Col>
-                                <Input
-                                  className=""
-                                  placeholder="CVV"
-                                  value={
-                                    editedPayment.cardCVV || payment.cardCVV
-                                  }
-                                  type="number"
-                                  errorMessage=""
-                                  onChange={(e) => {
-                                    setEditedPayment({
-                                      ...editedPayment,
-                                      cardCVV: e.target.value,
-                                    });
-                                  }}
-                                />
-                              </Col>
-                            </Row>
-                            <Input
-                              className=""
-                              placeholder="ชื่อเจ้าของบัตร"
-                              value={editedPayment.ownCard || payment.ownCard}
-                              type="text"
-                              errorMessage=""
-                              onChange={(e) => {
-                                setEditedPayment({
-                                  ...editedPayment,
-                                  ownCard: e.target.value,
-                                });
+                              <Row className="setting-add-address-form-row">
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="วันหมดอายุ (ดด/ปป)"
+                                    value={
+                                      editedPayment.cardExp || payment.cardExp
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) => {
+                                      setEditedPayment({
+                                        ...editedPayment,
+                                        cardExp: e.target.value,
+                                      });
+                                    }}
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="CVV"
+                                    value={
+                                      editedPayment.cardCVV || payment.cardCVV
+                                    }
+                                    type="number"
+                                    errorMessage=""
+                                    onChange={(e) => {
+                                      setEditedPayment({
+                                        ...editedPayment,
+                                        cardCVV: e.target.value,
+                                      });
+                                    }}
+                                  />
+                                </Col>
+                              </Row>
+                              <Input
+                                className=""
+                                placeholder="ชื่อเจ้าของบัตร"
+                                value={editedPayment.ownCard || payment.ownCard}
+                                type="text"
+                                errorMessage=""
+                                onChange={(e) => {
+                                  setEditedPayment({
+                                    ...editedPayment,
+                                    ownCard: e.target.value,
+                                  });
+                                }}
+                              />
+                            </Form>
+                          </div>
+                          <div className="setting-add-address-button">
+                            <button
+                              className="btn-small-secondary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => setEditPaymentForm(false)}
+                            >
+                              ยกเลิก
+                            </button>
+                            <button
+                              className="btn-small-primary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => {
+                                handleSavePayment(payment.id),
+                                  setEditPaymentForm(false);
                               }}
-                            />
-                          </Form>
+                            >
+                              บันทึก
+                            </button>
+                          </div>
                         </div>
-                        <div className="setting-add-address-button">
-                          <button
-                            className="btn-small-secondary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => setEditPaymentForm(false)}
-                          >
-                            ยกเลิก
-                          </button>
-                          <button
-                            className="btn-small-primary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => {
-                              handleSavePayment(payment.id),
-                                setEditPaymentForm(false);
-                            }}
-                          >
-                            บันทึก
-                          </button>
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
+                      ) : null}
+                    </div>
+                  ))}
+              </div>
               {addPayment && (
                 <div className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
@@ -926,7 +934,7 @@ function setting() {
                   <div className="setting-add-address-form">
                     <Form>
                       <Row className="setting-add-address-form-row">
-                      <Col>
+                        <Col>
                           <Input
                             className=""
                             placeholder="ประเภทของบัตร"
@@ -1074,88 +1082,91 @@ function setting() {
                   </div>
                 </div>
               </div>
-              {editBankForm &&
-                bankAccounts.map((bank) => (
-                  <div className="w-100" key={bank.id}>
-                    {editBankForm === bank.id ? (
-                      <div className="setting-add-address">
-                        <div className="setting-title-add">
-                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
-                            ลบ
-                          </button>
-                        </div>
-                        <div className="setting-add-address-form">
-                          <Form>
-                            <Row className="setting-add-address-form-row">
+              <div className="setting-add-edit-group">
+                {editBankForm &&
+                  bankAccounts.map((bank) => (
+                    <div className="w-100" key={bank.id}>
+                      {editBankForm === bank.id ? (
+                        <div className="setting-add-address">
+                          <div className="setting-title-add">
+                            <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                            <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                              ลบ
+                            </button>
+                          </div>
+                          <div className="setting-add-address-form">
+                            <Form>
+                              <Row className="setting-add-address-form-row">
+                                <Input
+                                  className=""
+                                  placeholder="ธนาคาร"
+                                  value={editedBank.bankName || bank.bankName}
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedBank({
+                                      ...editedBank,
+                                      bankName: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Row>
                               <Input
                                 className=""
-                                placeholder="ธนาคาร"
-                                value={editedBank.bankName || bank.bankName}
+                                placeholder="ชื่อ"
+                                value={editedBank.ownAccount || bank.ownAccount}
                                 type="text"
                                 errorMessage=""
                                 onChange={(e) => {
                                   setEditedBank({
                                     ...editedBank,
-                                    bankName: e.target.value,
+                                    ownAccount: e.target.value,
                                   });
                                 }}
                               />
-                            </Row>
-                            <Input
-                              className=""
-                              placeholder="ชื่อ"
-                              value={editedBank.ownAccount || bank.ownAccount}
-                              type="text"
-                              errorMessage=""
-                              onChange={(e) => {
-                                setEditedBank({
-                                  ...editedBank,
-                                  ownAccount: e.target.value,
-                                });
+                              <Row className="setting-add-address-form-row">
+                                <Input
+                                  className=""
+                                  placeholder="หมายเลขบัญชีธนาคาร"
+                                  value={
+                                    editedBank.accountNumber ||
+                                    bank.accountNumber
+                                  }
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedBank({
+                                      ...editedBank,
+                                      accountNumber: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Row>
+                            </Form>
+                          </div>
+                          <div className="setting-add-address-button">
+                            <button
+                              className="btn-small-secondary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => setEditBankForm(false)}
+                            >
+                              ยกเลิก
+                            </button>
+                            <button
+                              className="btn-small-primary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => {
+                                handleSaveBank(bank.id), setEditBankForm(false);
                               }}
-                            />
-                            <Row className="setting-add-address-form-row">
-                              <Input
-                                className=""
-                                placeholder="หมายเลขบัญชีธนาคาร"
-                                value={
-                                  editedBank.accountNumber || bank.accountNumber
-                                }
-                                type="number"
-                                errorMessage=""
-                                onChange={(e) => {
-                                  setEditedBank({
-                                    ...editedBank,
-                                    accountNumber: e.target.value,
-                                  });
-                                }}
-                              />
-                            </Row>
-                          </Form>
+                            >
+                              บันทึก
+                            </button>
+                          </div>
                         </div>
-                        <div className="setting-add-address-button">
-                          <button
-                            className="btn-small-secondary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => setEditBankForm(false)}
-                          >
-                            ยกเลิก
-                          </button>
-                          <button
-                            className="btn-small-primary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => {
-                              handleSaveBank(bank.id), setEditBankForm(false);
-                            }}
-                          >
-                            บันทึก
-                          </button>
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
+                      ) : null}
+                    </div>
+                  ))}
+              </div>
               {addBank && (
                 <div className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
@@ -1286,94 +1297,97 @@ function setting() {
                   </div>
                 </div>
               </div>
-              {editWithdrawForm &&
-                withdrawMoneys.map((withdraw) => (
-                  <div className="w-100" key={withdraw.id}>
-                    {editWithdrawForm === withdraw.id ? (
-                      <div className="setting-add-address">
-                        <div className="setting-title-add">
-                          <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-                          <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
-                            ลบ
-                          </button>
-                        </div>
-                        <div className="setting-add-address-form">
-                          <Form>
-                            <Row className="setting-add-address-form-row">
+              <div className="setting-add-edit-group">
+                {editWithdrawForm &&
+                  withdrawMoneys.map((withdraw) => (
+                    <div className="w-100" key={withdraw.id}>
+                      {editWithdrawForm === withdraw.id ? (
+                        <div className="setting-add-address">
+                          <div className="setting-title-add">
+                            <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
+                            <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                              ลบ
+                            </button>
+                          </div>
+                          <div className="setting-add-address-form">
+                            <Form>
+                              <Row className="setting-add-address-form-row">
+                                <Input
+                                  className=""
+                                  placeholder="ธนาคาร"
+                                  value={
+                                    editedWithdraw.bankName || withdraw.bankName
+                                  }
+                                  type="text"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedWithdraw({
+                                      ...editedWithdraw,
+                                      bankName: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Row>
                               <Input
                                 className=""
-                                placeholder="ธนาคาร"
+                                placeholder="ชื่อ"
                                 value={
-                                  editedWithdraw.bankName || withdraw.bankName
+                                  editedWithdraw.ownAccount ||
+                                  withdraw.ownAccount
                                 }
                                 type="text"
                                 errorMessage=""
                                 onChange={(e) => {
                                   setEditedWithdraw({
                                     ...editedWithdraw,
-                                    bankName: e.target.value,
+                                    ownAccount: e.target.value,
                                   });
                                 }}
                               />
-                            </Row>
-                            <Input
-                              className=""
-                              placeholder="ชื่อ"
-                              value={
-                                editedWithdraw.ownAccount || withdraw.ownAccount
-                              }
-                              type="text"
-                              errorMessage=""
-                              onChange={(e) => {
-                                setEditedWithdraw({
-                                  ...editedWithdraw,
-                                  ownAccount: e.target.value,
-                                });
+                              <Row className="setting-add-address-form-row">
+                                <Input
+                                  className=""
+                                  placeholder="หมายเลขบัญชีธนาคาร"
+                                  value={
+                                    editedWithdraw.accountNumber ||
+                                    withdraw.accountNumber
+                                  }
+                                  type="number"
+                                  errorMessage=""
+                                  onChange={(e) => {
+                                    setEditedWithdraw({
+                                      ...editedWithdraw,
+                                      accountNumber: e.target.value,
+                                    });
+                                  }}
+                                />
+                              </Row>
+                            </Form>
+                          </div>
+                          <div className="setting-add-address-button">
+                            <button
+                              className="btn-small-secondary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => setEditWithdrawForm(false)}
+                            >
+                              ยกเลิก
+                            </button>
+                            <button
+                              className="btn-small-primary kanit-paragraphMedium"
+                              type="submit"
+                              onClick={() => {
+                                handleSaveWithdrawMethod(withdraw.id),
+                                  setEditWithdrawForm(false);
                               }}
-                            />
-                            <Row className="setting-add-address-form-row">
-                              <Input
-                                className=""
-                                placeholder="หมายเลขบัญชีธนาคาร"
-                                value={
-                                  editedWithdraw.accountNumber ||
-                                  withdraw.accountNumber
-                                }
-                                type="number"
-                                errorMessage=""
-                                onChange={(e) => {
-                                  setEditedWithdraw({
-                                    ...editedWithdraw,
-                                    accountNumber: e.target.value,
-                                  });
-                                }}
-                              />
-                            </Row>
-                          </Form>
+                            >
+                              บันทึก
+                            </button>
+                          </div>
                         </div>
-                        <div className="setting-add-address-button">
-                          <button
-                            className="btn-small-secondary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => setEditWithdrawForm(false)}
-                          >
-                            ยกเลิก
-                          </button>
-                          <button
-                            className="btn-small-primary kanit-paragraphMedium"
-                            type="submit"
-                            onClick={() => {
-                              handleSaveWithdrawMethod(withdraw.id),
-                                setEditWithdrawForm(false);
-                            }}
-                          >
-                            บันทึก
-                          </button>
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                ))}
+                      ) : null}
+                    </div>
+                  ))}
+              </div>
               {addWithdrawMethod && (
                 <div className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
