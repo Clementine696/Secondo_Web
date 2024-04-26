@@ -9,34 +9,9 @@ import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
 import "./index.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function SellProduct() {
-
-  const category = useSelector((state) => state.category);
-  // console.log(category)
-  const dispatch = useDispatch();
-
-  const renderCategories = (categories) => {
-    let myCategories = [];
-    for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            // img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
-      }
-    }
-
-    return myCategories;
-  };
-
-  // const categoryItem = renderCategories(category.categories)
-
-
   const [selectedImages, setSelectedImages] = useState([]);
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
@@ -56,15 +31,15 @@ function SellProduct() {
     { label: "ความงามและของใช้ส่วนตัว", value: 3 },
   ];
   function HandleSelect(event) {
-    setValue(event.target.value)
+    setValue(event.target.value);
   }
-  
-  // const navigate = useNavigate();
 
-  // const nevigateToSellstate = () => {
-  //   navigate("/sellstate");
-  // };
-  
+  const navigate = useNavigate();
+
+  const nevigateToSellstate = () => {
+    navigate("/sellstate");
+  };
+
   return (
     <Layout>
       <div className="background-sell-product-page">
