@@ -44,7 +44,7 @@ function ItemCard(props) {
           <div className="card-item-name">
             <Link
               style={{ textDecoration: "none" }}
-              to="/product"
+              to={`/${props.slug}/${props._id}/p`}
               className="card-item-name"
             >
               {props.title}
