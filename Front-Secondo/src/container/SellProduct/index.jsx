@@ -7,9 +7,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../actions";
 
+import Cancel from "../../icon/cancel.png";
+import RedCancel from "../../icon/close.png";
+
 import "./index.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function SellProduct() {
+
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -89,8 +94,14 @@ function SellProduct() {
   const optionsCategory = renderCategories(category.categories);
 
   function HandleSelect(event) {
-    setValue(event.target.value)
+    setValue(event.target.value);
   }
+
+  const navigate = useNavigate();
+
+  const nevigateToSellstate = () => {
+    navigate("/sellstate");
+  };
 
   return (
     
@@ -99,9 +110,14 @@ function SellProduct() {
         <div className="product-page-path-way">
           <div className="product-page-group-path-way">
             <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
+              <Link
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
+                style={{ textDecoration: "none" }}
+                to={"/profile"}
+                // onClick={"/profile"}
+              >
                 บัญชี
-              </div>
+              </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -121,9 +137,13 @@ function SellProduct() {
               </div>
             </div>
             <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
+              <Link
+                className="product-page-group-path-way-before-path-text kanit-paragraphBig"
+                style={{ textDecoration: "none" }}
+                to={"/sellstate"}
+              >
                 การขายของฉัน
-              </div>
+              </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -142,22 +162,21 @@ function SellProduct() {
                 </svg>
               </div>
             </div>
-            <div className="product-page-group-path-way-last-path kanit-paragraphtextMedium">
+            <Link
+              className="product-page-group-path-way-before-path-text kanit-paragraphBig"
+              style={{ textDecoration: "none" }}
+            >
               เพิ่มสินค้าขาย
-            </div>
+            </Link>
           </div>
         </div>
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-            {/* <input type="file" multiple accept="image/*" onChange={onImageChange}/>
-            {imageURLs.map((imageSrc) => (
-              < img width="268" height="200" src={imageSrc} />
-            ))}; */}
-
             <label className="sell-product-content-upload-image-label kanit-Display-Large">
               Click to add images
-              <input className="sell-product-content-upload-image-input"
+              <input
+                className="sell-product-content-upload-image-input"
                 type="file"
                 name="images"
                 onChange={onSelectFile}
@@ -165,27 +184,7 @@ function SellProduct() {
                 accept="image/*"
               />
             </label>
-            {/* <br/>
-            {selectedImages.lenght > 0 &&
-              (selectedImages.length > 10 ? (
-                <p>
-                  You can't upload more than 10 images!
-                  <span>
-                    please delete <b> {selectedImages.length - 10} </b> of them{" "}
-                  </span>
-                </p>
-              ) : (
-                <button
-                  onClick={() => {
-                    console.log("UPLOAD IMAGESS");
-                  }}
-                >
-                  UPLOAD {selectedImages.length}
-                  {selectedImages.lenght === 1 ? "" : "S"}
-                </button>
-              ))
-            } */}
-            
+
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
                 selectedImages.map((image, index) => {
@@ -203,8 +202,7 @@ function SellProduct() {
                       {/* <p>{index + 1}</p> */}
                     </div>
                   );
-                })
-              }
+                })}
             </div>
           </div>
 
@@ -267,17 +265,20 @@ function SellProduct() {
                     className="btn-small-secondary kanit-paragraphMedium"
                     type="submit"
                   >
-                    ยกเลิก
-                  </button>
-                  <button
+                    รูปภาพเกินกำหนด
+                  </Link>
+                ) : (
+                  <Link
                     className="btn-small-primary kanit-paragraphMedium"
+
                     type="submit"
                     onClick={addProductForm}
+
                   >
                     ลงขาย
-                  </button>
-                </div>
-              </Form>
+                  </Link>
+                )}
+              </div>
             {/* </Col> */}
           </div>
         </div>

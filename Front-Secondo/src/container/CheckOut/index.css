@@ -122,8 +122,20 @@
   align-items: flex-start;
 }
 
-.checkout-page-content-method-address-group-edit-text {
+.checkout-page-content-method-address-group-add {
   color: var(--Error-Text, #b3261e);
+
+  /* ParagraphSmall */
+  font-family: Kanit;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  letter-spacing: 0.1px;
+}
+
+.checkout-page-content-method-address-group-edit-text {
+  color: var(--Tertiary-Fixed-Variant, #665C29);
 
   /* ParagraphSmall */
   font-family: Kanit;

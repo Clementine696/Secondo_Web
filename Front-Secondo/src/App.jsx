@@ -32,6 +32,26 @@ import SellProduct from "./container/SellProduct";
 
 import CheckOut from "./container/CheckOut";
 
+import ShippingStatus from "./container/ShippingStatus";
+//Buy
+import ShippingStatusBuy from "./container/ShippingStatus/Buy/Buyinfo";
+import ShippingStatusConfirm from "./container/ShippingStatus/Buy/ConfirmRecieve";
+import ShippingSellerRevirw from "./container/ShippingStatus/Buy/SellerReview";
+//Sell
+import ShippingSellSucess from "./container/ShippingStatus/Sell/SuccessProcess";
+import ShippingStatusSell from "./container/ShippingStatus/Sell/Sellinfo";
+//Donate & Recieve
+import ShippingStatusDonate from "./container/ShippingStatus/Donate-Recieve/DonateInfo";
+import ShippingDonateSucess from "./container/ShippingStatus/Donate-Recieve/DonnateSuccess";
+import ShippingStatusRecieve from "./container/ShippingStatus/Donate-Recieve/RecieveInfo";
+import ShippingStatusRConfirm from "./container/ShippingStatus/Donate-Recieve/ConfirmRecieve";
+import ShippingRecieveSucess from "./container/ShippingStatus/Donate-Recieve/RecieveSuccess";
+
+import Offer from "./container/Offer";
+import OfferDonate from "./container/Offer/Donate";
+import OfferRecieve from "./container/Offer/Recieve";
+import OfferSell from "./container/Offer/Sell";
+
 import Test from "./container/Test";
 
 import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
@@ -91,14 +111,37 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
           <Route path="setting" element={<Setting />} />
 
+
           <Route path="account/sell/additem" element={<SellProduct />} />
           {/* <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} /> */}
 
           <Route path="account/checkout" element={<CheckOut />} />
 
-          <Route path="test" element={<Test />} />
-          
+          <Route path="account/shippingstatus" element={<ShippingStatus />} />
+          {/* Buy */}
+          <Route path="account/shippingstatus/buyinfo" element={<ShippingStatusBuy />} />
+          <Route path="account/shippingstatus/confirmrecieve" element={<ShippingStatusConfirm />} />
+          <Route path="account/shippingstatus/sellerreview" element={<ShippingSellerRevirw />} />
+          {/* Sell */}
+          <Route path="account/shippingstatus/sellinfo" element={<ShippingStatusSell />} />
+          <Route path="account/shippingstatus/successprocess" element={<ShippingSellSucess />} />
+          {/* Donate & Recieve */}
+          <Route path="account/shippingstatus/donateinfo" element={<ShippingStatusDonate />} />
+          <Route path="account/shippingstatus/donatesuccess" element={<ShippingDonateSucess />} />
+          <Route path="account/shippingstatus/recieveinfo" element={<ShippingStatusRecieve />} />
+          <Route path="account/shippingstatus/confirmrecievedonate" element={<ShippingStatusRConfirm />} />
+          <Route path="account/shippingstatus/recievesuccess" element={<ShippingRecieveSucess />} />
 
+          <Route path="offer" element={<Offer />} />
+          <Route path="offer/donate" element={<OfferDonate />} />
+          <Route path="offer/recieve" element={<OfferRecieve />} />
+          <Route path="offer/sell" element={<OfferSell />} />
+
+          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
+          <Route path="sellstate/additem" element={<SellProduct />} />
+          <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+
+          <Route path="test" element={<Test />} />
         </Routes>
       </BrowserRouter>
     </div>
