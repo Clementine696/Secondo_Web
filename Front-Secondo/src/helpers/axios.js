@@ -19,6 +19,7 @@ axiosIntance.interceptors.request.use((request) => {
       request.headers.Authorization = `Bearer ${auth.token}`;
     }
     return request;
+
   });
 
 // Add a response interceptor
@@ -37,12 +38,7 @@ axiosIntance.interceptors.response.use((response) => {
     }
 
     // Do something with response error
-    // console.log("Fail Here")
-    // console.log(error.response.data.error);
-    // console.log(error.response.status);
-    
     return Promise.reject(error);
-    // return error;
   });
 
 export default axiosIntance;

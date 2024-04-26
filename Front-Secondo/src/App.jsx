@@ -51,7 +51,7 @@ export default function App() {
       dispatch(isUserLoggedIn());
     }
     dispatch(getInitialData());
-  }, [auth.authenticate]);
+  }, []);
 
   return (
     <div>
@@ -75,7 +75,6 @@ export default function App() {
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
           <Route path="product" element={<Product />} />
-          <Route path="/:productSlug/:productId/p" element={<Product />} />
           <Route path="product/offersale" element={<Offersale />} />
           <Route path="product/offerbuy" element={<Offerbuy />} />
           <Route path="product/donate" element={<Donate />} />
@@ -91,9 +90,9 @@ export default function App() {
           <Route path="fav" element={<Fav />} />
           <Route path="setting" element={<Setting />} />
 
+
           <Route path="account/sell/additem" element={<SellProduct />} />
           {/* <Route path="account/sell/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} /> */}
-
           <Route path="account/checkout" element={<CheckOut />} />
 
           <Route path="test" element={<Test />} />

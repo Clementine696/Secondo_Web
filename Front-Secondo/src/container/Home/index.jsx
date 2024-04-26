@@ -36,36 +36,36 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
-// const itemInterest = [
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 1",
-//     province: "กรุงเทพ",
-//     price: "1000",
-//     credit: 0.1,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 2",
-//     province: "กรุงเทพ",
-//     price: "2000",
-//     credit: 0.2,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 3",
-//     province: "กรุงเทพ",
-//     price: "3000",
-//     credit: 0.3,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 4",
-//     province: "กรุงเทพ",
-//     price: "4000",
-//     credit: 0.4,
-//   },
-// ];
+const itemInterest = [
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
 
 const itemDonate = [
   {
@@ -135,7 +135,6 @@ function Home() {
   // console.log(category)
   // const dispatch = useDispatch();
 
-
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
@@ -174,29 +173,6 @@ function Home() {
 
   // const scrollToRef = useRef(null);
 
-  const product = useSelector((state) => state.product);
-
-  const renderProducts = (products) => {
-    let myProducts = [];
-    for (let product of products) {
-        myProducts.push(
-          {
-            _id: product._id,
-            slug: product.slug, 
-            img: product.productPictures,
-            title: product.name,
-            province: "กรุงเทพ",
-            price: product.price,
-            credit: 0.1
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
-    }
-    return myProducts;
-  };
-
-  const itemInterest = renderProducts(product.products);
-  console.log(itemInterest)
   return (
     <Layout>
       <div className="background-home">
@@ -276,8 +252,6 @@ function Home() {
                 <ItemCard
                   key={index}
                   img={item.img}
-                  _id={item._id}
-                  slug={item.slug}
                   title={item.title}
                   province={item.province}
                   price={item.price}

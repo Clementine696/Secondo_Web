@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
 
-import { isUserLoggedIn, login } from '../../actions';
+import { login } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
@@ -23,29 +23,12 @@ function Signin() {
     e.preventDefault();
 
     const user = {email, password}
-    dispatch(login(user))
-    // console.log(auth.error)
-    // dispatch(login(user)).then((res) => {
-    //   console.log(res)
-    // })
-    // console.log("test")
-    // console.log(res[Promise])
+    dispatch(login(user));
     // login(user);
     
     // console.log(email);
     // console.log(password);
   };
-
-  useEffect(() => {
-    if(!auth.authenticate){
-      dispatch(isUserLoggedIn());
-    }
-  }, [auth.authenticate])
-
-  // if(){
-  //     console.log(auth)
-  // }
-  // console.log(auth)
 
   if(auth.authenticate){
     return <Navigate to="/" />
