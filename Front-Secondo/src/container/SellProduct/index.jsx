@@ -4,8 +4,6 @@ import Input from "../../components/UI/Input";
 import Layout from "../../components/Layout";
 
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../actions";
 
 import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
@@ -14,85 +12,24 @@ import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function SellProduct() {
-
-
-  const category = useSelector((state) => state.category);
-  // console.log(category)
-  const dispatch = useDispatch();
-
-  const renderCategories = (categories) => {
-    let myCategories = [];
-    for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            // img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
-      }
-    }
-
-    return myCategories;
-  };
-
-  // const categoryItem = renderCategories(category.categories)
-
   const [selectedImages, setSelectedImages] = useState([]);
-  
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return file
+      return file;
     });
-    // setProductPictures([...productPictures, e.target.files[0]]);
+
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productDetail, setProductDetail] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [shippingCost, setShippingCost] = useState("");
-
-  // connect api to save data
-  const addProductForm = () => {
-    console.log(productName);
-    console.log(productPrice);
-    console.log(productDetail);
-    console.log(shippingCost);
-    console.log(categoryId);
-    // console.log(selectedImages);
-
-    for (let pic of selectedImages) {
-      console.log("Test")
-      console.log(pic.name)
-    }
-    const form = new FormData();
-    form.append("name", productName);
-    form.append("price", productPrice);
-    form.append("specifications", "Spec");
-    form.append("description", productDetail);
-    form.append("shippingCost", shippingCost);
-    form.append("category", categoryId);
-    for (let pic of selectedImages) {
-      form.append("productPicture", pic);
-    }
-    dispatch(addProduct(form));
-  };
-
-  const [value, setValue] = useState('')
-  // const optionsCategory = [
-  //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
-  //   {label: "รองเท้า", value: 2},
-  //   {label: "ความงามและของใช้ส่วนตัว", value: 3},
-  // ];
-  const optionsCategory = renderCategories(category.categories);
-
+  const [value, setValue] = useState("");
+  const optionsCategory = [
+    { label: "เสื้อผ้าและแฟชั่น", value: 1 },
+    { label: "รองเท้า", value: 2 },
+    { label: "ความงามและของใช้ส่วนตัว", value: 3 },
+  ];
   function HandleSelect(event) {
     setValue(event.target.value);
   }
@@ -104,7 +41,6 @@ function SellProduct() {
   };
 
   return (
-    
     <Layout>
       <div className="background-sell-product-page">
         <div className="product-page-path-way">
@@ -189,17 +125,34 @@ function SellProduct() {
               {selectedImages &&
                 selectedImages.map((image, index) => {
                   return (
-                    <div className="sell-product-content-upload-image-preview-frame" key="image">
-                      <img className="sell-product-content-upload-image-preview-frame-image" src={URL.createObjectURL(image)} alt="upload" />
-                      {/* <br/> */}
-                      <button className="sell-product-content-upload-image-preview-frame-button"
-                        onClick={() =>
-                          setSelectedImages(selectedImages.filter((e) => e !== image))
-                        }
-                      >
-                        Remove image
-                      </button>
-                      {/* <p>{index + 1}</p> */}
+                    <div
+                      className="sell-product-content-upload-image-preview-frame"
+                      key="image"
+                    >
+                      <div className="frame-out-icon-cancel">
+                        <button
+                          className="btn-cancel-sell-product"
+                          onClick={() =>
+                            setSelectedImages(
+                              selectedImages.filter((e) => e !== image)
+                            )
+                          }
+                        >
+                          <img
+                            src={Cancel}
+                            className="btn-cancel-icon-sell-product"
+                          />
+                          <img
+                            src={RedCancel}
+                            className="btn-cancel-icon-sell-product-hover"
+                          />
+                        </button>
+                      </div>
+                      <img
+                        className="sell-product-content-upload-image-preview-frame-image"
+                        src={URL.createObjectURL(image)}
+                        alt="upload"
+                      />
                     </div>
                   );
                 })}
@@ -207,73 +160,81 @@ function SellProduct() {
           </div>
 
           <div className="sell-product-content-info-item">
-            {/* <Col className="sell-product-content-info-item-group"> */}
-              <Form className="sell-product-content-info-item-input">
-                <Input
-                  Label="ชื่อสินค้า"
-                  placeholder="ระบุชื่อของสินค้า"
-                  value={productName}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductName(e.target.value);
-                  }}
-                />
+            <Form className="sell-product-content-info-item-input">
+              <Input
+                Label="ชื่อสินค้า"
+                placeholder="ระบุชื่อของสินค้า"
+                value=""
+                type="text"
+                errorMessage=""
+                onChange={() => {}}
+              />
 
-                <div className="sell-product-content-info-item-input-options">
-                  <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
-                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" 
-                  // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)} >
-                    {optionsCategory.map(optionsCategory => (
-                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <Input
-                  Label="ราคาสินค้า"
-                  placeholder="ระบุราคาของสินค้า"
-                  value={productPrice}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductPrice(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="รายละเอียดสินค้า"
-                  placeholder="ระบุรายละเอียดของสินค้า"
-                  value={productDetail}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductDetail(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="ค่าจัดส่ง"
-                  placeholder="ระบุค่าจัดส่ง"
-                  value={shippingCost}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setShippingCost(e.target.value);
-                  }}
-                />
-                <div className="sell-product-content-info-item-input-button-group">
-                  <button
-                    className="btn-small-secondary kanit-paragraphMedium"
-                    type="submit"
+              <div className="sell-product-content-info-item-input-options">
+                <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">
+                  เลือกหมวดหมู่
+                </p>
+                <select
+                  className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
+                  onChange={HandleSelect}
+                >
+                  {optionsCategory.map((optionsCategory) => (
+                    <option value={optionsCategory.value}>
+                      {optionsCategory.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <Input
+                Label="ราคาสินค้า"
+                placeholder="ระบุราคาของสินค้า"
+                value=""
+                type="text"
+                errorMessage=""
+                onChange={() => {}}
+              />
+              <Input
+                Label="รายละเอียดสินค้า"
+                placeholder="ระบุรายละเอียดของสินค้า"
+                value=""
+                type="text"
+                errorMessage=""
+                onChange={() => {}}
+              />
+              <Input
+                Label="ค่าจัดส่ง"
+                placeholder="ระบุค่าจัดส่ง"
+                value=""
+                type="text"
+                errorMessage=""
+                onChange={() => {}}
+              />
+              
+            </Form>
+            <div className="sell-product-content-info-item-input-button-group">
+                <Link
+                  className="btn-small-secondary kanit-paragraphMedium"
+                  style={{ textDecoration: "none" }}
+                  to="/"
+                >
+                  ยกเลิก
+                </Link>
+                {selectedImages.length > 10 ? (
+                  <Link
+                    className="btn-small-primary-disabled kanit-paragraphMedium"
+                    disabled={true}
+                    style={{ textDecoration: "none" }}
                   >
                     รูปภาพเกินกำหนด
                   </Link>
                 ) : (
                   <Link
                     className="btn-small-primary kanit-paragraphMedium"
-
-                    type="submit"
-                    onClick={addProductForm}
-
+                    // onClick={() => {
+                    //   console.log(selectedImages), "ddd";
+                    // }}
+                    style={{ textDecoration: "none" }}
+                    to=""
                   >
                     ลงขาย
                   </Link>
@@ -283,14 +244,6 @@ function SellProduct() {
           </div>
         </div>
       </div>
-
-      {/* <button
-          className="btn-small-primary kanit-paragraphMedium"
-          type="submit"
-          onClick={addProductForm}
-        >
-          ลงขาย
-        </button> */}
     </Layout>
   );
 }
