@@ -14,10 +14,7 @@ import searchy from "../../../icon/search-y.png";
 import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
-import shipping from "../../../icon/shipping.png";
 import receive from "../../../icon/receive.png";
-
-import plant from "../../../../public/images/pant.jpg";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -30,81 +27,7 @@ const filterItems = [
   { label: "สำเร็จ", value: "7" },
 ];
 
-const items = [
-  {
-    date: "20/07/2021",
-    img: plant,
-    desc: {
-      name: "กระเป๋ากางเกง",
-      detail: "กระเป๋ากางเกงที่เก็บเอาไว้จนเก่า",
-    },
-    status: {
-      name: "ขอรับบริจาค",
-      time: "",
-    },
-    point: 100,
-    price: 500,
-    icons: [],
-    Link: "",
-  },
-  {
-    date: "21/07/2021",
-    img: plant,
-    desc: {
-      name: "Title 2",
-      detail: "Desc 2",
-    },
-    status: {
-      name: "มีการเสนอบริจาค",
-      time: "",
-    },
-    point: 100,
-    price: 500,
-    icons: [],
-    Link: "",
-  },
-  {
-    date: "22/07/2021",
-    img: plant,
-    desc: {
-      name: "Title 3",
-      detail: "Desc 3",
-    },
-    status: {
-      name: "ที่ต้องจัดส่ง",
-      time: "",
-    },
-    point: 100,
-    price: 500,
-    icons: [],
-    Link: "",
-  },
-];
-
-//ผากใส่ Link หน้า Edit
-items.forEach((item) => {
-  switch (item.status.name) {
-    case "ประกาศบริจาค":
-      item.icons = [edit, chevronRight];
-      item.Link = ["/", "/account/shippingstatus/recieveinfo"];
-      break;
-    case "ที่ต้องจัดส่ง":
-      item.icons = [shipping, chevronRight];
-      item.Link = [
-        "/account/shippingstatus/sellinfo",
-        "/account/shippingstatus/recieveinfo",
-      ];
-      break;
-    case "มีการเสนอบริจาค":
-      item.icons = [receive, chevronRight];
-      item.Link = ["/offer/recieve", "/account/shippingstatus/recieveinfo"];
-      break;
-    default:
-      item.icons = chevronRight;
-      item.Link = ["/account/shippingstatus/recieveinfo"];
-      break;
-  }
-});
+// fillter ใน backend
 
 function receiveStatus() {
   const [font, setFont] = useState(window.innerWidth < 1200);
@@ -127,7 +50,7 @@ function receiveStatus() {
 
   const [filter, setFilter] = useState(filterItems[0]);
 
-  // console.log("Current Filter:", filter);
+  console.log("Current Filter:", filter);
 
   return (
     <Layout>
@@ -164,67 +87,52 @@ function receiveStatus() {
               <p className="header-item date-col">วันที่ซื้อ</p>
               <p className="header-item desc-col">รายละเอียดสินค้า</p>
               <p className="header-item status-col">สถานะ</p>
-              {/* <p className="header-item point-col">CO₂ Credit</p>
-              <p className="header-item price-col">ราคา (บาท)</p> */}
+              <p className="header-item point-col">CO₂ Credit</p>
+              <p className="header-item price-col">ราคา (บาท)</p>
               <p className="header-item func-col"></p>
             </div>
 
-            {items.map((item, index) => (
-              <div className={`data-table ${resizeFontClass}`}>
-                <p className="data-item date-col">{item.date}</p>
+            <div className={`data-table ${resizeFontClass}`}>
+              <p className="data-item date-col">20/07/2021</p>
 
-                <div className="data-item desc-col">
-                  <img src={item.img} className="pic-product-table"></img>
-                  <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.desc.name}</p>
-                    <p className="kanit-paragraphSmall">{item.desc.detail}</p>
-                  </div>
-                </div>
-
-                <div className="data-item status-col">
-                  <div className="product-status-time">
-                    <p className="kanit-paragraphMedium">{item.status.name}</p>
-                    <p className="status-time kanit-paragraphSmall">
-                      {item.status.time}
-                    </p>
-                  </div>
-                </div>
-
-                {/* <p className="data-item point-col">{item.point}</p>
-
-                <p className="data-item price-col">{item.price}</p> */}
-
-                <div className="data-item func-col">
-                  {Array.isArray(item.icons) &&
-                    item.icons.map((icon, iconIndex) => (
-                      <Link
-                        key={iconIndex}
-                        className="touch-point"
-                        to={item.Link[iconIndex]}
-                      >
-                        <img
-                          className="func-icon"
-                          src={icon}
-                          alt={`icon-${iconIndex}`}
-                        />
-                      </Link>
-                    ))}
-                  {!Array.isArray(item.icons) && (
-                    <Link
-                      key="chevronRight"
-                      className="touch-point"
-                      to="/account/shippingstatus/sellinfo"
-                    >
-                      <img
-                        className="func-icon"
-                        src={chevronRight}
-                        alt={`icon`}
-                      />
-                    </Link>
-                  )}
+              <div className="data-item desc-col">
+                <img
+                  src="../../../../public/images/pant.jpg"
+                  className="pic-product-table"
+                ></img>
+                <div className="product-name-desc-status">
+                  <p className="kanit-paragraphMedium">กระเป๋ากางเกง</p>
+                  <p className="kanit-paragraphSmall">
+                    กระเป๋ากางเกงที่เก็บเอาไว้จนเก่า
+                  </p>
                 </div>
               </div>
-            ))}
+
+              <div className="data-item status-col">
+                <div className="product-status-time">
+                  <p className="kanit-paragraphMedium">รอตรวจสอบ</p>
+                  <p className="status-time kanit-paragraphSmall">
+                    ระยะเวลาที่เหลือ 02:10:02
+                  </p>
+                </div>
+              </div>
+
+              <p className="data-item point-col">100</p>
+
+              <p className="data-item price-col">500</p>
+
+              <div className="data-item func-col">
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={receive}></img>
+                </Link>
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={edit}></img>
+                </Link>
+                <Link className="touch-point" to="#">
+                  <img className="func-icon" src={chevronRight}></img>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

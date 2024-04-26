@@ -10,28 +10,19 @@
   border: 1px solid var(--Outline-color);
   background: var(--White-text);
   width: 125px;
-  height: fit-content;
+  height: 134px;
   cursor: pointer;
 }
-
 .img-category {
   /* aspect-ratio: 1; */
   object-fit: cover;
   object-position: center;
   width: 70px;
-  height: 70px;
   align-self: center;
 }
-
-.text-category-frame{
-  display: flex;
-  height: 36px;
-  align-items: center;
-}
-
 .text-category {
   text-align: center;
-  color: var(--Text-Default, #00243D);
+  color: #000;
   letter-spacing: 0.1px;
   margin-top: 4px;
   font: 400 14px/143% Kanit, -apple-system, Roboto, Helvetica, sans-serif;
