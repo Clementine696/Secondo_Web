@@ -10,6 +10,7 @@
 .offer-content {
     display: flex;
     flex-direction: row;
+    align-self: stretch;
     gap: 32px;
 }
 

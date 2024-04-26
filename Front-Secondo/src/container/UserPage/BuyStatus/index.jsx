@@ -46,7 +46,7 @@ const items = [
     },
     point: 100,
     price: 500,
-    icons: [discount, chevronRight],
+    icons: [],
     Link: [],
   },
   {
@@ -57,12 +57,12 @@ const items = [
       detail: "Desc 2",
     },
     status: {
-      name: "รอตรวจสอบ",
-      time: "ระยะเวลาที่เหลือ 02:10:02",
+      name: "รับซื้อ",
+      time: "",
     },
     point: 100,
     price: 500,
-    icons: [edit, chevronRight],
+    icons: [],
     Link: [],
   },
   {
@@ -73,23 +73,31 @@ const items = [
       detail: "Desc 3",
     },
     status: {
-      name: "รอตรวจสอบ",
+      name: "มีการเสนอขาย",
       time: "ระยะเวลาที่เหลือ 02:10:02",
     },
     point: 100,
     price: 500,
-    icons: chevronRight,
+    icons: [],
     Link: [],
   },
 ];
 
+//ผากใส่ Link หน้า Edit
 items.forEach((item) => {
   switch (item.status.name) {
-    case "":
+    case "รับซื้อ":
       item.icons = [discount, chevronRight];
-      item.Link = ["/", "/"];
+      item.Link = ["/offer/sell", "/account/shippingstatus/buyinfo"];
       break;
-    
+    case "มีการเสนอขาย":
+      item.icons = [edit, chevronRight];
+      item.Link = ["/", "/account/shippingstatus/buyinfo"];
+      break;
+    default:
+      item.icons = chevronRight;
+      item.Link = ["/account/shippingstatus/buyinfo"];
+      break;
   }
 });
 // fillter ใน backend
@@ -199,10 +207,14 @@ function BuyState() {
                       </Link>
                     ))}
                   {!Array.isArray(item.icons) && (
-                    <Link className="touch-point" to="#">
+                    <Link
+                      key="chevronRight"
+                      className="touch-point"
+                      to="/account/shippingstatus/buyinfo"
+                    >
                       <img
                         className="func-icon"
-                        src={item.icons}
+                        src={chevronRight}
                         alt={`icon`}
                       />
                     </Link>

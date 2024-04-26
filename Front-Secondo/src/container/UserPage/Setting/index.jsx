@@ -412,7 +412,7 @@ function setting() {
         <Sidebar />
         <div className="user-content">
           <div className="buy-page-title kanit-Display-Large">
-            การขอรับบริจาคของฉัน
+            การตั้งค่า
           </div>
 
           <Tabs
