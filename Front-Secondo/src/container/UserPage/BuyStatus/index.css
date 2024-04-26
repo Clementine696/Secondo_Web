@@ -141,16 +141,20 @@ div.func-col, p.func-col {
     min-width: 30%;
   }
   p.date-col {
-    min-width: 10%;
+    min-width: 142px;
   }
   div.status-col, p.status-col {
-    min-width: 20%;
+    min-width: 286px;
   }
   p.point-col {
+    display: flex;
     min-width: 5%;
+    align-self: stretch;
   }
   p.price-col {
+    display: flex;
     min-width: 5%;
+    align-self: stretch;
   }
   div.func-col, p.func-col {
     min-width: 20%;

@@ -14,7 +14,6 @@ import searchy from "../../../icon/search-y.png";
 import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
-// import discount from "../../../icon/discount.png";
 import shipping from "../../../icon/shipping.png";
 
 import plant from "../../../../public/images/pant.jpg";

@@ -16,7 +16,7 @@ import searchy from "../../../icon/search-y.png";
 import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
-import discount from "../../../icon/discount.png";
+import useralert from "../../../icon/user-alert.png";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -41,8 +41,8 @@ const items = [
       detail: "กระเป๋ากางเกงที่เก็บเอาไว้จนเก่า",
     },
     status: {
-      name: "รอตรวจสอบ",
-      time: "ระยะเวลาที่เหลือ 02:10:02",
+      name: "รอยืนยันสินค้า",
+      time: "",
     },
     point: 100,
     price: 500,
@@ -86,13 +86,13 @@ const items = [
 //ผากใส่ Link หน้า Edit
 items.forEach((item) => {
   switch (item.status.name) {
-    case "รับซื้อ":
-      item.icons = [discount, chevronRight];
+    case "มีการเสนอขาย":
+      item.icons = [useralert, chevronRight];
       item.Link = ["/offer/sell", "/account/shippingstatus/buyinfo"];
       break;
-    case "มีการเสนอขาย":
-      item.icons = [edit, chevronRight];
-      item.Link = ["/", "/account/shippingstatus/buyinfo"];
+    case "รอยืนยันสินค้า":
+      item.icons =  [chevronRight];
+      item.Link = [ "/account/shippingstatus/confirmrecieve"];
       break;
     default:
       item.icons = chevronRight;

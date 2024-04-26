@@ -16,6 +16,7 @@ import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
 import shipping from "../../../icon/shipping.png";
 import receive from "../../../icon/receive.png";
+import useralert from "../../../icon/user-alert.png";
 
 import plant from "../../../../public/images/pant.jpg";
 
@@ -79,12 +80,28 @@ const items = [
     icons: [],
     Link: "",
   },
+  {
+    date: "23/07/2021",
+    img: plant,
+    desc: {
+      name: "Title 4",
+      detail: "Desc 4",
+    },
+    status: {
+      name: "สำเร็จ",
+      time: "",
+    },
+    point: 100,
+    price: 500,
+    icons: [],
+    Link: "",
+  },
 ];
 
 //ผากใส่ Link หน้า Edit
 items.forEach((item) => {
   switch (item.status.name) {
-    case "ประกาศบริจาค":
+    case "ขอรับบริจาค":
       item.icons = [edit, chevronRight];
       item.Link = ["/", "/account/shippingstatus/recieveinfo"];
       break;
@@ -96,8 +113,12 @@ items.forEach((item) => {
       ];
       break;
     case "มีการเสนอบริจาค":
-      item.icons = [receive, chevronRight];
+      item.icons = [useralert, chevronRight];
       item.Link = ["/offer/recieve", "/account/shippingstatus/recieveinfo"];
+      break;
+    case "สำเร็จ":
+      item.icons = [chevronRight];
+      item.Link = ["/account/shippingstatus/RecieveSuccess"];
       break;
     default:
       item.icons = chevronRight;
@@ -164,8 +185,8 @@ function receiveStatus() {
               <p className="header-item date-col">วันที่ซื้อ</p>
               <p className="header-item desc-col">รายละเอียดสินค้า</p>
               <p className="header-item status-col">สถานะ</p>
-              {/* <p className="header-item point-col">CO₂ Credit</p>
-              <p className="header-item price-col">ราคา (บาท)</p> */}
+              <p className="header-item point-col"></p>
+              <p className="header-item price-col"></p>
               <p className="header-item func-col"></p>
             </div>
 
@@ -190,9 +211,9 @@ function receiveStatus() {
                   </div>
                 </div>
 
-                {/* <p className="data-item point-col">{item.point}</p>
+                <p className="data-item point-col"></p>
 
-                <p className="data-item price-col">{item.price}</p> */}
+                <p className="data-item price-col"></p>
 
                 <div className="data-item func-col">
                   {Array.isArray(item.icons) &&
