@@ -68,10 +68,10 @@ function Signup() {
 
   return (
     <Container className="main-content">
-      <Row className="Row-content">
-        <Col className="Col-left">
-          <div className="Content-left">
-            <div
+      <Row className="row-content">
+        <Col className="col-left">
+          <div className="content-left">
+          <div
               style={{
                 width: "100px",
                 height: "100px",
@@ -91,9 +91,9 @@ function Signup() {
             </div>
           </div>
         </Col>
-        <Col className="Col-right">
+        <Col className="col-right">
           <Row className="m-0">
-            <div className="Title-sign">
+            <div className="title-sign">
               <div className="kanit-Display-Large space-padding-bot font-color">
                 Secondo
               </div>
@@ -104,7 +104,7 @@ function Signup() {
 
             <Col className="p-0">
               <Form>
-                <Row>
+                <Row className="row-signup">
                   <Col>
                     <Input
                       Label="ชื่อ"
