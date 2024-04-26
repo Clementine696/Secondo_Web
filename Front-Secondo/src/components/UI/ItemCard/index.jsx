@@ -5,6 +5,7 @@ import "./index.css";
 
 import favBold from "../../../icon/like-bold.png";
 import fav from "../../../icon/like.png";
+import { generatePublicUrl } from "../../../urlConfig";
 
 function ItemCard(props) {
   const [isFav, setIsFav] = useState(false);
@@ -27,12 +28,14 @@ function ItemCard(props) {
       <div className="frame-img-card-item">
         <Link
           style={{ textDecoration: "none" }}
-          to="/product"
+          // to="/product"
+          to={`/${props.slug}/${props._id}/p`}
           className="link-img-card-item"
         >
           <img
             className="img-card-item"
-            src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+            // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
+            src={props.img && props.img.length > 0 ? generatePublicUrl(props.img[0].img) : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"} alt=""
           />
         </Link>
       </div>
