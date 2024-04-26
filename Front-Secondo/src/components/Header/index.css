@@ -119,32 +119,17 @@
   margin: 0 16px;
 }
 
-.menu-container {
-
-}
-
 .menu-trigger {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  /* background-color: white; */
-}
-
-.menu-dropdown-profile {
-  display: flex;
-  gap: 8px;
-  color: var(--Default-text);
 }
 
 .profile-img {
   height: 40px;
   width: 40px;
-  border-radius: 50%;
-}
-
-.icon-profile { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 ul {
