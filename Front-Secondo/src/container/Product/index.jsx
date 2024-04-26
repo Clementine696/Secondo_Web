@@ -87,14 +87,12 @@ function Product() {
   };
 
   const [selectedImg, setSelectedImg] = useState(productDetail[0].img[0]);
-  const [smallImgs, setSmallImgs] = useState(productDetail[0].img.slice(1));
+  const [smallImgs, setSmallImgs] = useState(productDetail[0].img.slice(0));
+  const [frameSmallImgs, setFrameSmallImgs] = useState("")
 
   const handleImgClick = (img) => {
     setSelectedImg(img);
-    setSmallImgs((prevImgs) => {
-      const updatedImgs = prevImgs.filter((smallImg) => smallImg !== img);
-      return [selectedImg, ...updatedImgs];
-    });
+    setFrameSmallImgs(img);
   };
 
   return (
@@ -114,7 +112,7 @@ function Product() {
                 {smallImgs.map((img, index) => (
                   <div key={index} className="col-small-pic">
                     <img
-                      className="small-img-product"
+                      className={`small-img-product ${frameSmallImgs === img ? 'selected' : ''}`}
                       src={img}
                       onClick={() => handleImgClick(img)}
                     />
