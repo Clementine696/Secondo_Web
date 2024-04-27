@@ -29,6 +29,9 @@ import Fav from "./container/UserPage/FavPage";
 import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
+import PostRequestProduct from "./container/SellProduct/PostRequestProduct";
+import PostDonateProduct from "./container/SellProduct/PostDonateProduct";
+import PostBuyProduct from "./container/SellProduct/PostBuyProduct";
 
 import CheckOut from "./container/CheckOut";
 
@@ -136,6 +139,9 @@ export default function App() {
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           <Route path="sellstate/additem" element={<SellProduct />} />
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+          <Route path="buystate/additem" element={<PostBuyProduct />} />
+          <Route path="receivestate/additem" element={<PostRequestProduct />} />
+          <Route path="donatestate/additem" element={<PostDonateProduct />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

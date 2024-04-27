@@ -277,13 +277,13 @@ function Index() {
           <Link to="" className="text-menu" href="#pricing">
             สินค้าน่าสนใจ
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          <Link to="/buystate/additem" className="text-menu" href="#pricing">
             รับซื้อ
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          <Link to="/donatestate/additem" className="text-menu" href="#pricing">
             บริจาค
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          <Link to="/receivestate/additem" className="text-menu" href="#pricing">
             ขอรับบริจาค
           </Link>
         </Nav>
