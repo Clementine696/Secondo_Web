@@ -14,14 +14,25 @@ import co2 from "../../icon/co2.png";
 import like from "../../icon/like.png";
 import setting from "../../icon/setting.png";
 import searchb from "../../icon/search-b.png";
+import logouticon from "../../icon/logout.png";
+import chevronDown from "../../icon/chevron-down.png";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from '../../actions';
 
+import userPic from "../../../public/images/userprofile.jpg";
+
 import "./index.css";
 import "../../styles.css";
 
+const userprofile = {
+  png: userPic,
+  name: "Ttb",
+  credit: 12,
+} 
+
 function Index() {
+  const { png, name, credit } = userprofile;
 
   //login logout
   const auth = useSelector(state => state.auth)
@@ -34,9 +45,9 @@ function Index() {
   const renderLoggedInLinks = () => {
     return (
       <Nav>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <span className='nav-link'> {auth.user.firstName} </span>
-        </li>
+        </li> */}
         <li className="nav-item">
           <span className='nav-link' onClick={logout}>Sign out</span>
         </li>
@@ -116,7 +127,7 @@ function Index() {
               </svg>
             </div>
 
-            <div className="icon-menu">
+            {/* <div className="icon-menu">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -137,7 +148,7 @@ function Index() {
                   stroke-linejoin="round"
                 />
               </svg>
-            </div>
+            </div> */}
             {/* <Link className="btn-signin" to="/signin">
               <button
                 className="btn-small-primary kanit-paragraphMedium"
@@ -146,19 +157,28 @@ function Index() {
                 เข้าสู่ระบบ
               </button>
             </Link> */}
-            {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()}
+            {auth.authenticate 
+              ? renderLoggedInLinks() 
+              : renderNonLoggedInLinks()}
             
             <div className="menu-container" ref={menuRef}>
               <div
-                className="menu-trigger"
+                className="menu-trigger menu-dropdown-profile"
                 onClick={() => {
                   setOpen(!open);
                 }}
               >
                 <img
                   className="profile-img"
-                  src="/images/userprofile.jpg"
+                  src={png}
                 ></img>
+                <div>
+                  <p className="kanit-paragraphtextMedium">{name}</p>
+                  <p className="kanit-paragraphSmall">{credit} Credit</p>
+                </div>
+                <div className="icon-profile">
+                  <img src={chevronDown}></img>
+                </div>
               </div>
 
               <div
@@ -208,11 +228,16 @@ function Index() {
                     text={"ตั้งค่า"}
                     link={"/setting"}
                   />
+                  <DropdownItem
+                    img={logouticon}
+                    text={"ออกจากระบบ"}
+                    link={"/"}
+                  />
                 </ul>
               </div>
             </div>
 
-            <div className="icon-hamburger">
+            {/* <div className="icon-hamburger">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -234,7 +259,7 @@ function Index() {
                   </clipPath>
                 </defs>
               </svg>
-            </div>
+            </div> */}
           </div>
         </Col>
       </Row>
@@ -246,9 +271,9 @@ function Index() {
           <Link to="/fav" className="text-menu" href="#features">
             รายการโปรด
           </Link>
-          <Link to="" className="text-menu" href="#pricing">
+          {/* <Link to="" className="text-menu" href="#pricing">
             แชท
-          </Link>
+          </Link> */}
           <Link to="" className="text-menu" href="#pricing">
             สินค้าน่าสนใจ
           </Link>

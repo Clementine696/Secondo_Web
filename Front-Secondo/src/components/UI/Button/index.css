@@ -191,6 +191,7 @@
     border: none;
     border-radius: 40px;
     background-color: var(--OutlineVariant-color);
+    /* color: var(--White-color); */
 }
 
 /* Medium secondary button */
