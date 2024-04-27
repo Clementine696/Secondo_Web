@@ -329,6 +329,16 @@ function setting() {
 
   //scroll
   const scrollToAddAddress = useRef(null);
+  const scrollToEditAddress = useRef(null);
+
+  const scrollToAddCreditPayment = useRef(null);
+  const scrollToEditCreditPayment = useRef(null);
+
+  const scrollToAddBankPayment = useRef(null);
+  const scrollToEditBankPayment = useRef(null);
+
+  const scrollToAddBankWithdraw = useRef(null);
+  const scrollToEditBankWithdraw = useRef(null);
 
   //ใช้เปิด-ปิดฟอร์ม
   const [editAddressForm, setEditAddressForm] = useState("");
@@ -463,7 +473,9 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.id), setAddAddress(false);
+                            handleEditAddress(address.id), setAddAddress(false), scrollToEditAddress.current?.scrollIntoView({
+                              behavior: "smooth",
+                            });;
                           }}
                         >
                           แก้ไข
