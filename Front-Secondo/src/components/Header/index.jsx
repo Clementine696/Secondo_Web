@@ -3,6 +3,8 @@ import { Navbar, Nav, NavDropdown, Dropdown } from "react-bootstrap";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 import DropdownItem from "../../components/UI/DropdownProfile";
+import DropdownList from "../../components/UI/DropdownList";
+import DropdownNoti from "../../components/UI/DropdownNotification";
 
 import user from "../../icon/user.png";
 import bag from "../../icon/bag.png";
@@ -16,44 +18,54 @@ import setting from "../../icon/setting.png";
 import searchb from "../../icon/search-b.png";
 import logouticon from "../../icon/logout.png";
 import chevronDown from "../../icon/chevron-down.png";
+import noti from "../../icon/bell.png";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { signout } from '../../actions';
+import { useDispatch, useSelector } from "react-redux";
+import { signout } from "../../actions";
 
 import userPic from "../../../public/images/userprofile.jpg";
 
 import "./index.css";
 import "../../styles.css";
 
+const notification = [
+  {
+    name: "การโพสขายของคุณได้รับการพิจารณา",
+    desc: "สินค้า (ชื่อสินค้า)ของคุณได้รับการพิจารณาเป็นที่เรียบร้อย",
+  },
+  {
+    name: "(ชื่อคนที่มาเสนอ) ได้มาเสนอ (Action ที่ทำ)",
+    desc: "(ชื่อคนที่มาเสนอ) ได้เสนอ (Action ที่ทำ) บน (ชื่อสินค้า) เป็นที่เรียบร้อย",
+  },
+  {
+    name: "การจัดส่งสินค้าของคุณสำเร็จ",
+    desc: "การจัดส่ง (ชื่อสินค้า) ถูกจัดส่งสำเร็จ คุณลูกค้าสามารถกดยืนยัน หรือให้คะแนนผู้ขายได้",
+  },
+];
+
 const userprofile = {
   png: userPic,
   name: "Ttb",
   credit: 12,
-} 
+};
 
 function Index() {
   const { png, name, credit } = userprofile;
 
   //login logout
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const logout = () => {
+    console.log("logout");
     dispatch(signout());
-  }
+  };
 
   const renderLoggedInLinks = () => {
     return (
-      <Nav>
-        {/* <li className="nav-item">
-          <span className='nav-link'> {auth.user.firstName} </span>
-        </li> */}
-        <li className="nav-item">
-          <span className='nav-link' onClick={logout}>Sign out</span>
-        </li>
-      </Nav>
+      <DropdownItem img={logouticon} text={"ออกจากระบบ"} onClick={logout} />
     );
-  }
+  };
 
   const renderNonLoggedInLinks = () => {
     return (
@@ -66,8 +78,9 @@ function Index() {
         </button>
       </Link>
     );
-  }
+  };
 
+  //dropdown profile
   const [open, setOpen] = useState(false);
 
   let menuRef = useRef();
@@ -77,6 +90,26 @@ function Index() {
       if (!menuRef.current.contains(e.target)) {
         setOpen(false);
         // console.log(menuRef.current)
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
+  //dropdown Notification
+  const [openNoti, setOpenNoti] = useState(false);
+
+  let menuRefNoti = useRef();
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuRefNoti.current.contains(e.target)) {
+        setOpenNoti(false);
+        console.log(menuRef.current);
       }
     };
 
@@ -110,21 +143,35 @@ function Index() {
 
         <Col md={3} xs={3} className="right-menu">
           <div className="right-width-menu">
-            <div className="icon-menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="19"
-                viewBox="0 0 18 19"
-                fill="none"
+            <div className="icon-menu" ref={menuRefNoti}>
+              <div
+                className="menu-trigger"
+                onClick={() => {
+                  setOpenNoti(!openNoti);
+                }}
               >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M12 17C12.0001 17.5046 11.8096 17.9906 11.4665 18.3605C11.1234 18.7305 10.6531 18.9572 10.15 18.995L9.99997 19H7.99997C7.49539 19.0002 7.0094 18.8096 6.63942 18.4665C6.26944 18.1234 6.04281 17.6532 6.00497 17.15L5.99997 17H12ZM8.99997 9.54067e-10C10.8149 -2.9945e-05 12.559 0.704894 13.8642 1.96607C15.1694 3.22726 15.9337 4.94609 15.996 6.76L16 7V10.764L17.822 14.408C17.9015 14.567 17.9413 14.7429 17.9379 14.9206C17.9346 15.0984 17.8882 15.2727 17.8028 15.4286C17.7174 15.5845 17.5955 15.7174 17.4475 15.8158C17.2994 15.9143 17.1298 15.9754 16.953 15.994L16.838 16H1.16197C0.984135 16.0001 0.808937 15.957 0.651392 15.8745C0.493846 15.792 0.358649 15.6725 0.257388 15.5264C0.156126 15.3802 0.091818 15.2116 0.0699749 15.0351C0.0481318 14.8586 0.0694047 14.6795 0.131971 14.513L0.177971 14.408L1.99997 10.764V7C1.99997 5.14348 2.73747 3.36301 4.05022 2.05025C5.36298 0.737498 7.14346 9.54069e-10 8.99997 9.54067e-10ZM8.99997 2C7.71151 2.00007 6.47281 2.49754 5.54219 3.38866C4.61158 4.27978 4.06089 5.49575 4.00497 6.783L3.99997 7V10.764C3.99998 11.012 3.95386 11.2579 3.86397 11.489L3.78897 11.659L2.61897 14H15.382L14.212 11.658C14.101 11.4363 14.0321 11.1959 14.009 10.949L14 10.764V7C14 5.67392 13.4732 4.40215 12.5355 3.46447C11.5978 2.52678 10.3261 2 8.99997 2Z"
-                  fill="#00243D"
-                />
-              </svg>
+                <img className="" src={noti} />
+              </div>
+
+              <div
+                className={`dropdown-notification ${
+                  openNoti ? "active" : "inactive"
+                }`}
+              >
+                <div className="notification-header kanit-paragraphMedium">
+                  การแจ้งเตือน
+                </div>
+                <ul className="list-notification kanit-paragraphtextMedium">
+                  {notification.map((item, index) => (
+                    <DropdownNoti
+                      key={index}
+                      name={item.name}
+                      price={item.price}
+                      desc={item.desc}
+                    />
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* <div className="icon-menu">
@@ -149,18 +196,8 @@ function Index() {
                 />
               </svg>
             </div> */}
-            {/* <Link className="btn-signin" to="/signin">
-              <button
-                className="btn-small-primary kanit-paragraphMedium"
-                onclick="activateLasers()"
-              >
-                เข้าสู่ระบบ
-              </button>
-            </Link> */}
-            {auth.authenticate 
-              ? renderLoggedInLinks() 
-              : renderNonLoggedInLinks()}
-            
+            {auth.authenticate ? "" : renderNonLoggedInLinks()}
+
             <div className="menu-container" ref={menuRef}>
               <div
                 className="menu-trigger menu-dropdown-profile"
@@ -168,10 +205,7 @@ function Index() {
                   setOpen(!open);
                 }}
               >
-                <img
-                  className="profile-img"
-                  src={png}
-                ></img>
+                <img className="profile-img" src={png}></img>
                 <div>
                   <p className="kanit-paragraphtextMedium">{name}</p>
                   <p className="kanit-paragraphSmall">{credit} Credit</p>
@@ -228,11 +262,7 @@ function Index() {
                     text={"ตั้งค่า"}
                     link={"/setting"}
                   />
-                  <DropdownItem
-                    img={logouticon}
-                    text={"ออกจากระบบ"}
-                    link={"/"}
-                  />
+                  {auth.authenticate ? renderLoggedInLinks() : ""}
                 </ul>
               </div>
             </div>
@@ -283,7 +313,11 @@ function Index() {
           <Link to="/donatestate/additem" className="text-menu" href="#pricing">
             บริจาค
           </Link>
-          <Link to="/receivestate/additem" className="text-menu" href="#pricing">
+          <Link
+            to="/receivestate/additem"
+            className="text-menu"
+            href="#pricing"
+          >
             ขอรับบริจาค
           </Link>
         </Nav>
