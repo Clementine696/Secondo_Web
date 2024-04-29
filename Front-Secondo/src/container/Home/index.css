@@ -28,6 +28,9 @@
   flex-direction: column;
   /* justify-content: flex-end; */
   align-items: center;
+  /* height: 240px;
+  width: 1144px; */
+  /* object-position: center; */
 }
 
 .home-img-banner {
