@@ -9,6 +9,7 @@ import ModalS from "../../../components/Modal/success";
 import ModalDonate from "../../../components/Modal/OfferSale/sale-score";
 import ModalSelectItem from "../../../components/Modal/OfferSale/selectProduct";
 import ModalConfirmItem from "../../../components/Modal/OfferSale/confirmProduct";
+import Pathway from "../../../components/UI/Pathway";
 
 import success from "../../../icon/success-check.png";
 import donate from "../../../icon/donate.png";
@@ -26,6 +27,12 @@ const product = [
   { label: "สินค้าชิ้นที่ 1", price: "1" },
   { label: "สินค้าชิ้นที่ 2", price: "2" },
   { label: "สินค้าชิ้นที่ 3", price: "3" },
+];
+
+const pathway = [
+  { label: "หน้าหลัก", value: 1, nevigate: "/" },
+  { label: "เสื้อผ้า", value: 2, nevigate: "/search" },
+  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 3, nevigate: "/product/donate" },
 ];
 
 function Donate() {
@@ -62,59 +69,20 @@ function Donate() {
 
   // console.log(openModel);
 
+  const [selectedImg, setSelectedImg] = useState(productDetail[0].img[0]);
+  const [smallImgs, setSmallImgs] = useState(productDetail[0].img.slice(0));
+  const [frameSmallImgs, setFrameSmallImgs] = useState("")
+
+  const handleImgClick = (img) => {
+    setSelectedImg(img);
+    setFrameSmallImgs(img);
+  };
+
   return (
     <Layout>
       <div className="background-product-page">
-        <div className="product-page-path-way">
-          <div className="product-page-group-path-way">
-            <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
-                หน้าหลัก
-              </div>
-              <div className="product-page-group-path-way-before-path-arrow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M9 18.001L13.5858 13.4152C14.3668 12.6341 14.3668 11.3678 13.5858 10.5868L9 6.00098"
-                    stroke="#00243D"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div className="product-page-group-path-way-before-path">
-              <div className="product-page-group-path-way-before-path-text kanit-paragraphtextMedium">
-                เสื้อผ้า
-              </div>
-              <div className="product-page-group-path-way-before-path-arrow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M9 18.001L13.5858 13.4152C14.3668 12.6341 14.3668 11.3678 13.5858 10.5868L9 6.00098"
-                    stroke="#00243D"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div className="product-page-group-path-way-last-path kanit-paragraphtextMedium">
-              เสื้อ COTTON แบรนด์ญี่ปุ่น
-            </div>
-          </div>
+        <div className="background-product-page-pathway">
+          <Pathway pathwayList={pathway} />
         </div>
 
         <Row className="product-page-item-details">

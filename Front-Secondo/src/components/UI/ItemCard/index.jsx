@@ -16,12 +16,12 @@ function ItemCard(props) {
 
   return (
     <div className="frame-card-item tp-transform">
-      <Link
+      {/* <Link
           style={{ textDecoration: "none" }}
           // to="/product"
           to={`/${props.slug}/${props._id}/p`}
           // className="link-img-card-item"
-        >
+        > */}
       <div className="frame-out-icon-favorite">
         <button className="btn-fav-card-product" onClick={handleFav}>
           <img
@@ -32,14 +32,25 @@ function ItemCard(props) {
       </div>
 
       <div className="frame-img-card-item">
-        
+      <Link
+          style={{ textDecoration: "none" }}
+          // to="/product"
+          to={`/${props.slug}/${props._id}/p`}
+          className="link-img-card-item"
+        >
           <img
             className="img-card-item"
             // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
             src={props.img && props.img.length > 0 ? generatePublicUrl(props.img[0].img) : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"} alt=""
           />
-        
+      </Link>
       </div>
+      <Link
+          style={{ textDecoration: "none" }}
+          // to="/product"
+          to={`/${props.slug}/${props._id}/p`}
+          // className="link-img-card-item"
+        >
       <span className="card-text-field">
         <span className="card-item-context">
           <div className="card-item-name">
@@ -66,6 +77,7 @@ function ItemCard(props) {
         </div>
       </span>
       </Link>
+      {/* </Link> */}
     </div>
   );
 }
