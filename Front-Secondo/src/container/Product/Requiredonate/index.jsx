@@ -8,14 +8,16 @@ import VDivider from "../../../components/UI/DividerVentical";
 import ModalS from "../../../components/Modal/success";
 import ModalDonate from "../../../components/Modal/Donate";
 import Pathway from "../../../components/UI/Pathway";
+import "../../../components/UI/Button/index.css";
 
 import success from "../../../icon/success-check.png";
 
-import "../../../components/UI/Button/index.css";
+import favBold from "../../../icon/like-bold.png";
+import fav from "../../../icon/like.png";
 
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "หน้าหลัก", value: 2, nevigate: "/" },
+  { label: "หน้าหลัก", value: 2, nevigate: "/search" },
   { label: "เสื้อผ้า", value: 3, nevigate: "/search" },
   { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 4, nevigate: "/product/requiredonate" },
 ];
@@ -88,6 +90,30 @@ function RequireDonate() {
     setFrameSmallImgs(img);
   };
 
+  const [isFav, setIsFav] = useState(false);
+  //transition
+  const [fade, setFade] = useState(false);
+
+  // console.log("isout:", isFav);
+
+  const handleFavClick = () => {
+    //change state
+    setIsFav(!isFav);
+    setFade(true);
+
+    // console.log("isin:", isFav);
+
+    setTimeout(() => {
+      setFade(false);
+    }, 300);
+
+    if (isFav) {
+      console.log("Unlike");
+    } else {
+      console.log("Like");
+    }
+  };
+
   return (
     <Layout>
       <div className="background-product-page">
@@ -147,14 +173,23 @@ function RequireDonate() {
 
             <div className="divider-horz-2"></div>
 
-            <Row className="product-button-section">
+            <div className="product-button-section">
               <button
                 className="btn-small-primary kanit-paragraphMedium"
                 onClick={() => setOpenModalDonate(true)}
               >
                 เสนอบริจาค
               </button>
-            </Row>
+              <div>
+                <button className="btn-fav" onClick={handleFavClick}>
+                  <img
+                    src={isFav ? favBold : fav}
+                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
+                    alt="Favorite"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </Row>
 

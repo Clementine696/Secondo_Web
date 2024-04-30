@@ -18,7 +18,7 @@ import { generatePublicUrl } from "../../urlConfig";
 
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "เสนอขาย", value: 2, nevigate: "/search" },
+  { label: "ขายของ", value: 2, nevigate: "/search" },
   { label: "เสื้อผ้า", value: 3, nevigate: "" },
   { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 4, nevigate: "/product" },
 ]
