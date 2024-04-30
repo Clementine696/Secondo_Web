@@ -18,7 +18,7 @@ const ModalConfirmItem = (props) => {
           <div className="product-confirm">
             <div className="kanit-paragraphBig modal-title">{props.label}</div>
             <div className="product-img-title">
-              <img src={props.img} className="img-product" />
+              <img src={props.img} className="img-product"/>
               <p className="product-title kanit-paragraphSmall">{props.title}</p>
             </div>
           </div>
