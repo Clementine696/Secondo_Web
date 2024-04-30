@@ -275,17 +275,9 @@ function Product() {
                 <Col>รายการสินค้าที่ขาย</Col>
                 <Col className="color-ratio">10</Col>
               </Row>
-              <Row className="top-seller-detail">
-                <Col>อัตราการตอบกลับ</Col>
-                <Col className="color-ratio">80%</Col>
-              </Row>
             </Col>
 
             <Col className="kanit-paragraphtextMedium seller-detail">
-              <Row>
-                <Col>เวลาในการตอบกลับ</Col>
-                <Col className="color-ratio">ภายในไม่กี่นาที</Col>
-              </Row>
               <Row>
                 <Col>วันที่เข้าร่วม</Col>
                 <Col className="color-ratio">5 ปี ที่ผ่านมา</Col>
