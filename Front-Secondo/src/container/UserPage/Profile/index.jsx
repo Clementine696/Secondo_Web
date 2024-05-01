@@ -24,6 +24,17 @@ function Profile() {
     console.log(email);
   };
 
+  const [image, setImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const selectedImage = event.target.files[0];
+    setImage(selectedImage);
+  };
+
+  const handleUploadClick = () => {
+    console.log("อัพโหลดรูปภาพ");
+  };
+
   return (
     <Layout>
       <div className="user-page">
@@ -50,20 +61,57 @@ function Profile() {
                 โปรไฟล์
               </div>
               <div className="profile-pic-name-button">
-                <div
+                {/* <div
                   style={{
                     backgroundColor: "black",
                     height: "96px",
                     width: "96px",
                     borderRadius: "50%",
                   }}
-                ></div>
+                ></div> */}
+                <div className="profile-picture-img-frame">
+                  {image ? (
+                    <img
+                      className="profile-picture-img"
+                      src={URL.createObjectURL(image)}
+                      alt="Uploaded"
+                      style={{
+                        backgroundColor: "black",
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  )}
+                </div>
+
                 <div className="profile-name kanit-paragraphMedium">
                   <p>Username : GamBlackty</p>
                   <p>Name : Phanuphong</p>
                 </div>
                 <div className="button-upload-pic kanit-paragraphMedium">
-                  <button className="btn-small-secondary">อัพโหลดรูปภาพ</button>
+                  <input
+                    id="upload-input"
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => {
+                      handleImageChange(event);
+                      handleUploadClick();
+                    }}
+                    style={{ display: "none" }}
+                  />
+                  <label htmlFor="upload-input" className="btn-small-secondary">
+                    อัพโหลดรูปภาพ
+                  </label>
                 </div>
               </div>
             </div>

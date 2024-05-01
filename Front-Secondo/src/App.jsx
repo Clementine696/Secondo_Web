@@ -29,6 +29,9 @@ import Fav from "./container/UserPage/FavPage";
 import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
+import PostRequestProduct from "./container/SellProduct/PostRequestProduct";
+import PostDonateProduct from "./container/SellProduct/PostDonateProduct";
+import PostBuyProduct from "./container/SellProduct/PostBuyProduct";
 
 import CheckOut from "./container/CheckOut";
 
@@ -94,12 +97,12 @@ export default function App() {
           <Route path="search" element={<Search />} />
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
-          {/* <Route path="product" element={<Product />} /> */}
-          <Route path="/:productSlug/:productId/p" element={<Product />} />
-          <Route path="product/offersale" element={<Offersale />} />
-          <Route path="product/offerbuy" element={<Offerbuy />} />
-          <Route path="product/donate" element={<Donate />} />
-          <Route path="product/requiredonate" element={<RequireDonate />} />
+          <Route path="product/seller" element={<Product />} />
+          {/* <Route path="/:productSlug/:productId/p" element={<Product />} /> */}
+          <Route path="product/buyer" element={<Offersale />} />
+          {/* <Route path="product/offerbuy" element={<Offerbuy />} /> */}
+          <Route path="product/request" element={<Donate />} />
+          <Route path="product/donate" element={<RequireDonate />} />
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />
@@ -136,6 +139,9 @@ export default function App() {
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           <Route path="sellstate/additem" element={<SellProduct />} />
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+          <Route path="buystate/additem" element={<PostBuyProduct />} />
+          <Route path="receivestate/additem" element={<PostRequestProduct />} />
+          <Route path="donatestate/additem" element={<PostDonateProduct />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

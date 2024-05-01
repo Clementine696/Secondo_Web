@@ -1,19 +1,19 @@
 import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Input from "../../components/UI/Input";
-import Layout from "../../components/Layout";
+import Input from "../../../components/UI/Input";
+import Layout from "../../../components/Layout";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../actions";
+import { addProduct } from "../../../actions";
 
-import Cancel from "../../icon/cancel.png";
-import RedCancel from "../../icon/close.png";
+import Cancel from "../../../icon/cancel.png";
+import RedCancel from "../../../icon/close.png";
 
-import "./index.css";
+import "../index";
 import { Link, useNavigate } from "react-router-dom";
 
-function SellProduct() {
+function PostBuyProduct() {
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -139,9 +139,9 @@ function SellProduct() {
               <Link
                 className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
-                to={"/sellstate"}
+                to={"/buystate"}
               >
-                การขายของฉัน
+                การซื้อของฉัน
               </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
@@ -165,11 +165,11 @@ function SellProduct() {
               className="product-page-group-path-way-before-path-text kanit-paragraphBig"
               style={{ textDecoration: "none" }}
             >
-              เพิ่มสินค้าขาย
+              เพิ่มสินค้ารับซื้อ
             </Link>
           </div>
         </div>
-        <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
+        <div className="sell-product-topic">เพิ่มสินค้าสำหรับการรับซื้อ</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
             <label className="sell-product-content-upload-image-label kanit-Display-Large">
@@ -302,7 +302,7 @@ function SellProduct() {
                     style={{ textDecoration: "none" }}
                     to=""
                   >
-                    ลงขาย
+                    รับซื้อ
                   </Link>
                 )}
               </div>
@@ -321,4 +321,4 @@ function SellProduct() {
   );
 }
 
-export default SellProduct;
+export default PostBuyProduct;

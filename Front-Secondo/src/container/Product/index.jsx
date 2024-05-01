@@ -18,9 +18,10 @@ import { generatePublicUrl } from "../../urlConfig";
 
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "เสื้อผ้า", value: 2, nevigate: "/search" },
-  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 3, nevigate: "/product" },
-];
+  { label: "ขายของ", value: 2, nevigate: "/search" },
+  { label: "เสื้อผ้า", value: 3, nevigate: "" },
+  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 4, nevigate: "/seller" },
+]
 
 const productDetail = [
   {
@@ -156,6 +157,7 @@ function Product() {
               </div>
             </div>
           </div>
+
           <div className="product-page-item-details-group-item-description">
             <div className="product-title-seller-name">
               <div className="kanit-paragraphMedium product-title">
@@ -273,17 +275,9 @@ function Product() {
                 <Col>รายการสินค้าที่ขาย</Col>
                 <Col className="color-ratio">10</Col>
               </Row>
-              <Row className="top-seller-detail">
-                <Col>อัตราการตอบกลับ</Col>
-                <Col className="color-ratio">80%</Col>
-              </Row>
             </Col>
 
             <Col className="kanit-paragraphtextMedium seller-detail">
-              <Row>
-                <Col>เวลาในการตอบกลับ</Col>
-                <Col className="color-ratio">ภายในไม่กี่นาที</Col>
-              </Row>
               <Row>
                 <Col>วันที่เข้าร่วม</Col>
                 <Col className="color-ratio">5 ปี ที่ผ่านมา</Col>

@@ -3,9 +3,10 @@
   } */
 
 .img-slide-banner {
+  display: flex;
   height: 240px;
   width: 1144px;
-  object-position: center;
+  /* object-position: center; */
   object-fit: cover;
   /* width: 100%; */
   overflow: hidden;
