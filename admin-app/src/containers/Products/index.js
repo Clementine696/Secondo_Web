@@ -58,18 +58,18 @@ function Products(props) {
 
   const renderProductDetailsModal = () => {
 
-    if(!productDetails){
+    if (!productDetails) {
       return null;
     }
 
-    return(
+    return (
       <Modal
-      show={productDetailsModal}
-      handleCancel={handleCloseProductDetailsModal}
-      handleClose={handleCloseProductDetailsModal}
-      // handleClose={() => setProductDetailModal(false)}
-      modalTitle={"Product Details"}
-      size="lg"
+        show={productDetailsModal}
+        handleCancel={handleCloseProductDetailsModal}
+        handleClose={handleCloseProductDetailsModal}
+        // handleClose={() => setProductDetailModal(false)}
+        modalTitle={"Product Details"}
+        size="lg"
       >
         <Row>
           <Col md="6">
@@ -103,14 +103,14 @@ function Products(props) {
         <Row>
           <Col>
             <label className="key">Product Pictures</label>
-            <div style={{display: 'flex'}}>
-              {productDetails.productPictures.map(picture => 
+            <div style={{ display: 'flex' }}>
+              {productDetails.productPictures.map(picture =>
                 <div className="productImgContainer">
                   <img src={generatePublicUrl(picture.img)} />
                 </div>
               )}
             </div>
-            
+
           </Col>
         </Row>
 
@@ -143,16 +143,17 @@ function Products(props) {
             <th>#</th>
             <th>Name</th>
             <th>Price</th>
-            <th>Quantity</th>
+            {/* <th>Quantity</th> */}
             {/* <th>Description</th> */}
-            <th>Product Picture</th>
+            {/* <th>Product Picture</th> */}
             <th>Category</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-        {
+          {
             product.products.length > 0 ?
-              product.products.map(product => 
+              product.products.map(product =>
                 <tr onClick={() => showProductDetailsModal(product)} key={product._id}>
                   <td>1</td>
                   <td>{product.name}</td>
@@ -171,7 +172,7 @@ function Products(props) {
   }
 
   const renderAddProductModal = () => {
-    return(<Modal
+    return (<Modal
       show={show}
       handleCancel={handleCancel}
       handleClose={handleClose}
@@ -217,8 +218,8 @@ function Products(props) {
 
       {productPictures.length > 0
         ? productPictures.map((pic, index) => (
-            <div key={index}> {pic.name} </div>
-          ))
+          <div key={index}> {pic.name} </div>
+        ))
         : null}
 
       <Input
@@ -237,7 +238,7 @@ function Products(props) {
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Products</h3>
-              <Button onClick={handleShow}>Add</Button>
+              <Button onClick={handleShow}>Add new product</Button>
             </div>
           </Col>
         </Row>
