@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 // import React, { useEffect, useState } from "react";
 // import PropTypes from "prop-types";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
@@ -72,28 +73,25 @@ function Products(props) {
         size="lg"
       >
         <Row>
-          <Col md="6">
+          <Col md="4">
             <label className="key">Name</label>
             <p className="value">{productDetails.name}</p>
           </Col>
-          <Col md="6">
+          <Col md="4">
             <label className="key">Price</label>
             <p className="value">{productDetails.price}</p>
           </Col>
-        </Row>
-
-        <Row>
-          <Col md="6">
-            <label className="key">Quantity</label>
-            <p className="value">{productDetails.quantity}</p>
-          </Col>
-          <Col md="6">
+          <Col md="4">
             <label className="key">Category</label>
             <p className="value">{productDetails.category ? productDetails.category.name : null}</p>
           </Col>
         </Row>
 
         <Row>
+          {/* <Col md="6">
+            <label className="key">Quantity</label>
+            <p className="value">{productDetails.quantity}</p>
+          </Col> */}
           <Col md="6">
             <label className="key">Description</label>
             <p className="value">{productDetails.description}</p>
@@ -103,14 +101,20 @@ function Products(props) {
         <Row>
           <Col>
             <label className="key">Product Pictures</label>
-            <div style={{ display: 'flex' }}>
+            <div className="product-imgs">
               {productDetails.productPictures.map(picture =>
                 <div className="productImgContainer">
                   <img src={generatePublicUrl(picture.img)} />
                 </div>
               )}
             </div>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
+            <label className="key">Cabon Credit</label>
+            <Form.Control type="text" placeholder="Enter Cabon Credit" />
           </Col>
         </Row>
 
@@ -135,33 +139,82 @@ function Products(props) {
 
   // console.log(productPictures);
   console.log(product.products)
-  const renderProducts = () => {
+  const renderNewProducts = () => {
     return (
       <Table style={{ fontSize: 12 }} responsive="sm">
+        {/* First Table */}
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
+            <th>Product Name</th>
             <th>Price</th>
             {/* <th>Quantity</th> */}
             {/* <th>Description</th> */}
             {/* <th>Product Picture</th> */}
             <th>Category</th>
-            <th>Action</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody className="table-bg">
+          {
+            product.products.length > 0 ?
+              product.products.map(product =>
+                <tr className="product-items">
+                  <td>1</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  {/* <td>{product.quantity}</td> */}
+                  {/* <td>{product.description}</td> */}
+                  <td>{product.category ? product.category.name : null}</td>
+                  <td>รอการตรวจสอบ</td>
+                  <td className="btn-section">
+                    <Button variant="outline-danger" size="sm">Delete</Button>
+                    <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product)} key={product._id}>Edit</Button>
+                  </td>
+                </tr>
+
+              ) : null
+          }
+        </tbody>
+      </Table>
+    );
+  }
+
+  const renderOldProducts = () => {
+    return (
+      <Table style={{ fontSize: 12 }} responsive="sm">
+        {/* Second Table */}
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            {/* <th>Quantity</th> */}
+            {/* <th>Description</th> */}
+            {/* <th>Product Picture</th> */}
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {
             product.products.length > 0 ?
               product.products.map(product =>
-                <tr onClick={() => showProductDetailsModal(product)} key={product._id}>
+                <tr className="product-items">
                   <td>1</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
-                  <td>{product.quantity}</td>
+                  {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
-                  <td>Table</td>
                   <td>{product.category ? product.category.name : null}</td>
+                  <td>รอการตรวจสอบ</td>
+                  <td >
+                    {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
+                    <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product)} key={product._id}>Details</Button>
+                  </td>
                 </tr>
 
               ) : null
@@ -236,15 +289,28 @@ function Products(props) {
       <Container>
         <Row>
           <Col md={12}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="table-product">
               <h3>Products</h3>
               <Button onClick={handleShow}>Add new product</Button>
             </div>
           </Col>
         </Row>
+        <Row className="new-product-table">
+          <Col>
+            {renderNewProducts()}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col className="old-product-table" md={12}>
+            <div className="table-product">
+              <h3>Old Product</h3>
+            </div>
+          </Col>
+        </Row>
         <Row>
           <Col>
-            {renderProducts()}
+            {renderOldProducts()}
           </Col>
         </Row>
       </Container>
