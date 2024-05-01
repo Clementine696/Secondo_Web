@@ -327,19 +327,6 @@ function setting() {
     }
   };
 
-  //scroll
-  const scrollToAddAddress = useRef(null);
-  const scrollToEditAddress = useRef(null);
-
-  const scrollToAddCreditPayment = useRef(null);
-  const scrollToEditCreditPayment = useRef(null);
-
-  const scrollToAddBankPayment = useRef(null);
-  const scrollToEditBankPayment = useRef(null);
-
-  const scrollToAddBankWithdraw = useRef(null);
-  const scrollToEditBankWithdraw = useRef(null);
-
   //ใช้เปิด-ปิดฟอร์ม
   const [editAddressForm, setEditAddressForm] = useState("");
   const [editPaymentForm, setEditPaymentForm] = useState("");
@@ -418,14 +405,85 @@ function setting() {
     setWithdrawMoneys(updatedWithdrawMethod);
   };
 
+  //scroll
+  const scrollToAddAddress = useRef(null);
+  const scrollToEditAddress = useRef(null);
+
+  const scrollToAddCreditPayment = useRef(null);
+  const scrollToEditCreditPayment = useRef(null);
+
+  const scrollToAddBankPayment = useRef(null);
+  const scrollToEditBankPayment = useRef(null);
+
+  const scrollToAddBankWithdraw = useRef(null);
+  const scrollToEditBankWithdraw = useRef(null);
+
+  useEffect(() => {
+    if (addAddress && scrollToAddAddress.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToAddAddress.current.clientHeight;
+      const scrollPosition = scrollToAddAddress.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (editedAddress && scrollToEditAddress.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToEditAddress.current.clientHeight;
+      const scrollPosition = scrollToEditAddress.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (addPayment && scrollToAddCreditPayment.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToAddCreditPayment.current.clientHeight;
+      const scrollPosition = scrollToAddCreditPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (editedPayment && scrollToEditCreditPayment.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToEditCreditPayment.current.clientHeight;
+      const scrollPosition = scrollToEditCreditPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (addBank && scrollToAddBankPayment.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToAddBankPayment.current.clientHeight;
+      const scrollPosition = scrollToAddBankPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (editedBank && scrollToEditBankPayment.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToEditBankPayment.current.clientHeight;
+      const scrollPosition = scrollToEditBankPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (addWithdrawMethod && scrollToAddBankWithdraw.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToAddBankWithdraw.current.clientHeight;
+      const scrollPosition = scrollToAddBankWithdraw.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+    if (editedWithdraw && scrollToEditBankWithdraw.current) {
+      const windowHeight = window.innerHeight;
+      const elementHeight = scrollToEditBankWithdraw.current.clientHeight;
+      const scrollPosition = scrollToEditBankWithdraw.current.offsetTop - (windowHeight - elementHeight) / 2;
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+  }, [
+    addAddress,
+    editedAddress,
+    addPayment,
+    editedPayment,
+    addBank,
+    editedBank,
+    addWithdrawMethod,
+    editedWithdraw
+  ]);
+
   return (
     <Layout>
       <div className="user-page">
         <Sidebar />
         <div className="user-content">
-          <div className="buy-page-title kanit-Display-Large">
-            การตั้งค่า
-          </div>
+          <div className="buy-page-title kanit-Display-Large">การตั้งค่า</div>
 
           <Tabs
             tabMenu={tabItems}
@@ -442,11 +500,10 @@ function setting() {
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => {
                       setAddAddress(true),
-                        setEditAddressForm(null),
-                        scrollToAddAddress.current?.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      // editAddressForm(false);
+                        setEditAddressForm(null);
+                        // scrollToAddAddress.current?.scrollIntoView({
+                        //   behavior: "smooth",
+                        // });
                     }}
                   >
                     <img src={add} className="add-icon"></img>
@@ -456,8 +513,9 @@ function setting() {
                 <div className="my-address">
                   {addresses.map((address, index) => (
                     <div
-                      className={`address-item ${selectedAddress === index ? "select" : ""
-                        }`}
+                      className={`address-item ${
+                        selectedAddress === index ? "select" : ""
+                      }`}
                       key={index}
                     >
                       <div className="text-address kanit-paragraphtextMedium">
@@ -473,18 +531,21 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.id), setAddAddress(false), scrollToEditAddress.current?.scrollIntoView({
-                              behavior: "smooth",
-                            });;
+                            handleEditAddress(address.id),
+                              setAddAddress(false);
+                              // scrollToEditAddress.current?.scrollIntoView({
+                              //   behavior: "smooth",
+                              // });
                           }}
                         >
                           แก้ไข
                         </button>
                         <button
-                          className={`s-btn ${selectedAddress === index
+                          className={`s-btn ${
+                            selectedAddress === index
                               ? "btn-small-secondary-disabled"
                               : "btn-small-secondary"
-                            } kanit-paragraphMedium`}
+                          } kanit-paragraphMedium`}
                           onClick={() => toggleSelectAddress(index)}
                         >
                           ตั้งเป็นค่าเริ่มต้น
@@ -500,7 +561,7 @@ function setting() {
                     <div className="w-100" key={address.id}>
                       {editAddressForm === address.id ? (
                         <div
-                          ref={scrollToAddAddress}
+                          ref={scrollToEditAddress}
                           className="setting-add-address"
                         >
                           <div className="setting-title-add">
@@ -770,7 +831,12 @@ function setting() {
                   </p>
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => { setAddPayment(true), setEditPaymentForm(null), setAddBank(false), setEditBankForm(null) }}
+                    onClick={() => {
+                      setAddPayment(true),
+                        setEditPaymentForm(null),
+                        setAddBank(false),
+                        setEditBankForm(null);
+                    }}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มบัตร/บัญชี
@@ -780,8 +846,9 @@ function setting() {
                 <div className="my-address">
                   {paymentMethods.map((payment, index) => (
                     <div
-                      className={`address-item ${selectedPayment === index ? "select" : ""
-                        }`}
+                      className={`address-item ${
+                        selectedPayment === index ? "select" : ""
+                      }`}
                       key={index}
                     >
                       <div className="text-address kanit-paragraphMedium">
@@ -794,15 +861,21 @@ function setting() {
                       <div className="btn-setting-address-group">
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
-                          onClick={() => { handleEditPayment(payment.id), setAddPayment(false), setAddBank(false), setEditBankForm(null) }}
+                          onClick={() => {
+                            handleEditPayment(payment.id),
+                              setAddPayment(false),
+                              setAddBank(false),
+                              setEditBankForm(null);
+                          }}
                         >
                           แก้ไข
                         </button>
                         <button
-                          className={`s-btn ${selectedPayment === index
+                          className={`s-btn ${
+                            selectedPayment === index
                               ? "btn-small-secondary-disabled"
                               : "btn-small-secondary"
-                            } kanit-paragraphMedium`}
+                          } kanit-paragraphMedium`}
                           onClick={() => toggleSelectPayment(index)}
                         >
                           ตั้งเป็นค่าเริ่มต้น
@@ -817,7 +890,7 @@ function setting() {
                   paymentMethods.map((payment) => (
                     <div className="w-100" key={payment.id}>
                       {editPaymentForm === payment.id ? (
-                        <div className="setting-add-address">
+                        <div ref={scrollToEditCreditPayment} className="setting-add-address">
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -939,7 +1012,7 @@ function setting() {
                   ))}
               </div>
               {addPayment && (
-                <div className="setting-add-address">
+                <div ref={scrollToAddCreditPayment} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัตร
                   </div>
@@ -1049,7 +1122,12 @@ function setting() {
 
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => { setAddBank(true), setEditPaymentForm(null), setAddPayment(false), setEditBankForm(null) }}
+                    onClick={() => {
+                      setAddBank(true),
+                        setEditPaymentForm(null),
+                        setAddPayment(false),
+                        setEditBankForm(null);
+                    }}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มบัญชีธนาคาร
@@ -1060,8 +1138,9 @@ function setting() {
                   <div className="my-address">
                     {bankAccounts.map((bank, index) => (
                       <div
-                        className={`address-item ${selectedBank === index ? "select" : ""
-                          }`}
+                        className={`address-item ${
+                          selectedBank === index ? "select" : ""
+                        }`}
                         key={index}
                       >
                         <div className="text-address kanit-paragraphMedium">
@@ -1073,15 +1152,21 @@ function setting() {
                         <div className="btn-setting-address-group">
                           <button
                             className="f-btn btn-small-primary kanit-paragraphMedium"
-                            onClick={() => { handleEditBank(bank.id), setAddPayment(false), setAddBank(false), setEditPaymentForm(null) }}
+                            onClick={() => {
+                              handleEditBank(bank.id),
+                                setAddPayment(false),
+                                setAddBank(false),
+                                setEditPaymentForm(null);
+                            }}
                           >
                             แก้ไข
                           </button>
                           <button
-                            className={`s-btn ${selectedBank === index
+                            className={`s-btn ${
+                              selectedBank === index
                                 ? "btn-small-secondary-disabled"
                                 : "btn-small-secondary"
-                              } kanit-paragraphMedium`}
+                            } kanit-paragraphMedium`}
                             onClick={() => toggleSelectBank(index)}
                           >
                             ตั้งเป็นค่าเริ่มต้น
@@ -1097,7 +1182,7 @@ function setting() {
                   bankAccounts.map((bank) => (
                     <div className="w-100" key={bank.id}>
                       {editBankForm === bank.id ? (
-                        <div className="setting-add-address">
+                        <div ref={scrollToEditBankPayment} className="setting-add-address">
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -1178,7 +1263,7 @@ function setting() {
                   ))}
               </div>
               {addBank && (
-                <div className="setting-add-address">
+                <div ref={scrollToAddBankPayment} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัญชีธนาคาร
                   </div>
@@ -1258,7 +1343,9 @@ function setting() {
 
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                    onClick={() => { setAddWithdrawMethod(true), setEditWithdrawForm(null) }}
+                    onClick={() => {
+                      setAddWithdrawMethod(true), setEditWithdrawForm(null);
+                    }}
                   >
                     <img src={add} className="add-icon"></img>
                     เพิ่มบัญชีธนาคาร
@@ -1269,8 +1356,9 @@ function setting() {
                   <div className="my-address">
                     {withdrawMoneys.map((withdraw, index) => (
                       <div
-                        className={`address-item ${selectedWithdrawMethod === index ? "select" : ""
-                          }`}
+                        className={`address-item ${
+                          selectedWithdrawMethod === index ? "select" : ""
+                        }`}
                         key={index}
                       >
                         <div className="text-address kanit-paragraphMedium">
@@ -1284,16 +1372,19 @@ function setting() {
                         <div className="btn-setting-address-group">
                           <button
                             className="f-btn btn-small-primary kanit-paragraphMedium"
-                            onClick={() => { handleEditWithdrawMethod(withdraw.id), setAddWithdrawMethod(false) }
-                            }
+                            onClick={() => {
+                              handleEditWithdrawMethod(withdraw.id),
+                                setAddWithdrawMethod(false);
+                            }}
                           >
                             แก้ไข
                           </button>
                           <button
-                            className={`s-btn ${selectedWithdrawMethod === index
+                            className={`s-btn ${
+                              selectedWithdrawMethod === index
                                 ? "btn-small-secondary-disabled"
                                 : "btn-small-secondary"
-                              } kanit-paragraphMedium`}
+                            } kanit-paragraphMedium`}
                             onClick={() => toggleSelectWithdrawMethod(index)}
                           >
                             ตั้งเป็นค่าเริ่มต้น
@@ -1309,7 +1400,7 @@ function setting() {
                   withdrawMoneys.map((withdraw) => (
                     <div className="w-100" key={withdraw.id}>
                       {editWithdrawForm === withdraw.id ? (
-                        <div className="setting-add-address">
+                        <div ref={scrollToEditBankWithdraw} className="setting-add-address">
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -1396,7 +1487,7 @@ function setting() {
                   ))}
               </div>
               {addWithdrawMethod && (
-                <div className="setting-add-address">
+                <div ref={scrollToAddBankWithdraw} className="setting-add-address">
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัญชีธนาคาร
                   </div>

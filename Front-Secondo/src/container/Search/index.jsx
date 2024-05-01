@@ -154,6 +154,29 @@ function Search() {
           <Dropdown options={options} />
           <div className="search-page-frame-content-all">
             <div className="search-page-frame-content-all-filter">
+              <div className="search-page-frame-content-all-filter-condition">
+                <div className="search-page-frame-content-all-filter-condition-header">
+                  ประเภทสินค้า
+                </div>
+                <div className="search-page-frame-content-all-filter-condition-group-check row">
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอขาย"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอซื้อ"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอบริจาค"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอรับบริจาค"
+                  />
+                </div>
+              </div>
               <div className="search-page-frame-content-all-filter-category">
                 <div className="search-page-frame-content-all-filter-category-header">
                   หมวดหมู่
@@ -301,17 +324,6 @@ function Search() {
                   ส่งจาก
                 </div>
                 <div className="search-page-frame-content-all-filter-delivery-group-check row">
-                  {/* <Form>
-                    {["ภูมิภาค"].map((type) => (
-                      <div key={`${type}`} className="search-page-frame-content-all-filter-delivery-group-check-box">
-                        <Form.Check // prettier-ignore
-                          type={type}
-                          id={`${type}`}
-                          label={`${type}`}
-                        />
-                      </div>
-                    ))}
-                  </Form> */}
                   <FormCheck
                     className="search-page-frame-content-all-filter-delivery-group-check-box-text"
                     label="กรุงเทพและปริมณฑล"
@@ -339,21 +351,6 @@ function Search() {
                   <FormCheck
                     className="search-page-frame-content-all-filter-delivery-group-check-box-text"
                     label="ภาคตะวันตก"
-                  />
-                </div>
-              </div>
-              <div className="search-page-frame-content-all-filter-condition">
-                <div className="search-page-frame-content-all-filter-condition-header">
-                  สภาพสินค้า
-                </div>
-                <div className="search-page-frame-content-all-filter-condition-group-check row">
-                  <FormCheck
-                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
-                    label="สินค้ามือสอง"
-                  />
-                  <FormCheck
-                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
-                    label="สินค้าใหม่"
                   />
                 </div>
               </div>

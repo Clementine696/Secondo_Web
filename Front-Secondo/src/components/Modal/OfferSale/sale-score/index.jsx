@@ -28,7 +28,7 @@ const ModalSale = (props) => {
               </Link>
             </button>
             <button className="btn-small-secondary">
-              <Link className="link-to2" to="#">
+              <Link className="link-to2" to="/sellstate/additem">
                 ลงขายสินค้าใหม่
               </Link>
             </button>
