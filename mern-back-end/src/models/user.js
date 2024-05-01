@@ -40,6 +40,9 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
+    Hometown: {
+        type: String,
+    },
     contactNumber: { type: String },
     profilePicture: { type: String }
     

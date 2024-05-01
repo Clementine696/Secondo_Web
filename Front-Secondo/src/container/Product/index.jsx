@@ -87,6 +87,7 @@ function Product() {
     dispatch(getProductDetailsById(payload));
   }, []);
 
+  
   let spec = [];
   if(product.productDetails.specifications){
     spec = product.productDetails.specifications.split(",")

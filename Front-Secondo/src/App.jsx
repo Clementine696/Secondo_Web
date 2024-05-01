@@ -94,8 +94,7 @@ export default function App() {
           <Route path="search" element={<Search />} />
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
-          {/* <Route path="product" element={<Product />} /> */}
-          <Route path="/:productSlug/:productId/p" element={<Product />} />
+          <Route path="product" element={<Product />} />
           <Route path="product/offersale" element={<Offersale />} />
           <Route path="product/offerbuy" element={<Offerbuy />} />
           <Route path="product/donate" element={<Donate />} />
@@ -136,6 +135,9 @@ export default function App() {
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
           <Route path="sellstate/additem" element={<SellProduct />} />
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+
+          {/* Dynamic Route */}
+          <Route path="/:productSlug/:productId/p" element={<Product />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

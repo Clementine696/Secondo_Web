@@ -1,12 +1,14 @@
-const Product = require('../models/product')
+const ProductSeller = require('../models/productSeller')
+const ProductBuyer = require('../models/productBuyer')
+const ProductDonate = require('../models/productDonate')
+const ProductRequest = require('../models/productRequest')
 const shortid = require('shortid')
 const slugify = require('slugify')
 const Category = require('../models/category')
 
-exports.createProduct = (req, res) => {
-
+// Seller API
+exports.createProductSeller = (req, res) => {
     // res.status(200).json( {file: req.files, body: req.body} );
-
     const {
         name, price, specifications, description, shippingCost, category
     } = req.body;
@@ -20,7 +22,6 @@ exports.createProduct = (req, res) => {
     }
 
     let slug = slugify(name);
-    // console.log(name, slug)
     console.log(slug.length)
     if(slug.length == 0){
         console.log("Slug is 0");
@@ -29,11 +30,10 @@ exports.createProduct = (req, res) => {
 
     console.log(name, slug)
 
-    const product = new Product({
+    const product = new ProductSeller({
         name: req.body.name,
         slug: slug,
         price,
-        // quantity,
         specifications,
         description,
         shippingCost,
@@ -49,18 +49,16 @@ exports.createProduct = (req, res) => {
     }).catch((error) => {
         console.log(err);
         return res.status(400).json({ error })
-        // res.send(400, "Bad Request");
     });
     
 }
 
-exports.getProductDetailsById = (req, res) => {
+exports.getProductSellerDetailsById = (req, res) => {
     const { productId } = req.params;
     // return res.status(200).json({ message: productId })
     if(productId){
-        Product.findOne({ _id: productId })
+        ProductSeller.findOne({ _id: productId })
         .then((product) => {
-            // if(error) return res.status(400).json({ error });
             if(product){
                 return res.status(200).json({ product });
             }
@@ -72,6 +70,77 @@ exports.getProductDetailsById = (req, res) => {
         return res.status(400).json({ error: 'params required' });
     }
 }
+
+// Buyer API
+exports.createProductBuyer = (req, res) => { //TODO:
+    // res.status(200).json( {file: req.files, body: req.body} );
+    const {
+        name, price, specifications, description, shippingCost, category
+    } = req.body;
+
+    let productPictures = [];
+
+    if(req.files.length > 0){
+        productPictures = req.files.map(file => {
+            return { img: file.filename }
+        })
+    }
+
+    let slug = slugify(name);
+    console.log(slug.length)
+    if(slug.length == 0){
+        console.log("Slug is 0");
+        slug = name.split(" ")[0];
+    }
+
+    console.log(name, slug)
+
+    const product = new ProductSeller({
+        name: req.body.name,
+        slug: slug,
+        price,
+        specifications,
+        description,
+        shippingCost,
+        productPictures,
+        category,
+        createBy: req.user._id
+    });
+
+    product.save().then(product => {
+        if(product){
+            res.status(201).json({ product });
+        }
+    }).catch((error) => {
+        console.log(err);
+        return res.status(400).json({ error })
+    });
+    
+}
+
+exports.getProductBuyerDetailsById = (req, res) => { //TODO:
+    const { productId } = req.params;
+    // return res.status(200).json({ message: productId })
+    if(productId){
+        ProductSeller.findOne({ _id: productId })
+        .then((product) => {
+            if(product){
+                return res.status(200).json({ product });
+            }
+        }).catch((error) => {
+            console.log(err);
+            return res.status(400).json({ error })
+        })
+    }else{
+        return res.status(400).json({ error: 'params required' });
+    }
+}
+
+
+
+
+
+
 
 // exports.getProductsBySlug = (req, res) => {
 //     const { slug } = req.params;

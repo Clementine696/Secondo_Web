@@ -1,6 +1,7 @@
 const Category = require('../models/category');
 const slugify = require('slugify');
-const shortid = require('shortid')
+const shortid = require('shortid');
+const fs = require('fs');
 
 function createCategories(categories, parentId = null){
 
@@ -37,6 +38,7 @@ exports.addCategory = (req, res) => {
 
     if(req.file){
         categoryObj.categoryImage = process.env.API + '/public/' + req.file.filename;
+        console.log(req.file.filename);
     }
     
     if(req.body.parentId){
@@ -65,6 +67,13 @@ exports.getCategory = (req, res) => {
     Category.find({})
     .then((categories) => {
         // if(error) return res.status(400).json({ error })
+
+        // fs.unlink("src/uploads/ZZZSOVA.jpg", (err => 
+        //     { if (err) console.log(err);
+        //         else {
+        //             console.log("\nDeleted file");
+        //         }
+        //     }));
 
         if(categories){
 
@@ -104,7 +113,7 @@ exports.updateCategories = async (req, res) => {
             const updatedCategory = await Category.findOneAndUpdate({_id: _id[i]}, category, {new: true});
             updatedCategories.push(updatedCategory);
         }
-        return res.status(201).json({ updatedCategories: updatedCategories   });
+        return res.status(201).json({ updatedCategories: updatedCategories });
     }else{
         const category = {
             name,
@@ -127,10 +136,30 @@ exports.deleteCategories = async (req, res) => {
         const deleteCategory = await Category.findOneAndDelete({ _id: ids[i]._id})
         deletedCategories.push(deleteCategory);
     }
+    console.log(deletedCategories)
     if(deletedCategories.length == ids.length){
+
+        for(let i=0; i<deletedCategories.length; i++){
+            if(deletedCategories[i].categoryImage != null){
+                console.log(deletedCategories[i].categoryImage.split('/')[4])
+                fs.unlink("src/uploads/" + deletedCategories[i].categoryImage.split('/')[4], (err => 
+                    { if (err) console.log(err);
+                        else {
+                            console.log("\nDeleted file");
+                        }
+                    }));
+                }
+            }
         res.status(201).json({message: 'Categories removed'})
     }else{
         res.status(400).json({message: 'Something went worng'})
     }
     // res.status(200).json({body: req.body});
 }
+
+// fs.unlink("src/uploads/ZZZSOVA.jpg", (err => 
+//     { if (err) console.log(err);
+//         else {
+//             console.log("\nDeleted file");
+//         }
+//     }));

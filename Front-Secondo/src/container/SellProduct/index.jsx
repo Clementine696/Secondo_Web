@@ -299,6 +299,7 @@ function SellProduct() {
                     // onClick={() => {
                     //   console.log(selectedImages), "ddd";
                     // }}
+                    onClick={addProductForm}
                     style={{ textDecoration: "none" }}
                     to=""
                   >

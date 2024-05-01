@@ -41,6 +41,7 @@ function Category(props) {
     dispatch(addCategory(form));
     setCategoryName("");
     setParentCategoryId("");
+    setCategoryImage("");
     setShow(false);
   };
   const handleShow = () => setShow(true);
