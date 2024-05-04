@@ -8,6 +8,7 @@ const initState = {
 }
 
 export default (state = initState, action) => {
+    console.log(action);
     switch(action.type){
         case userConstants.USER_REGISTER_REQUEST:
             state = {
@@ -32,7 +33,7 @@ export default (state = initState, action) => {
                 message: action.payload.error
             }
             break;
+        
     }
-    
     return state;
 }

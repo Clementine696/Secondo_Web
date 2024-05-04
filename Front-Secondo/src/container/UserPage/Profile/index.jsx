@@ -7,8 +7,20 @@ import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
 import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
+import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
+
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
+
+  // useEffect(() => {
+  //   dispatch(isUserLoggedIn());
+  // }, [auth.authenticate]);
+
+  let userImage = auth.user.profilePicture;
+
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -26,13 +38,24 @@ function Profile() {
 
   const [image, setImage] = useState(null);
 
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    setImage(selectedImage);
-  };
+  const updatePic = (event) => {
 
-  const handleUploadClick = () => {
-    console.log("อัพโหลดรูปภาพ");
+    const selectedImage = event.target.files[0];
+    console.log(selectedImage)
+
+    setImage(selectedImage);
+    userImage = selectedImage;
+    // for (let pic of selectedImages) {
+    //   console.log("Test")
+    //   console.log(pic.name)
+    // }
+
+    const form = new FormData();
+    form.append("newProfilePicture", selectedImage);
+    console.log(selectedImage)
+    dispatch(updateProfilePicture(form));
+    // dispatch(isUserLoggedIn());
+
   };
 
   return (
@@ -70,10 +93,13 @@ function Profile() {
                   }}
                 ></div> */}
                 <div className="profile-picture-img-frame">
-                  {image ? (
+                  {userImage ? (
+                  
                     <img
                       className="profile-picture-img"
-                      src={URL.createObjectURL(image)}
+                      // src={auth.user.profilePicture}
+                      // src={URL.createObjectURL(image)}
+                      src={userImage}
                       alt="Uploaded"
                       style={{
                         backgroundColor: "black",
@@ -104,8 +130,7 @@ function Profile() {
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                      handleImageChange(event);
-                      handleUploadClick();
+                      updatePic(event);
                     }}
                     style={{ display: "none" }}
                   />

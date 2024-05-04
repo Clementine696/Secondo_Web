@@ -1,4 +1,4 @@
-import { userConstants } from "./constants"
+import { authConstants, userConstants } from "./constants"
 import axios from "../helpers/axios"
 
 export const signup = (user) => {
@@ -53,6 +53,33 @@ export const signup = (user) => {
             if(res.status === 400){
                 dispatch({
                     type: userConstants.USER_REGISTER_FAILURE,
+                    payload: { error: res.data.error }
+                });
+            }
+        }
+    }
+}
+
+export const updateProfilePicture = form => {
+    return async dispatch => {
+
+        dispatch({ type: authConstants.USER_UPDATE_PROFILE_PICTURE_REQUEST });
+
+        const res = await axios.post(`admin/updateProfilePicture`, form)
+        console.log(res);
+        if(res.status === 200){
+            dispatch({
+                type: authConstants.USER_UPDATE_PROFILE_PICTURE_SUCCESS,
+                // payload: {
+                //     user : {
+                //         profilePicture: res.data.profilePicture
+                //     }
+                // }
+            });
+        }else{
+            if(res.status === 400){
+                dispatch({
+                    type: authConstants.USER_UPDATE_PROFILE_PICTURE_FAILURE,
                     payload: { error: res.data.error }
                 });
             }

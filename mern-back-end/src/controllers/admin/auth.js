@@ -94,7 +94,7 @@ exports.signin = (req, res) => {
 
             if(user.authenticate(req.body.password) && user.role === 'admin'){
                 const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
-                const { _id, firstName, lastName, email, role, fullName} = user;
+                const { _id, firstName, lastName, email, role, fullName, profilePicture} = user;
                 res.cookie('token', token, { expiresIn: '1d'});
                 // const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '600ms' });
                 // const { _id, firstName, lastName, email, role, fullName} = user;
@@ -102,7 +102,7 @@ exports.signin = (req, res) => {
                 res.status(200).json({
                     token,
                     user: {
-                        _id, firstName, lastName, email, role, fullName 
+                        _id, firstName, lastName, email, role, fullName, profilePicture 
                     }
                 });
             }else{
@@ -146,12 +146,13 @@ exports.updateProfilePicture = (req, res) => {
                     fs.unlink("src/uploads/" + user.profilePicture.split('/')[4], (err => 
                         { if (err) console.log(err);
                             else {
-                                console.log("\nDeleted file");
+                                console.log("\nDeleted file", user.profilePicture.split('/')[4]);
                             }
                         }));
                 }
                 // console.log('ready up')
                 User.findOneAndUpdate({ _id: req.user._id }, { profilePicture: newProfilePicture}).catch((err)=>{
+                    console.log('Updated file', newProfilePicture)
                     console.log(err);
                 });
             }
@@ -168,7 +169,7 @@ exports.updateProfilePicture = (req, res) => {
         //     }
         // })
 
-        return res.status(200).json({message: 'Sheesh'});
+        return res.status(200).json({profilePicture: newProfilePicture});
     }else{
         return res.status(400).json({message: 'Something went wrong'});
     }

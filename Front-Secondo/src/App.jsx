@@ -98,7 +98,7 @@ export default function App() {
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
 
-          <Route path="product/seller" element={<Product />} />
+          {/* <Route path="product/seller" element={<Product />} /> */}
           {/* <Route path="/:productSlug/:productId/p" element={<Product />} /> */}
           <Route path="product/buyer" element={<Offersale />} />
           {/* <Route path="product/offerbuy" element={<Offerbuy />} /> */}
@@ -145,7 +145,7 @@ export default function App() {
           <Route path="donatestate/additem" element={<PostDonateProduct />} />
 
           {/* Dynamic Route */}
-          <Route path="/:productSlug/:productId/p" element={<Product />} />
+          <Route path="/product/seller/:productId/p" element={<Product />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

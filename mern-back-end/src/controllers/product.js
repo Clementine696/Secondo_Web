@@ -9,14 +9,18 @@ const Category = require('../models/category')
 // Seller API
 exports.createProductSeller = (req, res) => {
     // res.status(200).json( {file: req.files, body: req.body} );
+    // const {
+    //     name, price, specifications, description, shippingCost, category
+    // } = req.body;
     const {
-        name, price, specifications, description, shippingCost, category
+        name, price, description, shippingCost, category
     } = req.body;
 
     let productPictures = [];
 
     if(req.files.length > 0){
         productPictures = req.files.map(file => {
+            console.log(file.filename)
             return { img: file.filename }
         })
     }
@@ -34,20 +38,21 @@ exports.createProductSeller = (req, res) => {
         name: req.body.name,
         slug: slug,
         price,
-        specifications,
+        specifications: '',
         description,
         shippingCost,
+        carbonCredits: '0',
         productPictures,
+        verify: false,
         category,
         createBy: req.user._id
     });
-
     product.save().then(product => {
         if(product){
             res.status(201).json({ product });
         }
     }).catch((error) => {
-        console.log(err);
+        console.log(error);
         return res.status(400).json({ error })
     });
     
@@ -58,12 +63,15 @@ exports.getProductSellerDetailsById = (req, res) => {
     // return res.status(200).json({ message: productId })
     if(productId){
         ProductSeller.findOne({ _id: productId })
+        .populate({ path: 'category', select: '_id name'})
+        .populate({ path: 'createBy', select: '_id firstName'})
+        .exec()
         .then((product) => {
             if(product){
                 return res.status(200).json({ product });
             }
         }).catch((error) => {
-            console.log(err);
+            console.log(error);
             return res.status(400).json({ error })
         })
     }else{
@@ -72,16 +80,20 @@ exports.getProductSellerDetailsById = (req, res) => {
 }
 
 // Buyer API
-exports.createProductBuyer = (req, res) => { //TODO:
+exports.createProductBuyer = (req, res) => {
     // res.status(200).json( {file: req.files, body: req.body} );
+    // const {
+    //     name, price, specifications, description, shippingCost, category
+    // } = req.body;
     const {
-        name, price, specifications, description, shippingCost, category
+        name, price, description, shippingCost, category
     } = req.body;
 
     let productPictures = [];
 
     if(req.files.length > 0){
         productPictures = req.files.map(file => {
+            console.log(file.filename)
             return { img: file.filename }
         })
     }
@@ -95,80 +107,48 @@ exports.createProductBuyer = (req, res) => { //TODO:
 
     console.log(name, slug)
 
-    const product = new ProductSeller({
+    const product = new ProductBuyer({
         name: req.body.name,
         slug: slug,
         price,
-        specifications,
+        specifications: '',
         description,
         shippingCost,
+        carbonCredits: '0',
         productPictures,
+        verify: false,
         category,
         createBy: req.user._id
     });
-
     product.save().then(product => {
         if(product){
             res.status(201).json({ product });
         }
     }).catch((error) => {
-        console.log(err);
+        console.log(error);
         return res.status(400).json({ error })
     });
     
 }
 
-exports.getProductBuyerDetailsById = (req, res) => { //TODO:
+exports.getProductBuyerDetailsById = (req, res) => {
     const { productId } = req.params;
     // return res.status(200).json({ message: productId })
     if(productId){
-        ProductSeller.findOne({ _id: productId })
+        ProductBuyer.findOne({ _id: productId })
+        .populate({ path: 'category', select: '_id name'})
+        .populate({ path: 'createBy', select: '_id firstName'})
+        .exec()
         .then((product) => {
             if(product){
                 return res.status(200).json({ product });
             }
         }).catch((error) => {
-            console.log(err);
+            console.log(error);
             return res.status(400).json({ error })
         })
     }else{
         return res.status(400).json({ error: 'params required' });
     }
 }
-
-
-
-
-
-
-
-// exports.getProductsBySlug = (req, res) => {
-//     const { slug } = req.params;
-//     Category.findOne({ slug: slug })
-//         .select('_id')
-//         .then(category => {
-//             if(category){
-//                 Product.find({ category: category._id })
-//                     .then(products => {
-//                         if(products.length > 0){
-//                             res.status(200).json({
-//                             products,
-//                             productByPrice: {
-//                                 under5k: products.filter(product => product.price <= 5000),
-//                                 under10k: products.filter(product => product.price > 5000 && product.price <=10000),
-//                                 under15k: products.filter(product => product.price > 10000) 
-//                                 }
-//                             })
-//                         }else{
-//                             res.status(200).json({ message: 'no' })
-//                         }
-//                     }).catch((error) => {
-//                         return res.status(400).json({error})
-//                     })
-//             }
-//         }).catch((error) => {
-//             return res.status(400).json({error})
-//         })
-// }
-
 
