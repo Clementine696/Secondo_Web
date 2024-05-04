@@ -37,7 +37,6 @@ import productFav from "../../../public/images/pant.jpg";
 // ];
 
 let itemInterest = [
-let itemInterest = [
   {
     img: "",
     title: "สินค้าน่าสนใจ 1",
@@ -188,22 +187,6 @@ function Home() {
           // children: category.children.length > 0 && renderCategories(category.children)
         });
       }
-    for (let product of products) {
-        console.log(product)
-        myProducts.push(
-          {
-            _id: product._id,
-            slug: product.slug, 
-            img: product.productPictures,
-            title: product.name,
-            province: "กรุงเทพ",
-            price: product.price,
-            credit: 0.1
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
-    }
-
     return myProducts;
   };
 
@@ -211,8 +194,7 @@ function Home() {
   const itemInterest = product.productsSeller
     ? renderProducts(product.productsSeller)
     : [];
-  if(product.productsSeller!=null)
-    itemInterest = renderProducts(product.productsSeller); //TODO:
+
   // const itemBuyer = renderProducts(product.productsBuyer);
   // console.log(itemInterest)
   return (
