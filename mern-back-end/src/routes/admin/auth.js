@@ -26,5 +26,6 @@ router.post('/admin/signin', validateSigninRequest, isRequestValidated, signin);
 router.post('/admin/signout', signout);
 router.post('/admin/updateProfilePicture', requireSignin, adminMiddleware, upload.single('newProfilePicture'), updateProfilePicture);
 // router.post('/admin/signout', requireSignin, signout);
+router.post('/admin/address/new', requireSignin, adminMiddleware);
 
 module.exports = router;

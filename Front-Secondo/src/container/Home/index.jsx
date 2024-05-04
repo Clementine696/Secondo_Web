@@ -36,7 +36,7 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
-const itemInterest = [
+let itemInterest = [
   {
     img: "",
     title: "สินค้าน่าสนใจ 1",
@@ -179,6 +179,7 @@ function Home() {
   const renderProducts = (products) => {
     let myProducts = [];
     for (let product of products) {
+        console.log(product)
         myProducts.push(
           {
             _id: product._id,
@@ -195,7 +196,8 @@ function Home() {
     return myProducts;
   };
 
-  // const itemInterest = renderProducts(product.productsSeller); //TODO:
+  if(product.productsSeller!=null)
+    itemInterest = renderProducts(product.productsSeller); //TODO:
   // const itemBuyer = renderProducts(product.productsBuyer);
   // console.log(itemInterest)
   return (

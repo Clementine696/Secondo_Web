@@ -1,4 +1,5 @@
 const User = require('../../models/user');
+const Address = require('../../models/address')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const shortid = require('shortid')
@@ -180,3 +181,38 @@ exports.updateProfilePicture = (req, res) => {
 // exports.updateProfileDetail = (req, res) => {
 
 // }
+
+exports.newAddress = (req, res) => {
+
+    const {
+        address_name, tel, houseaddress, sub_district, district, province, zipcode
+    } = req.body;
+
+    User.findOne({ _id: req.user._id })
+        .then((user)=>{
+            if(user){
+                console.log(user);
+
+                // Address.create(req.body.address, function(err, address){
+                //     if(err){
+                //         console.log(err);
+                //     }else{
+                //         address.author.id = req.user._id;
+                //         address.author.username = req.user.username;
+                //         address.save();
+                //         foundUser.addresses.push(address);
+                //         foundUser.save();
+                //         res.redirect('/user/' + foundUser._id +"/delivery");
+                //     }
+                // });
+
+                // User.findOneAndUpdate({ _id: req.user._id }, { profilePicture: newProfilePicture}).catch((err)=>{
+                //     console.log('Updated file', newProfilePicture)
+                //     console.log(err);
+                // });
+                return res.status(200).json({profilePicture: newProfilePicture});
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
