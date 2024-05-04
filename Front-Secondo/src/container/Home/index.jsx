@@ -36,7 +36,7 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
-const itemInterest = [
+let itemInterest = [
   {
     img: "",
     title: "สินค้าน่าสนใจ 1",
@@ -130,31 +130,27 @@ const itemReceive = [
 ];
 
 function Home() {
-
   const category = useSelector((state) => state.category);
   // console.log(category)
   // const dispatch = useDispatch();
 
-
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+      if (category.parentId == null) {
+        myCategories.push({
+          img: category.image,
+          label: category.name,
+          value: category._id,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
       }
     }
 
     return myCategories;
   };
 
-  const categoryItem = renderCategories(category.categories)
+  const categoryItem = renderCategories(category.categories);
   // console.log(categoryItem)
 
   const slicedArray1 = categoryItem.slice(0, 8);
@@ -178,24 +174,28 @@ function Home() {
 
   const renderProducts = (products) => {
     let myProducts = [];
-    for (let product of products) {
-        myProducts.push(
-          {
-            _id: product._id,
-            slug: product.slug, 
-            img: product.productPictures,
-            title: product.name,
-            province: "กรุงเทพ",
-            price: product.price,
-            credit: 0.1
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        myProducts.push({
+          _id: product._id,
+          slug: product.slug,
+          img: product.productPictures,
+          title: product.name,
+          province: "กรุงเทพ",
+          price: product.price,
+          credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+      }
     }
+
     return myProducts;
   };
 
   // const itemInterest = renderProducts(product.productsSeller); //TODO:
+  const itemInterest = product.productsSeller
+    ? renderProducts(product.productsSeller)
+    : [];
   // const itemBuyer = renderProducts(product.productsBuyer);
   // console.log(itemInterest)
   return (
