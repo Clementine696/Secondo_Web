@@ -67,6 +67,37 @@ let itemInterest = [
   },
 ];
 
+let itemBuyer = [
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
+
 const itemDonate = [
   {
     img: "",
@@ -187,7 +218,8 @@ function Home() {
           // children: category.children.length > 0 && renderCategories(category.children)
         });
       }
-    return myProducts;
+      return myProducts;
+    }
   };
 
   // const itemInterest = renderProducts(product.productsSeller); //TODO:
@@ -195,7 +227,7 @@ function Home() {
     ? renderProducts(product.productsSeller)
     : [];
 
-  // const itemBuyer = renderProducts(product.productsBuyer);
+  const itemBuyer = renderProducts(product.productsBuyer);
   // console.log(itemInterest)
   return (
     <Layout>
@@ -282,6 +314,49 @@ function Home() {
                   province={item.province}
                   price={item.price}
                   credit={item.credit}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="group-card">
+          <div className="group-card-header-item">
+            <div className="group-card-header">
+              <div className="group-card-header-topic kanit-paragraphBig">
+                สินค้ารับซื้อใหม่
+              </div>
+              <Link className="group-card-icon-other">
+                <div className="group-card-header-other">เพิ่มเติม</div>
+                <svg
+                  className="icon-arrow-right-24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path
+                    d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                    stroke="#D0C58A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </Link>
+            </div>
+            <HDivider />
+            <div className="group-card-item">
+              {itemBuyer.map((item, index) => (
+                <ItemCard
+                  key={index}
+                  img={item.img}
+                  _id={item._id}
+                  slug={item.slug}
+                  title={item.title}
+                  province={item.province}
+                  price={item.price}
                 />
               ))}
             </div>
