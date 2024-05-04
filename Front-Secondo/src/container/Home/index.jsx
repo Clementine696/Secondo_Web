@@ -36,36 +36,36 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
-// const itemInterest = [
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 1",
-//     province: "กรุงเทพ",
-//     price: "1000",
-//     credit: 0.1,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 2",
-//     province: "กรุงเทพ",
-//     price: "2000",
-//     credit: 0.2,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 3",
-//     province: "กรุงเทพ",
-//     price: "3000",
-//     credit: 0.3,
-//   },
-//   {
-//     img: "",
-//     title: "สินค้าน่าสนใจ 4",
-//     province: "กรุงเทพ",
-//     price: "4000",
-//     credit: 0.4,
-//   },
-// ];
+const itemInterest = [
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 1",
+    province: "กรุงเทพ",
+    price: "1000",
+    credit: 0.1,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 2",
+    province: "กรุงเทพ",
+    price: "2000",
+    credit: 0.2,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 3",
+    province: "กรุงเทพ",
+    price: "3000",
+    credit: 0.3,
+  },
+  {
+    img: "",
+    title: "สินค้าน่าสนใจ 4",
+    province: "กรุงเทพ",
+    price: "4000",
+    credit: 0.4,
+  },
+];
 
 const itemDonate = [
   {
@@ -195,8 +195,9 @@ function Home() {
     return myProducts;
   };
 
-  const itemInterest = renderProducts(product.products);
-  console.log(itemInterest)
+  // const itemInterest = renderProducts(product.productsSeller); //TODO:
+  // const itemBuyer = renderProducts(product.productsBuyer);
+  // console.log(itemInterest)
   return (
     <Layout>
       <div className="background-home">

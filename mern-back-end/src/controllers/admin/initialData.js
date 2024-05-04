@@ -35,13 +35,14 @@ exports.initialData = async (req, res) => {
                                         .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
-    const ProductBuyer = await ProductSeller.find({})
+    const productsBuyer = await ProductBuyer.find({})
                                         .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
     res.status(200).json({
         categories: createCategories(categories),
-        productsSeller
+        productsSeller,
+        productsBuyer
     })
 
 }

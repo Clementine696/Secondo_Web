@@ -97,13 +97,13 @@ function Product() {
   const productImage = productFromApi.productPictures
   // console.log(productImage)
   // console.log(productImage.length)
-  // productImage.map((item, index) =>{
-  //   console.log(item.img)
-  //   // image_list.push(item.img);
-  //   // console.log(image[index])
-  // })
+  productImage.map((item, index) =>{
+    console.log(item.img)
+    image_list.push(item.img);
+    // console.log(image[index])
+  })
   // console.log('new image list :')
-  // console.log(image)
+  console.log(image_list)
   // for(let i=0;i<product.productDetails.productPictures.length;i++){
   //   image.append(product.productDetails.productPictures[i].img);
   //   console.log(image[i])
@@ -118,8 +118,8 @@ function Product() {
             "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
             "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
           ],
-    productName: "iPhone 15 Pro 128GB (Titanium)",
-    productSeller: "Mungkud",
+    productName: productFromApi.name,
+    productSeller: productFromApi.createBy.firstName,
     province: "กรุงเทพ",
     productPrice: "1000",
     productCredit: 20,
@@ -225,8 +225,8 @@ function Product() {
           <div className="product-page-item-details-group-item-description">
             <div className="product-title-seller-name">
               <div className="kanit-paragraphMedium product-title">
-                {product.productDetails.name}
-                {/* {productDetail[0].productName} */}
+                {/* {product.productDetails.name} */}
+                {productDetail[0].productName}
               </div>
               <Link className="seller-product" to="#seller">
                 <div className="kanit-paragraphSmall">ลงขายโดย 

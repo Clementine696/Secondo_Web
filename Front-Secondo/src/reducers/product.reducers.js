@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
         case productConstants.GET_ALL_PRODUCTS_SUCCESS:
             state = {
                 ...state,
-                products: action.payload.products
+                productsSeller: action.payload.productsSeller,
+                productsBuyer: action.payload.productsBuyer
             }
             break;
         case productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST:

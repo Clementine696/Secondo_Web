@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireSignin, adminMiddleware } = require('../common-middleware');
-const { createProductSeller, getProductSellerDetailsById, createProductBuyer, getProductBuyerDetailsById } = require('../controllers/product');
+const { createProductSeller, getProductSellerDetailsById, createProductBuyer, getProductBuyerDetailsById, createProductDonater, getProductDonaterDetailsById, createProductReciever, getProductRecieverDetailsById } = require('../controllers/product');
 const multer = require('multer');
 const router = express.Router();
 const shortid = require('shortid')
@@ -25,6 +25,13 @@ router.get('/product/seller/:productId', getProductSellerDetailsById);
 
 router.post('/product/buyer/create', requireSignin, adminMiddleware, upload.array('productPicture'), createProductBuyer);
 router.get('/product/buyer/:productId', getProductBuyerDetailsById);
+
+router.post('/product/donater/create', requireSignin, adminMiddleware, upload.array('productPicture'), createProductDonater);
+router.get('/product/donater/:productId', getProductDonaterDetailsById);
+
+router.post('/product/reciever/create', requireSignin, adminMiddleware, upload.array('productPicture'), createProductReciever);
+router.get('/product/reciever/:productId', getProductRecieverDetailsById);
+
 // router.post('/product/createBuyer', requireSignin, adminMiddleware, upload.array('productPicture'), createProductSeller);
 // router.post('/product/createSeller', requireSignin, adminMiddleware, upload.array('productPicture'), createProductSeller);
 // router.post('/product/createSeller', requireSignin, adminMiddleware, upload.array('productPicture'), createProductSeller);
