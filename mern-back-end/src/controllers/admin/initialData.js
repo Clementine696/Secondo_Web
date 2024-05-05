@@ -42,11 +42,11 @@ exports.initialData = async (req, res) => {
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
     const productsDonater = await ProductDonate.find({})
-                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
+                                        .select('_id name slug specifications description shippingCost productPictures verify category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
     const productsReciever = await ProductRequest.find({})
-                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
+                                        .select('_id name slug specifications description shippingCost productPictures verify category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
     res.status(200).json({
