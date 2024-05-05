@@ -7,7 +7,7 @@ export const getInitialData = () => {
 
         const res = await axios.post(`/initialdata`);
         if(res.status === 200){
-            const { categories, productsSeller, productsBuyer } = res.data;
+            const { categories, productsSeller, productsBuyer, productsDonater, productsReciever } = res.data;
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_SUCCESS,
                 payload: { categories }
@@ -16,8 +16,10 @@ export const getInitialData = () => {
                 type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
                 payload: { 
                     productsSeller,
-                    productsBuyer
-                 }
+                    productsBuyer,
+                    productsDonater,
+                    productsReciever
+                }
             })
         }
         // console.log(res)

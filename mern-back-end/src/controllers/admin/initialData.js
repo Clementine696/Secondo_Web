@@ -1,6 +1,8 @@
 const Category = require('../../models/category')
 const ProductSeller = require('../../models/productSeller')
 const ProductBuyer = require('../../models/productBuyer')
+const ProductDonate = require('../../models/productDonate')
+const ProductRequest = require('../../models/productRequest')
 
 function createCategories(categories, parentId = null){
 
@@ -39,10 +41,20 @@ exports.initialData = async (req, res) => {
                                         .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
+    const productsDonater = await ProductDonate.find({})
+                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
+                                        .populate({ path: 'category', select: '_id name'})
+                                        .exec();
+    const productsReciever = await ProductRequest.find({})
+                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
+                                        .populate({ path: 'category', select: '_id name'})
+                                        .exec();
     res.status(200).json({
         categories: createCategories(categories),
         productsSeller,
-        productsBuyer
+        productsBuyer,
+        productsDonater,
+        productsReciever
     })
 
 }
