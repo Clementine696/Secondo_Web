@@ -9,7 +9,7 @@ exports.getUserData = (req, res) => {
     User.findOne({ _id: req.user._id })
         .then((user)=>{
             if(user){
-                console.log(user);
+                // console.log(user);
                 return res.status(200).json({ user: user })
             }
         })

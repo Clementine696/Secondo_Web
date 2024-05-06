@@ -9,6 +9,7 @@ import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
 import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 
 function Profile() {
 
@@ -41,10 +42,12 @@ function Profile() {
   const updatePic = (event) => {
 
     const selectedImage = event.target.files[0];
-    console.log(selectedImage)
+    // console.log(selectedImage)
 
     setImage(selectedImage);
-    userImage = selectedImage;
+    // console.log("userImage" + userImage)
+    // console.log(generatePublicUrl(selectedImage.name))
+    // userImage = selectedImage;
     // for (let pic of selectedImages) {
     //   console.log("Test")
     //   console.log(pic.name)
@@ -52,10 +55,11 @@ function Profile() {
 
     const form = new FormData();
     form.append("newProfilePicture", selectedImage);
-    console.log(selectedImage)
+    // console.log(selectedImage)
+    // setImage(null)
     dispatch(updateProfilePicture(form));
     dispatch(isUserLoggedIn());
-
+    // window.location.reload();
   };
 
   return (

@@ -119,3 +119,70 @@ export const addAddress = () => {
         console.log('here be addAdress');
     }
 }
+
+
+
+
+
+// router.post('/:id/checkoutconfirm', middleware.isLoggedIn, function(req, res){
+// 	User.findById(req.params.id, function(err, foundUser){
+// 		if(err){
+// 			req.flash('error', 'There is something wrong');
+// 			return res.redirect('/');
+// 		}else{
+// 			Address.findById(req.body.select_deli, function(err, foundAddress){
+// 				if(err){
+// 					req.flash('error', 'There is something wrong');
+// 					return res.redirect('/');
+// 				}else{
+// 					Payment.findById(req.body.select_paym, function(err, foundPayment){
+// 						if(err){
+// 							req.flash('error', 'There is something wrong');
+// 							return res.redirect('/');
+// 						}else{
+// 							foundUser.carts.forEach(function(cart){
+// 								User.findByIdAndUpdate(
+// 									foundUser,
+// 									{$push: {"historys": {product: cart.product, quantity: cart.quantity, address: foundAddress, payment: foundPayment, pay_date: Date()}}},
+// 									{safe: true, upsert: true},
+// 									function(err, model) {
+// 										console.log(err);
+// 									}
+// 								);
+
+// 								User.findByIdAndUpdate(
+// 									foundUser,
+// 									{$pull: {"carts": {_id:cart._id, product: cart.product, quantity: cart.quantity}}},
+// 									{safe: true, upsert: true},
+// 									function(err, model) {
+// 										console.log(err);
+// 									}
+// 								);
+
+// 							});
+// 						}
+// 					})
+// 				}
+// 			});
+// 			res.redirect('/user/' + foundUser._id +"/history");
+// 		}
+// 	});
+// });
+
+
+// router.get('/:id/history', middleware.isLoggedIn, function(req, res){
+// 	User.findById(req.params.id).populate('addresses payments').exec(function(err, foundUser){
+// 		if(err){
+// 			req.flash('error', 'There is something wrong');
+// 			return res.redirect('/');
+// 		}else{
+// 			Product.find({}, function(err, allProducts){
+// 				if(err){
+// 					console.log(err);
+// 				} else{
+// 					res.render('user/history.ejs', {user: foundUser, products: allProducts});
+// 				}
+// 			});
+// 		}
+// 	});
+// });
