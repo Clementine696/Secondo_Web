@@ -5,6 +5,16 @@ const bcrypt = require('bcrypt')
 const shortid = require('shortid')
 const fs = require('fs');
 
+exports.getUserData = (req, res) => {
+    User.findOne({ _id: req.user._id })
+        .then((user)=>{
+            if(user){
+                console.log(user);
+                return res.status(200).json({ user: user })
+            }
+        })
+}
+
 exports.signup = (req, res) => {
 
     User.findOne({email: req.body.email})
@@ -193,24 +203,39 @@ exports.newAddress = (req, res) => {
             if(user){
                 console.log(user);
 
-                // Address.create(req.body.address, function(err, address){
-                //     if(err){
-                //         console.log(err);
-                //     }else{
-                //         address.author.id = req.user._id;
-                //         address.author.username = req.user.username;
-                //         address.save();
-                //         foundUser.addresses.push(address);
-                //         foundUser.save();
-                //         res.redirect('/user/' + foundUser._id +"/delivery");
-                //     }
-                // });
+                const address = new Address({
+                    address_name,
+                    tel,
+                    houseaddress,
+                    sub_district,
+                    district,
+                    province,
+                    zipcode,
+                })
+                address.author.id = req.user._id;
+                address.save().then(address => {
+                    if(address){
+                        user.addresses.push(address);
+                        user.save();
+                        res.status(201).json({ address });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return res.status(400).json({ error })
+                });
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
 
-                // User.findOneAndUpdate({ _id: req.user._id }, { profilePicture: newProfilePicture}).catch((err)=>{
-                //     console.log('Updated file', newProfilePicture)
-                //     console.log(err);
-                // });
-                return res.status(200).json({profilePicture: newProfilePicture});
+exports.getAddress = (req, res) => {
+    User.findOne({ _id: req.user._id })
+    .populate({ path: 'addresses' })
+        .then((user)=>{
+            if(user){
+                // console.log(user.addresses)
+                res.status(201).json({ address: user.addresses })
             }else{
                 return res.status(400).json({message: 'Something went wrong'});
             }

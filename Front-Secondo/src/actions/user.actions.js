@@ -86,3 +86,36 @@ export const updateProfilePicture = form => {
         }
     }
 }
+
+export const getAddress = () => {
+    return async dispatch => {
+
+        dispatch({ type: userConstants.USER_GET_ADDRESS_REQUEST });
+        const res = await axios.post(`admin/address/get`)
+        if(res.status === 201){
+            dispatch({ 
+                type: userConstants.USER_GET_ADDRESS_SUCCESS,
+                payload: {
+                    addresses: res.data
+                }
+            });
+        }
+        else{
+            if(res.status === 400){
+                dispatch({ 
+                    type: userConstants.USER_GET_ADDRESS_FAILURE,
+                    payload: { error: res.data.error }
+                });        
+            }
+        }
+        // console.log(res.data);
+    }
+}
+
+export const addAddress = () => {
+    return async dispatch => {
+        // const res = await axios.post(`admin/address/new`, form)
+        // console.log(res);
+        console.log('here be addAdress');
+    }
+}

@@ -54,7 +54,7 @@ function Profile() {
     form.append("newProfilePicture", selectedImage);
     console.log(selectedImage)
     dispatch(updateProfilePicture(form));
-    // dispatch(isUserLoggedIn());
+    dispatch(isUserLoggedIn());
 
   };
 

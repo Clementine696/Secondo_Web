@@ -4,7 +4,8 @@ const initState = {
     error: null,
     message: '',
     loading: false,
-    signupsuccess: false
+    signupsuccess: false,
+    addresses: []
 }
 
 export default (state = initState, action) => {
@@ -33,7 +34,25 @@ export default (state = initState, action) => {
                 message: action.payload.error
             }
             break;
-        
+        case userConstants.USER_GET_ADDRESS_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            }
+            break;
+        case userConstants.USER_GET_ADDRESS_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                addresses: action.payload.addresses
+            }
+            break;
+        case userConstants.USER_GET_ADDRESS_FAILURE:
+            state = {
+                ...state,
+                loading: false,
+            }
+            break;
     }
     return state;
 }
