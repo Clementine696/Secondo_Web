@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 
@@ -37,7 +37,8 @@ function Profile() {
     console.log(email);
   };
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+  const [updatingImage, setUpdatingImage] = useState(false);
 
   const updatePic = (event) => {
 
@@ -52,7 +53,7 @@ function Profile() {
     //   console.log("Test")
     //   console.log(pic.name)
     // }
-
+    setUpdatingImage(true);
     const form = new FormData();
     form.append("newProfilePicture", selectedImage);
     // console.log(selectedImage)
@@ -61,6 +62,13 @@ function Profile() {
     dispatch(isUserLoggedIn());
     // window.location.reload();
   };
+
+  useEffect(() => {
+    if (image != null) {
+      dispatch(isUserLoggedIn());
+      setUpdatingImage(false);
+    }
+  }, [updatingImage, dispatch]);
 
   return (
     <Layout>
