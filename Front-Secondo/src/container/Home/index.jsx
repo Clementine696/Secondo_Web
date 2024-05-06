@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 import HDivider from "../../components/UI/DividerHorizontal";
 import ItemCard from "../../components/UI/ItemCard";
+import ItemCardBuy from "../../components/UI/ItemCard/Buy";
+import ItemCardReceive from "../../components/UI/ItemCard/Receive";
+import ItemCardDonate from "../../components/UI/ItemCard/Donate";
 import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
 
@@ -222,12 +225,39 @@ function Home() {
     }
   };
 
+  const renderProductsDonate = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        myProducts.push({
+          _id: product._id,
+          slug: product.slug,
+          img: product.productPictures,
+          title: product.name,
+          province: "กรุงเทพ",
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+      }
+      return myProducts;
+    }
+  };
+
   // const itemInterest = renderProducts(product.productsSeller); //TODO:
   const itemInterest = product.productsSeller
     ? renderProducts(product.productsSeller)
     : [];
 
-  const itemBuyer = renderProducts(product.productsBuyer);
+  const itemBuyer = product.productsBuyer
+    ? renderProducts(product.productsBuyer)
+    : [];
+
+  const itemReceive = product.productsDonater
+    ? renderProductsDonate(product.productsDonater)
+    : [];
+
+  const itemDonate = product.productsReciever
+    ? renderProductsDonate(product.productsReciever)
+    : [];
   // console.log(itemInterest)
   return (
     <Layout>
@@ -349,7 +379,7 @@ function Home() {
             <HDivider />
             <div className="group-card-item">
               {itemBuyer.map((item, index) => (
-                <ItemCard
+                <ItemCardBuy
                   key={index}
                   img={item.img}
                   _id={item._id}
@@ -392,13 +422,13 @@ function Home() {
             <HDivider />
             <div className="group-card-item">
               {itemDonate.map((item, index) => (
-                <ItemCard
+                <ItemCardReceive
                   key={index}
                   img={item.img}
                   title={item.title}
                   province={item.province}
-                  price={item.price}
-                  credit={item.credit}
+                  // price={item.price}
+                  // credit={item.credit}
                 />
               ))}
             </div>
@@ -434,13 +464,13 @@ function Home() {
             <HDivider />
             <div className="group-card-item">
               {itemReceive.map((item, index) => (
-                <ItemCard
+                <ItemCardDonate
                   key={index}
                   img={item.img}
                   title={item.title}
                   province={item.province}
-                  price={item.price}
-                  credit={item.credit}
+                  // price={item.price}
+                  // credit={item.credit}
                 />
               ))}
             </div>

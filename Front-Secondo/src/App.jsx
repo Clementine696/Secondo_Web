@@ -14,7 +14,7 @@ import Search from "./container/Search";
 
 import Product from "./container/Product";
 import Offersale from "./container/Product/Offersale";
-import Offerbuy from "./container/Product/Offerbuy";
+// import Offerbuy from "./container/Product/Offerbuy";
 import Donate from "./container/Product/Donation";
 import RequireDonate from "./container/Product/Requiredonate";
 
@@ -101,10 +101,10 @@ export default function App() {
 
           {/* <Route path="product/seller" element={<Product />} /> */}
           {/* <Route path="/:productSlug/:productId/p" element={<Product />} /> */}
-          <Route path="product/buyer" element={<Offersale />} />
+          {/* <Route path="product/buyer" element={<Offersale />} /> */}
           {/* <Route path="product/offerbuy" element={<Offerbuy />} /> */}
-          <Route path="product/request" element={<Donate />} />
-          <Route path="product/donate" element={<RequireDonate />} />
+          {/* <Route path="product/receiver" element={<Donate />} />
+          <Route path="product/donater" element={<RequireDonate />} /> */}
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />
@@ -147,6 +147,9 @@ export default function App() {
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />
+          <Route path="/product/buyer/:productId/p" element={<Offersale />} />
+          <Route path="/product/receiver/:productId/p" element={<Donate />} />
+          <Route path="/product/donater/:productId/p" element={<RequireDonate />} />
 
           <Route path="test" element={<Test />} />
         </Routes>
