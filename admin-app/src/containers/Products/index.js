@@ -6,8 +6,6 @@ import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import Input from "../../components/UI/Input";
-
-// import { addProduct } from "../../actions";
 import { addProduct } from "../../actions";
 import Modal from "../../components/UI/Modal";
 import './style.css'
@@ -323,4 +321,5 @@ function Products(props) {
 }
 
 Products.propTypes = {};
+
 export default Products;

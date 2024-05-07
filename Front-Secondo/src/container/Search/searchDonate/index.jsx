@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import {
   Container,
   Form,
@@ -10,19 +10,19 @@ import {
   FormControl,
 } from "react-bootstrap";
 
-import Dropdown from "../../components/UI/Dropdown";
-import ItemCard from "../../components/UI/ItemCard";
-import SideBarCategories from "../../components/UI/ProductCate-search";
-import Pathway from "../../components/UI/Pathway";
+import Dropdown from "../../../components/UI/Dropdown";
+import ItemCard from "../../../components/UI/ItemCard";
+import SideBarCategories from "../../../components/UI/ProductCate-search";
+import Pathway from "../../../components/UI/Pathway";
 
-import "./index.css";
-import "../../styles.css";
+import "../index.css";
+import "../../../styles.css";
 import { Link } from "react-router-dom";
 
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "ขายของ", value: 2, nevigate: "/search/sell" },
-]
+  { label: "บริจาค", value: 2, nevigate: "/search/donate" },
+];
 
 const options = [
   { value: "option1", label: "ความนิยม" },
@@ -67,7 +67,7 @@ const regionDelivery = [
   { value: "7", label: "ภาคตะวันตก" },
 ];
 
-function Search() {
+function SearchDonate() {
   const handleFormProductType = (label) => {
     console.log(label);
   };
@@ -303,4 +303,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchDonate;
