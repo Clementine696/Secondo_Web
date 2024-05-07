@@ -40,8 +40,50 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
+    Hometown: {
+        type: String,
+    },
     contactNumber: { type: String },
-    profilePicture: { type: String }
+    profilePicture: { type: String },
+
+    addresses: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Address'
+		},
+	],
+
+	payments: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Payment'
+		},
+	],
+
+	carts: [{
+		product: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Product'
+			},
+		quantity: Number
+	}],
+
+	historys: [{
+		product: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Product'
+			},
+		address: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Address'
+			},
+		payment: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Payment'
+			},
+		quantity: Number,
+		pay_date: String,
+	}],
     
 }, { timestamps: true });
 

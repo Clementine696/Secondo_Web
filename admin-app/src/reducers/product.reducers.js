@@ -1,7 +1,10 @@
 import { productConstants } from "../actions/constants";
 
 const initialState = {
-    products: []
+    productsSeller: [],
+    productsBuyer: [],
+    productsDonater: [],
+    productsReciever: [],
 };
 
 export default (state = initialState, action) => {
@@ -9,7 +12,10 @@ export default (state = initialState, action) => {
         case productConstants.GET_ALL_PRODUCTS_SUCCESS:
             state = {
                 ...state,
-                products: action.payload.products
+                productsSeller: action.payload.productsSeller,
+                productsBuyer: action.payload.productsBuyer,
+                productsDonater: action.payload.productsDonater,
+                productsReciever: action.payload.productsReciever,
             }
             break;
     }
