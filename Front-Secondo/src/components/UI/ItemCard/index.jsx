@@ -35,7 +35,7 @@ function ItemCard(props) {
       <Link
           style={{ textDecoration: "none" }}
           // to="/product"
-          to={`/${props.slug}/${props._id}/p`}
+          to={`/product/seller/${props._id}/p`}
           className="link-img-card-item"
         >
           <img
@@ -48,7 +48,7 @@ function ItemCard(props) {
       <Link
           style={{ textDecoration: "none" }}
           // to="/product"
-          to={`/${props.slug}/${props._id}/p`}
+          to={`/product/seller/${props._id}/p`}
           // className="link-img-card-item"
         >
       <span className="card-text-field">

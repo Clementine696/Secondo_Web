@@ -5,7 +5,7 @@ import Layout from "../../../components/Layout";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../../actions";
+// import { addProduct } from "../../../actions";
 
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
@@ -81,7 +81,7 @@ function PostBuyProduct() {
     for (let pic of selectedImages) {
       form.append("productPicture", pic);
     }
-    dispatch(addProduct(form));
+    // dispatch(addProduct(form));
   };
 
   const [value, setValue] = useState('')

@@ -22,6 +22,7 @@ import SearchRequest from "./container/Search/searchRequest";
 
 import Product from "./container/Product";
 import Offersale from "./container/Product/Offersale";
+// import Offerbuy from "./container/Product/Offerbuy";
 import Donate from "./container/Product/Donation";
 import RequireDonate from "./container/Product/Requiredonate";
 
@@ -68,7 +69,7 @@ import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory, getInitialData, isUserLoggedIn } from './actions';
+import { getAddress, getAllCategory, getInitialData, isUserLoggedIn } from './actions';
 
 export default function App() {
 
@@ -79,6 +80,7 @@ export default function App() {
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
+      dispatch(getAddress());
     }
     dispatch(getInitialData());
   }, [auth.authenticate]);
@@ -112,12 +114,13 @@ export default function App() {
           <Route path="search/donate" element={<SearchDonate />} />
           <Route path="search/request" element={<SearchRequest />} />
 
-          <Route path="product/seller" element={<Product />} />
+
+          {/* <Route path="product/seller" element={<Product />} /> */}
           {/* <Route path="/:productSlug/:productId/p" element={<Product />} /> */}
-          <Route path="product/buyer" element={<Offersale />} />
+          {/* <Route path="product/buyer" element={<Offersale />} /> */}
           {/* <Route path="product/offerbuy" element={<Offerbuy />} /> */}
-          <Route path="product/request" element={<Donate />} />
-          <Route path="product/donate" element={<RequireDonate />} />
+          {/* <Route path="product/receiver" element={<Donate />} />
+          <Route path="product/donater" element={<RequireDonate />} /> */}
 
           <Route path="profile" element={<Profile />} />
           <Route path="buystate" element={<BuyState />} />
@@ -157,6 +160,12 @@ export default function App() {
           <Route path="buystate/additem" element={<PostBuyProduct />} />
           <Route path="receivestate/additem" element={<PostRequestProduct />} />
           <Route path="donatestate/additem" element={<PostDonateProduct />} />
+
+          {/* Dynamic Route */}
+          <Route path="/product/seller/:productId/p" element={<Product />} />
+          <Route path="/product/buyer/:productId/p" element={<Offersale />} />
+          <Route path="/product/receiver/:productId/p" element={<Donate />} />
+          <Route path="/product/donater/:productId/p" element={<RequireDonate />} />
 
           <Route path="test" element={<Test />} />
         </Routes>
