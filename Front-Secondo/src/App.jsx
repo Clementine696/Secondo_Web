@@ -10,15 +10,7 @@ import Signup from "./container/Signup";
 import RegisPhone from "./container/Signup/RegisPhone";
 import Otp from "./container/Signup/Otp";
 
-import AllProduct from "./container/AllProducts";
-import AllProductDonate from "./container/AllProducts/DonateProduct";
-import AllProductRecieve from "./container/AllProducts/ReceiveProduct";
-import AllProductInterest from "./container/AllProducts/InterestProduct";
-
 import Search from "./container/Search";
-import SearchBuy from "./container/Search/searchBuy";
-import SearchDonate from "./container/Search/searchDonate";
-import SearchRequest from "./container/Search/searchRequest";
 
 import Product from "./container/Product";
 import Offersale from "./container/Product/Offersale";
@@ -103,16 +95,8 @@ export default function App() {
           <Route path="signup/regisphone" element={<RegisPhone />} />
           <Route path="signup/regisphone/Otp" element={<Otp />} />
 
-          <Route path="allproduct" element={<AllProduct />} />
-          <Route path="allproduct/donate" element={<AllProductDonate />} />
-          <Route path="allproduct/recieve" element={<AllProductRecieve />} />
-          <Route path="allproduct/interest" element={<AllProductInterest />} />
-
-          <Route path="search/sell" element={<Search />} />
+          <Route path="search" element={<Search />} />
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
-          <Route path="search/buy" element={<SearchBuy />} />
-          <Route path="search/donate" element={<SearchDonate />} />
-          <Route path="search/request" element={<SearchRequest />} />
 
 
           {/* <Route path="product/seller" element={<Product />} /> */}

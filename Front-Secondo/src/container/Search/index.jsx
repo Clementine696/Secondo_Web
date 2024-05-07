@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import Layout from "../../components/Layout";
 import {
   Container,
@@ -9,20 +9,12 @@ import {
   FormCheck,
   FormControl,
 } from "react-bootstrap";
-
 import Dropdown from "../../components/UI/Dropdown";
 import ItemCard from "../../components/UI/ItemCard";
-import SideBarCategories from "../../components/UI/ProductCate-search";
-import Pathway from "../../components/UI/Pathway";
 
 import "./index.css";
 import "../../styles.css";
 import { Link } from "react-router-dom";
-
-const pathway = [
-  { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "ขายของ", value: 2, nevigate: "/search/sell" },
-]
 
 const options = [
   { value: "option1", label: "ความนิยม" },
@@ -31,58 +23,7 @@ const options = [
   { value: "option4", label: "ราคา: น้อยไปมาก" },
 ];
 
-const categories = [
-  { value: "cate1", label: "เสื้อผ้าและแฟชัน", nevigate: "" },
-  { value: "cate2", label: "รองเท้า", nevigate: "" },
-  { value: "cate3", label: "สุขภาพและความงาม", nevigate: "" },
-  { value: "cate4", label: "เครื่องประดับ", nevigate: "" },
-  { value: "cate5", label: "เครื่องใช้ไฟฟ้า", nevigate: "" },
-  { value: "cate6", label: "อุปกรณ์ IT", nevigate: "" },
-  { value: "cate7", label: "กล้องและอุปกรณ์", nevigate: "" },
-  { value: "cate8", label: "รถยนต์", nevigate: "" },
-  { value: "cate9", label: "รถมอเตอร์ไซต์", nevigate: "" },
-  { value: "cate10", label: "กระเป๋า", nevigate: "" },
-  { value: "cate11", label: "เฟอร์นิเจอร์", nevigate: "" },
-  { value: "cate12", label: "ของสะสม", nevigate: "" },
-  { value: "cate13", label: "หนังสือ", nevigate: "" },
-  { value: "cate14", label: "กีฬา", nevigate: "" },
-  { value: "cate15", label: "เครื่องดนตรี", nevigate: "" },
-  { value: "cate16", label: "แม่และเด็ก", nevigate: "" },
-];
-
-const productType = [
-  { value: "type1", label: "ของขาย" },
-  { value: "type2", label: "รับซื้อ" },
-  { value: "type3", label: "บริจาค" },
-  { value: "type4", label: "ขอรับบริจาค" },
-];
-
-const regionDelivery = [
-  { value: "1", label: "กรุงเทพและปริมณฑล" },
-  { value: "2", label: "ภาคกลาง" },
-  { value: "3", label: "ภาคตะวันออกเฉียงเหนือ" },
-  { value: "4", label: "ภาคใต้" },
-  { value: "5", label: "ภาคเหนือ" },
-  { value: "6", label: "ภาคตะวันออก" },
-  { value: "7", label: "ภาคตะวันตก" },
-];
-
 function Search() {
-  const handleFormProductType = (label) => {
-    console.log(label);
-  };
-
-  const handleRegion = (label) => {
-    console.log(label);
-  };
-
-  const [lowerPrice, setLowerPrice] = useState("");
-  const [upperPrice, setUpperPrice] = useState("");
-
-  const handleFilterPrice = () => {
-    console.log(lowerPrice, upperPrice);
-  };
-
   return (
     <Layout>
       {/* <div className="search-content">
@@ -150,9 +91,6 @@ function Search() {
       </div> */}
 
       <div className="search-page">
-        <div className="background-search-page">
-          <Pathway pathwayList={pathway} />
-        </div>
         <div className="search-page-frame-suggest">
           <div className="search-page-frame-suggest-topic">
             <div className="search-page-frame-suggest-topic-main-header">
@@ -164,10 +102,7 @@ function Search() {
           </div>
           <div className="search-page-frame-suggest-content">
             <div className="search-page-frame-suggest-content-group-item">
-              <Link
-                style={{ textDecoration: "none" }}
-                className="search-page-frame-suggest-content-group-item-card"
-              >
+              <div className="search-page-frame-suggest-content-group-item-card">
                 <div className="search-page-frame-suggest-content-group-item-card-img-frame">
                   <img
                     className="search-page-frame-suggest-content-group-item-card-img"
@@ -175,10 +110,13 @@ function Search() {
                     alt="suggestion"
                   />
                 </div>
-                <div className="search-page-frame-suggest-content-group-item-card-text">
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-suggest-content-group-item-card-text"
+                >
                   โทรศัพท์
-                </div>
-              </Link>
+                </Link>
+              </div>
               <div className="search-page-frame-suggest-content-group-item-card">
                 <div className="search-page-frame-suggest-content-group-item-card-img-frame">
                   <img
@@ -221,54 +159,162 @@ function Search() {
                   ประเภทสินค้า
                 </div>
                 <div className="search-page-frame-content-all-filter-condition-group-check row">
-                  {productType.map((item) => (
-                    <FormCheck
-                      key={item.value}
-                      className="search-page-frame-content-all-filter-condition-group-check-box-text"
-                      label={item.label}
-                      onClick={() => handleFormProductType(item.label)}
-                    />
-                  ))}
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอขาย"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอซื้อ"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอบริจาค"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-condition-group-check-box-text"
+                    label="เสนอรับบริจาค"
+                  />
                 </div>
               </div>
               <div className="search-page-frame-content-all-filter-category">
                 <div className="search-page-frame-content-all-filter-category-header">
                   หมวดหมู่
                 </div>
-                <SideBarCategories cateList={categories} />
+                {/* <div className="search-page-frame-content-all-filter-category-name">
+                  เสื้อผ้าและแฟชัน
+                </div> */}
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เสื้อผ้าและแฟชัน
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  รองเท้า
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  สุขภาพและความงาม
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เครื่องประดับ
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เครื่องใช้ไฟฟ้า
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  อุปกรณ์ IT
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  กล้องและอุปกรณ์
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  รถยนต์
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  รถมอเตอร์ไซต์
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  กระเป๋า
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เฟอร์นิเจอร์
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  ของสะสม
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  หนังสือ
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  กีฬา
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  เครื่องดนตรี
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  className="search-page-frame-content-all-filter-category-name"
+                >
+                  แม่และเด็ก
+                </Link>
               </div>
               <div className="search-page-frame-content-all-filter-price">
                 <div className="search-page-frame-content-all-filter-price-header">
                   ราคา
                 </div>
                 <div className="search-page-frame-content-all-filter-price-filter">
+                  {/* <div className="search-page-frame-content-all-filter-price-filter-lower">
+                    <div className="search-page-frame-content-all-filter-price-filter-lower-text">
+                      ราคาเริ่มต้น
+                    </div> 
+                  </div> */}
                   <Form className="search-page-frame-content-all-filter-price-filter-lower">
                     <FormControl
                       className="search-page-frame-content-all-filter-price-filter-lower-text"
                       type="number"
                       placeholder="ราคาเริ่มต้น"
-                      value={lowerPrice}
-                      onChange={(e) => {
-                        setLowerPrice(e.target.value);
-                      }}
                     />
                   </Form>
-                  {/* <div className="search-page-frame-content-all-filter-price-filter-line"></div> */}
+                  <div className="search-page-frame-content-all-filter-price-filter-line"></div>
+                  {/* <div className="search-page-frame-content-all-filter-price-filter-upper">
+                    <div className="search-page-frame-content-all-filter-price-filter-upper-text">
+                      ราคาสูงสุด
+                    </div>
+                  </div> */}
                   <Form className="search-page-frame-content-all-filter-price-filter-upper">
                     <FormControl
                       className="search-page-frame-content-all-filter-price-filter-upper-text"
                       type="number"
                       placeholder="ราคาสูงสุด"
-                      value={upperPrice}
-                      onChange={(e) => {
-                        setUpperPrice(e.target.value);
-                      }}
                     />
                   </Form>
                 </div>
                 <button
                   className="btn-small-primary kanit-paragraphMedium"
-                  onClick={handleFilterPrice}
+                  onclick="activateLasers()"
                 >
                   ตกลง
                 </button>
@@ -278,14 +324,34 @@ function Search() {
                   ส่งจาก
                 </div>
                 <div className="search-page-frame-content-all-filter-delivery-group-check row">
-                  {regionDelivery.map((item) => (
-                    <FormCheck
-                      key={item.value}
-                      className="search-page-frame-content-all-filter-condition-group-check-box-text"
-                      label={item.label}
-                      onClick={() => handleRegion(item.label)}
-                    />
-                  ))}
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="กรุงเทพและปริมณฑล"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคกลาง"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคตะวันออกเฉียงเหนือ"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคใต้"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคเหนือ"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคตะวันออก"
+                  />
+                  <FormCheck
+                    className="search-page-frame-content-all-filter-delivery-group-check-box-text"
+                    label="ภาคตะวันตก"
+                  />
                 </div>
               </div>
             </div>
