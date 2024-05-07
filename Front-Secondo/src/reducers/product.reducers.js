@@ -6,10 +6,6 @@ const initialState = {
         under5k: [],
         under10k: []
     },
-    productsSeller: [],
-    productsBuyer: [],
-    productsDonater: [],
-    productsReciever: [],
     error: null,
     loading: false,
     productDetails: {}
@@ -20,10 +16,7 @@ export default (state = initialState, action) => {
         case productConstants.GET_ALL_PRODUCTS_SUCCESS:
             state = {
                 ...state,
-                productsSeller: action.payload.productsSeller,
-                productsBuyer: action.payload.productsBuyer,
-                productsDonater: action.payload.productsDonater,
-                productsReciever: action.payload.productsReciever,
+                products: action.payload.products
             }
             break;
         case productConstants.GET_PRODUCT_DETAILS_BY_ID_REQUEST:
