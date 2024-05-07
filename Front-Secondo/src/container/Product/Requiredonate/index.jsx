@@ -144,7 +144,7 @@ function RequireDonate() {
         //   "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
         // ],
         productName: productFromApi.name,
-        productSeller: productFromApi.createBy.firstName,
+        productSeller: productFromApi.createBy,
         province: "กรุงเทพ",
         productCredit: 20,
         brand: "Apple",
@@ -273,7 +273,7 @@ function RequireDonate() {
             </div>
 
             <Row className="product-price-cc">
-              <Col className="kanit-Display-Medium price">ขอรับบริจาค</Col>
+              <Col className="kanit-Display-Medium price">บริจาค</Col>
               <Col className="kanit-Display-Medium cc">
                 {productDetail[0].productCredit} CO₂ Credit
               </Col>

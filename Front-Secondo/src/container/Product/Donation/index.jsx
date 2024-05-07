@@ -18,7 +18,7 @@ import productpic from "../../../../public/images/product.jpg";
 import "../../../components/UI/Button/index.css";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getDonaterProductDetailsById } from "../../../actions";
+import { getReceiverProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
 // const product = [
@@ -103,7 +103,7 @@ function Donate() {
       },
     };
 
-    // dispatch(getProductReciverDetailsById(payload));
+    dispatch(getReceiverProductDetailsById(payload));
   }, []);
 
   //Modal

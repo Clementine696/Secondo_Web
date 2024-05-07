@@ -421,10 +421,11 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemDonate.map((item, index) => (
-                <ItemCardReceive
+              {itemReceive.map((item, index) => (
+                <ItemCardDonate
                   key={index}
                   img={item.img}
+                  _id={item._id}
                   title={item.title}
                   province={item.province}
                   // price={item.price}
@@ -463,10 +464,11 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemReceive.map((item, index) => (
-                <ItemCardDonate
+            {itemDonate.map((item, index) => (
+                <ItemCardReceive
                   key={index}
                   img={item.img}
+                  _id={item._id}
                   title={item.title}
                   province={item.province}
                   // price={item.price}

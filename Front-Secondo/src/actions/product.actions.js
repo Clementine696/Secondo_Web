@@ -105,7 +105,7 @@ export const getReceiverProductDetailsById = (payload) => {
         try {
             const { productId } = payload.params;
             console.log(productId)
-            res = await axios.get(`/product/receiver/${productId}`);
+            res = await axios.get(`/product/reciever/${productId}`);
             console.log(res);
             dispatch({
                 type: productConstants.GET_PRODUCT_DETAILS_BY_ID_SUCCESS,
