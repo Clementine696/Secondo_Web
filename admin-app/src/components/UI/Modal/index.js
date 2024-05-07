@@ -8,20 +8,20 @@ const NewModal = (props) => {
                 <Modal.Title>{props.modalTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-               {props.children}
+                {props.children}
             </Modal.Body>
             <Modal.Footer>
                 {
-                    props.buttons && props.buttons.map((btn, index) => 
+                    props.buttons && props.buttons.map((btn, index) =>
                         <Button key={index} variant={btn.color} onClick={btn.onClick}>
                             {btn.label}
                         </Button>
-                        )
+                    )
                 }
-                <Button variant="secondary" style={{backgroundColor: '#333'}} {...props} className="btn-sm"onClick={props.handleCancel}>
+                <Button variant="outline-secondary" {...props} className="btn-sm" onClick={props.handleCancel}>
                     Cancel
                 </Button>
-                <Button variant="primary" style={{backgroundColor: '#333'}} {...props} className="btn-sm" onClick={props.handleClose}>
+                <Button variant="primary"  {...props} className="btn-sm" onClick={props.handleClose}>
                     Save
                 </Button>
             </Modal.Footer>

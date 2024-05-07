@@ -196,7 +196,7 @@ function Index() {
                 />
               </svg>
             </div> */}
-            {auth.authenticate ? "" : renderNonLoggedInLinks()}
+            {!auth.authenticate ? renderNonLoggedInLinks() : null}
 
             <div className="menu-container" ref={menuRef}>
               <div
@@ -262,7 +262,7 @@ function Index() {
                     text={"ตั้งค่า"}
                     link={"/setting"}
                   />
-                  {auth.authenticate ? renderLoggedInLinks() : ""}
+                  {auth.authenticate ? renderLoggedInLinks():null}
                 </ul>
               </div>
             </div>

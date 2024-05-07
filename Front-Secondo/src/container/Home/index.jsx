@@ -169,7 +169,7 @@ function Home() {
 
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
-    console.log("toggle:", isExpanded);
+    // console.log("toggle:", isExpanded);
   };
 
   // const scrollToRef = useRef(null);
@@ -250,7 +250,7 @@ function Home() {
               <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้าน่าสนใจ
               </div>
-              <Link className="group-card-icon-other">
+              <Link className="group-card-icon-other" to="/allproduct/interest">
                 <div className="group-card-header-other">เพิ่มเติม</div>
                 <svg
                   className="icon-arrow-right-24"
@@ -294,7 +294,7 @@ function Home() {
               <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้าบริจาคใหม่
               </div>
-              <Link className="group-card-icon-other">
+              <Link className="group-card-icon-other" to="/allproduct/donate">
                 <div className="group-card-header-other">เพิ่มเติม</div>
                 <svg
                   className="icon-arrow-right-24"
@@ -336,7 +336,7 @@ function Home() {
               <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้ารับบริจาค
               </div>
-              <Link className="group-card-icon-other">
+              <Link className="group-card-icon-other" to="/allproduct/recieve">
                 <div className="group-card-header-other">เพิ่มเติม</div>
                 <svg
                   className="icon-arrow-right-24"
