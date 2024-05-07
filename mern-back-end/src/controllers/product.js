@@ -294,3 +294,23 @@ exports.getProductRecieverDetailsById = (req, res) => {
         return res.status(400).json({ error: 'params required' });
     }
 }
+
+exports.approveProduct = (req, res) => {
+    const { productId } = req.params;
+    // if(productId){
+    //     ProductRequest.findOne({ _id: productId })
+    //     .populate({ path: 'category', select: '_id name'})
+    //     .populate({ path: 'createBy', select: '_id firstName'})
+    //     .exec()
+    //     .then((product) => {
+    //         if(product){
+    //             return res.status(200).json({ product });
+    //         }
+    //     }).catch((error) => {
+    //         console.log(error);
+    //         return res.status(400).json({ error })
+    //     })
+    // }else{
+    //     return res.status(400).json({ error: 'params required' });
+    // }
+}
