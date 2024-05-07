@@ -8,7 +8,7 @@
 
 .background-home-banner-category {
   display: flex;
-  padding: 32px 164px;
+  padding: 32px 240px;
   flex-direction: column;
   align-items: center;
   gap: 32px;
@@ -28,8 +28,8 @@
   flex-direction: column;
   /* justify-content: flex-end; */
   align-items: center;
-  height: 240px;
-  width: 1144px;
+  /* height: 240px;
+  width: 1144px; */
   /* object-position: center; */
 }
 

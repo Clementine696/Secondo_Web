@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import favBold from "../../../icon/like-bold.png";
-import fav from "../../../icon/like.png";
+import fav from "../../../icon/like-bold.png";
 
 import "./index.css";
 
@@ -13,14 +12,7 @@ function ProductFav(props) {
     ? "btn-small-primary"
     : "btn-small-link-ghost-disabled";
 
-  const [isFav, setIsFav] = useState(false);
-
-  const handleFav = () => {
-    setIsFav(!isFav);
-    console.log("love you")
-  };
-
-  //   console.log(!props.status);
+//   console.log(!props.status);
   return (
     <div className="item-fav">
       <img src={props.img} className="img-fav"></img>
@@ -48,8 +40,8 @@ function ProductFav(props) {
             ซื้อ
           </button>
           <button className="btn-small-secondary">ไปที่หน้าร้านค้า</button>
-          <button className="btn-fav" onClick={handleFav}>
-            <img src={isFav ? fav : favBold} className="btn-fav-icon"></img>
+          <button className="btn-fav">
+            <img src={fav} className="btn-fav-icon"></img>
           </button>
         </div>
       </div>
