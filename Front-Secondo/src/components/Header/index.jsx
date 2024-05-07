@@ -55,8 +55,6 @@ function Index() {
   //login logout
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const profilePic = auth.user.profilePicture;
-  // console.log(profilePic)
 
   const logout = () => {
     console.log("logout");
@@ -207,7 +205,7 @@ function Index() {
                   setOpen(!open);
                 }}
               >
-                <img className="profile-img" src={profilePic}></img>
+                <img className="profile-img" src={png}></img>
                 <div>
                   <p className="kanit-paragraphtextMedium">{name}</p>
                   <p className="kanit-paragraphSmall">{credit} Credit</p>

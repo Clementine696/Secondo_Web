@@ -69,14 +69,8 @@ export const isUserLoggedIn = () => {
     return async dispatch => {
         const token = localStorage.getItem('token');
         if(token){
-            // const user = JSON.parse(localStorage.getItem('user'));
-            // console.log('Token get user')
-            // console.log(user)
-            const res = await axios.get(`/admin/getuserdata`)
-            // console.log('res.user')
-            // console.log(res.data.user)
-            const user = res.data.user;
-            dispatch({  
+            const user = JSON.parse(localStorage.getItem('user'));
+            dispatch({
                 type: authConstants.LOGIN_SUCCESS,
                 payload: {
                     token, user

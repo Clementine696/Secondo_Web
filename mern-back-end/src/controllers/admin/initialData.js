@@ -1,8 +1,5 @@
 const Category = require('../../models/category')
-const ProductSeller = require('../../models/productSeller')
-const ProductBuyer = require('../../models/productBuyer')
-const ProductDonate = require('../../models/productDonate')
-const ProductRequest = require('../../models/productRequest')
+const Product = require('../../models/product')
 
 function createCategories(categories, parentId = null){
 
@@ -33,28 +30,13 @@ function createCategories(categories, parentId = null){
 exports.initialData = async (req, res) => {
 
     const categories = await Category.find({}).exec();
-    const productsSeller = await ProductSeller.find({})
-                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
-                                        .populate({ path: 'category', select: '_id name'})
-                                        .exec();
-    const productsBuyer = await ProductBuyer.find({})
-                                        .select('_id name price slug specifications description shippingCost productPictures verify category createBy')
-                                        .populate({ path: 'category', select: '_id name'})
-                                        .exec();
-    const productsDonater = await ProductDonate.find({})
-                                        .select('_id name slug specifications description shippingCost productPictures verify category createBy')
-                                        .populate({ path: 'category', select: '_id name'})
-                                        .exec();
-    const productsReciever = await ProductRequest.find({})
-                                        .select('_id name slug specifications description shippingCost productPictures verify category createBy')
+    const products = await Product.find({})
+                                        .select('_id name price quantity slug description productPictures category')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
     res.status(200).json({
         categories: createCategories(categories),
-        productsSeller,
-        productsBuyer,
-        productsDonater,
-        productsReciever
+        products
     })
 
 }
