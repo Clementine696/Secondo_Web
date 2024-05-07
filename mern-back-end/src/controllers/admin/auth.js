@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const shortid = require('shortid')
 const fs = require('fs');
+const Payment = require('../../models/payment');
 
 exports.getUserData = (req, res) => {
     User.findOne({ _id: req.user._id })
@@ -236,6 +237,54 @@ exports.getAddress = (req, res) => {
             if(user){
                 // console.log(user.addresses)
                 res.status(201).json({ address: user.addresses })
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
+
+
+exports.newPayment = (req, res) => {
+
+    const {
+        card_owner, card_number, expired, cvc
+    } = req.body;
+
+    User.findOne({ _id: req.user._id })
+        .then((user)=>{
+            if(user){
+                console.log(user);
+
+                const payment = new Payment({
+                    card_owner,
+                    card_number,
+                    expired,
+                    cvc
+                })
+                payment.author.id = req.user._id;
+                payment.save().then(payment => {
+                    if(payment){
+                        user.payments.push(payment);
+                        user.save();
+                        res.status(201).json({ payment });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return res.status(400).json({ error })
+                });
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
+
+exports.getPayment = (req, res) => {
+    User.findOne({ _id: req.user._id })
+    .populate({ path: 'payments' })
+        .then((user)=>{
+            if(user){
+                // console.log(user.addresses)
+                res.status(201).json({ payments: user.payments })
             }else{
                 return res.status(400).json({message: 'Something went wrong'});
             }

@@ -5,7 +5,7 @@ import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import Input from "../../components/UI/Input";
-import { addProduct } from "../../actions";
+// import { addProduct } from "../../actions";
 import Modal from "../../components/UI/Modal";
 import './style.css'
 import { generatePublicUrl } from "../../urlConfig";
@@ -39,7 +39,7 @@ function Products(props) {
       form.append("productPicture", pic);
     }
 
-    dispatch(addProduct(form));
+    // dispatch(addProduct(form));
 
     setShow(false);
   };
@@ -134,7 +134,7 @@ function Products(props) {
   };
 
   // console.log(productPictures);
-  console.log(product.products)
+  console.log(product.productsBuyer)
   const renderProducts = () => {
     return (
       <Table style={{ fontSize: 12 }} responsive="sm">
@@ -151,8 +151,8 @@ function Products(props) {
         </thead>
         <tbody>
         {
-            product.products.length > 0 ?
-              product.products.map(product => 
+            product.productsBuyer.length > 0 ?
+              product.productsBuyer.map(product => 
                 <tr onClick={() => showProductDetailsModal(product)} key={product._id}>
                   <td>1</td>
                   <td>{product.name}</td>
@@ -237,7 +237,7 @@ function Products(props) {
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h3>Products</h3>
-              <Button onClick={handleShow}>Add</Button>
+              {/* <Button onClick={handleShow}>Add</Button> */}
             </div>
           </Col>
         </Row>

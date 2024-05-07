@@ -116,7 +116,7 @@ function setting() {
     if (addresses && Array.isArray(addresses)) {
       for (let address of addresses) {
         myAddresses.push({
-          id: address._id,
+          id: address.id,
           name: address.address_name,
           addressName: '',
           phone: address.tel,
@@ -128,8 +128,11 @@ function setting() {
       return myAddresses;
     }
   };
-
-  Address = renderAddress(user.addresses.address)
+  
+  Address = user.addresses.address
+    ? renderAddress(user.addresses.address)
+    : [];
+  // Address = renderAddress(user.addresses.address)
 
   // id: "0",
   // name: "นายคเณศ บุญศิริ",

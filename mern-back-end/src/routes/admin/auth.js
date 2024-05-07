@@ -1,5 +1,5 @@
 const express = require('express');
-const { signup, signin, signout, updateProfilePicture, newAddress, getAddress, getUserData } = require('../../controllers/admin/auth');
+const { signup, signin, signout, updateProfilePicture, newAddress, getAddress, getUserData, newPayment, getPayment } = require('../../controllers/admin/auth');
 const router = express.Router();
 const { validateSignupRequest, validateSigninRequest, isRequestValidated } = require ('../../validaters/auth');
 const { requireSignin, adminMiddleware } = require('../../common-middleware');
@@ -29,5 +29,8 @@ router.post('/admin/updateProfilePicture', requireSignin, adminMiddleware, uploa
 // router.post('/admin/signout', requireSignin, signout);
 router.post('/admin/address/new', requireSignin, adminMiddleware, newAddress);
 router.post('/admin/address/get', requireSignin, adminMiddleware, getAddress);
+
+router.post('/admin/payment/new', requireSignin, adminMiddleware, newPayment);
+router.post('/admin/payment/get', requireSignin, adminMiddleware, getPayment);
 
 module.exports = router;
