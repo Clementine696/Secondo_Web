@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 
 import HDivider from "../../components/UI/DividerHorizontal";
 import ItemCard from "../../components/UI/ItemCard";
-import ItemCardBuy from "../../components/UI/ItemCard/Buy";
-import ItemCardReceive from "../../components/UI/ItemCard/Receive";
-import ItemCardDonate from "../../components/UI/ItemCard/Donate";
 import CateCard from "../../components/UI/CategoryCard";
 import BannerSlide from "../../components/UI/Banner";
 
@@ -39,67 +36,36 @@ import productFav from "../../../public/images/pant.jpg";
 //   { img: productFav, label: "อื่นๆ", value: "15" },
 // ];
 
-let itemInterest = [
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 1",
-    province: "กรุงเทพ",
-    price: "1000",
-    credit: 0.1,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 2",
-    province: "กรุงเทพ",
-    price: "2000",
-    credit: 0.2,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 3",
-    province: "กรุงเทพ",
-    price: "3000",
-    credit: 0.3,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 4",
-    province: "กรุงเทพ",
-    price: "4000",
-    credit: 0.4,
-  },
-];
-
-let itemBuyer = [
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 1",
-    province: "กรุงเทพ",
-    price: "1000",
-    credit: 0.1,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 2",
-    province: "กรุงเทพ",
-    price: "2000",
-    credit: 0.2,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 3",
-    province: "กรุงเทพ",
-    price: "3000",
-    credit: 0.3,
-  },
-  {
-    img: "",
-    title: "สินค้าน่าสนใจ 4",
-    province: "กรุงเทพ",
-    price: "4000",
-    credit: 0.4,
-  },
-];
+// const itemInterest = [
+//   {
+//     img: "",
+//     title: "สินค้าน่าสนใจ 1",
+//     province: "กรุงเทพ",
+//     price: "1000",
+//     credit: 0.1,
+//   },
+//   {
+//     img: "",
+//     title: "สินค้าน่าสนใจ 2",
+//     province: "กรุงเทพ",
+//     price: "2000",
+//     credit: 0.2,
+//   },
+//   {
+//     img: "",
+//     title: "สินค้าน่าสนใจ 3",
+//     province: "กรุงเทพ",
+//     price: "3000",
+//     credit: 0.3,
+//   },
+//   {
+//     img: "",
+//     title: "สินค้าน่าสนใจ 4",
+//     province: "กรุงเทพ",
+//     price: "4000",
+//     credit: 0.4,
+//   },
+// ];
 
 const itemDonate = [
   {
@@ -164,27 +130,31 @@ const itemReceive = [
 ];
 
 function Home() {
+
   const category = useSelector((state) => state.category);
   // console.log(category)
   // const dispatch = useDispatch();
 
+
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if (category.parentId == null) {
-        myCategories.push({
-          img: category.image,
-          label: category.name,
-          value: category._id,
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
+      if(category.parentId == null){
+        myCategories.push(
+          {
+            img: category.image,
+            label: category.name,
+            value: category._id,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          }
+        );
       }
     }
 
     return myCategories;
   };
 
-  const categoryItem = renderCategories(category.categories);
+  const categoryItem = renderCategories(category.categories)
   // console.log(categoryItem)
 
   const slicedArray1 = categoryItem.slice(0, 8);
@@ -208,57 +178,25 @@ function Home() {
 
   const renderProducts = (products) => {
     let myProducts = [];
-    if (products && Array.isArray(products)) {
-      for (let product of products) {
-        myProducts.push({
-          _id: product._id,
-          slug: product.slug,
-          img: product.productPictures,
-          title: product.name,
-          province: "กรุงเทพ",
-          price: product.price,
-          credit: 0.1,
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
-      }
-      return myProducts;
+    for (let product of products) {
+        myProducts.push(
+          {
+            _id: product._id,
+            slug: product.slug, 
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: 0.1
+            // children: category.children.length > 0 && renderCategories(category.children)
+          }
+        );
     }
+    return myProducts;
   };
 
-  const renderProductsDonate = (products) => {
-    let myProducts = [];
-    if (products && Array.isArray(products)) {
-      for (let product of products) {
-        myProducts.push({
-          _id: product._id,
-          slug: product.slug,
-          img: product.productPictures,
-          title: product.name,
-          province: "กรุงเทพ",
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
-      }
-      return myProducts;
-    }
-  };
-
-  // const itemInterest = renderProducts(product.productsSeller); //TODO:
-  const itemInterest = product.productsSeller
-    ? renderProducts(product.productsSeller)
-    : [];
-
-  const itemBuyer = product.productsBuyer
-    ? renderProducts(product.productsBuyer)
-    : [];
-
-  const itemReceive = product.productsDonater
-    ? renderProductsDonate(product.productsDonater)
-    : [];
-
-  const itemDonate = product.productsReciever
-    ? renderProductsDonate(product.productsReciever)
-    : [];
-  // console.log(itemInterest)
+  const itemInterest = renderProducts(product.products);
+  console.log(itemInterest)
   return (
     <Layout>
       <div className="background-home">
@@ -354,49 +292,6 @@ function Home() {
           <div className="group-card-header-item">
             <div className="group-card-header">
               <div className="group-card-header-topic kanit-paragraphBig">
-                สินค้ารับซื้อใหม่
-              </div>
-              <Link className="group-card-icon-other">
-                <div className="group-card-header-other">เพิ่มเติม</div>
-                <svg
-                  className="icon-arrow-right-24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                    stroke="#D0C58A"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </Link>
-            </div>
-            <HDivider />
-            <div className="group-card-item">
-              {itemBuyer.map((item, index) => (
-                <ItemCardBuy
-                  key={index}
-                  img={item.img}
-                  _id={item._id}
-                  slug={item.slug}
-                  title={item.title}
-                  province={item.province}
-                  price={item.price}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="group-card">
-          <div className="group-card-header-item">
-            <div className="group-card-header">
-              <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้าบริจาคใหม่
               </div>
               <Link className="group-card-icon-other" to="/allproduct/donate">
@@ -421,15 +316,14 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemReceive.map((item, index) => (
-                <ItemCardDonate
+              {itemDonate.map((item, index) => (
+                <ItemCard
                   key={index}
                   img={item.img}
-                  _id={item._id}
                   title={item.title}
                   province={item.province}
-                  // price={item.price}
-                  // credit={item.credit}
+                  price={item.price}
+                  credit={item.credit}
                 />
               ))}
             </div>
@@ -464,15 +358,14 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-            {itemDonate.map((item, index) => (
-                <ItemCardReceive
+              {itemReceive.map((item, index) => (
+                <ItemCard
                   key={index}
                   img={item.img}
-                  _id={item._id}
                   title={item.title}
                   province={item.province}
-                  // price={item.price}
-                  // credit={item.credit}
+                  price={item.price}
+                  credit={item.credit}
                 />
               ))}
             </div>

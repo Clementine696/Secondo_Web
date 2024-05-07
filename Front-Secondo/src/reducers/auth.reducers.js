@@ -6,8 +6,7 @@ const initState = {
         firstName: '',
         lastName: '',
         email: '',
-        picture: '',
-        profilePicture: ''
+        picture: ''
     },
     authenticate: false,
     authenticating: false,
@@ -60,24 +59,6 @@ export default (state = initState, action) => {
                 ...state,
                 error: action.payload.error,
                 loading: false
-            }
-            break;
-        case authConstants.USER_UPDATE_PROFILE_PICTURE_REQUEST:
-            state = {
-                ...state,
-            }
-            break;
-        case authConstants.USER_UPDATE_PROFILE_PICTURE_SUCCESS:
-            state = {
-                ...state,
-                // user : {
-                //     profilePicture: action.payload.profilePicture
-                // }
-            }
-            break;
-        case authConstants.USER_UPDATE_PROFILE_PICTURE_FAILURE:
-            state = {
-                ...state,
             }
             break;
     }

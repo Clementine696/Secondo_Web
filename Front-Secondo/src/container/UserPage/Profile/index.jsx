@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 
@@ -7,21 +7,8 @@ import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
 import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
-import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
-import { useDispatch, useSelector } from "react-redux";
-import { generatePublicUrl } from "../../../urlConfig";
 
 function Profile() {
-
-  const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth)
-
-  // useEffect(() => {
-  //   dispatch(isUserLoggedIn());
-  // }, [auth.authenticate]);
-
-  let userImage = auth.user.profilePicture;
-
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -37,38 +24,16 @@ function Profile() {
     console.log(email);
   };
 
-  const [image, setImage] = useState("");
-  const [updatingImage, setUpdatingImage] = useState(false);
+  const [image, setImage] = useState(null);
 
-  const updatePic = (event) => {
-
+  const handleImageChange = (event) => {
     const selectedImage = event.target.files[0];
-    // console.log(selectedImage)
-
     setImage(selectedImage);
-    // console.log("userImage" + userImage)
-    // console.log(generatePublicUrl(selectedImage.name))
-    // userImage = selectedImage;
-    // for (let pic of selectedImages) {
-    //   console.log("Test")
-    //   console.log(pic.name)
-    // }
-    setUpdatingImage(true);
-    const form = new FormData();
-    form.append("newProfilePicture", selectedImage);
-    // console.log(selectedImage)
-    // setImage(null)
-    dispatch(updateProfilePicture(form));
-    dispatch(isUserLoggedIn());
-    // window.location.reload();
   };
 
-  useEffect(() => {
-    if (image != null) {
-      dispatch(isUserLoggedIn());
-      setUpdatingImage(false);
-    }
-  }, [updatingImage, dispatch]);
+  const handleUploadClick = () => {
+    console.log("อัพโหลดรูปภาพ");
+  };
 
   return (
     <Layout>
@@ -105,13 +70,10 @@ function Profile() {
                   }}
                 ></div> */}
                 <div className="profile-picture-img-frame">
-                  {userImage ? (
-                  
+                  {image ? (
                     <img
                       className="profile-picture-img"
-                      // src={auth.user.profilePicture}
-                      // src={URL.createObjectURL(image)}
-                      src={userImage}
+                      src={URL.createObjectURL(image)}
                       alt="Uploaded"
                       style={{
                         backgroundColor: "black",
@@ -142,7 +104,8 @@ function Profile() {
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
-                      updatePic(event);
+                      handleImageChange(event);
+                      handleUploadClick();
                     }}
                     style={{ display: "none" }}
                   />

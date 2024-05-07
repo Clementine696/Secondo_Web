@@ -18,7 +18,6 @@ import masterCard from "../../../../public/images/mastercard.jpg";
 import visa from "../../../../public/images/visa.jpg";
 import kbank from "../../../../public/images/kbank.png";
 import ttb from "../../../../public/images/ttb.jpg";
-import { useDispatch, useSelector } from "react-redux";
 
 const tabItems = [
   { label: "ที่อยู่จัดส่ง", value: 1 },
@@ -26,7 +25,7 @@ const tabItems = [
   { label: "ถอนเงิน", value: 3 },
 ];
 
-let Address = [
+const Address = [
   {
     id: "0",
     name: "นายคเณศ บุญศิริ",
@@ -105,43 +104,6 @@ const withdrawMoney = [
 
 // fillter ใน backend
 function setting() {
-
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
-  // console.log(user.addresses.address)
-  // console.log(Address)
-
-  const renderAddress = (addresses) => {
-    let myAddresses = [];
-    if (addresses && Array.isArray(addresses)) {
-      for (let address of addresses) {
-        myAddresses.push({
-          id: address.id,
-          name: address.address_name,
-          addressName: '',
-          phone: address.tel,
-          address: address.houseaddress + address.sub_district + address.district,
-          province: address.province,
-          zip: address.zipcode
-        });
-      }
-      return myAddresses;
-    }
-  };
-  
-  Address = user.addresses.address
-    ? renderAddress(user.addresses.address)
-    : [];
-  // Address = renderAddress(user.addresses.address)
-
-  // id: "0",
-  // name: "นายคเณศ บุญศิริ",
-  // addressName: "",
-  // phone: "0981597450",
-  // address: "คอนโดสวนธน ซอยพุทธบูชา 47",
-  // province: "กรุงเทพมหานคร",
-  // zip: "10140",
-
   //set Tab
   const [tab, setTab] = useState(1);
 
