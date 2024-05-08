@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
   { label: "ขายของ", value: 2, nevigate: "/search/sell" },
-]
+];
 
 const options = [
   { value: "option1", label: "ความนิยม" },
@@ -290,10 +290,104 @@ function Search() {
               </div>
             </div>
             <div className="search-page-frame-content-all-group-card">
-              <div className="search-page-frame-content-all-group-card-frame">
-                <ItemCard />
-                <ItemCard />
-                <ItemCard />
+              
+              <div className="search-result-itemcard">
+                <div className="search-header-navigate">
+                  <label className="search-page-group-card-header kanit-Display-Small-R">
+                    ขายสินค้า
+                  </label>
+                  <Link className="group-card-icon-other" to="/allproduct/interest">
+                    <div className="group-card-header-other">เพิ่มเติม</div>
+                    <svg
+                      className="icon-arrow-right-24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                        stroke="#D0C58A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+
+                <div className="search-page-frame-content-all-group-card-frame">
+                  <ItemCard />
+                  <ItemCard />
+                  <ItemCard />
+                </div>
+              </div>
+
+              <div className="search-result-itemcard">
+                <div className="search-header-navigate">
+                  <label className="search-page-group-card-header kanit-Display-Small-R">
+                    บริจาคสินค้า
+                  </label>
+                  <Link className="group-card-icon-other" to="/allproduct/donate">
+                    <div className="group-card-header-other">เพิ่มเติม</div>
+                    <svg
+                      className="icon-arrow-right-24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                        stroke="#D0C58A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+
+                <div className="search-page-frame-content-all-group-card-frame">
+                  <ItemCard />
+                  <ItemCard />
+                  <ItemCard />
+                </div>
+              </div>
+
+              <div className="search-result-itemcard">
+                <div className="search-header-navigate">
+                  <label className="search-page-group-card-header kanit-Display-Small-R">
+                    การขอรับบริจาคสินค้า
+                  </label>
+                  <Link className="group-card-icon-other" to="/allproduct/recieve">
+                    <div className="group-card-header-other">เพิ่มเติม</div>
+                    <svg
+                      className="icon-arrow-right-24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
+                        stroke="#D0C58A"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </div>
+
+                <div className="search-page-frame-content-all-group-card-frame">
+                  <ItemCard />
+                  <ItemCard />
+                  <ItemCard />
+                </div>
               </div>
             </div>
           </div>

@@ -1,0 +1,37 @@
+.modal-container-cancle {
+    display: flex;
+    width: 340px;
+    height: min-content;
+    padding: 24px;
+    margin-top: 112px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 24px;
+    border: 1px solid var(--OutlineVariant-color);
+    background-color: var(--White-color);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
+    color: var(--Default-text);
+}
+
+.text-title-desc-modal {
+    display: flex;
+    align-self: stretch;
+    justify-content: flex-start;
+}
+
+.text-title-desc-modal p  {
+    display: flex;
+    align-self: flex-start;
+}
+
+.button-cancle {
+    display: flex;
+    align-self: stretch;
+    justify-content: end;
+    gap: 16px;
+}
+
+.cancle-btn {
+    width: min-content;
+}

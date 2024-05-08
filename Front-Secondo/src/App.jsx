@@ -106,7 +106,7 @@ export default function App() {
           <Route path="allproduct/recieve" element={<AllProductRecieve />} />
           <Route path="allproduct/interest" element={<AllProductInterest />} />
 
-          <Route path="search/sell" element={<Search />} />
+          <Route path="search" element={<Search />} />
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
           <Route path="search/buy" element={<SearchBuy />} />
           <Route path="search/donate" element={<SearchDonate />} />
