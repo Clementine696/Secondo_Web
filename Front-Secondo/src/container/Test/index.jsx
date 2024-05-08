@@ -12,6 +12,7 @@ import ModalConfirmItem from "../../components/Modal/OfferSale/confirmProduct";
 import ModalDonate from "../../components/Modal/Donate";
 import ModalSellerRate from "../../components/Modal/SellerRate";
 import ModalSellerTag from "../../components/Modal/SellerTag";
+import ModalCancle from "../../components/Modal/Cancle";
 
 import success from "../../icon/success-check.png";
 import tag from "../../icon/tag.png";
@@ -45,6 +46,8 @@ function Test() {
 
   const [sellerTag, setSellerTag] = useState(false);
 
+  const [openModalCancle, setOpenModalCancle] = useState(false);
+
   // select product
   const [selectedProduct, setSelectedProduct] = useState(null);
   const handleProductSelect = (product) => {
@@ -76,6 +79,8 @@ function Test() {
         <button onClick={() => setSellerRate(true)}>Modal Seller Rate</button>
 
         <button onClick={() => setSellerTag(true)}>Modal Tag</button>
+
+        <button onClick={() => setOpenModalCancle(true)}>Modal Cancle</button>
 
         <ModalSellerTag
           img={shipping}
@@ -133,6 +138,14 @@ function Test() {
           desc="กิตติพึก เพชรตะพด"
           open={sellerRate}
           onClose={() => setSellerRate(false)}
+        />
+
+        <ModalCancle 
+          label="ยกเลิกการขายสินค้า"
+          desc="คุณต้องการยกเลิกการขายสินค้าชิ้นนี้ใช่หรือไม่"
+          open={openModalCancle}
+          onClose={() => setOpenModalCancle(false)}
+          onConfirm={() => setOpenModalCancle(false)}
         />
       </div>
     </Layout>

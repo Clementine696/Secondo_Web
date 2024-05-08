@@ -382,10 +382,22 @@
   align-self: stretch;
 }
 
+.search-result-itemcard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0;
+}
+
 .search-page-frame-content-all-group-card-frame {
   display: flex;
   align-items: flex-start;
   gap: 16px;
+}
+
+.search-header-navigate {
+  display: flex;
+  justify-content: space-between;
 }
 
 .search-page-frame-content-all-filter-delivery-header {
