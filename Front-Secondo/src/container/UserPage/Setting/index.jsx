@@ -18,7 +18,9 @@ import masterCard from "../../../../public/images/mastercard.jpg";
 import visa from "../../../../public/images/visa.jpg";
 import kbank from "../../../../public/images/kbank.png";
 import ttb from "../../../../public/images/ttb.jpg";
+
 import { useDispatch, useSelector } from "react-redux";
+import { addUserAddress } from "../../../actions";
 
 const tabItems = [
   { label: "ที่อยู่จัดส่ง", value: 1 },
@@ -28,20 +30,24 @@ const tabItems = [
 
 let Address = [
   {
-    id: "0",
+    // id: "0",
     name: "นายคเณศ บุญศิริ",
     addressName: "",
     phone: "0981597450",
     address: "คอนโดสวนธน ซอยพุทธบูชา 47",
+    subDistrict: "",
+    district: "",
     province: "กรุงเทพมหานคร",
     zip: "10140",
   },
   {
-    id: "1",
+    // id: "1",
     name: "นายพุฒิพงศ์ แซ่ลู่",
     addressName: "",
     phone: "0831464895",
     address: "Mixue ซอยพุทธบูชา 45",
+    subDistrict: "",
+    district: "",
     province: "กรุงเทพมหานคร",
     zip: "10140",
   },
@@ -49,7 +55,7 @@ let Address = [
 
 const paymentMethod = [
   {
-    id: "0",
+    // id: "0",
     // img: masterCard,
     cardName: "Master card",
     cardId: "1234567891011121",
@@ -58,7 +64,7 @@ const paymentMethod = [
     ownCard: "",
   },
   {
-    id: "1",
+    // id: "1",
     // img: visa,
     cardName: "Visa",
     cardId: "1234567891011121",
@@ -67,7 +73,7 @@ const paymentMethod = [
     ownCard: "",
   },
   {
-    id: "2",
+    // id: "2",
     // img: kbank,
     cardName: "ธนาคารกสิกรไทย",
     cardId: "1234567891011121",
@@ -79,14 +85,14 @@ const paymentMethod = [
 
 const bankAccount = [
   {
-    id: "0",
+    // id: "0",
     // img: kbank,
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountNumber: "1234567891011121",
   },
   {
-    id: "1",
+    // id: "1",
     // img: ttb,
     ownAccount: "",
     bankName: "ธนาคารทหารไทย",
@@ -96,7 +102,7 @@ const bankAccount = [
 
 const withdrawMoney = [
   {
-    id: "0",
+    // id: "0",
     ownAccount: "",
     bankName: "ธนาคารกสิกรไทย",
     accountNumber: "1234567891011121",
@@ -116,7 +122,7 @@ function setting() {
     if (addresses && Array.isArray(addresses)) {
       for (let address of addresses) {
         myAddresses.push({
-          id: address.id,
+          // id: address.id,
           name: address.address_name,
           addressName: '',
           phone: address.tel,
@@ -231,11 +237,13 @@ function setting() {
   const [addresses, setAddresses] = useState(Address);
 
   const [newAddress, setNewAddress] = useState({
-    id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
+    // id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
     name: "",
     addressName: "",
     phone: "",
     address: "",
+    subDistrict: "",
+    district: "",
     province: "",
     zip: "",
   });
@@ -246,20 +254,26 @@ function setting() {
       newAddress.addressName &&
       newAddress.phone &&
       newAddress.address &&
+      newAddress.subDistrict &&
+      newAddress.district &&
       newAddress.province &&
       newAddress.zip
     ) {
+      const form = new FormData();
       const updatedAddresses = [...addresses, newAddress];
       setAddresses(updatedAddresses);
       setNewAddress({
-        id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
+        // id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
         name: "",
         addressName: "",
         phone: "",
         address: "",
+        subDistrict: "",
+        district: "",
         province: "",
         zip: "",
       });
+      dispatch(addUserAddress(form));
       setAddAddress(false);
     } else {
       alert("กรอกข้อมูล");
@@ -272,7 +286,7 @@ function setting() {
   const [paymentMethods, setPaymentMethods] = useState(paymentMethod);
 
   const [newPayment, setNewPayment] = useState({
-    id: (parseInt(paymentMethods[paymentMethods.length - 1].id) + 1).toString(),
+    // id: (parseInt(paymentMethods[paymentMethods.length - 1].id) + 1).toString(),
     cardId: "",
     cardExp: "",
     cardCVV: "",
@@ -309,7 +323,7 @@ function setting() {
   const [bankAccounts, setBankAccounts] = useState(bankAccount);
 
   const [newBank, setNewBank] = useState({
-    id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
+    // id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
     bankName: "",
     ownAccount: "",
     accountNumber: "",
@@ -320,7 +334,7 @@ function setting() {
       const updatedBank = [...bankAccounts, newBank];
       setBankAccounts(updatedBank);
       setNewBank({
-        id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
+        // id: (parseInt(bankAccounts[bankAccounts.length - 1].id) + 1).toString(),
         bankName: "",
         ownAccount: "",
         accountNumber: "",
@@ -352,9 +366,9 @@ function setting() {
       const updatedWithdrawMethod = [...withdrawMoneys, newWithdrawMethod];
       setWithdrawMoneys(updatedWithdrawMethod);
       setNewWithdrawMethod({
-        id: (
-          parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1
-        ).toString(),
+        // id: (
+        //   parseInt(withdrawMoneys[withdrawMoneys.length - 1].id) + 1
+        // ).toString(),
         bankName: "",
         ownAccount: "",
         accountNumber: "",
@@ -373,22 +387,34 @@ function setting() {
 
   //edit address
   const [editedAddress, setEditedAddress] = useState({});
-  const handleEditAddress = (id) => {
-    setEditAddressForm(id);
-    const editedAddress = addresses.find((address) => address.id === id);
-    setEditedAddress({
-      ...editedAddress,
-      [id]: { ...editedAddress, id: id },
-    });
-    // editAddressForm(false);
-    // setAddAddress(false);
-  };
-  const handleSaveAddress = () => {
-    const updatedAddresses = addresses.map((address) =>
-      address.id === editedAddress.id ? editedAddress : address
+  // const handleEditAddress = (id) => {
+  //   setEditAddressForm(id);
+  //   const editedAddress = addresses.find((address) => address.id === id);
+  //   setEditedAddress({
+  //     ...editedAddress,
+  //     [id]: { ...editedAddress, id: id },
+  //   });
+  //   // editAddressForm(false);
+  //   // setAddAddress(false);
+  // };
+  // const handleSaveAddress = () => {
+  //   const updatedAddresses = addresses.map((address) =>
+  //     address.id === editedAddress.id ? editedAddress : address
+  //   );
+  //   setAddresses(updatedAddresses);
+  // };
+  const handleEditAddress = (index) => {
+    setEditAddressForm(index);+3
+    const editedAddress = addresses[index];
+    setEditedAddress({ ...editedAddress });
+};
+
+const handleSaveAddress = () => {
+    const updatedAddresses = addresses.map((address, index) =>
+      index === editAddressForm ? editedAddress : address
     );
     setAddresses(updatedAddresses);
-  };
+};
 
   //edit payment
   const [editedPayment, setEditedPayment] = useState({});
@@ -569,7 +595,7 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.id),
+                            handleEditAddress(address.index),
                               setAddAddress(false);
                               // scrollToEditAddress.current?.scrollIntoView({
                               //   behavior: "smooth",
@@ -677,7 +703,41 @@ function setting() {
                                 <Col>
                                   <Input
                                     className=""
-                                    placeholder="ตำบล อำเภอ จังหวัด"
+                                    placeholder="ตำบล"
+                                    value={
+                                      editedAddress.subDistrict || address.subDistrict
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        province: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="อำเภอ"
+                                    value={
+                                      editedAddress.district || address.district
+                                    }
+                                    type="text"
+                                    errorMessage=""
+                                    onChange={(e) =>
+                                      setEditedAddress({
+                                        ...editedAddress,
+                                        province: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </Col>
+                                <Col>
+                                  <Input
+                                    className=""
+                                    placeholder="จังหวัด"
                                     value={
                                       editedAddress.province || address.province
                                     }
@@ -809,7 +869,37 @@ function setting() {
                         <Col>
                           <Input
                             className=""
-                            placeholder="ตำบล อำเภอ จังหวัด"
+                            placeholder="ตำบล"
+                            value={newAddress.subDistrict}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setNewAddress({
+                                ...newAddress,
+                                subDistrict: e.target.value,
+                              });
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="อำเภอ"
+                            value={newAddress.district}
+                            type="text"
+                            errorMessage=""
+                            onChange={(e) => {
+                              setNewAddress({
+                                ...newAddress,
+                                district: e.target.value,
+                              });
+                            }}
+                          />
+                        </Col>
+                        <Col>
+                          <Input
+                            className=""
+                            placeholder="จังหวัด"
                             value={newAddress.province}
                             type="text"
                             errorMessage=""

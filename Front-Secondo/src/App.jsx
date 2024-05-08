@@ -149,11 +149,14 @@ export default function App() {
           <Route path="offer/sell" element={<OfferSell />} />
 
           {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          <Route path="sellstate/additem" element={<SellProduct />} />
-          <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
-          <Route path="buystate/additem" element={<PostBuyProduct />} />
+          {/* <Route path="sellstate/additem" element={<SellProduct />} /> */}
+          {/* <Route path="buystate/additem" element={<PostBuyProduct />} />
           <Route path="receivestate/additem" element={<PostRequestProduct />} />
-          <Route path="donatestate/additem" element={<PostDonateProduct />} />
+          <Route path="donatestate/additem" element={<PostDonateProduct />} /> */}
+          <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
+          <Route path="buystate/additem" element={<PrivateRoute> <PostBuyProduct /> </PrivateRoute>} />
+          <Route path="receivestate/additem" element={<PrivateRoute> <PostRequestProduct /> </PrivateRoute>} />
+          <Route path="donatestate/additem" element={<PrivateRoute> <PostDonateProduct /> </PrivateRoute>} />
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />
