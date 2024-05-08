@@ -301,7 +301,7 @@ function SellProduct() {
                     // }}
                     onClick={addProductForm}
                     style={{ textDecoration: "none" }}
-                    to=""
+                    to="/sellstate"
                   >
                     ลงขาย
                   </Link>

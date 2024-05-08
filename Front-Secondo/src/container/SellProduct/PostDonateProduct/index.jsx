@@ -5,7 +5,7 @@ import Layout from "../../../components/Layout";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { addProduct } from "../../../actions";
+import { addDonaterProduct } from "../../../actions";
 
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
@@ -81,7 +81,7 @@ function PostDonateProduct() {
     for (let pic of selectedImages) {
       form.append("productPicture", pic);
     }
-    // dispatch(addProduct(form));
+    dispatch(addDonaterProduct(form));
   };
 
   const [value, setValue] = useState('')
@@ -299,8 +299,9 @@ function PostDonateProduct() {
                     // onClick={() => {
                     //   console.log(selectedImages), "ddd";
                     // }}
+                    onClick={addProductForm}
                     style={{ textDecoration: "none" }}
-                    to=""
+                    to="/donatestate"
                   >
                     ลงบริจาค
                   </Link>
