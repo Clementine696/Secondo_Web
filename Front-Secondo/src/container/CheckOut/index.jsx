@@ -1,14 +1,14 @@
 import React from "react";
-import "./index.css";
-import Layout from "../../components/Layout";
 import { NavLink, Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
 
 import { useState, useEffect } from "react";
 
 import ModalS from "../../components/Modal/success";
-
+import Layout from "../../components/Layout";
 import success from "../../icon/success-check.png";
+import CheckoutCreditCard from "../../components/CheckoutCreditCard";
+
+import "./index.css";
 
 function checkOut() {
   //Modal
@@ -71,13 +71,12 @@ function checkOut() {
   const [visibleDev, setVisibleDev] = useState(false);
   const [visiblePayment, setVisiblePayment] = useState(false);
 
-  // useEffect(() => {
-  //   setValue(addressOption[0].value);
-  // }, [addressOption, deliveryOption, paymentOption]);
+  // console.log(omiseCard);
 
   return (
     <Layout>
       <div className="background-checkout-page">
+        {/* <CheckoutCreditCard /> */}
         <div className="checkout-page-topic">
           <div className="checkout-page-topic-text">
             ยืนยันการชำระเงินสำหรับการซื้อ
@@ -212,20 +211,20 @@ function checkOut() {
                   >
                     แก้ไข
                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                          stroke="#665C29"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <path
+                        d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
+                        stroke="#665C29"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
                   </Link>
                 </div>
               </div>
@@ -420,6 +419,7 @@ function checkOut() {
             >
               ชำระเงิน
             </button>
+            <CheckoutCreditCard />
           </div>
         </div>
         <ModalS
