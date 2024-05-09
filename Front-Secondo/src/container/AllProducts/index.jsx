@@ -29,7 +29,7 @@ function AllProduct() {
     return myProducts;
   };
 
-  const itemInterest = renderProducts(product.products);
+  const itemInterest = renderProducts(product.productsSeller);
 
   //แบ่ง 4
   const fourItemInterest = itemInterest.reduce((acc, curr, index) => {
