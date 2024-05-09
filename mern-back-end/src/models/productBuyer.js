@@ -33,6 +33,10 @@ const productBuyerSchema = new mongoose.Schema({
         type: Boolean,
         default: false 
     },
+    status: {
+        type: String,
+        default: 'Waiting'
+    },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true},
     createBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     updatedAt: Date

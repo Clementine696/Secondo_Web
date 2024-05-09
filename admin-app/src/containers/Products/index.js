@@ -6,7 +6,7 @@ import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/Layout";
 import Input from "../../components/UI/Input";
-import { addProduct } from "../../actions";
+// import { addProduct } from "../../actions";
 import Modal from "../../components/UI/Modal";
 import './style.css'
 import { generatePublicUrl } from "../../urlConfig";
@@ -22,6 +22,12 @@ function Products(props) {
 
   const category = useSelector((state) => state.category);
   const product = useSelector((state) => state.product);
+
+  const productsSeller = product.productsSeller;
+  const productsBuyer = product.productsBuyer;
+  const productsDonater = product.productsDonater;
+  const productsReciever = product.productsReciever;
+
   const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
@@ -40,7 +46,7 @@ function Products(props) {
       form.append("productPicture", pic);
     }
 
-    dispatch(addProduct(form));
+    // dispatch(addProduct(form));
 
     setShow(false);
   };
@@ -113,8 +119,8 @@ function Products(props) {
 
         <Row>
           <Col>
-            <label className="key">Cabon Credit</label>
-            <Form.Control type="text" placeholder="Enter Cabon Credit" />
+            <label className="key">Carbon Credit</label>
+            <Form.Control type="text" placeholder="Enter Carbon Credit" />
           </Col>
         </Row>
 
@@ -138,7 +144,11 @@ function Products(props) {
   };
 
   // console.log(productPictures);
-  console.log(product.products)
+  console.log(productsSeller)
+  console.log(productsBuyer)
+  console.log(productsDonater)
+  console.log(productsReciever)
+
   const renderNewProducts = () => {
     return (
       <Table style={{ fontSize: 12 }} responsive="sm">
@@ -147,6 +157,7 @@ function Products(props) {
           <tr>
             <th>#</th>
             <th>Product Name</th>
+            <th>Type</th>
             <th>Price</th>
             {/* <th>Quantity</th> */}
             {/* <th>Description</th> */}
@@ -158,11 +169,12 @@ function Products(props) {
         </thead>
         <tbody className="table-bg">
           {
-            product.products.length > 0 ?
-              product.products.map(product =>
+            product.productsSeller.length > 0 ?
+              product.productsSeller.map(product =>
                 <tr className="product-items">
                   <td>1</td>
                   <td>{product.name}</td>
+                  <td>Seller</td>
                   <td>{product.price}</td>
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
@@ -201,8 +213,8 @@ function Products(props) {
         </thead>
         <tbody>
           {
-            product.products.length > 0 ?
-              product.products.map(product =>
+            product.productsSeller.length > 0 ?
+              product.productsSeller.map(product =>
                 <tr className="product-items">
                   <td>1</td>
                   <td>{product.name}</td>
