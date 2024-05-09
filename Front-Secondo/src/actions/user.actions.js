@@ -112,15 +112,21 @@ export const getAddress = () => {
     }
 }
 
-export const addAddress = () => {
+export const addUserAddress = (form) => {
     return async dispatch => {
-        // const res = await axios.post(`admin/address/new`, form)
+        const res = await axios.post(`admin/address/new`, form)
         // console.log(res);
         console.log('here be addAdress');
     }
 }
 
-
+export const addUserCreditCardPayment = (form) => {
+    return async dispatch => {
+        const res = await axios.post(`admin/address/new`, form)
+        // console.log(res);
+        console.log('here be addPayment');
+    }
+}
 
 
 

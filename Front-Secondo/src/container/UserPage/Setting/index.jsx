@@ -20,7 +20,7 @@ import kbank from "../../../../public/images/kbank.png";
 import ttb from "../../../../public/images/ttb.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAddress } from "../../../actions";
+import { addUserAddress, addUserCreditCardPayment } from "../../../actions";
 
 const tabItems = [
   { label: "ที่อยู่จัดส่ง", value: 1 },
@@ -53,7 +53,7 @@ let Address = [
   },
 ];
 
-const paymentMethod = [
+let paymentMethod = [
   {
     // id: "0",
     // img: masterCard,
@@ -83,7 +83,7 @@ const paymentMethod = [
   },
 ];
 
-const bankAccount = [
+let bankAccount = [
   {
     // id: "0",
     // img: kbank,
@@ -100,7 +100,7 @@ const bankAccount = [
   },
 ];
 
-const withdrawMoney = [
+let withdrawMoney = [
   {
     // id: "0",
     ownAccount: "",
@@ -111,9 +111,8 @@ const withdrawMoney = [
 
 // fillter ใน backend
 function setting() {
-
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
   // console.log(user.addresses.address)
   // console.log(Address)
 
@@ -124,29 +123,42 @@ function setting() {
         myAddresses.push({
           // id: address.id,
           name: address.address_name,
-          addressName: '',
+          addressName: "",
           phone: address.tel,
-          address: address.houseaddress + address.sub_district + address.district,
+          address:
+            address.houseaddress + address.sub_district + address.district,
           province: address.province,
-          zip: address.zipcode
+          zip: address.zipcode,
         });
       }
       return myAddresses;
     }
   };
-  
-  Address = user.addresses.address
-    ? renderAddress(user.addresses.address)
-    : [];
-  // Address = renderAddress(user.addresses.address)
 
-  // id: "0",
-  // name: "นายคเณศ บุญศิริ",
-  // addressName: "",
-  // phone: "0981597450",
-  // address: "คอนโดสวนธน ซอยพุทธบูชา 47",
-  // province: "กรุงเทพมหานคร",
-  // zip: "10140",
+  // const renderCreditCardPayment = (payments) => {
+  //   let myCreditCard = [];
+  //   if (payments && Array.isArray(payments)) {
+  //     for (let payment of payments) {
+  //       myCreditCard.push({
+  //         // cardName: "Master card",
+  //         cardId: payment.card_number,
+  //         cardExp: payment.expired,
+  //         cardCVV: payment.cvc,
+  //         ownCard: payment.card_owner
+  //       });
+  //     }
+  //     return myCreditCard;
+  //   }
+  // };
+
+  Address = user.addresses.address ? renderAddress(user.addresses.address) : [];
+  // paymentMethod = user.payments.payment ? renderCreditCardPayment(user.payments.payment) : [];
+
+  useEffect(() => {
+    if (user && user.addresses && user.addresses.address) {
+      setAddresses(renderAddress(user.addresses.address));
+    }
+  }, [user]);
 
   //set Tab
   const [tab, setTab] = useState(1);
@@ -259,7 +271,7 @@ function setting() {
       newAddress.province &&
       newAddress.zip
     ) {
-      const form = new FormData();
+      // const form = new FormData();
       const updatedAddresses = [...addresses, newAddress];
       setAddresses(updatedAddresses);
       setNewAddress({
@@ -273,7 +285,30 @@ function setting() {
         province: "",
         zip: "",
       });
-      dispatch(addUserAddress(form));
+      // form.append("address_name", newAddress.addressName);
+      // form.append("tel", newAddress.phone);
+      // form.append("houseaddress", newAddress.address);
+      // form.append("sub_district", newAddress.subDistrict);
+      // form.append("district", newAddress.district);
+      // form.append("province", newAddress.province);
+      // form.append("zipcode", newAddress.zip);
+      const formAddress = {
+        address_name: newAddress.addressName,
+        tel: newAddress.phone,
+        houseaddress: newAddress.address,
+        sub_district: newAddress.subDistrict,
+        district: newAddress.district,
+        province: newAddress.province,
+        zipcode: newAddress.zip
+      }
+      dispatch(addUserAddress(formAddress));
+    //   console.log(newAddress.addressName);
+    // console.log(newAddress.phone);
+    // console.log(newAddress.address);
+    // console.log(newAddress.subDistrict);
+    // console.log(newAddress.district);
+    // console.log(newAddress.province);
+    // console.log(newAddress.zip);
       setAddAddress(false);
     } else {
       alert("กรอกข้อมูล");
@@ -300,17 +335,23 @@ function setting() {
       newPayment.cardCVV &&
       newPayment.ownCard
     ) {
+      const form = new FormData();
       const updatedPayment = [...paymentMethods, newPayment];
       setPaymentMethods(updatedPayment);
       setNewPayment({
-        id: (
-          parseInt(paymentMethods[paymentMethods.length - 1].id) + 1
-        ).toString(),
+        // id: (
+        //   parseInt(paymentMethods[paymentMethods.length - 1].id) + 1
+        // ).toString(),
         cardId: "",
         cardExp: "",
         cardCVV: "",
         ownCard: "",
       });
+      form.append("card_owner", newPayment.ownCard);
+      form.append("card_number", newPayment.cardId);
+      form.append("expired", newPayment.cardExp);
+      form.append("cvc", newPayment.cardCVV);
+      dispatch(addUserCreditCardPayment(form));
       setAddPayment(false);
     } else {
       alert("กรอกข้อมูล");
@@ -404,17 +445,17 @@ function setting() {
   //   setAddresses(updatedAddresses);
   // };
   const handleEditAddress = (index) => {
-    setEditAddressForm(index);+3
+    setEditAddressForm(index);
     const editedAddress = addresses[index];
     setEditedAddress({ ...editedAddress });
-};
+  };
 
-const handleSaveAddress = () => {
+  const handleSaveAddress = () => {
     const updatedAddresses = addresses.map((address, index) =>
       index === editAddressForm ? editedAddress : address
     );
     setAddresses(updatedAddresses);
-};
+  };
 
   //edit payment
   const [editedPayment, setEditedPayment] = useState({});
@@ -486,49 +527,65 @@ const handleSaveAddress = () => {
     if (addAddress && scrollToAddAddress.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToAddAddress.current.clientHeight;
-      const scrollPosition = scrollToAddAddress.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToAddAddress.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (editedAddress && scrollToEditAddress.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToEditAddress.current.clientHeight;
-      const scrollPosition = scrollToEditAddress.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToEditAddress.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (addPayment && scrollToAddCreditPayment.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToAddCreditPayment.current.clientHeight;
-      const scrollPosition = scrollToAddCreditPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToAddCreditPayment.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (editedPayment && scrollToEditCreditPayment.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToEditCreditPayment.current.clientHeight;
-      const scrollPosition = scrollToEditCreditPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToEditCreditPayment.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (addBank && scrollToAddBankPayment.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToAddBankPayment.current.clientHeight;
-      const scrollPosition = scrollToAddBankPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToAddBankPayment.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (editedBank && scrollToEditBankPayment.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToEditBankPayment.current.clientHeight;
-      const scrollPosition = scrollToEditBankPayment.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToEditBankPayment.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (addWithdrawMethod && scrollToAddBankWithdraw.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToAddBankWithdraw.current.clientHeight;
-      const scrollPosition = scrollToAddBankWithdraw.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToAddBankWithdraw.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
     if (editedWithdraw && scrollToEditBankWithdraw.current) {
       const windowHeight = window.innerHeight;
       const elementHeight = scrollToEditBankWithdraw.current.clientHeight;
-      const scrollPosition = scrollToEditBankWithdraw.current.offsetTop - (windowHeight - elementHeight) / 2;
+      const scrollPosition =
+        scrollToEditBankWithdraw.current.offsetTop -
+        (windowHeight - elementHeight) / 2;
       window.scrollTo({ top: scrollPosition, behavior: "smooth" });
     }
   }, [
@@ -539,7 +596,7 @@ const handleSaveAddress = () => {
     addBank,
     editedBank,
     addWithdrawMethod,
-    editedWithdraw
+    editedWithdraw,
   ]);
 
   return (
@@ -563,11 +620,10 @@ const handleSaveAddress = () => {
                   <Link
                     className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
                     onClick={() => {
-                      setAddAddress(true),
-                        setEditAddressForm(null);
-                        // scrollToAddAddress.current?.scrollIntoView({
-                        //   behavior: "smooth",
-                        // });
+                      setAddAddress(true), setEditAddressForm(null);
+                      // scrollToAddAddress.current?.scrollIntoView({
+                      //   behavior: "smooth",
+                      // });
                     }}
                   >
                     <img src={add} className="add-icon"></img>
@@ -595,11 +651,11 @@ const handleSaveAddress = () => {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.index),
+                            handleEditAddress(address.id),
                               setAddAddress(false);
-                              // scrollToEditAddress.current?.scrollIntoView({
-                              //   behavior: "smooth",
-                              // });
+                            // scrollToEditAddress.current?.scrollIntoView({
+                            //   behavior: "smooth",
+                            // });
                           }}
                         >
                           แก้ไข
@@ -705,7 +761,8 @@ const handleSaveAddress = () => {
                                     className=""
                                     placeholder="ตำบล"
                                     value={
-                                      editedAddress.subDistrict || address.subDistrict
+                                      editedAddress.subDistrict ||
+                                      address.subDistrict
                                     }
                                     type="text"
                                     errorMessage=""
@@ -1018,7 +1075,10 @@ const handleSaveAddress = () => {
                   paymentMethods.map((payment) => (
                     <div className="w-100" key={payment.id}>
                       {editPaymentForm === payment.id ? (
-                        <div ref={scrollToEditCreditPayment} className="setting-add-address">
+                        <div
+                          ref={scrollToEditCreditPayment}
+                          className="setting-add-address"
+                        >
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -1140,7 +1200,10 @@ const handleSaveAddress = () => {
                   ))}
               </div>
               {addPayment && (
-                <div ref={scrollToAddCreditPayment} className="setting-add-address">
+                <div
+                  ref={scrollToAddCreditPayment}
+                  className="setting-add-address"
+                >
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัตร
                   </div>
@@ -1310,7 +1373,10 @@ const handleSaveAddress = () => {
                   bankAccounts.map((bank) => (
                     <div className="w-100" key={bank.id}>
                       {editBankForm === bank.id ? (
-                        <div ref={scrollToEditBankPayment} className="setting-add-address">
+                        <div
+                          ref={scrollToEditBankPayment}
+                          className="setting-add-address"
+                        >
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -1391,7 +1457,10 @@ const handleSaveAddress = () => {
                   ))}
               </div>
               {addBank && (
-                <div ref={scrollToAddBankPayment} className="setting-add-address">
+                <div
+                  ref={scrollToAddBankPayment}
+                  className="setting-add-address"
+                >
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัญชีธนาคาร
                   </div>
@@ -1528,7 +1597,10 @@ const handleSaveAddress = () => {
                   withdrawMoneys.map((withdraw) => (
                     <div className="w-100" key={withdraw.id}>
                       {editWithdrawForm === withdraw.id ? (
-                        <div ref={scrollToEditBankWithdraw} className="setting-add-address">
+                        <div
+                          ref={scrollToEditBankWithdraw}
+                          className="setting-add-address"
+                        >
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
@@ -1615,7 +1687,10 @@ const handleSaveAddress = () => {
                   ))}
               </div>
               {addWithdrawMethod && (
-                <div ref={scrollToAddBankWithdraw} className="setting-add-address">
+                <div
+                  ref={scrollToAddBankWithdraw}
+                  className="setting-add-address"
+                >
                   <div className="setting-add-address-title kanit-paragraphBig">
                     เพิ่มบัญชีธนาคาร
                   </div>

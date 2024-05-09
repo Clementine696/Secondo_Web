@@ -130,12 +130,12 @@ export const signout = () => {
     }
 }
 
-export const addUserAddress = form => {
-    return async dispatch => {
-        const res = await axios.post(`address/new`, form)
-        console.log(res);
-    }
-}
+// export const addUserAddress = form => {
+//     return async dispatch => {
+//         const res = await axios.post(`address/new`, form)
+//         console.log(res);
+//     }
+// }
 
 // export const addUserCreditCardPayment = form => {
 //     return async dispatch => {
