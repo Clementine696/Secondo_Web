@@ -41,6 +41,7 @@ function Test() {
   const [openModelConfirmItem, setOpenModelConfirmItem] = useState(false);
 
   const [openModalDonate, setOpenModalDonate] = useState(false);
+  console.log(openModalDonate);
 
   const [sellerRate, setSellerRate] = useState(false);
 

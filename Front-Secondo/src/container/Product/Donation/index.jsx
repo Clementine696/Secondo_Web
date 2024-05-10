@@ -6,7 +6,7 @@ import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
 import VDivider from "../../../components/UI/DividerVentical";
 import ModalS from "../../../components/Modal/success";
-import ModalDonate from "../../../components/Modal/OfferSale/sale-score";
+import ModalSale from "../../../components/Modal/OfferSale/sale-score";
 import ModalSelectItem from "../../../components/Modal/OfferSale/selectProduct";
 import ModalConfirmItem from "../../../components/Modal/OfferSale/confirmProduct";
 import Pathway from "../../../components/UI/Pathway";
@@ -420,7 +420,7 @@ function Donate() {
         onClose={() => setOpenModel(false)}
       />
 
-      <ModalDonate
+      <ModalSale
         label="เสนอจากของที่คุณบริจาคอยู่"
         desc="ซื้อโทรศัพท์ iphone14"
         img={donate}

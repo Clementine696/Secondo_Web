@@ -72,6 +72,7 @@ function RequireDonate() {
   const [openModel, setOpenModel] = useState(false);
 
   const [openModalDonate, setOpenModalDonate] = useState(false);
+  // console.log(openModalDonate);
 
   useEffect(() => {
     if (openModel || openModalDonate) {
@@ -378,6 +379,7 @@ function RequireDonate() {
       <ModalDonate
         label="บริจาคตู้เย็น"
         open={openModalDonate}
+        onClose={() => setOpenModalDonate(false)}
         onClick={() => {
           setOpenModalDonate(false), setOpenModel(true);
         }}

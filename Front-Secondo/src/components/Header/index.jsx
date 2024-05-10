@@ -111,7 +111,7 @@ function Index() {
     let handler = (e) => {
       if (!menuRefNoti.current.contains(e.target)) {
         setOpenNoti(false);
-        console.log(menuRef.current);
+        // console.log(menuRef.current);
       }
     };
 
