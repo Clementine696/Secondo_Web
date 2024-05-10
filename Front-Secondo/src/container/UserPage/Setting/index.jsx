@@ -643,7 +643,7 @@ function setting() {
                           {address.name} {address.phone}
                         </p>
                         <p>
-                          {address.address} {address.province} {address.zip}
+                          {address.address} {address.subDistrict} {address.district} {address.province} {address.zip}
                         </p>
                       </div>
 
@@ -651,15 +651,17 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.id),
+                            handleEditAddress(address.index),
                               setAddAddress(false);
                             // scrollToEditAddress.current?.scrollIntoView({
                             //   behavior: "smooth",
                             // });
                           }}
+                          
                         >
                           แก้ไข
                         </button>
+                        
                         <button
                           className={`s-btn ${
                             selectedAddress === index
@@ -676,10 +678,10 @@ function setting() {
                 </div>
               </div>
               <div className="setting-add-edit-group">
-                {editAddressForm &&
-                  addresses.map((address) => (
-                    <div className="w-100" key={address.id}>
-                      {editAddressForm === address.id ? (
+                {editAddressForm !== null &&
+                  addresses.map((address, index) => (
+                    <div className="w-100" key={index}>
+                      {editAddressForm === index ? (
                         <div
                           ref={scrollToEditAddress}
                           className="setting-add-address"
