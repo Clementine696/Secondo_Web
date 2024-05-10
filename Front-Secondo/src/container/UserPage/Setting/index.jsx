@@ -448,6 +448,8 @@ function setting() {
     setEditAddressForm(index);
     const editedAddress = addresses[index];
     setEditedAddress({ ...editedAddress });
+    // console.log(editedAddress)
+    // console.log(index)
   };
 
   const handleSaveAddress = () => {
@@ -651,11 +653,12 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(address.index),
+                            handleEditAddress(index),
                               setAddAddress(false);
                             // scrollToEditAddress.current?.scrollIntoView({
                             //   behavior: "smooth",
                             // });
+                            // console.log(index)
                           }}
                           
                         >
