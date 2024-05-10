@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Script from "react-load-script";
 import axios from "../../helpers/axios";
 
+import "./index.css";
+
 let OmiseCard;
 
-function CreditCard() {
+function CreditCard(props) {
   const handleLoadScript = () => {
     OmiseCard = window.OmiseCard;
     OmiseCard.configure({
@@ -57,9 +59,9 @@ function CreditCard() {
         defer
       />
       <form>
-        <div id="credit-card" type="button" onClick={handleClick}>
-          ชำระเงินด้วยบัตรเครดิต
-        </div>
+        <button className="btn-small-primary btn-payment kanit-paragraphMedium" id="credit-card" type="button" onClick={handleClick}>
+          {props.label}
+        </button>
       </form>
     </div>
   );

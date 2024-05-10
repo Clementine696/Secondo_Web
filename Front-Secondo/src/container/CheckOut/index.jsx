@@ -8,6 +8,9 @@ import Layout from "../../components/Layout";
 import success from "../../icon/success-check.png";
 import CheckoutCreditCard from "../../components/CheckoutCreditCard";
 
+import chevronRight from "../../icon/chevron-right-red.png";
+import chevronRightD from "../../icon/chevron-right.png";
+
 import "./index.css";
 
 function checkOut() {
@@ -76,9 +79,8 @@ function checkOut() {
   return (
     <Layout>
       <div className="background-checkout-page">
-        {/* <CheckoutCreditCard /> */}
         <div className="checkout-page-topic">
-          <div className="checkout-page-topic-text">
+          <div className="checkout-page-topic-text kanit-Display-Large">
             ยืนยันการชำระเงินสำหรับการซื้อ
           </div>
         </div>
@@ -91,10 +93,10 @@ function checkOut() {
                     1
                   </div>
                   <div className="checkout-page-content-method-address-group-detail-group">
-                    <div className="checkout-page-content-method-address-group-detail-group-topic">
+                    <div className="checkout-page-content-method-address-group-detail-group-topic kanit-paragraphMedium">
                       ข้อมูลการจัดส่ง
                     </div>
-                    <div className="checkout-page-content-method-address-group-detail-group-desc">
+                    <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedAddress
                         ? addressOption.find(
                             (address) => address.value === selectedAddress
@@ -107,49 +109,21 @@ function checkOut() {
                   {addressOption.length === 0 ? (
                     <Link
                       style={{ textDecoration: "none" }}
-                      className="checkout-page-content-method-address-group-add"
+                      className="checkout-page-content-method-address-group-add kanit-paragraphtextMedium"
                       to="/setting"
                     >
                       กรุณาเพิ่มที่อยู่การจัดส่ง
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                          stroke="#B3261E"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <img className="check-out-icon" src={chevronRight} />
                     </Link>
                   ) : (
                     <Link
                       style={{ textDecoration: "none" }}
                       to=""
-                      className="checkout-page-content-method-address-group-edit-text"
+                      className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
                       onClick={() => setVisibleAddress(true)}
                     >
                       แก้ไข
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                          stroke="#665C29"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <img className="check-out-icon" src={chevronRightD} />
                     </Link>
                   )}
                 </div>
@@ -191,10 +165,10 @@ function checkOut() {
                     2
                   </div>
                   <div className="checkout-page-content-method-address-group-detail-group">
-                    <div className="checkout-page-content-method-address-group-detail-group-topic">
+                    <div className="checkout-page-content-method-address-group-detail-group-topic kanit-paragraphMedium">
                       วิธีการจัดส่ง
                     </div>
-                    <div className="checkout-page-content-method-address-group-detail-group-desc">
+                    <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedDelivery
                         ? deliveryOption.find(
                             (deliver) => deliver.value === selectedDelivery
@@ -206,25 +180,11 @@ function checkOut() {
                 <div className="checkout-page-content-method-address-group-edit">
                   <Link
                     style={{ textDecoration: "none" }}
-                    className="checkout-page-content-method-address-group-edit-text"
+                    className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
                     onClick={() => setVisibleDev(true)}
                   >
                     แก้ไข
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                    >
-                      <path
-                        d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                        stroke="#665C29"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <img className="check-out-icon" src={chevronRightD} />
                   </Link>
                 </div>
               </div>
@@ -265,10 +225,10 @@ function checkOut() {
                     3
                   </div>
                   <div className="checkout-page-content-method-address-group-detail-group">
-                    <div className="checkout-page-content-method-address-group-detail-group-topic">
+                    <div className="checkout-page-content-method-address-group-detail-group-topic kanit-paragraphMedium">
                       วิธีการชำระเงิน
                     </div>
-                    <div className="checkout-page-content-method-address-group-detail-group-desc">
+                    <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedPayment
                         ? paymentOption.find(
                             (payment) => payment.value === selectedPayment
@@ -281,48 +241,20 @@ function checkOut() {
                   {paymentOption.length === 0 ? (
                     <Link
                       style={{ textDecoration: "none" }}
-                      className="checkout-page-content-method-address-group-add"
+                      className="checkout-page-content-method-address-group-add kanit-paragraphtextMedium"
                       to="/setting"
                     >
                       กรุณาเพิ่มวิธีชำระเงิน
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                          stroke="#B3261E"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <img className="check-out-icon" src={chevronRight} />
                     </Link>
                   ) : (
                     <Link
                       style={{ textDecoration: "none" }}
-                      className="checkout-page-content-method-address-group-edit-text"
+                      className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
                       onClick={() => setVisiblePayment(true)}
                     >
                       แก้ไข
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M6 11.999L8.58579 9.41324C9.36684 8.63219 9.36683 7.36586 8.58579 6.58481L6 3.99902"
-                          stroke="#665C29"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <img className="check-out-icon" src={chevronRightD} />
                     </Link>
                   )}
                 </div>
@@ -380,7 +312,7 @@ function checkOut() {
                 </div>
               </div>
 
-              <div className="checkout-page-content-order-item-price kanit-paragraphVerySmall">
+              <div className="checkout-page-content-order-item-price kanit-paragraphSmall">
                 129 บาท
               </div>
             </div>
@@ -413,13 +345,14 @@ function checkOut() {
                 </div>
               </div>
             </div>
-            <button
+            {/* <button
               className="btn-small-primary kanit-paragraphMedium"
               onClick={() => setOpenModel(true)}
             >
               ชำระเงิน
-            </button>
-            <CheckoutCreditCard />
+            </button> */}
+
+            <CheckoutCreditCard label="ชำระเงิน" />
           </div>
         </div>
         <ModalS
