@@ -15,7 +15,8 @@ const AddCategoryModal = (props) => {
         parentCategoryId,
         setParentCategoryId,
         categoryList,
-        handleCategoryImage
+        handleCategoryImage,
+        buttons
     } = props;
 
     return (
@@ -24,6 +25,7 @@ const AddCategoryModal = (props) => {
         handleCancel={handleCancel}
         handleClose={handleClose}
         modalTitle={modalTitle}
+        buttons={buttons}
       >
         <Row>
             <Col>

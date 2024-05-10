@@ -294,9 +294,66 @@ exports.getProductRecieverDetailsById = (req, res) => {
         return res.status(400).json({ error: 'params required' });
     }
 }
+// const ProductSeller = require('../models/productSeller')
+// const ProductBuyer = require('../models/productBuyer')
+// const ProductDonate = require('../models/productDonate')
+// const ProductRequest = require('../models/productRequest')
+// User.findOneAndUpdate({ _id: req.user._id }, { profilePicture: newProfilePicture}).catch((err)=>{
+//     console.log('Updated file', newProfilePicture)
+//     console.log(err);
+// });
 
 exports.approveProduct = (req, res) => {
-    const { productId } = req.params;
+    const body = req.body;
+    switch (body.type){
+        case 'seller' :
+            ProductSeller.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit})
+            .then((product) => {
+                if(product){
+                    return res.status(200).json({ product });
+                }
+            }).catch((error) => {
+                console.log(error);
+                return res.status(400).json({ error })
+            })
+            // return res.status(200).json({ message: 'seller' });
+            break;
+        case 'buyer' :
+            ProductBuyer.findOneAndUpdate({ _id: body.product_id }, {verify: true})
+            .then((product) => {
+                if(product){
+                    return res.status(200).json({ product });
+                }
+            }).catch((error) => {
+                console.log(error);
+                return res.status(400).json({ error })
+            })
+            break;
+        case 'donater' :
+            ProductDonate.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit})
+            .then((product) => {
+                if(product){
+                    return res.status(200).json({ product });
+                }
+            }).catch((error) => {
+                console.log(error);
+                return res.status(400).json({ error })
+            })
+            break;
+        case 'request' :
+            ProductRequest.findOneAndUpdate({ _id: body.product_id }, {verify: true})
+            .then((product) => {
+                if(product){
+                    return res.status(200).json({ product });
+                }
+            }).catch((error) => {
+                console.log(error);
+                return res.status(400).json({ error })
+            })
+            break;
+    }
+        
+    // return res.status(200).json({ body });
     // if(productId){
     //     ProductRequest.findOne({ _id: productId })
     //     .populate({ path: 'category', select: '_id name'})

@@ -30,11 +30,13 @@ axiosIntance.interceptors.response.use((response) => {
     return response;
   }, (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    console.log(error.response)
-    const { status } = error.response;
-    if(status === 500){
-      localStorage.clear();
-      store.dispatch({ type: authConstants.LOGOUT_SUCCESS })
+    console.log(error)
+    if(error.response){
+      const { status } = error.response;
+      if(status === 500){
+        localStorage.clear();
+        store.dispatch({ type: authConstants.LOGOUT_SUCCESS })
+      }
     }
 
     // Do something with response error

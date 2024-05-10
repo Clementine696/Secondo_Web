@@ -209,17 +209,21 @@ function Home() {
   const renderProducts = (products) => {
     let myProducts = [];
     if (products && Array.isArray(products)) {
-      for (let product of products) {
-        myProducts.push({
-          _id: product._id,
-          slug: product.slug,
-          img: product.productPictures,
-          title: product.name,
-          province: "กรุงเทพ",
-          price: product.price,
-          credit: 0.1,
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
+        for (let product of products) {
+          if(product.verify === true){
+            myProducts.push({
+              _id: product._id,
+              slug: product.slug,
+              img: product.productPictures,
+              title: product.name,
+              province: "กรุงเทพ",
+              price: product.price,
+              credit: product.carbonCredits,
+              // credit: 0.1,
+              // children: category.children.length > 0 && renderCategories(category.children)
+            });
+            // console.log(product)
+          }
       }
       return myProducts;
     }
@@ -229,15 +233,17 @@ function Home() {
     let myProducts = [];
     if (products && Array.isArray(products)) {
       for (let product of products) {
-        myProducts.push({
-          _id: product._id,
-          slug: product.slug,
-          img: product.productPictures,
-          title: product.name,
-          province: "กรุงเทพ",
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
-      }
+        if(product.verify === true){
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            // children: category.children.length > 0 && renderCategories(category.children)
+            });
+          }
+        }
       return myProducts;
     }
   };

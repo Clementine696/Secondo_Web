@@ -5,7 +5,8 @@ const initState = {
     message: '',
     loading: false,
     signupsuccess: false,
-    addresses: []
+    addresses: [],
+    userproduct: []
 }
 
 export default (state = initState, action) => {

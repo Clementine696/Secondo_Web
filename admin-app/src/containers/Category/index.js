@@ -323,15 +323,16 @@ function Category(props) {
               size="lg"
               buttons={[
                 {
-                  label: 'No',
-                  color: 'primary',
+                  label: 'Cancel',
+                  color: 'secondary',
                   onClick: () => {
-                    alert('no');
+                    // alert('no');
+                    cancelDeleteCategory();
                   }
                 },
                 {
-                  label: 'Yes',
-                  color: 'danger',
+                  label: 'Delete',
+                  color: 'primary',
                   onClick: () => {
                     deleteCategories();
                   }
@@ -402,6 +403,22 @@ function Category(props) {
         setParentCategoryId={setParentCategoryId}
         categoryList={categoryList}
         handleCategoryImage={handleCategoryImage}
+        buttons={[
+          {
+            label: 'No',
+            color: 'secondary',
+            onClick: () => {
+              handleCancel();
+            }
+          },
+          {
+            label: 'Add',
+            color: 'primary',
+            onClick: () => {
+              handleClose();
+            }
+          }
+        ]}
       />
 
       {/* {renderUpdateCategoriesModal()} */}
@@ -415,6 +432,22 @@ function Category(props) {
         checkedArray={checkedArray}
         handleCategoryInput={handleCategoryInput}
         categoryList={categoryList}
+        buttons={[
+          {
+            label: 'Cancel',
+            color: 'secondary',
+            onClick: () => {
+              cancelUpdateCategory();
+            }
+          },
+          {
+            label: 'Update',
+            color: 'primary',
+            onClick: () => {
+              closeUpdateCategoryForm();
+            }
+          }
+        ]}
       />
       
       {renderDeleteCategoryModal()}

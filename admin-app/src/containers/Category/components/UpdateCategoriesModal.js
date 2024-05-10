@@ -15,7 +15,8 @@ const UpdateCategoriesModal = (props) => {
         expandedArray,
         checkedArray,
         handleCategoryInput,
-        categoryList
+        categoryList,
+        buttons
     } = props;
 
     return (
@@ -25,6 +26,7 @@ const UpdateCategoriesModal = (props) => {
             handleClose={handleClose}
             modalTitle={modalTitle}
             size={size}
+            buttons={buttons}
           >
             <Row>
               <Col>

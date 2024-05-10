@@ -18,12 +18,12 @@ const NewModal = (props) => {
                         </Button>
                     )
                 }
-                <Button variant="outline-secondary" {...props} className="btn-sm" onClick={props.handleCancel}>
+                {/* <Button variant="outline-secondary" {...props} className="btn-sm" onClick={props.handleCancel}>
                     Cancel
                 </Button>
                 <Button variant="primary"  {...props} className="btn-sm" onClick={props.handleClose}>
                     Save
-                </Button>
+                </Button> */}
             </Modal.Footer>
         </Modal>
     );

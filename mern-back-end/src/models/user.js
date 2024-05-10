@@ -81,7 +81,6 @@ const userSchema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Payment'
 			},
-		quantity: Number,
 		pay_date: String,
 	}],
     
