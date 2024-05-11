@@ -299,16 +299,16 @@ function setting() {
         sub_district: newAddress.subDistrict,
         district: newAddress.district,
         province: newAddress.province,
-        zipcode: newAddress.zip
-      }
+        zipcode: newAddress.zip,
+      };
       dispatch(addUserAddress(formAddress));
-    //   console.log(newAddress.addressName);
-    // console.log(newAddress.phone);
-    // console.log(newAddress.address);
-    // console.log(newAddress.subDistrict);
-    // console.log(newAddress.district);
-    // console.log(newAddress.province);
-    // console.log(newAddress.zip);
+      //   console.log(newAddress.addressName);
+      // console.log(newAddress.phone);
+      // console.log(newAddress.address);
+      // console.log(newAddress.subDistrict);
+      // console.log(newAddress.district);
+      // console.log(newAddress.province);
+      // console.log(newAddress.zip);
       setAddAddress(false);
     } else {
       alert("กรอกข้อมูล");
@@ -512,6 +512,13 @@ function setting() {
     setWithdrawMoneys(updatedWithdrawMethod);
   };
 
+  //delete address
+  const handleDeleteAddress = (index) => {
+    const updatedAddresses = addresses.filter((address, i) => i !== index);
+    setAddresses(updatedAddresses);
+    setEditAddressForm(null);
+  };
+
   //scroll
   const scrollToAddAddress = useRef(null);
   const scrollToEditAddress = useRef(null);
@@ -645,7 +652,8 @@ function setting() {
                           {address.name} {address.phone}
                         </p>
                         <p>
-                          {address.address} {address.subDistrict} {address.district} {address.province} {address.zip}
+                          {address.address} {address.subDistrict}{" "}
+                          {address.district} {address.province} {address.zip}
                         </p>
                       </div>
 
@@ -653,18 +661,16 @@ function setting() {
                         <button
                           className="f-btn btn-small-primary kanit-paragraphMedium"
                           onClick={() => {
-                            handleEditAddress(index),
-                              setAddAddress(false);
+                            handleEditAddress(index), setAddAddress(false);
                             // scrollToEditAddress.current?.scrollIntoView({
                             //   behavior: "smooth",
                             // });
                             // console.log(index)
                           }}
-                          
                         >
                           แก้ไข
                         </button>
-                        
+
                         <button
                           className={`s-btn ${
                             selectedAddress === index
@@ -691,7 +697,10 @@ function setting() {
                         >
                           <div className="setting-title-add">
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
-                            <button className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium">
+                            <button
+                              className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
+                              onClick={() => handleDeleteAddress(index)}
+                            >
                               ลบ
                             </button>
                           </div>
