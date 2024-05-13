@@ -307,7 +307,7 @@ exports.approveProduct = (req, res) => {
     const body = req.body;
     switch (body.type){
         case 'seller' :
-            ProductSeller.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit})
+            ProductSeller.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit, status: 'ประกาศขาย'})
             .then((product) => {
                 if(product){
                     return res.status(200).json({ product });
@@ -319,7 +319,7 @@ exports.approveProduct = (req, res) => {
             // return res.status(200).json({ message: 'seller' });
             break;
         case 'buyer' :
-            ProductBuyer.findOneAndUpdate({ _id: body.product_id }, {verify: true})
+            ProductBuyer.findOneAndUpdate({ _id: body.product_id }, {verify: true, status: 'รับซื้อ'})
             .then((product) => {
                 if(product){
                     return res.status(200).json({ product });
@@ -330,7 +330,7 @@ exports.approveProduct = (req, res) => {
             })
             break;
         case 'donater' :
-            ProductDonate.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit})
+            ProductDonate.findOneAndUpdate({ _id: body.product_id }, {verify: true, carbonCredits: body.carbon_credit, status: 'ประกาศบริจาค'})
             .then((product) => {
                 if(product){
                     return res.status(200).json({ product });
@@ -341,7 +341,7 @@ exports.approveProduct = (req, res) => {
             })
             break;
         case 'request' :
-            ProductRequest.findOneAndUpdate({ _id: body.product_id }, {verify: true})
+            ProductRequest.findOneAndUpdate({ _id: body.product_id }, {verify: true, status: 'ขอรับบริจาค'})
             .then((product) => {
                 if(product){
                     return res.status(200).json({ product });
