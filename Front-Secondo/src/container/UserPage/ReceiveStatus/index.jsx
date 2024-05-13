@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 
 import "./index.css";
 import "../../../styles.css";
@@ -128,6 +130,37 @@ items.forEach((item) => {
 });
 
 function receiveStatus() {
+
+  const user = useSelector((state) => state.user);
+  const userRequestProducts = user.userRequestProducts;
+  // console.log(userSellerProducts)
+  const renderUserReceiver = (receiverProducts) => {
+    let userReceive = [];
+    if (receiverProducts && Array.isArray(receiverProducts)) {
+      for (let receiverProduct of receiverProducts) {
+        if (receiverProduct.verify === true) {
+          userReceive.push({
+            _id: receiverProduct._id,
+            slug: receiverProduct.slug,
+            img: receiverProduct.productPictures[0].img,
+            name: receiverProduct.name,
+            description: receiverProduct.description,
+            status: receiverProduct.status,
+            createdAt: receiverProduct.createdAt,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return userReceive;
+    }
+  };
+
+  const itemReceiveProduct = userRequestProducts
+    ? renderUserReceiver(userRequestProducts)
+    : [];
+
   const [font, setFont] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -190,23 +223,23 @@ function receiveStatus() {
               <p className="header-item func-col"></p>
             </div>
 
-            {items.map((item, index) => (
-              <div className={`data-table ${resizeFontClass}`}>
-                <p className="data-item date-col">{item.date}</p>
+            {itemReceiveProduct.map((item, index) => (
+              <div className={`data-table ${resizeFontClass}`} key={index}>
+                <p className="data-item date-col">{item.createdAt}</p>
 
                 <div className="data-item desc-col">
-                  <img src={item.img} className="pic-product-table"></img>
+                  <img src={item.img ? generatePublicUrl(item.img) : ""} className="pic-product-table"></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.desc.name}</p>
-                    <p className="kanit-paragraphSmall">{item.desc.detail}</p>
+                    <p className="kanit-paragraphMedium">{item.name}</p>
+                    <p className="kanit-paragraphSmall">{item.description}</p>
                   </div>
                 </div>
 
                 <div className="data-item status-col">
                   <div className="product-status-time">
-                    <p className="kanit-paragraphMedium">{item.status.name}</p>
+                    <p className="kanit-paragraphMedium">{item.status}</p>
                     <p className="status-time kanit-paragraphSmall">
-                      {item.status.time}
+                      {/* {item.status.time} */}
                     </p>
                   </div>
                 </div>

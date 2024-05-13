@@ -17,6 +17,8 @@ import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
 import useralert from "../../../icon/user-alert.png";
+import { useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -103,6 +105,39 @@ items.forEach((item) => {
 // fillter ใน backend
 
 function BuyState() {
+
+  const user = useSelector((state) => state.user);
+  const userBuyerProducts = user.userBuyerProducts;
+  // console.log(userSellerProducts)
+  const renderUserBuyer = (buyerProducts) => {
+    let userBuy = [];
+    if (buyerProducts && Array.isArray(buyerProducts)) {
+      for (let buyerProduct of buyerProducts) {
+        if (buyerProduct.verify === true) {
+          userBuy.push({
+            _id: buyerProduct._id,
+            slug: buyerProduct.slug,
+            img: buyerProduct.productPictures[0].img,
+            name: buyerProduct.name,
+            price: buyerProduct.price,
+            carbonCredits: buyerProduct.carbonCredits,
+            description: buyerProduct.description,
+            status: buyerProduct.status,
+            createdAt: buyerProduct.createdAt,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return userBuy;
+    }
+  };
+
+  const itemBuyProduct = userBuyerProducts
+    ? renderUserBuyer(userBuyerProducts)
+    : [];
+
   const [font, setFont] = useState(window.innerWidth < 1200);
 
   useEffect(() => {
@@ -166,28 +201,32 @@ function BuyState() {
               <p className="header-item func-col"></p>
             </div>
 
-            {items.map((item, index) => (
-              <div className={`data-table ${resizeFontClass}`}>
-                <p className="data-item date-col">{item.date}</p>
+            {itemBuyProduct.map((item, index) => (
+              <div className={`data-table ${resizeFontClass}`} key={index}>
+                <p className="data-item date-col">{item.createdAt}</p>
 
                 <div className="data-item desc-col">
-                  <img src={item.img} className="pic-product-table"></img>
+                  <img src={
+                      item.img
+                        ? generatePublicUrl(item.img)
+                        : ""
+                    } className="pic-product-table"></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.desc.name}</p>
-                    <p className="kanit-paragraphSmall">{item.desc.detail}</p>
+                    <p className="kanit-paragraphMedium">{item.name}</p>
+                    <p className="kanit-paragraphSmall">{item.description}</p>
                   </div>
                 </div>
 
                 <div className="data-item status-col">
                   <div className="product-status-time">
-                    <p className="kanit-paragraphMedium">{item.status.name}</p>
+                    <p className="kanit-paragraphMedium">{item.status}</p>
                     <p className="status-time kanit-paragraphSmall">
-                      {item.status.time}
+                      {/* {item.status.time} */}
                     </p>
                   </div>
                 </div>
 
-                <p className="data-item point-col">{item.point}</p>
+                <p className="data-item point-col">{item.carbonCredits}</p>
 
                 <p className="data-item price-col">{item.price}</p>
 
