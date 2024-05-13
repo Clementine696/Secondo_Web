@@ -17,7 +17,9 @@ import Pathway from "../../components/UI/Pathway";
 
 import "./index.css";
 import "../../styles.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { searchProductsByKeyword } from "../../actions";
 
 const pathway = [
   { label: "หน้าหลัก", value: 1, nevigate: "/" },
@@ -68,6 +70,29 @@ const regionDelivery = [
 ];
 
 function Search() {
+
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product);
+
+  const location = useLocation();
+  const keyword = location.pathname.split("/")[2];
+  // console.log(keyword)
+
+  useEffect(() => {
+    // const { productId } = props.params.match;
+    // const location = useLocation();
+    // const _id = location.pathname.split("/")[2];
+    // console.log(keyword);
+    const payload = {
+      params: {
+        keyword,
+      },
+    };
+
+    dispatch(searchProductsByKeyword(payload));
+  }, []);
+
+
   const handleFormProductType = (label) => {
     console.log(label);
   };

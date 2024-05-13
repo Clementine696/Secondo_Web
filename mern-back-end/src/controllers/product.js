@@ -412,3 +412,53 @@ exports.getUserProducts = async (req, res) => {
         productsReciever
      });
 }
+
+exports.searchProduct = async (req, res) => {
+    const { keyword } = req.params;
+    // return res.status(200).json({ message: productId })
+    // res.status(201).json({ keyword })
+    if(keyword){
+        // let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}}).exec();
+
+        let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+        let productsBuyer = await ProductBuyer.find({ name: {$regex: keyword, $options: 'i'}, verify: true }).exec();
+        let productsDonater = await ProductDonate.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+        let productsReciever = await ProductRequest.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+
+        res.status(201).json({ 
+            productsSeller,
+            productsBuyer,
+            productsDonater,
+            productsReciever
+        })
+    
+        // ProductSeller.find({ name: {$regex: keyword, $options: 'i'}})
+        // .then((product) => {
+        //     if(product){
+        //         return res.status(200).json({ product });
+        //     }
+        // }).catch((error) => {
+        //     console.log(error);
+        //     return res.status(400).json({ error })
+        // })
+        // .then((findproduct)
+        // {
+        //     res.status(201).json({ findproduct })
+        // })
+    }else{
+        return res.status(400).json({ error: 'params required' });
+    }
+    
+}
+
+// router.get("/s/:keyword", function(req, res){
+// 	let search = req.params.keyword;
+// 	console.log(search);
+// 	Product.find({name: {$regex: search, $options: 'i'}}).exec(function(err, allProducts){
+// 		if(err){
+// 			console.log(err);
+// 		} else{
+// 			res.render("product/index.ejs",{products: allProducts});
+// 		}
+// 	});
+// });

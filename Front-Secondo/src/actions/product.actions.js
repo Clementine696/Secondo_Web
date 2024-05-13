@@ -120,3 +120,33 @@ export const getReceiverProductDetailsById = (payload) => {
         }
     }
 }
+
+export const searchProductsByKeyword = (payload) => {
+    return async dispatch => {
+        console.log('Searching')
+        dispatch({ type: productConstants.GET_SEARCH_PRODUCT_REQUEST });
+        let res;
+        try {
+            const { keyword } = payload.params;
+            console.log(keyword)
+            res = await axios.post(`/product/s/${keyword}`);
+            console.log(res);
+            const { productsSeller, productsBuyer, productsDonater, productsReciever } = res.data;
+            dispatch({
+                type: productConstants.GET_SEARCH_PRODUCT_SUCCESS,
+                payload: { 
+                    productsSeller,
+                    productsBuyer,
+                    productsDonater,
+                    productsReciever
+                 }
+            });
+        } catch(error) {
+            console.log(error);
+            dispatch({
+                type: productConstants.GET_SEARCH_PRODUCT_FAILURE,
+                payload: { error: res.data.error }
+            });
+        }
+    }
+}

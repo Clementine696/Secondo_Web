@@ -82,8 +82,11 @@ function Index() {
     );
   };
 
+  //search
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   //dropdown profile
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);  
 
   let menuRef = useRef();
 
@@ -135,11 +138,17 @@ function Index() {
         <Col md={6} xs={6}>
           <Form className="search-container">
             <Form.Control
+              // value={item.name}
+              // placeholder={`Category Name`}
+              onChange={(e) => setSearchKeyword(e.target.value)}
               className="search-bar kanit-paragraphSmall"
               type="text"
               placeholder="ค้นหา สินค้าที่คุณสนใจ"
             />
-            <img src={searchb} className="search-icon"></img>
+            <Link to={`/search/${searchKeyword}`}>
+            <img src={searchb} className="search-icon"/>
+            </Link>
+            
           </Form>
         </Col>
 

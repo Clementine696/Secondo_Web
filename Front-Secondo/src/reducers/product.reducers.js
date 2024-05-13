@@ -12,7 +12,11 @@ const initialState = {
     productsReciever: [],
     error: null,
     loading: false,
-    productDetails: {}
+    productDetails: {},
+    searchProductSeller: [],
+    searchProductBuyer: [],
+    searchProductDonater: [],
+    searchProductRequest: [],
 };
 
 export default (state = initialState, action) => {
@@ -44,6 +48,28 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload.error
+            }
+            break;
+        case productConstants.GET_SEARCH_PRODUCT_REQUEST:
+            state = {
+                ...state,
+                loading: true
+            }
+            break;
+        case productConstants.GET_SEARCH_PRODUCT_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                searchProductSeller: action.payload.productsSeller,
+                searchProductBuyer: action.payload.productsBuyer,
+                searchProductDonater: action.payload.productsDonater,
+                searchProductRequest: action.payload.productsReciever
+            }
+            break;
+        case productConstants.GET_SEARCH_PRODUCT_FAILURE:
+            state = {
+                ...state,
+                loading: false
             }
             break;
     }
