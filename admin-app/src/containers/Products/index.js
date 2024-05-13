@@ -367,7 +367,7 @@ function Products(props) {
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td className="btn-section">
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product.product, 'seller')} key={product.product._id}>Details</Button>
@@ -388,7 +388,7 @@ function Products(props) {
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td className="btn-section">
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product.product, 'buyer')} key={product.product._id}>Details</Button>
@@ -405,11 +405,11 @@ function Products(props) {
                   <td>{index + 1}</td>
                   <td>{product.product.name}</td>
                   <td>Donater</td>
-                  <td>{product.product.price}</td>
+                  <td> - </td>
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td className="btn-section">
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product.product, 'donater')} key={product.product._id}>Details</Button>
@@ -426,11 +426,11 @@ function Products(props) {
                   <td>{index + 1}</td>
                   <td>{product.product.name}</td>
                   <td>Request</td>
-                  <td>{product.product.price}</td>
+                  <td> - </td>
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td className="btn-section">
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showProductDetailsModal(product.product, 'request')} key={product.product._id}>Details</Button>
@@ -475,7 +475,7 @@ function Products(props) {
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td >
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showOldProductDetailsModal(product.product)} key={product.product._id}>Details</Button>
@@ -496,7 +496,7 @@ function Products(props) {
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td >
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showOldProductDetailsModal(product.product)} key={product.product._id}>Details</Button>
@@ -513,11 +513,11 @@ function Products(props) {
                   <td>1</td>
                   <td>{product.product.name}</td>
                   <td>Donater</td>
-                  <td>{product.product.price}</td>
+                  <td> - </td>
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td >
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showOldProductDetailsModal(product.product)} key={product.product._id}>Details</Button>
@@ -534,11 +534,11 @@ function Products(props) {
                   <td>1</td>
                   <td>{product.product.name}</td>
                   <td>Request</td>
-                  <td>{product.product.price}</td>
+                  <td> - </td>
                   {/* <td>{product.quantity}</td> */}
                   {/* <td>{product.description}</td> */}
                   <td>{product.product.category ? product.product.category.name : null}</td>
-                  <td>รอการตรวจสอบ</td>
+                  <td>{product.product.status}</td>
                   <td >
                     {/* <Button variant="outline-danger" size="sm">Delete</Button> */}
                     <Button variant="outline-primary" size="sm" onClick={() => showOldProductDetailsModal(product.product)} key={product.product._id}>Details</Button>

@@ -17,6 +17,7 @@ import edit from "../../../icon/edit.png";
 import shipping from "../../../icon/shipping.png";
 
 import plant from "../../../../public/images/pant.jpg";
+import { useSelector } from "react-redux";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -104,6 +105,12 @@ items.forEach((item) => {
 
 // fillter ใน backend
 function sellState() {
+
+  // ดึงข้อมูล
+  const user = useSelector((state) => state.user);
+  const userSellerProducts = user.userSellerProducts;
+  console.log(userSellerProducts)
+
   const [font, setFont] = useState(window.innerWidth < 1200);
 
   useEffect(() => {

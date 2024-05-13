@@ -43,6 +43,10 @@ const productSellerSchema = new mongoose.Schema({
         type: Boolean,
         default: false 
     },
+    status: {
+        type: String,
+        default: 'รอการตรวจสอบ'
+    },
     // reviews: [
     //     {
     //         userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

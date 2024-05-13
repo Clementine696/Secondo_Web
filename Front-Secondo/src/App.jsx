@@ -110,7 +110,7 @@ export default function App() {
           <Route path="allproduct/recieve" element={<AllProductRecieve />} />
           <Route path="allproduct/interest" element={<AllProductInterest />} />
 
-          <Route path="search" element={<Search />} />
+          {/* <Route path="search" element={<Search />} /> */}
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
 
 
@@ -168,6 +168,8 @@ export default function App() {
           <Route path="/product/buyer/:productId/p" element={<Offersale />} />
           <Route path="/product/receiver/:productId/p" element={<Donate />} />
           <Route path="/product/donater/:productId/p" element={<RequireDonate />} />
+
+          <Route path="search/:keyword" element={<Search />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

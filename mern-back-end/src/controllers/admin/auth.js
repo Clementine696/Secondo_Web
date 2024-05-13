@@ -243,6 +243,10 @@ exports.getAddress = (req, res) => {
         })
 }
 
+// exports.deleteAddress = (req, res) => {
+//     User.findOne({ _id: req.user._id })
+//     .populate({ path: 'addresses' })
+// }
 
 exports.newPayment = (req, res) => {
 
