@@ -182,7 +182,7 @@ function RequireDonate() {
           <Pathway pathwayList={pathway} />
         </div>
 
-        <Row className="product-page-item-details">
+        <div className="product-page-item-details">
           <div className="product-page-item-details-group-picture-seller">
             <div className="product-page-item-details-group-picture-seller-big-picture">
               <img
@@ -211,29 +211,31 @@ function RequireDonate() {
               </div>
             </div>
           </div>
-          <div className="product-page-item-details-group-item-description">
-            <div className="product-title-seller-name">
-              <div className="kanit-paragraphMedium product-title">
-              {product.productDetails.name}
-              </div>
-              <Link className="seller-product" to="#seller">
-                <div className="kanit-paragraphSmall">
-                  บริจาคโดย &nbsp;{" "}
-                  {product.productDetails.createBy
-                    ? product.productDetails.createBy.firstName
-                    : null}
-                </div>
-              </Link>
-            </div>
 
-            <Row className="product-price-cc">
-              <Col className="kanit-Display-Medium price">บริจาค</Col>
-              {/* <Col className="kanit-Display-Medium cc">
+          <div className="product-right-content">
+            <div className="product-page-item-details-group-item-description">
+              <div className="product-title-seller-name">
+                <div className="kanit-paragraphMedium product-title">
+                  {product.productDetails.name}
+                </div>
+                <Link className="seller-product" to="#seller">
+                  <div className="kanit-paragraphSmall">
+                    บริจาคโดย &nbsp;{" "}
+                    {product.productDetails.createBy
+                      ? product.productDetails.createBy.firstName
+                      : null}
+                  </div>
+                </Link>
+              </div>
+
+              <Row className="product-price-cc">
+                <Col className="kanit-Display-Medium price">บริจาค</Col>
+                {/* <Col className="kanit-Display-Medium cc">
                 {productDetail[0].productCredit} CO₂ Credit
               </Col> */}
-            </Row>
+              </Row>
 
-            {/* <Row className="product-decription">
+              {/* <Row className="product-decription">
               <div className="kanit-paragraphtextMedium product-detail">
                 ยี่ห้อ :{productDetail[0].brand}
               </div>
@@ -248,27 +250,38 @@ function RequireDonate() {
               </div>
             </Row> */}
 
-            <div className="divider-horz-2"></div>
+              <div className="divider-horz-2"></div>
 
-            <div className="product-button-section">
-              <button
-                className="btn-small-primary kanit-paragraphMedium"
-                onClick={() => setOpenModalDonate(true)}
-              >
-                เสนอขอรับบริจาค
-              </button>
-              <div>
-                <button className="btn-fav" onClick={handleFavClick}>
-                  <img
-                    src={isFav ? favBold : fav}
-                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
-                    alt="Favorite"
-                  />
+              <div className="product-button-section">
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  onClick={() => setOpenModalDonate(true)}
+                >
+                  เสนอขอรับบริจาค
                 </button>
+                <div>
+                  <button className="btn-fav" onClick={handleFavClick}>
+                    <img
+                      src={isFav ? favBold : fav}
+                      className={`btn-fav-icon ${
+                        fade ? "fade-out" : "fade-in"
+                      }`}
+                      alt="Favorite"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
+            <div className="product-page-item-description">
+              <div className="product-description-title kanit-paragraphMedium">
+                รายละเอียดสินค้า
+              </div>
+              <p className="kanit-paragraphtextMedium">
+                {product.productDetails.description}
+              </p>
+            </div>
           </div>
-        </Row>
+        </div>
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
@@ -293,7 +306,7 @@ function RequireDonate() {
 
               <div>
                 <button className="btn-small-secondary kanit-paragraphtextMedium">
-                ดูข้อมูลผู้บริจาค
+                  ดูข้อมูลผู้บริจาค
                 </button>
               </div>
             </Col>
@@ -324,14 +337,14 @@ function RequireDonate() {
           </Row> */}
         </div>
 
-        <div className="product-page-item-description">
+        {/* <div className="product-page-item-description">
           <div className="product-description-title kanit-paragraphMedium">
             รายละเอียดสินค้า
           </div>
           <p className="kanit-paragraphtextMedium">
-          {product.productDetails.description}
+            {product.productDetails.description}
           </p>
-        </div>
+        </div> */}
 
         <div className="group-card-header-item">
           <div className="group-card-header">

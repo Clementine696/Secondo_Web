@@ -120,18 +120,25 @@
 }
 
 .small-img-product.selected {
-  border-color:  var(--Tertiary-Fixed-Variant, #665C29);
+  border-color:  var(--TfixedVariant-color);
+}
+
+.product-right-content {
+  display: flex;
+  min-height: fit-content;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 0 0;
+  align-self: stretch;
 }
 
 .product-page-item-details-group-item-description {
   display: flex;
-  width: 100%;
-  min-height: fit-content;
+  max-height: fit-content;
   padding: 24px;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  flex: 1 0 0;
   border-radius: 24px;
   background-color: var(--SurfaceBright-color);
   color: var(--Default-text);

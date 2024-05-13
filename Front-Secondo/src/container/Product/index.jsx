@@ -36,12 +36,11 @@ let productDetail = [
     productSeller: "",
     province: "",
     productPrice: "",
-    productCredit: 20
+    productCredit: 20,
   },
 ];
 
 function Product() {
-
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   const dispatch = useDispatch();
@@ -75,7 +74,10 @@ function Product() {
   const productImage = productFromApi.productPictures;
   // console.log(productImage)
   // console.log(productImage.length)
-  if (product.productDetails.productPictures && Array.isArray(product.productDetails.productPictures)) {
+  if (
+    product.productDetails.productPictures &&
+    Array.isArray(product.productDetails.productPictures)
+  ) {
     productImage.map((item, index) => {
       console.log(item.img);
       image_list.push(item.img);
@@ -110,7 +112,7 @@ function Product() {
   }
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
-  console.log(productDetail.productName)
+  console.log(productDetail.productName);
   let spec = [];
   // if(product.productDetails.specifications){
   //   spec = product.productDetails.specifications.split(",")
@@ -153,7 +155,6 @@ function Product() {
     setSelectedImg(img);
     setFrameSmallImgs(img);
   };
-  
 
   return (
     <Layout>
@@ -169,7 +170,7 @@ function Product() {
                 className="big-img" //TODO:
                 // src={product.productDetails.productPictures ? generatePublicUrl(product.productDetails.productPictures[0].img) : ""}
                 // src={product.productDetails.productPictures ? generatePublicUrl(selectedImg) : ""}
-                src = {selectedImg ? generatePublicUrl(selectedImg) : ""}
+                src={selectedImg ? generatePublicUrl(selectedImg) : ""}
               />
             </div>
             <div className="product-page-item-details-group-picture-seller-small-picture">
@@ -180,7 +181,11 @@ function Product() {
                       className={`small-img-product ${
                         frameSmallImgs === img ? "selected" : ""
                       }`}
-                      src={product.productDetails.productPictures ? generatePublicUrl(img) : ""}
+                      src={
+                        product.productDetails.productPictures
+                          ? generatePublicUrl(img)
+                          : ""
+                      }
                       onClick={() => handleImgClick(img)}
                     />
                   </div>
@@ -189,80 +194,65 @@ function Product() {
             </div>
           </div>
 
-          <div className="product-page-item-details-group-item-description">
-            <div className="product-title-seller-name">
-              <div className="kanit-paragraphMedium product-title">
-                {product.productDetails.name}
-                {/* {productDetail[0].productName} */}
-              </div>
-              <Link className="seller-product" to="#seller">
-                <div className="kanit-paragraphSmall">
-                  ลงขายโดย &nbsp;
-                  {product.productDetails.createBy ? product.productDetails.createBy.firstName : null}
-                  {/* {productDetail[0].productSeller} */}
+          <div className="product-right-content">
+            <div className="product-page-item-details-group-item-description">
+              <div className="product-title-seller-name">
+                <div className="kanit-paragraphMedium product-title">
+                  {product.productDetails.name}
+                  {/* {productDetail[0].productName} */}
                 </div>
-              </Link>
+                <Link className="seller-product" to="#seller">
+                  <div className="kanit-paragraphSmall">
+                    ลงขายโดย &nbsp;
+                    {product.productDetails.createBy
+                      ? product.productDetails.createBy.firstName
+                      : null}
+                    {/* {productDetail[0].productSeller} */}
+                  </div>
+                </Link>
+              </div>
+
+              <Row className="product-price-cc">
+                <Col className="kanit-Display-Medium price">
+                  {product.productDetails.price}
+                  {/* {productDetail[0].productPrice} */}
+                  บาท
+                </Col>
+                <Col className="kanit-Display-Medium cc">
+                  {productDetail[0].productCredit} CO₂ Credit
+                </Col>
+              </Row>
+
+              <div className="divider-horz-2"></div>
+
+              <div className="product-button-section">
+                <Link
+                  className="main-product-button btn-small-primary kanit-paragraphMedium"
+                  style={{ textDecoration: "none" }}
+                  to="/account/checkout"
+                >
+                  ซื้อ
+                </Link>
+                <div>
+                  <button className="btn-fav" onClick={handleFavClick}>
+                    <img
+                      src={isFav ? favBold : fav}
+                      className={`btn-fav-icon ${
+                        fade ? "fade-out" : "fade-in"
+                      }`}
+                      alt="Favorite"
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
-
-            <Row className="product-price-cc">
-              <Col className="kanit-Display-Medium price">
-                {product.productDetails.price}
-                {/* {productDetail[0].productPrice} */}
-                บาท
-              </Col>
-              <Col className="kanit-Display-Medium cc">
-                {productDetail[0].productCredit} CO₂ Credit
-              </Col>
-            </Row>
-
-            <Row className="product-decription">
-              {/* { spec.length > 0 ? spec.map((item, x) => (
-                <div className="kanit-paragraphtextMedium product-detail">
-                  {item}
-                </div>
-              )) : null} */}
-              {/* <div className="kanit-paragraphtextMedium product-detail">
-
-                </div> */}
-              {/* <div className="kanit-paragraphtextMedium product-detail">
-                ยี่ห้อ :{productDetail[0].brand}
+            <div className="product-page-item-description">
+              <div className="product-description-title kanit-paragraphMedium">
+                รายละเอียดสินค้า
               </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                วันที่ซื้อ :{productDetail[0].buyDate}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                รุ่น :{productDetail[0].model}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                การรับประกัน :{productDetail[0].guarantee}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                ความจุ :{productDetail[0].capacity}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                ขนาดหน้าจอ :{productDetail[0].size}
-              </div> */}
-            </Row>
-
-            <div className="divider-horz-2"></div>
-
-            <div className="product-button-section">
-              <Link
-                className="main-product-button btn-small-primary kanit-paragraphMedium"
-                style={{ textDecoration: "none" }}
-                to="/account/checkout"
-              >
-                ซื้อ
-              </Link>
-              <div>
-                <button className="btn-fav" onClick={handleFavClick}>
-                  <img
-                    src={isFav ? favBold : fav}
-                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
-                    alt="Favorite"
-                  />
-                </button>
-              </div>
+              <p className="kanit-paragraphtextMedium">
+                {product.productDetails.description}
+              </p>
             </div>
           </div>
         </div>
@@ -281,7 +271,9 @@ function Product() {
             <Col className="seller-name-online-button">
               <div className="seller-name-etc">
                 <div className="seller-name-online kanit-paragraphMedium">
-                {product.productDetails.createBy ? product.productDetails.createBy.firstName : null}
+                  {product.productDetails.createBy
+                    ? product.productDetails.createBy.firstName
+                    : null}
                 </div>
                 <div className="seller-name-online kanit-paragraphMedium">
                   Online activity
@@ -325,14 +317,14 @@ function Product() {
           </Row> */}
         </div>
 
-        <div className="product-page-item-description">
+        {/* <div className="product-page-item-description">
           <div className="product-description-title kanit-paragraphMedium">
             รายละเอียดสินค้า
           </div>
           <p className="kanit-paragraphtextMedium">
             {product.productDetails.description}
           </p>
-        </div>
+        </div> */}
 
         <div className="group-card-header-item">
           <div className="group-card-header">

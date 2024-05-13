@@ -49,7 +49,7 @@ const productDetail = [
     productRequester: "Mungkud",
     province: "กรุงเทพ",
     productPrice: "1000",
-    productCredit: 20
+    productCredit: 20,
   },
 ];
 
@@ -70,7 +70,7 @@ function Donate() {
 
   const location = useLocation();
   const productId = location.pathname.split("/")[3];
-  console.log(location.pathname)
+  console.log(location.pathname);
 
   useEffect(() => {
     // const { productId } = props.params.match;
@@ -219,7 +219,7 @@ function Donate() {
           <Pathway pathwayList={pathway} />
         </div>
 
-        <Row className="product-page-item-details">
+        <div className="product-page-item-details">
           <div className="product-page-item-details-group-picture-seller">
             <div className="product-page-item-details-group-picture-seller-big-picture">
               <img
@@ -248,34 +248,36 @@ function Donate() {
               </div>
             </div>
           </div>
-          <div className="product-page-item-details-group-item-description">
-            <div className="product-title-seller-name">
-              <div className="kanit-paragraphMedium product-title">
-              {product.productDetails.name}
-              </div>
-              <Link className="seller-product" to="#seller">
-                <div className="kanit-paragraphSmall">
-                  ขอรับบริจาคโดย &nbsp;{" "}
-                  {product.productDetails.createBy
-                    ? product.productDetails.createBy.firstName
-                    : null}
-                </div>
-              </Link>
-            </div>
 
-            <Row className="product-price-cc">
-              <Col className="kanit-Display-Medium price">ขอรับบริจาค</Col>
-              {/* <Col className="kanit-Display-Medium cc">
+          <div className="product-right-content">
+            <div className="product-page-item-details-group-item-description">
+              <div className="product-title-seller-name">
+                <div className="kanit-paragraphMedium product-title">
+                  {product.productDetails.name}
+                </div>
+                <Link className="seller-product" to="#seller">
+                  <div className="kanit-paragraphSmall">
+                    ขอรับบริจาคโดย &nbsp;{" "}
+                    {product.productDetails.createBy
+                      ? product.productDetails.createBy.firstName
+                      : null}
+                  </div>
+                </Link>
+              </div>
+
+              <Row className="product-price-cc">
+                <Col className="kanit-Display-Medium price">ขอรับบริจาค</Col>
+                {/* <Col className="kanit-Display-Medium cc">
                 {productDetail[0].productCredit} CO₂ Credit
               </Col> */}
-            </Row>
+              </Row>
 
-            {/* <Row className="product-price-cc">
+              {/* <Row className="product-price-cc">
               <Col className="kanit-Display-Medium price">1000 บาท</Col>
               <Col className="kanit-Display-Medium cc">20 CO₂ Credit</Col>
             </Row> */}
 
-            {/* <Row className="product-decription">
+              {/* <Row className="product-decription">
               <div className="kanit-paragraphtextMedium product-detail">
                 ยี่ห้อ :{productDetail[0].brand}
               </div>
@@ -290,27 +292,38 @@ function Donate() {
               </div>
             </Row> */}
 
-            <div className="divider-horz-2"></div>
+              <div className="divider-horz-2"></div>
 
-            <div className="product-button-section">
-              <button
-                className="btn-small-primary kanit-paragraphMedium"
-                onClick={() => setOpenModelSale(true)}
-              >
-                เสนอบริจาค
-              </button>
-              <div>
-                <button className="btn-fav" onClick={handleFavClick}>
-                  <img
-                    src={isFav ? favBold : fav}
-                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
-                    alt="Favorite"
-                  />
+              <div className="product-button-section">
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  onClick={() => setOpenModelSale(true)}
+                >
+                  เสนอบริจาค
                 </button>
+                <div>
+                  <button className="btn-fav" onClick={handleFavClick}>
+                    <img
+                      src={isFav ? favBold : fav}
+                      className={`btn-fav-icon ${
+                        fade ? "fade-out" : "fade-in"
+                      }`}
+                      alt="Favorite"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
+            <div className="product-page-item-description">
+              <div className="product-description-title kanit-paragraphMedium">
+                รายละเอียดสินค้า
+              </div>
+              <p className="kanit-paragraphtextMedium">
+                {product.productDetails.description}
+              </p>
+            </div>
           </div>
-        </Row>
+        </div>
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
@@ -326,7 +339,7 @@ function Donate() {
             <Col className="seller-name-online-button">
               <div className="seller-name-etc">
                 <div className="seller-name-online kanit-paragraphMedium">
-                {product.productDetails.createBy
+                  {product.productDetails.createBy
                     ? product.productDetails.createBy.firstName
                     : null}
                 </div>
@@ -368,14 +381,14 @@ function Donate() {
           </Row> */}
         </div>
 
-        <div className="product-page-item-description">
+        {/* <div className="product-page-item-description">
           <div className="product-description-title kanit-paragraphMedium">
             รายละเอียดสินค้า
           </div>
           <p className="kanit-paragraphtextMedium">
-          {product.productDetails.description}
+            {product.productDetails.description}
           </p>
-        </div>
+        </div> */}
 
         <div className="group-card-header-item">
           <div className="group-card-header">
