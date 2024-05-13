@@ -69,6 +69,61 @@ function Index() {
     );
   };
 
+  const renderProfileLoggedIn = () => {
+    return (
+      <div className="menu-container" ref={menuRef}>
+        <div
+          className="menu-trigger menu-dropdown-profile"
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          <img className="profile-img" src={profilePic}></img>
+          <div>
+            <p className="kanit-paragraphtextMedium">{name}</p>
+            <p className="kanit-paragraphSmall">{credit} Credit</p>
+          </div>
+          <div className="icon-profile">
+            <img src={chevronDown}></img>
+          </div>
+        </div>
+
+        <div
+          className={`dropdown-menu-profile ${open ? "active" : "inactive"}`}
+        >
+          <ul className="kanit-paragraphtextMedium">
+            <DropdownItem img={user} text={"ข้อมูลส่วนตัว"} link={"/profile"} />
+            <DropdownItem img={bag} text={"การซื้อของฉัน"} link={"/buystate"} />
+            <DropdownItem img={tag} text={"การขายของฉัน"} link={"/sellstate"} />
+            <DropdownItem
+              img={donate}
+              text={"การบริจาคของฉัน"}
+              link={"/donatestate"}
+            />
+            <DropdownItem
+              img={receive}
+              text={"ขอรับบริจาคของฉัน"}
+              link={"/receivestate"}
+            />
+            {/* <DropdownItem
+                    img={bid}
+                    text={"การประมูลของฉัน"}
+                    link={"/bidstate"}
+                  /> */}
+            <DropdownItem
+              img={co2}
+              text={"แต้มคะแนน Carbon credits"}
+              link={"/co2point"}
+            />
+            <DropdownItem img={like} text={"รายการโปรด"} link={"/fav"} />
+            <DropdownItem img={setting} text={"ตั้งค่า"} link={"/setting"} />
+            {auth.authenticate ? renderLoggedInLinks() : ""}
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
   const renderNonLoggedInLinks = () => {
     return (
       <Link className="btn-signin" to="/signin">
@@ -84,7 +139,6 @@ function Index() {
 
   //search
   const [searchKeyword, setSearchKeyword] = useState("");
-
   //dropdown profile
   const [open, setOpen] = useState(false);  
 
@@ -209,74 +263,9 @@ function Index() {
             </div> */}
             {auth.authenticate ? "" : renderNonLoggedInLinks()}
 
-            <div className="menu-container" ref={menuRef}>
-              <div
-                className="menu-trigger menu-dropdown-profile"
-                onClick={() => {
-                  setOpen(!open);
-                }}
-              >
-                <img className="profile-img" src={profilePic}></img>
-                <div>
-                  <p className="kanit-paragraphtextMedium">{name}</p>
-                  <p className="kanit-paragraphSmall">{credit} Credit</p>
-                </div>
-                <div className="icon-profile">
-                  <img src={chevronDown}></img>
-                </div>
-              </div>
+            {auth.authenticate ? renderProfileLoggedIn() : ""}
 
-              <div
-                className={`dropdown-menu-profile ${
-                  open ? "active" : "inactive"
-                }`}
-              >
-                <ul className="kanit-paragraphtextMedium">
-                  <DropdownItem
-                    img={user}
-                    text={"ข้อมูลส่วนตัว"}
-                    link={"/profile"}
-                  />
-                  <DropdownItem
-                    img={bag}
-                    text={"การซื้อของฉัน"}
-                    link={"/buystate"}
-                  />
-                  <DropdownItem
-                    img={tag}
-                    text={"การขายของฉัน"}
-                    link={"/sellstate"}
-                  />
-                  <DropdownItem
-                    img={donate}
-                    text={"การบริจาคของฉัน"}
-                    link={"/donatestate"}
-                  />
-                  <DropdownItem
-                    img={receive}
-                    text={"ขอรับบริจาคของฉัน"}
-                    link={"/receivestate"}
-                  />
-                  {/* <DropdownItem
-                    img={bid}
-                    text={"การประมูลของฉัน"}
-                    link={"/bidstate"}
-                  /> */}
-                  <DropdownItem
-                    img={co2}
-                    text={"แต้มคะแนน Carbon credits"}
-                    link={"/co2point"}
-                  />
-                  <DropdownItem img={like} text={"รายการโปรด"} link={"/fav"} />
-                  <DropdownItem
-                    img={setting}
-                    text={"ตั้งค่า"}
-                    link={"/setting"}
-                  />
-                  {auth.authenticate ? renderLoggedInLinks() : ""}
-                </ul>
-              </div>
-            </div>
+            
 
             {/* <div className="icon-hamburger">
               <svg
