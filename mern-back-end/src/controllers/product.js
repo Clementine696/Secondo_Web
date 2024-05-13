@@ -352,22 +352,63 @@ exports.approveProduct = (req, res) => {
             })
             break;
     }
-        
-    // return res.status(200).json({ body });
-    // if(productId){
-    //     ProductRequest.findOne({ _id: productId })
-    //     .populate({ path: 'category', select: '_id name'})
-    //     .populate({ path: 'createBy', select: '_id firstName'})
-    //     .exec()
-    //     .then((product) => {
-    //         if(product){
-    //             return res.status(200).json({ product });
-    //         }
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         return res.status(400).json({ error })
-    //     })
-    // }else{
-    //     return res.status(400).json({ error: 'params required' });
-    // }
+}
+
+exports.getUserProducts = async (req, res) => {
+    const id = req.user._id;
+    
+    let productsSeller = await ProductSeller.find({})
+                                        .populate({
+                                            path: 'createBy',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    productsSeller = productsSeller.filter(function(product) {
+        return product.createBy;
+    });
+
+    let productsBuyer = await ProductBuyer.find({})
+                                        .populate({
+                                            path: 'createBy',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    productsBuyer = productsBuyer.filter(function(product) {
+        return product.createBy;
+    });
+
+    let productsDonater = await ProductDonate.find({})
+                                        .populate({
+                                            path: 'createBy',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    productsDonater = productsDonater.filter(function(product) {
+        return product.createBy;
+    });
+
+    let productsReciever = await ProductRequest.find({})
+                                        .populate({
+                                            path: 'createBy',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    productsReciever = productsReciever.filter(function(product) {
+        return product.createBy;
+    });
+
+    res.status(200).json({ 
+        productsSeller,
+        productsBuyer,
+        productsDonater,
+        productsReciever
+     });
 }

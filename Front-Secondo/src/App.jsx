@@ -66,7 +66,7 @@ import PrivateRoute from "./components/HOC/PrivateRoute.jsx";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAddress, getAllCategory, getInitialData, isUserLoggedIn } from './actions';
+import { getAddress, getAllCategory, getInitialData, getUserproduct, isUserLoggedIn } from './actions';
 
 export default function App() {
 
@@ -77,7 +77,12 @@ export default function App() {
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
+      console.log('!auth')
+    }
+    if(auth.authenticate) {
       dispatch(getAddress());
+      dispatch(getUserproduct());
+      console.log('auth')
     }
     dispatch(getInitialData());
   }, [auth.authenticate]);

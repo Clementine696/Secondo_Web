@@ -6,7 +6,10 @@ const initState = {
     loading: false,
     signupsuccess: false,
     addresses: [],
-    userproduct: []
+    userSellerProducts: [],
+    userBuyerProducts: [],
+    userDonateProducts: [],
+    userRequestProducts: []
 }
 
 export default (state = initState, action) => {
@@ -52,8 +55,32 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 loading: false,
+                error: action.payload.error
             }
             break;
-    }
+        case userConstants.USER_GET_PRODUCT_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            }
+            break;
+        case userConstants.USER_GET_PRODUCT_SUCCESS:
+            state= {
+                ...state,
+                loading: false,
+                userSellerProducts: action.payload.productsSeller,
+                userBuyerProducts: action.payload.productsBuyer,
+                userDonateProducts: action.payload.productsDonater,
+                userRequestProducts: action.payload.productsReciever,
+            }
+            break;
+        case userConstants.USER_GET_PRODUCT_FAILURE:
+            state = {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+            break;
+    }                
     return state;
 }

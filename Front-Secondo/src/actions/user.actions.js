@@ -128,7 +128,33 @@ export const addUserCreditCardPayment = (form) => {
     }
 }
 
+export const getUserproduct = () => {
+    return async dispatch => {
+        dispatch({ type: userConstants.USER_GET_PRODUCT_REQUEST});
 
+        const res = await axios.get(`/product/getUserProducts`);
+        if(res.status === 200){
+            const { productsSeller, productsBuyer, productsDonater, productsReciever } = res.data;
+            dispatch({
+                type: userConstants.USER_GET_PRODUCT_SUCCESS,
+                payload: { 
+                    productsSeller,
+                    productsBuyer,
+                    productsDonater,
+                    productsReciever
+                }
+            })
+        }else{
+            if(res.status === 400){
+                dispatch({ 
+                    type: userConstants.USER_GET_PRODUCT_FAILURE,
+                    payload: { error: res.data.error }
+                });        
+            }
+        }
+        // console.log(res)
+    }
+}
 
 // router.post('/:id/checkoutconfirm', middleware.isLoggedIn, function(req, res){
 // 	User.findById(req.params.id, function(err, foundUser){
