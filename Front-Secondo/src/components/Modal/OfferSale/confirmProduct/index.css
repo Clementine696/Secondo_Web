@@ -45,5 +45,5 @@
 .product-title {
     margin: 0;
     overflow: hidden;
-    color: var(--Outline-color);
+    color: var(--Default-text);
 }
