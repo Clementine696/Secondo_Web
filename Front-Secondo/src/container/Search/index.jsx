@@ -15,6 +15,8 @@ import ItemCard from "../../components/UI/ItemCard";
 import SideBarCategories from "../../components/UI/ProductCate-search";
 import Pathway from "../../components/UI/Pathway";
 
+import chevronRightT from "../../icon/chevron-right-T.png";
+
 import "./index.css";
 import "../../styles.css";
 import { Link } from "react-router-dom";
@@ -82,6 +84,17 @@ function Search() {
   const handleFilterPrice = () => {
     console.log(lowerPrice, upperPrice);
   };
+
+  const itemSell = renderProducts();
+
+  const threeItemInterest = itemSell.reduce((acc, curr, index) => {
+    const fourIndex = Math.floor(index / 4);
+    if (!acc[fourIndex]) {
+      acc[fourIndex] = [];
+    }
+    acc[fourIndex].push(curr);
+    return acc;
+  }, []);
 
   return (
     <Layout>
@@ -290,30 +303,17 @@ function Search() {
               </div>
             </div>
             <div className="search-page-frame-content-all-group-card">
-              
               <div className="search-result-itemcard">
                 <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     ขายสินค้า
                   </label>
-                  <Link className="group-card-icon-other" to="/allproduct/interest">
+                  <Link
+                    className="group-card-icon-other"
+                    to="/allproduct/interest"
+                  >
                     <div className="group-card-header-other">เพิ่มเติม</div>
-                    <svg
-                      className="icon-arrow-right-24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                        stroke="#D0C58A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <img className="icon-arrow-right-24" src={chevronRightT} />
                   </Link>
                 </div>
 
@@ -329,31 +329,32 @@ function Search() {
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     บริจาคสินค้า
                   </label>
-                  <Link className="group-card-icon-other" to="/allproduct/donate">
+                  <Link
+                    className="group-card-icon-other"
+                    to="/allproduct/donate"
+                  >
                     <div className="group-card-header-other">เพิ่มเติม</div>
-                    <svg
-                      className="icon-arrow-right-24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                        stroke="#D0C58A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <img className="icon-arrow-right-24" src={chevronRightT} />
                   </Link>
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
-                  <ItemCard />
-                  <ItemCard />
-                  <ItemCard />
+                  {threeItemInterest.map((group, groupIndex) => (
+                    <div className="all-group-card">
+                      {group.map((item, index) => (
+                        <ItemCard
+                          key={index}
+                          img={item.img}
+                          _id={item._id}
+                          slug={item.slug}
+                          title={item.title}
+                          province={item.province}
+                          price={item.price}
+                          credit={item.credit}
+                        />
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -362,24 +363,12 @@ function Search() {
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     การขอรับบริจาคสินค้า
                   </label>
-                  <Link className="group-card-icon-other" to="/allproduct/recieve">
+                  <Link
+                    className="group-card-icon-other"
+                    to="/allproduct/recieve"
+                  >
                     <div className="group-card-header-other">เพิ่มเติม</div>
-                    <svg
-                      className="icon-arrow-right-24"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <path
-                        d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                        stroke="#D0C58A"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
+                    <img className="icon-arrow-right-24" src={chevronRightT} />
                   </Link>
                 </div>
 
