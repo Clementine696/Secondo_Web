@@ -109,13 +109,7 @@ function sellState() {
   // ดึงข้อมูล
   const user = useSelector((state) => state.user);
   const userSellerProducts = user.userSellerProducts;
-  const userBuyerProducts = user.userBuyerProducts;
-  const userDonateProducts = user.userDonateProducts;
-  const userReceiveProducts = user.userReceiveProducts;
   // console.log(userSellerProducts)
-  // console.log(userBuyerProducts)
-  // console.log(userDonateProducts)
-  // console.log(userReceiveProducts)
   const renderUserSeller = (sellerProducts) => {
     let userSell = [];
     if (sellerProducts && Array.isArray(sellerProducts)) {
