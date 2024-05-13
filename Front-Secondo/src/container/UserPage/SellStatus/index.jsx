@@ -18,6 +18,7 @@ import shipping from "../../../icon/shipping.png";
 
 import plant from "../../../../public/images/pant.jpg";
 import { useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -105,11 +106,44 @@ items.forEach((item) => {
 
 // fillter ใน backend
 function sellState() {
-
   // ดึงข้อมูล
   const user = useSelector((state) => state.user);
   const userSellerProducts = user.userSellerProducts;
-  console.log(userSellerProducts)
+  const userBuyerProducts = user.userBuyerProducts;
+  const userDonateProducts = user.userDonateProducts;
+  const userReceiveProducts = user.userReceiveProducts;
+  // console.log(userSellerProducts)
+  // console.log(userBuyerProducts)
+  // console.log(userDonateProducts)
+  // console.log(userReceiveProducts)
+  const renderUserSeller = (sellerProducts) => {
+    let userSell = [];
+    if (sellerProducts && Array.isArray(sellerProducts)) {
+      for (let sellerProduct of sellerProducts) {
+        if (sellerProduct.verify === true) {
+          userSell.push({
+            _id: sellerProduct._id,
+            slug: sellerProduct.slug,
+            img: sellerProduct.productPictures[0].img,
+            name: sellerProduct.name,
+            price: sellerProduct.price,
+            carbonCredits: sellerProduct.carbonCredits,
+            description: sellerProduct.description,
+            status: sellerProduct.status,
+            createdAt: sellerProduct.createdAt,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return userSell;
+    }
+  };
+
+  const itemSellProduct = userSellerProducts
+    ? renderUserSeller(userSellerProducts)
+    : [];
 
   const [font, setFont] = useState(window.innerWidth < 1200);
 
@@ -174,28 +208,35 @@ function sellState() {
               <p className="header-item func-col"></p>
             </div>
 
-            {items.map((item, index) => (
-              <div className={`data-table ${resizeFontClass}`}>
-                <p className="data-item date-col">{item.date}</p>
+            {itemSellProduct.map((item, index) => (
+              <div className={`data-table ${resizeFontClass}`} key={index}>
+                <p className="data-item date-col">{item.createdAt}</p>
 
                 <div className="data-item desc-col">
-                  <img src={item.img} className="pic-product-table"></img>
+                  <img
+                    src={
+                      item.img
+                        ? generatePublicUrl(item.img)
+                        : ""
+                    }
+                    className="pic-product-table"
+                  ></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.desc.name}</p>
-                    <p className="kanit-paragraphSmall">{item.desc.detail}</p>
+                    <p className="kanit-paragraphMedium">{item.name}</p>
+                    <p className="kanit-paragraphSmall">{item.description}</p>
                   </div>
                 </div>
 
                 <div className="data-item status-col">
                   <div className="product-status-time">
-                    <p className="kanit-paragraphMedium">{item.status.name}</p>
+                    <p className="kanit-paragraphMedium">{item.status}</p>
                     <p className="status-time kanit-paragraphSmall">
-                      {item.status.time}
+                      {/* {item.status.time} */}
                     </p>
                   </div>
                 </div>
 
-                <p className="data-item point-col">{item.point}</p>
+                <p className="data-item point-col">{item.carbonCredits}</p>
 
                 <p className="data-item price-col">{item.price}</p>
 
