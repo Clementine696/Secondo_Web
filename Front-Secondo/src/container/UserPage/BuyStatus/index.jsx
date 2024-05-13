@@ -17,8 +17,9 @@ import add from "../../../icon/add.png";
 import chevronRight from "../../../icon/chevron-right.png";
 import edit from "../../../icon/edit.png";
 import useralert from "../../../icon/user-alert.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
+import { getUserproduct } from "../../../actions";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -106,6 +107,10 @@ items.forEach((item) => {
 
 function BuyState() {
 
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getUserproduct());
+  },[]);
   const user = useSelector((state) => state.user);
   const userBuyerProducts = user.userBuyerProducts;
   // console.log(userSellerProducts)
@@ -113,7 +118,6 @@ function BuyState() {
     let userBuy = [];
     if (buyerProducts && Array.isArray(buyerProducts)) {
       for (let buyerProduct of buyerProducts) {
-        if (buyerProduct.verify === true) {
           userBuy.push({
             _id: buyerProduct._id,
             slug: buyerProduct.slug,
@@ -128,7 +132,6 @@ function BuyState() {
             // children: category.children.length > 0 && renderCategories(category.children)
           });
           // console.log(product)
-        }
       }
       return userBuy;
     }
@@ -185,7 +188,7 @@ function BuyState() {
               />
               <img src={searchy} className="search-icon-filter"></img>
             </Form>
-            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
+            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium" to="additem">
               <img src={add} className="add-icon"></img>
               เพิ่มสินค้ารับซื้อ
             </Link>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
+import { getUserproduct } from "../../../actions";
 
 import "./index.css";
 import "../../../styles.css";
@@ -130,7 +131,10 @@ items.forEach((item) => {
 });
 
 function receiveStatus() {
-
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getUserproduct());
+  },[]);
   const user = useSelector((state) => state.user);
   const userRequestProducts = user.userRequestProducts;
   // console.log(userSellerProducts)
@@ -138,7 +142,6 @@ function receiveStatus() {
     let userReceive = [];
     if (receiverProducts && Array.isArray(receiverProducts)) {
       for (let receiverProduct of receiverProducts) {
-        if (receiverProduct.verify === true) {
           userReceive.push({
             _id: receiverProduct._id,
             slug: receiverProduct.slug,
@@ -151,7 +154,6 @@ function receiveStatus() {
             // children: category.children.length > 0 && renderCategories(category.children)
           });
           // console.log(product)
-        }
       }
       return userReceive;
     }

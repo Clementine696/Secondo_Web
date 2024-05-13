@@ -17,8 +17,9 @@ import edit from "../../../icon/edit.png";
 import shipping from "../../../icon/shipping.png";
 
 import plant from "../../../../public/images/pant.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
+import { getUserproduct } from "../../../actions";
 
 const filterItems = [
   { label: "ทั้งหมด", value: "0" },
@@ -106,6 +107,11 @@ items.forEach((item) => {
 
 // fillter ใน backend
 function sellState() {
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getUserproduct());
+  },[]);
   // ดึงข้อมูล
   const user = useSelector((state) => state.user);
   const userSellerProducts = user.userSellerProducts;
@@ -114,7 +120,7 @@ function sellState() {
     let userSell = [];
     if (sellerProducts && Array.isArray(sellerProducts)) {
       for (let sellerProduct of sellerProducts) {
-        if (sellerProduct.verify === true) {
+        
           userSell.push({
             _id: sellerProduct._id,
             slug: sellerProduct.slug,
@@ -129,7 +135,7 @@ function sellState() {
             // children: category.children.length > 0 && renderCategories(category.children)
           });
           // console.log(product)
-        }
+        
       }
       return userSell;
     }
@@ -208,11 +214,7 @@ function sellState() {
 
                 <div className="data-item desc-col">
                   <img
-                    src={
-                      item.img
-                        ? generatePublicUrl(item.img)
-                        : ""
-                    }
+                    src={item.img ? generatePublicUrl(item.img) : ""}
                     className="pic-product-table"
                   ></img>
                   <div className="product-name-desc-status">

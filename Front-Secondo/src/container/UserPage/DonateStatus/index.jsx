@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
+import { getUserproduct } from "../../../actions";
 
 import "./index.css";
 import "../../../styles.css";
@@ -131,6 +132,10 @@ items.forEach((item) => {
 });
 
 function donateState() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getUserproduct());
+  },[]);
   const user = useSelector((state) => state.user);
   const userDonateProducts = user.userDonateProducts;
   // console.log(userSellerProducts)
@@ -138,7 +143,6 @@ function donateState() {
     let userDonate = [];
     if (donaterProducts && Array.isArray(donaterProducts)) {
       for (let donaterProduct of donaterProducts) {
-        if (donaterProduct.verify === true) {
           userDonate.push({
             _id: donaterProduct._id,
             slug: donaterProduct.slug,
@@ -153,7 +157,6 @@ function donateState() {
           });
           // console.log(product)
         }
-      }
       return userDonate;
     }
   };
