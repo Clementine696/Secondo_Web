@@ -72,13 +72,117 @@ const regionDelivery = [
 ];
 
 function Search() {
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
 
   const location = useLocation();
   const keyword = location.pathname.split("/")[2];
   // console.log(keyword)
+
+  //Sell
+  const renderProductsSell = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
+    }
+  };
+
+  const itemSell = renderProductsSell(product.productsSeller);
+
+  const threeItemSell = itemSell.reduce((acc, curr, index) => {
+    const fourIndex = Math.floor(index / 3);
+    if (!acc[fourIndex]) {
+      acc[fourIndex] = [];
+    }
+    acc[fourIndex].push(curr);
+    return acc;
+  }, []);
+
+  //Donate
+  const renderProductsDonate = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
+    }
+  };
+
+  const itemDonate = renderProductsDonate(product.productsSeller);
+
+  const threeItemDonate = itemDonate.reduce((acc, curr, index) => {
+    const fourIndex = Math.floor(index / 3);
+    if (!acc[fourIndex]) {
+      acc[fourIndex] = [];
+    }
+    acc[fourIndex].push(curr);
+    return acc;
+  }, []);
+
+  //Recieve
+  const renderProductRecieve = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
+    }
+  };
+
+  const itemRecieve = renderProductRecieve(product.productsSeller);
+
+  const threeItemRecieve = itemRecieve.reduce((acc, curr, index) => {
+    const fourIndex = Math.floor(index / 3);
+    if (!acc[fourIndex]) {
+      acc[fourIndex] = [];
+    }
+    acc[fourIndex].push(curr);
+    return acc;
+  }, []);
 
   useEffect(() => {
     // const { productId } = props.params.match;
@@ -94,7 +198,6 @@ function Search() {
     dispatch(searchProductsByKeyword(payload));
   }, []);
 
-
   const handleFormProductType = (label) => {
     console.log(label);
   };
@@ -109,17 +212,6 @@ function Search() {
   const handleFilterPrice = () => {
     console.log(lowerPrice, upperPrice);
   };
-
-  const itemSell = renderProducts();
-
-  const threeItemInterest = itemSell.reduce((acc, curr, index) => {
-    const fourIndex = Math.floor(index / 4);
-    if (!acc[fourIndex]) {
-      acc[fourIndex] = [];
-    }
-    acc[fourIndex].push(curr);
-    return acc;
-  }, []);
 
   return (
     <Layout>
@@ -343,9 +435,22 @@ function Search() {
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
-                  <ItemCard />
-                  <ItemCard />
-                  <ItemCard />
+                  {threeItemSell.map((group, groupIndex) => (
+                    <div className="all-group-card">
+                      {group.map((item, index) => (
+                        <ItemCard
+                          key={index}
+                          img={item.img}
+                          _id={item._id}
+                          slug={item.slug}
+                          title={item.title}
+                          province={item.province}
+                          price={item.price}
+                          credit={item.credit}
+                        />
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -364,7 +469,7 @@ function Search() {
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
-                  {threeItemInterest.map((group, groupIndex) => (
+                  {threeItemDonate.map((group, groupIndex) => (
                     <div className="all-group-card">
                       {group.map((item, index) => (
                         <ItemCard
@@ -398,9 +503,22 @@ function Search() {
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
-                  <ItemCard />
-                  <ItemCard />
-                  <ItemCard />
+                  {threeItemRecieve.map((group, groupIndex) => (
+                    <div className="all-group-card">
+                      {group.map((item, index) => (
+                        <ItemCard
+                          key={index}
+                          img={item.img}
+                          _id={item._id}
+                          slug={item.slug}
+                          title={item.title}
+                          province={item.province}
+                          price={item.price}
+                          credit={item.credit}
+                        />
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
