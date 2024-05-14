@@ -114,6 +114,41 @@ function Search() {
     return acc;
   }, []);
 
+  //Rubbuy
+  const renderProductsRubbuy = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
+    }
+  };
+
+  const itemRubbuy = renderProductsRubbuy(product.productsSeller);
+
+  const threeItemRubbuy = itemRubbuy.reduce((acc, curr, index) => {
+    const fourIndex = Math.floor(index / 3);
+    if (!acc[fourIndex]) {
+      acc[fourIndex] = [];
+    }
+    acc[fourIndex].push(curr);
+    return acc;
+  }, []);
+
   //Donate
   const renderProductsDonate = (products) => {
     let myProducts = [];
@@ -215,70 +250,6 @@ function Search() {
 
   return (
     <Layout>
-      {/* <div className="search-content">
-        <Row className="Frame-top">
-          <div className="Search-title-amount">ค้นหา คำค้นหา (100)</div>
-          <div className="suggest-search">
-            <div className="suggest-item">
-              <img
-                className="img-search"
-                src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                alt="suggestion"
-              />
-            </div>
-
-            <div className="suggest-item">
-              <img
-                className="img-search"
-                src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                alt="suggestion"
-              />
-            </div>
-
-            <div className="suggest-item">
-              <img
-                className="img-search"
-                src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                alt="suggestion"
-              />
-            </div>
-          </div>
-        </Row>
-
-        <Row className="search-result-content">
-          <Row className="row-sort-button">
-            <Dropdown options={options} />
-          </Row>
-          <Row className="frame-result">
-            <Col className="filter">
-              <div className="kanit-paragraphBig">
-                หมวดหมู่
-                <div className="kanit-paragraphMedium">
-                  Test1
-                </div>
-              </div>
-              <div className="kanit-paragraphMedium">
-                ราคา
-              </div>
-              <div className="kanit-paragraphMedium">
-                ส่งจาก
-              </div>
-              <div className="kanit-paragraphMedium">
-                สภาพสินค้า
-              </div>
-            </Col>
-            <Col className="search-result">
-              <Row className="row-card-search-result">
-                <ItemCard />
-                <ItemCard />
-                <ItemCard />
-                <ItemCard />
-              </Row>
-            </Col>
-          </Row>
-        </Row>
-      </div> */}
-
       <div className="search-page">
         <div className="background-search-page">
           <Pathway pathwayList={pathway} />
@@ -420,18 +391,19 @@ function Search() {
               </div>
             </div>
             <div className="search-page-frame-content-all-group-card">
+
               <div className="search-result-itemcard">
                 <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     ขายสินค้า
                   </label>
-                  <Link
+                  {/* <Link
                     className="group-card-icon-other"
                     to="/allproduct/interest"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link>
+                  </Link> */}
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
@@ -457,15 +429,49 @@ function Search() {
               <div className="search-result-itemcard">
                 <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
+                    รับซื้อสินค้า
+                  </label>
+                  {/* <Link
+                    className="group-card-icon-other"
+                    to="/allproduct"
+                  >
+                    <div className="group-card-header-other">เพิ่มเติม</div>
+                    <img className="icon-arrow-right-24" src={chevronRightT} />
+                  </Link> */}
+                </div>
+
+                <div className="search-page-frame-content-all-group-card-frame">
+                  {threeItemRubbuy.map((group, groupIndex) => (
+                    <div className="all-group-card">
+                      {group.map((item, index) => (
+                        <ItemCard
+                          key={index}
+                          img={item.img}
+                          _id={item._id}
+                          slug={item.slug}
+                          title={item.title}
+                          province={item.province}
+                          price={item.price}
+                          credit={item.credit}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="search-result-itemcard">
+                <div className="search-header-navigate">
+                  <label className="search-page-group-card-header kanit-Display-Small-R">
                     บริจาคสินค้า
                   </label>
-                  <Link
+                  {/* <Link
                     className="group-card-icon-other"
                     to="/allproduct/donate"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link>
+                  </Link> */}
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
@@ -493,13 +499,13 @@ function Search() {
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     การขอรับบริจาคสินค้า
                   </label>
-                  <Link
+                  {/* <Link
                     className="group-card-icon-other"
                     to="/allproduct/recieve"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link>
+                  </Link> */}
                 </div>
 
                 <div className="search-page-frame-content-all-group-card-frame">
