@@ -348,7 +348,7 @@ function Home() {
               <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้ารับซื้อใหม่
               </div>
-              <Link className="group-card-icon-other" >
+              <Link className="group-card-icon-other" to="/allproduct/buyer" >
                 <div className="group-card-header-other">เพิ่มเติม</div>
                 <img className="icon-arrow-right-24" src={chevronRightT} />
               </Link>

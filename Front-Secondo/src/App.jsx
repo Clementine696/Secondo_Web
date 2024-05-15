@@ -14,6 +14,7 @@ import AllProduct from "./container/AllProducts";
 import AllProductDonate from "./container/AllProducts/DonateProduct";
 import AllProductRecieve from "./container/AllProducts/ReceiveProduct";
 import AllProductInterest from "./container/AllProducts/InterestProduct";
+import AllProductBuyer from "./container/AllProducts/BuyerProduct";
 
 import Search from "./container/Search";
 
@@ -109,6 +110,7 @@ export default function App() {
           <Route path="allproduct/donate" element={<AllProductDonate />} />
           <Route path="allproduct/recieve" element={<AllProductRecieve />} />
           <Route path="allproduct/interest" element={<AllProductInterest />} />
+          <Route path="allproduct/buyer" element={<AllProductBuyer />} />
 
           {/* <Route path="search" element={<Search />} /> */}
           {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
