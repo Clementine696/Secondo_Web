@@ -56,7 +56,7 @@ function Index() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const profilePic = auth.user.profilePicture;
-  const userName = auth.user.firstName;
+  const userName = auth.user.username;
   const userCredit = auth.user.credit;
   // console.log(profilePic)
 

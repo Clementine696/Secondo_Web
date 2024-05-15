@@ -16,7 +16,8 @@ function Profile() {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth)
   const userProfileInfo = auth.user;
-  // console.log(userProfileInfo)
+  console.log(userProfileInfo)
+
   // const renderUserProfile = (userProfiles) => {
   //   let myUserProfile = [];
   //   if (userProfiles && Array.isArray(userProfiles)) {
@@ -106,15 +107,15 @@ function Profile() {
 
           <div className="profile-display">
             <div className="profile-show-detail kanit-paragraphMedium">
-              <div className="profile-detail-point">
+              {/* <div className="profile-detail-point">
                 Cabon Credits 96 CO₂ Credit
-              </div>
+              </div> */}
               <div className="profile-detail-point">
                 เงินที่มีอยู่ 4,000 บาท
               </div>
-              <div className="profile-detail-point">
+              {/* <div className="profile-detail-point">
                 เงินที่ไม่สามารถใช้ได้ 1,000 บาท
-              </div>
+              </div> */}
             </div>
             <div className="user-profile-detail">
               <div className="profile-detail-title kanit-paragraphMedium">
@@ -158,8 +159,8 @@ function Profile() {
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">
-                  <p>Username : GamBlackty</p>
-                  <p>Name : Phanuphong</p>
+                  <p>Username : {userProfileInfo.username}</p>
+                  <p>Name : {userProfileInfo.firstName} {userProfileInfo.lastName}</p>
                 </div>
                 <div className="button-upload-pic kanit-paragraphMedium">
                   <input
@@ -180,12 +181,12 @@ function Profile() {
           </div>
 
 
-            {/* <div className="background-data">
+            <div className="background-data">
             <Form className="input-profile">
               <Input
                 Label="ชื่อผู้ใช้"
                 // placeholder={userProfile.username}
-                value={username}
+                value={userProfileInfo.username}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
@@ -195,7 +196,7 @@ function Profile() {
               <Input
                 Label="ชื่อจริง"
                 // placeholder={userProfile.firstname}
-                value={firstname}
+                value={userProfileInfo.firstName}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
@@ -205,7 +206,7 @@ function Profile() {
               <Input
                 Label="นามสกุล"
                 placeholder="นามสกุล"
-                value={lastname}
+                value={userProfileInfo.lastName}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
@@ -225,7 +226,7 @@ function Profile() {
               <Input
                 Label="อีเมลล์"
                 placeholder="อีเมลล์"
-                value={email}
+                value={userProfileInfo.email}
                 type="email"
                 errorMessage=""
                 onChange={(e) => {
@@ -242,71 +243,7 @@ function Profile() {
                 บันทึก
               </button>
             </div>
-          </div> */}
-
-          <div className="background-data">
-            <Form className="input-profile">
-              <Input
-                Label="ชื่อผู้ใช้"
-                placeholder="ชื่อผู้ใช้"
-                value={username}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
-              />
-              <Input
-                Label="ชื่อจริง"
-                placeholder="ชื่อจริง"
-                value={firstname}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setFirstname(e.target.value);
-                }}
-              />
-              <Input
-                Label="นามสกุล"
-                placeholder="นามสกุล"
-                value={lastname}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setLastname(e.target.value);
-                }}
-              />
-              <Input
-                Label="เบอร์โทร"
-                placeholder="เบอร์โทร"
-                value={tel}
-                type="number"
-                errorMessage=""
-                onChange={(e) => {
-                  setTel(e.target.value);
-                }}
-              />
-              <Input
-                Label="อีเมลล์"
-                placeholder="อีเมลล์"
-                value={email}
-                type="email"
-                errorMessage=""
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-            </Form>
-            <div>
-              <button
-                className="btn-small-primary kanit-paragraphMedium"
-                type="submit"
-                onClick={saveUser}
-              >
-                บันทึก
-              </button>
-            </div>
-          </div>
+          </div> 
         </div>
       </div>
     </Layout>

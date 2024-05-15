@@ -35,6 +35,7 @@ import Fav from "./container/UserPage/FavPage";
 import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
+import EditProduct from "./container/EditProduct";
 import PostRequestProduct from "./container/SellProduct/PostRequestProduct";
 import PostDonateProduct from "./container/SellProduct/PostDonateProduct";
 import PostBuyProduct from "./container/SellProduct/PostBuyProduct";
@@ -164,6 +165,8 @@ export default function App() {
           <Route path="buystate/additem" element={<PrivateRoute> <PostBuyProduct /> </PrivateRoute>} />
           <Route path="receivestate/additem" element={<PrivateRoute> <PostRequestProduct /> </PrivateRoute>} />
           <Route path="donatestate/additem" element={<PrivateRoute> <PostDonateProduct /> </PrivateRoute>} />
+
+          <Route path="sellstate/edititem" element={<PrivateRoute> <EditProduct /> </PrivateRoute>} />
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />
