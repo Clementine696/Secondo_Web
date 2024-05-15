@@ -107,11 +107,10 @@ items.forEach((item) => {
 
 // fillter ใน backend
 function sellState() {
-
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getUserproduct());
-  },[]);
+  }, []);
   // ดึงข้อมูล
   const user = useSelector((state) => state.user);
   const userSellerProducts = user.userSellerProducts;
@@ -120,22 +119,20 @@ function sellState() {
     let userSell = [];
     if (sellerProducts && Array.isArray(sellerProducts)) {
       for (let sellerProduct of sellerProducts) {
-        
-          userSell.push({
-            _id: sellerProduct._id,
-            slug: sellerProduct.slug,
-            img: sellerProduct.productPictures[0].img,
-            name: sellerProduct.name,
-            price: sellerProduct.price,
-            carbonCredits: sellerProduct.carbonCredits,
-            description: sellerProduct.description,
-            status: sellerProduct.status,
-            createdAt: sellerProduct.createdAt,
-            // credit: 0.1,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          });
-          // console.log(product)
-        
+        userSell.push({
+          _id: sellerProduct._id,
+          slug: sellerProduct.slug,
+          img: sellerProduct.productPictures[0].img,
+          name: sellerProduct.name,
+          price: sellerProduct.price,
+          carbonCredits: sellerProduct.carbonCredits,
+          description: sellerProduct.description,
+          status: sellerProduct.status,
+          createdAt: sellerProduct.createdAt.split("T")[0],
+          // credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+        // console.log(product)
       }
       return userSell;
     }
@@ -218,8 +215,12 @@ function sellState() {
                     className="pic-product-table"
                   ></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.name}</p>
-                    <p className="kanit-paragraphSmall">{item.description}</p>
+                    <p className="kanit-paragraphMedium product-name">
+                      {item.name}
+                    </p>
+                    <p className="kanit-paragraphSmall product-desc">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
 

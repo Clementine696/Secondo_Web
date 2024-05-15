@@ -94,8 +94,8 @@ items.forEach((item) => {
       item.Link = ["/offer/sell", "/account/shippingstatus/buyinfo"];
       break;
     case "รอยืนยันสินค้า":
-      item.icons =  [chevronRight];
-      item.Link = [ "/account/shippingstatus/confirmrecieve"];
+      item.icons = [chevronRight];
+      item.Link = ["/account/shippingstatus/confirmrecieve"];
       break;
     default:
       item.icons = chevronRight;
@@ -106,11 +106,10 @@ items.forEach((item) => {
 // fillter ใน backend
 
 function BuyState() {
-
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getUserproduct());
-  },[]);
+  }, []);
   const user = useSelector((state) => state.user);
   const userBuyerProducts = user.userBuyerProducts;
   // console.log(userSellerProducts)
@@ -118,20 +117,20 @@ function BuyState() {
     let userBuy = [];
     if (buyerProducts && Array.isArray(buyerProducts)) {
       for (let buyerProduct of buyerProducts) {
-          userBuy.push({
-            _id: buyerProduct._id,
-            slug: buyerProduct.slug,
-            img: buyerProduct.productPictures[0].img,
-            name: buyerProduct.name,
-            price: buyerProduct.price,
-            carbonCredits: buyerProduct.carbonCredits,
-            description: buyerProduct.description,
-            status: buyerProduct.status,
-            createdAt: buyerProduct.createdAt,
-            // credit: 0.1,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          });
-          // console.log(product)
+        userBuy.push({
+          _id: buyerProduct._id,
+          slug: buyerProduct.slug,
+          img: buyerProduct.productPictures[0].img,
+          name: buyerProduct.name,
+          price: buyerProduct.price,
+          carbonCredits: buyerProduct.carbonCredits,
+          description: buyerProduct.description,
+          status: buyerProduct.status,
+          createdAt: buyerProduct.createdAt.split("T")[0],
+          // credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+        // console.log(product)
       }
       return userBuy;
     }
@@ -188,7 +187,10 @@ function BuyState() {
               />
               <img src={searchy} className="search-icon-filter"></img>
             </Form>
-            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium" to="additem">
+            <Link
+              className="add-product-user-page btn-small-secondary kanit-paragraphMedium"
+              to="additem"
+            >
               <img src={add} className="add-icon"></img>
               เพิ่มสินค้ารับซื้อ
             </Link>
@@ -209,14 +211,17 @@ function BuyState() {
                 <p className="data-item date-col">{item.createdAt}</p>
 
                 <div className="data-item desc-col">
-                  <img src={
-                      item.img
-                        ? generatePublicUrl(item.img)
-                        : ""
-                    } className="pic-product-table"></img>
+                  <img
+                    src={item.img ? generatePublicUrl(item.img) : ""}
+                    className="pic-product-table"
+                  ></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.name}</p>
-                    <p className="kanit-paragraphSmall">{item.description}</p>
+                    <p className="kanit-paragraphMedium product-name">
+                      {item.name}
+                    </p>
+                    <p className="kanit-paragraphSmall product-desc">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
 

@@ -56,6 +56,8 @@ function Index() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const profilePic = auth.user.profilePicture;
+  const userName = auth.user.firstName;
+  const userCredit = auth.user.credit;
   // console.log(profilePic)
 
   const logout = () => {
@@ -80,8 +82,8 @@ function Index() {
         >
           <img className="profile-img" src={profilePic}></img>
           <div>
-            <p className="kanit-paragraphtextMedium">{name}</p>
-            <p className="kanit-paragraphSmall">{credit} Credit</p>
+            <p className="kanit-paragraphtextMedium">{userName}</p>
+            <p className="kanit-paragraphSmall">{userCredit} Credit</p>
           </div>
           <div className="icon-profile">
             <img src={chevronDown}></img>
