@@ -102,39 +102,39 @@ const items = [
 ];
 
 //ผากใส่ Link หน้า Edit
-items.forEach((item) => {
-  switch (item.status.name) {
-    case "ขอรับบริจาค":
-      item.icons = [edit, chevronRight];
-      item.Link = ["/", "/account/shippingstatus/recieveinfo"];
-      break;
-    case "ที่ต้องจัดส่ง":
-      item.icons = [shipping, chevronRight];
-      item.Link = [
-        "/account/shippingstatus/sellinfo",
-        "/account/shippingstatus/recieveinfo",
-      ];
-      break;
-    case "มีการเสนอบริจาค":
-      item.icons = [useralert, chevronRight];
-      item.Link = ["/offer/recieve", "/account/shippingstatus/recieveinfo"];
-      break;
-    case "สำเร็จ":
-      item.icons = [chevronRight];
-      item.Link = ["/account/shippingstatus/RecieveSuccess"];
-      break;
-    default:
-      item.icons = chevronRight;
-      item.Link = ["/account/shippingstatus/recieveinfo"];
-      break;
-  }
-});
+// items.forEach((item) => {
+//   switch (item.status.name) {
+//     case "ขอรับบริจาค":
+//       item.icons = [edit, chevronRight];
+//       item.Link = ["/", "/account/shippingstatus/recieveinfo"];
+//       break;
+//     case "ที่ต้องจัดส่ง":
+//       item.icons = [shipping, chevronRight];
+//       item.Link = [
+//         "/account/shippingstatus/sellinfo",
+//         "/account/shippingstatus/recieveinfo",
+//       ];
+//       break;
+//     case "มีการเสนอบริจาค":
+//       item.icons = [useralert, chevronRight];
+//       item.Link = ["/offer/recieve", "/account/shippingstatus/recieveinfo"];
+//       break;
+//     case "สำเร็จ":
+//       item.icons = [chevronRight];
+//       item.Link = ["/account/shippingstatus/RecieveSuccess"];
+//       break;
+//     default:
+//       item.icons = chevronRight;
+//       item.Link = ["/account/shippingstatus/recieveinfo"];
+//       break;
+//   }
+// });
 
 function receiveStatus() {
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getUserproduct());
-  },[]);
+  }, []);
   const user = useSelector((state) => state.user);
   const userRequestProducts = user.userRequestProducts;
   // console.log(userSellerProducts)
@@ -142,18 +142,18 @@ function receiveStatus() {
     let userReceive = [];
     if (receiverProducts && Array.isArray(receiverProducts)) {
       for (let receiverProduct of receiverProducts) {
-          userReceive.push({
-            _id: receiverProduct._id,
-            slug: receiverProduct.slug,
-            img: receiverProduct.productPictures[0].img,
-            name: receiverProduct.name,
-            description: receiverProduct.description,
-            status: receiverProduct.status,
-            createdAt: receiverProduct.createdAt,
-            // credit: 0.1,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          });
-          // console.log(product)
+        userReceive.push({
+          _id: receiverProduct._id,
+          slug: receiverProduct.slug,
+          img: receiverProduct.productPictures[0].img,
+          name: receiverProduct.name,
+          description: receiverProduct.description,
+          status: receiverProduct.status,
+          createdAt: receiverProduct.createdAt,
+          // credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+        // console.log(product)
       }
       return userReceive;
     }
@@ -162,6 +162,44 @@ function receiveStatus() {
   const itemReceiveProduct = userRequestProducts
     ? renderUserReceiver(userRequestProducts)
     : [];
+
+  itemReceiveProduct.forEach((item) => {
+    switch (item.status.name) {
+      case "ขอรับบริจาค":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/receivestate/edititem/" + item._id,
+          "/product/receiver/" + item._id + "/p",
+        ];
+        break;
+      case "ที่ต้องจัดส่ง":
+        item.icons = [shipping, chevronRight];
+        item.Link = [
+          "/account/shippingstatus/sellinfo",
+          "/product/receiver/" + item._id + "/p",
+        ];
+        break;
+      case "มีการเสนอบริจาค":
+        item.icons = [useralert, chevronRight];
+        item.Link = ["/offer/recieve", "/product/receiver/" + item._id + "/p"];
+        break;
+      case "สำเร็จ":
+        item.icons = [chevronRight];
+        item.Link = ["/product/receiver/" + item._id + "/p"];
+        break;
+      case "รอการตรวจสอบ":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/receivestate/edititem/" + item._id,
+          "/product/receiver/" + item._id + "/p",
+        ];
+        break;
+      default:
+        item.icons = chevronRight;
+        item.Link = ["/account/shippingstatus/recieveinfo"];
+        break;
+    }
+  });
 
   const [font, setFont] = useState(window.innerWidth < 1200);
 
@@ -230,7 +268,10 @@ function receiveStatus() {
                 <p className="data-item date-col">{item.createdAt}</p>
 
                 <div className="data-item desc-col">
-                  <img src={item.img ? generatePublicUrl(item.img) : ""} className="pic-product-table"></img>
+                  <img
+                    src={item.img ? generatePublicUrl(item.img) : ""}
+                    className="pic-product-table"
+                  ></img>
                   <div className="product-name-desc-status">
                     <p className="kanit-paragraphMedium">{item.name}</p>
                     <p className="kanit-paragraphSmall">{item.description}</p>

@@ -158,7 +158,7 @@ function sellState() {
         break;
       case "รอการตรวจสอบ":
         item.icons = [edit, chevronRight];
-        item.Link = ["/sellstate/edititem", "/product/seller/"+item._id+"/p"];
+        item.Link = ["/sellstate/edititem/"+item._id, "/product/seller/"+item._id+"/p"];
         break;
       default:
         item.icons = chevronRight;

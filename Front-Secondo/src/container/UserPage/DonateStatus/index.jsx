@@ -103,39 +103,43 @@ const items = [
 ];
 
 //ผากใส่ Link หน้า Edit
-items.forEach((item) => {
-  switch (item.status.name) {
-    case "ประกาศบริจาค":
-      item.icons = [edit, chevronRight];
-      item.Link = ["/", "/account/shippingstatus/donateinfo"];
-      break;
-    case "ที่ต้องจัดส่ง":
-      item.icons = [shipping, chevronRight];
-      item.Link = [
-        "/account/shippingstatus/sellinfo",
-        "/account/shippingstatus/donateinfo",
-      ];
-      break;
-    case "มีการขอรับ":
-      item.icons = [useralert, chevronRight];
-      item.Link = ["/offer/donate", "/account/shippingstatus/donateinfo"];
-      break;
-    case "สำเร็จ":
-      item.icons = [chevronRight];
-      item.Link = ["/account/shippingstatus/donatesuccess"];
-      break;
-    default:
-      item.icons = chevronRight;
-      item.Link = ["/account/shippingstatus/donateinfo"];
-      break;
-  }
-});
+// items.forEach((item) => {
+//   switch (item.status.name) {
+//     case "ประกาศบริจาค":
+//       item.icons = [edit, chevronRight];
+//       item.Link = ["/donatestate/edititem/"+item._id, "/product/donater/"+item._id+"/p"];
+//       break;
+//     case "ที่ต้องจัดส่ง":
+//       item.icons = [shipping, chevronRight];
+//       item.Link = [
+//         "/account/shippingstatus/sellinfo",
+//         "/product/donater/"+item._id+"/p",
+//       ];
+//       break;
+//     case "มีการขอรับ":
+//       item.icons = [useralert, chevronRight];
+//       item.Link = ["/offer/donate", "/product/donater/"+item._id+"/p"];
+//       break;
+//     case "สำเร็จ":
+//       item.icons = [chevronRight];
+//       item.Link = ["/product/donater/"+item._id+"/p"];
+//       break;
+//       case "รอการตรวจสอบ":
+//         item.icons = [edit, chevronRight];
+//         item.Link = ["/donatestate/edititem/"+item._id, "/product/donater/"+item._id+"/p"];
+//         break;
+//     default:
+//       item.icons = chevronRight;
+//       item.Link = ["/product/donater/"+item._id+"/p"];
+//       break;
+//   }
+// });
 
 function donateState() {
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getUserproduct());
-  },[]);
+  }, []);
   const user = useSelector((state) => state.user);
   const userDonateProducts = user.userDonateProducts;
   // console.log(userSellerProducts)
@@ -143,20 +147,21 @@ function donateState() {
     let userDonate = [];
     if (donaterProducts && Array.isArray(donaterProducts)) {
       for (let donaterProduct of donaterProducts) {
-          userDonate.push({
-            _id: donaterProduct._id,
-            slug: donaterProduct.slug,
-            img: donaterProduct.productPictures[0].img,
-            name: donaterProduct.name,
-            carbonCredits: donaterProduct.carbonCredits,
-            description: donaterProduct.description,
-            status: donaterProduct.status,
-            createdAt: donaterProduct.createdAt,
-            // credit: 0.1,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          });
-          // console.log(product)
-        }
+        userDonate.push({
+          _id: donaterProduct._id,
+          slug: donaterProduct.slug,
+          img: donaterProduct.productPictures[0].img,
+          name: donaterProduct.name,
+          carbonCredits: donaterProduct.carbonCredits,
+          description: donaterProduct.description,
+          status: donaterProduct.status,
+          createdAt: donaterProduct.createdAt,
+          icons: [],
+          // credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+        // console.log(product)
+      }
       return userDonate;
     }
   };
@@ -165,6 +170,43 @@ function donateState() {
     ? renderUserDonater(userDonateProducts)
     : [];
 
+  itemDonateProduct.forEach((item) => {
+    switch (item.status.name) {
+      case "ประกาศบริจาค":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/donatestate/edititem/" + item._id,
+          "/product/donater/" + item._id + "/p",
+        ];
+        break;
+      case "ที่ต้องจัดส่ง":
+        item.icons = [shipping, chevronRight];
+        item.Link = [
+          "/account/shippingstatus/sellinfo",
+          "/product/donater/" + item._id + "/p",
+        ];
+        break;
+      case "มีการขอรับ":
+        item.icons = [useralert, chevronRight];
+        item.Link = ["/offer/donate", "/product/donater/" + item._id + "/p"];
+        break;
+      case "สำเร็จ":
+        item.icons = [chevronRight];
+        item.Link = ["/product/donater/" + item._id + "/p"];
+        break;
+      case "รอการตรวจสอบ":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/donatestate/edititem/" + item._id,
+          "/product/donater/" + item._id + "/p",
+        ];
+        break;
+      default:
+        item.icons = chevronRight;
+        item.Link = ["/product/donater/" + item._id + "/p"];
+        break;
+    }
+  });
   const [font, setFont] = useState(window.innerWidth < 1200);
 
   useEffect(() => {

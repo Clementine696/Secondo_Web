@@ -145,15 +145,15 @@ function BuyState() {
       switch (item.status.name) {
         case "มีการเสนอขาย":
           item.icons = [useralert, chevronRight];
-          item.Link = ["/offer/sell/"+item._id, "/account/shippingstatus/buyinfo"];
+          item.Link = ["/offer/sell/"+item._id, "/product/buyer/"+item._id+"/p"];
           break;
         case "รอยืนยันสินค้า":
           item.icons = [chevronRight];
-          item.Link = ["/account/shippingstatus/confirmrecieve"];
+          item.Link = ["/product/buyer/"+item._id+"/p"];
           break;
         case "รอการตรวจสอบ":
             item.icons = [edit, chevronRight];
-            item.Link = ["/buystate/edititem", "/account/shippingstatus/buyinfo"];
+            item.Link = ["/buystate/edititem/"+item._id, "/product/buyer/"+item._id+"/p"];
             break;
         default:
           item.icons = chevronRight;
