@@ -35,10 +35,14 @@ import Fav from "./container/UserPage/FavPage";
 import Setting from "./container/UserPage/Setting";
 
 import SellProduct from "./container/SellProduct";
-import EditProduct from "./container/EditProduct";
 import PostRequestProduct from "./container/SellProduct/PostRequestProduct";
 import PostDonateProduct from "./container/SellProduct/PostDonateProduct";
 import PostBuyProduct from "./container/SellProduct/PostBuyProduct";
+
+import EditProduct from "./container/EditProduct";
+import EditBuyProduct from "./container/EditProduct/EditBuyer";
+import EditDonateProduct from "./container/EditProduct/EditDonater";
+import EditRequestProduct from "./container/EditProduct/EditRequest";
 
 import CheckOut from "./container/CheckOut";
 
@@ -167,6 +171,9 @@ export default function App() {
           <Route path="donatestate/additem" element={<PrivateRoute> <PostDonateProduct /> </PrivateRoute>} />
 
           <Route path="sellstate/edititem" element={<PrivateRoute> <EditProduct /> </PrivateRoute>} />
+          <Route path="buystate/edititem" element={<PrivateRoute> <EditBuyProduct /> </PrivateRoute>} />
+          <Route path="receivestate/edititem" element={<PrivateRoute> <EditRequestProduct /> </PrivateRoute>} />
+          <Route path="donatestate/edititem" element={<PrivateRoute> <EditDonateProduct /> </PrivateRoute>} />
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />

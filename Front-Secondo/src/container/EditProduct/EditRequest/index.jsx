@@ -1,19 +1,19 @@
 import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Input from "../../components/UI/Input";
-import Layout from "../../components/Layout";
+import Input from "../../../components/UI/Input";
+import Layout from "../../../components/Layout";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addSellerProduct } from "../../actions";
+import { addReceiverProduct } from "../../../actions";
 
-import Cancel from "../../icon/cancel.png";
-import RedCancel from "../../icon/close.png";
+import Cancel from "../../../icon/cancel.png";
+import RedCancel from "../../../icon/close.png";
 
-import "./index.css";
+import "../index";
 import { Link, useNavigate } from "react-router-dom";
 
-function EditProduct() {
+function EditRequestProduct() {
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -69,19 +69,19 @@ function EditProduct() {
 
     for (let pic of selectedImages) {
       console.log("Test")
-      // console.log(pic.name)
+      console.log(pic.name)
     }
     const form = new FormData();
     form.append("name", productName);
     form.append("price", productPrice);
-    // form.append("specifications", "Spec");
+    form.append("specifications", "Spec");
     form.append("description", productDetail);
     form.append("shippingCost", shippingCost);
     form.append("category", categoryId);
     for (let pic of selectedImages) {
       form.append("productPicture", pic);
     }
-    dispatch(addSellerProduct(form));
+    dispatch(addReceiverProduct(form));
   };
 
   const [value, setValue] = useState('')
@@ -139,9 +139,9 @@ function EditProduct() {
               <Link
                 className="product-page-group-path-way-before-path-text kanit-paragraphBig"
                 style={{ textDecoration: "none" }}
-                to={"/sellstate"}
+                to={"/receivestate"}
               >
-                การขายของฉัน
+                ขอรับบริจาคของฉัน
               </Link>
               <div className="product-page-group-path-way-before-path-arrow">
                 <svg
@@ -169,7 +169,7 @@ function EditProduct() {
             </Link>
           </div>
         </div>
-        <div className="sell-product-topic">แก้ไขสินค้าสำหรับการขาย</div>
+        <div className="sell-product-topic">แก้ไขสินค้าสำหรับการขอรับบริจาค</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
             <label className="sell-product-content-upload-image-label kanit-Display-Large">
@@ -301,7 +301,7 @@ function EditProduct() {
                     // }}
                     onClick={addProductForm}
                     style={{ textDecoration: "none" }}
-                    to="/sellstate"
+                    to="/receivestate"
                   >
                     บันทึก
                   </Link>
@@ -322,4 +322,4 @@ function EditProduct() {
   );
 }
 
-export default EditProduct;
+export default EditRequestProduct;
