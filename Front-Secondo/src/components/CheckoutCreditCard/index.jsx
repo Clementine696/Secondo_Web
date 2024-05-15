@@ -14,10 +14,10 @@ function CreditCard(props) {
   const summaryPrice = productDetails.price + productDetails.shippingCost
 
   const buyProductForm = () => {
-    console.log(productDetails._id);
-    console.log(productDetails.name);
-    console.log(props.address)
-    console.log(props.shippingWay)
+    // console.log(productDetails._id);
+    // console.log(productDetails.name);
+    // console.log(props.address)
+    // console.log(props.shippingWay)
 
     // const form = new FormData();
     // form.append("item_id", productDetails._id);
