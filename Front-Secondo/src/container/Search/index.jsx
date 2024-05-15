@@ -12,6 +12,9 @@ import {
 
 import Dropdown from "../../components/UI/Dropdown";
 import ItemCard from "../../components/UI/ItemCard";
+import ItemCardBuy from "../../components/UI/ItemCard/Buy";
+import ItemCardDonate from "../../components/UI/ItemCard/Donate";
+import ItemCardReceive from "../../components/UI/ItemCard/Receive";
 import SideBarCategories from "../../components/UI/ProductCate-search";
 import Pathway from "../../components/UI/Pathway";
 
@@ -79,6 +82,27 @@ function Search() {
   const keyword = location.pathname.split("/")[2];
   // console.log(keyword)
 
+  const renderProducts = (products) => {
+    let myProducts = [];
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
+    } 
+  };
+
   //Sell
   const renderProductsSell = (products) => {
     let myProducts = [];
@@ -103,7 +127,7 @@ function Search() {
     }
   };
 
-  const itemSell = renderProductsSell(product.productsSeller);
+  const itemSell = renderProductsSell(product.searchProductSeller);
 
   const threeItemSell = itemSell.reduce((acc, curr, index) => {
     const fourIndex = Math.floor(index / 3);
@@ -138,7 +162,7 @@ function Search() {
     }
   };
 
-  const itemRubbuy = renderProductsRubbuy(product.productsSeller);
+  const itemRubbuy = renderProductsRubbuy(product.searchProductBuyer);
 
   const threeItemRubbuy = itemRubbuy.reduce((acc, curr, index) => {
     const fourIndex = Math.floor(index / 3);
@@ -173,7 +197,7 @@ function Search() {
     }
   };
 
-  const itemDonate = renderProductsDonate(product.productsSeller);
+  const itemDonate = renderProductsDonate(product.searchProductDonater);
 
   const threeItemDonate = itemDonate.reduce((acc, curr, index) => {
     const fourIndex = Math.floor(index / 3);
@@ -208,7 +232,7 @@ function Search() {
     }
   };
 
-  const itemRecieve = renderProductRecieve(product.productsSeller);
+  const itemRecieve = renderProductRecieve(product.searchProductRequest);
 
   const threeItemRecieve = itemRecieve.reduce((acc, curr, index) => {
     const fourIndex = Math.floor(index / 3);
@@ -251,7 +275,7 @@ function Search() {
   return (
     <Layout>
       <div className="search-page">
-        <div className="background-search-page">
+        {/* <div className="background-search-page">
           <Pathway pathwayList={pathway} />
         </div>
         <div className="search-page-frame-suggest">
@@ -312,9 +336,9 @@ function Search() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="search-page-frame-content">
-          <Dropdown options={options} />
+          {/* <Dropdown options={options} /> */}
           <div className="search-page-frame-content-all">
             <div className="search-page-frame-content-all-filter">
               <div className="search-page-frame-content-all-filter-condition">
@@ -393,18 +417,18 @@ function Search() {
             <div className="search-page-frame-content-all-group-card">
 
               <div className="search-result-itemcard">
-                <div className="search-header-navigate">
+                {/* <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     ขายสินค้า
                   </label>
-                  {/* <Link
+                   <Link
                     className="group-card-icon-other"
                     to="/allproduct/interest"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link> */}
-                </div>
+                  </Link> 
+                </div> */}
 
                 <div className="search-page-frame-content-all-group-card-frame">
                   {threeItemSell.map((group, groupIndex) => (
@@ -427,24 +451,24 @@ function Search() {
               </div>
 
               <div className="search-result-itemcard">
-                <div className="search-header-navigate">
+                {/* <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     รับซื้อสินค้า
                   </label>
-                  {/* <Link
+                  <Link
                     className="group-card-icon-other"
                     to="/allproduct"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link> */}
-                </div>
+                  </Link>
+                </div> */}
 
                 <div className="search-page-frame-content-all-group-card-frame">
                   {threeItemRubbuy.map((group, groupIndex) => (
                     <div className="all-group-card">
                       {group.map((item, index) => (
-                        <ItemCard
+                        <ItemCardBuy
                           key={index}
                           img={item.img}
                           _id={item._id}
@@ -461,18 +485,18 @@ function Search() {
               </div>
 
               <div className="search-result-itemcard">
-                <div className="search-header-navigate">
+                {/* <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     บริจาคสินค้า
                   </label>
-                  {/* <Link
+                   <Link
                     className="group-card-icon-other"
                     to="/allproduct/donate"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link> */}
-                </div>
+                  </Link> 
+                </div> */}
 
                 <div className="search-page-frame-content-all-group-card-frame">
                   {threeItemDonate.map((group, groupIndex) => (
@@ -495,18 +519,18 @@ function Search() {
               </div>
 
               <div className="search-result-itemcard">
-                <div className="search-header-navigate">
+                {/* <div className="search-header-navigate">
                   <label className="search-page-group-card-header kanit-Display-Small-R">
                     การขอรับบริจาคสินค้า
                   </label>
-                  {/* <Link
+                  <Link
                     className="group-card-icon-other"
                     to="/allproduct/recieve"
                   >
                     <div className="group-card-header-other">เพิ่มเติม</div>
                     <img className="icon-arrow-right-24" src={chevronRightT} />
-                  </Link> */}
-                </div>
+                  </Link>
+                </div> */}
 
                 <div className="search-page-frame-content-all-group-card-frame">
                   {threeItemRecieve.map((group, groupIndex) => (
