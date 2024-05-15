@@ -17,6 +17,7 @@ function CreditCard(props) {
     console.log(productDetails._id);
     console.log(productDetails.name);
     console.log(props.address)
+    console.log(props.shippingWay)
 
     // const form = new FormData();
     // form.append("item_id", productDetails._id);

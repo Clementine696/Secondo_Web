@@ -1,8 +1,10 @@
 const express = require("express");
-const { payments } = require("../controllers/payment");
+const { requireSignin, adminMiddleware } = require('../common-middleware');
+const { payments, checkout } = require("../controllers/payment");
 let router = express.Router();
 require('dotenv').config()
 
 router.post('/payment', payments)
+router.post('/payment/checkout', requireSignin, adminMiddleware, checkout);
 
 module.exports = router;
