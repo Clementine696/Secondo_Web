@@ -3,16 +3,33 @@ import Script from "react-load-script";
 import axios from "../../helpers/axios";
 
 import "./index.css";
+import { useSelector } from "react-redux";
 
 let OmiseCard;
 
 function CreditCard(props) {
+
+  const product = useSelector((state) => state.product);
+  const productDetails = product.productDetails;
+  const summaryPrice = productDetails.price + productDetails.shippingCost
+
+  const buyProductForm = () => {
+    console.log(productDetails._id);
+    console.log(productDetails.name);
+    console.log(props.address)
+
+    // const form = new FormData();
+    // form.append("item_id", productDetails._id);
+    // form.append("price", summaryPrice);
+    // dispatch(addSellerProduct(form));
+  };
+
   const handleLoadScript = () => {
     OmiseCard = window.OmiseCard;
     OmiseCard.configure({
       publicKey: process.env.VITE_OMISE_PUBLIC_KEY,
       currency: "THB",
-      frameLabel: "Borntodev Shop",
+      frameLabel: "Secondo Shop",
       submitLabel: "Pay NOW",
       buttonLabel: "Pay with Omise",
     });
@@ -20,8 +37,8 @@ function CreditCard(props) {
 
   const creditCardConfigure = () => {
     OmiseCard.configure({
-      defaultPaymentMethod: "promptpay",
-      otherPaymentMethods: ["credit_card", "internet_banking"],
+      defaultPaymentMethod: "credit_card",
+      // otherPaymentMethods: ["credit_card", "internet_banking"],
     });
     OmiseCard.configureButton("#credit-card");
     OmiseCard.attach();
@@ -29,17 +46,25 @@ function CreditCard(props) {
 
   const omiseCardHandler = () => {
     OmiseCard.open({
-      amount: "60000",
-      onCreateTokenSuccess: (token) => {
-        axios.post(`/payment`, {
+      amount: (summaryPrice) * 100,
+      onCreateTokenSuccess: async (token) => {
+        console.log(token);
+        const res = await axios.post(`/payment`, {
           email: "borntodev@gmail.com",
           name: "Borntodev",
-          amount: "60000",
+          amount: (summaryPrice) * 100,
           token: token,
           headers: {
             "Content-Type": "application/json",
           },
         });
+        console.log(res);
+        if(res.data.status == 'successful'){
+          console.log('success');
+          buyProductForm();
+        }else{
+          console.log('not success');
+        }
       },
       onFormClosed: () => {},
     });

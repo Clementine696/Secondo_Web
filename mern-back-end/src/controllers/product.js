@@ -451,6 +451,61 @@ exports.searchProduct = async (req, res) => {
     
 }
 
+exports.buyProduct = (req, res) => {
+
+    const {
+        item_id, price, address_id, shippingWay
+    } = req.body;
+
+    User.findOne({ _id: req.user._id })
+        .then((user)=>{
+            if(user){
+                console.log(user);
+
+                const buy_item = ({
+                    item_id,
+                    price,
+                    address_id,
+                    shippingWay,
+                })
+
+                payment.author.id = req.user._id;
+                payment.save().then(payment => {
+                    if(payment){
+                        user.payments.push(payment);
+                        user.save();
+                        res.status(201).json({ payment });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return res.status(400).json({ error })
+                });
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
+
+// exports.buyProduct = async (req, res) => {
+//     User.findOne({ _id: req.user._id })
+// }
+
+	// historys: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'Product'
+	// 		},
+	// 	address: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Address'
+	// 		},
+	// 	payment: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Payment'
+	// 		},
+	// 	pay_date: String,
+	// }],
+
 // router.get("/s/:keyword", function(req, res){
 // 	let search = req.params.keyword;
 // 	console.log(search);

@@ -125,8 +125,11 @@ function setting() {
           name: address.address_name,
           addressName: "",
           phone: address.tel,
-          address:
-            address.houseaddress + address.sub_district + address.district,
+          // address:
+            // address.houseaddress + address.sub_district + address.district,
+          address: address.houseaddress,
+          subDistrict: address.sub_district,
+          district: address.district,
           province: address.province,
           zip: address.zipcode,
         });

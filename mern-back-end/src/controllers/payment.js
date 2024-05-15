@@ -22,10 +22,11 @@ exports.payments = async (req, res) => {
         });
 
         res.send({
-          amount: charge.amount,
-          status: charge.status
+            amount: charge.amount,
+            status: charge.status
         })
     } catch (error) {
         console.log(error)
     }
+    // next()
 }
