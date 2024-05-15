@@ -84,26 +84,26 @@ const items = [
   },
 ];
 
-//ผากใส่ Link หน้า Edit
-items.forEach((item) => {
-  switch (item.status.name) {
-    case "ประกาศขาย":
-      item.icons = [edit, chevronRight];
-      item.Link = ["/", "/account/shippingstatus/buyinfo"];
-      break;
-    case "ที่ต้องจัดส่ง":
-      item.icons = [shipping, chevronRight];
-      item.Link = [
-        "/account/shippingstatus/sellinfo",
-        "/account/shippingstatus/buyinfo",
-      ];
-      break;
-    default:
-      item.icons = chevronRight;
-      item.Link = ["/account/shippingstatus/buyinfo"];
-      break;
-  }
-});
+//ฝากใส่ Link หน้า Edit
+// items.forEach((item) => {
+//   switch (item.status.name) {
+//     case "ประกาศขาย":
+//       item.icons = [edit, chevronRight];
+//       item.Link = ["/sellstate/edititem", "/account/shippingstatus/buyinfo"];
+//       break;
+//     case "ที่ต้องจัดส่ง":
+//       item.icons = [shipping, chevronRight];
+//       item.Link = [
+//         "/account/shippingstatus/sellinfo",
+//         "/account/shippingstatus/buyinfo",
+//       ];
+//       break;
+//     default:
+//       item.icons = chevronRight;
+//       item.Link = ["/account/shippingstatus/buyinfo"];
+//       break;
+//   }
+// });
 
 // fillter ใน backend
 function sellState() {
@@ -129,6 +129,7 @@ function sellState() {
           description: sellerProduct.description,
           status: sellerProduct.status,
           createdAt: sellerProduct.createdAt.split("T")[0],
+          icons: [],
           // credit: 0.1,
           // children: category.children.length > 0 && renderCategories(category.children)
         });
@@ -141,6 +142,30 @@ function sellState() {
   const itemSellProduct = userSellerProducts
     ? renderUserSeller(userSellerProducts)
     : [];
+
+  itemSellProduct.forEach((item) => {
+    switch (item.status) {
+      case "ประกาศขาย":
+        item.icons = [edit, chevronRight];
+        item.Link = ["/sellstate/edititem/"+item._id, "/product/seller/"+item._id+"/p"];
+        break;
+      case "ที่ต้องจัดส่ง":
+        item.icons = [shipping, chevronRight];
+        item.Link = [
+          "/account/shippingstatus/sellinfo",
+          "/product/seller/"+item._id+"/p",
+        ];
+        break;
+      case "รอการตรวจสอบ":
+        item.icons = [edit, chevronRight];
+        item.Link = ["/sellstate/edititem", "/product/seller/"+item._id+"/p"];
+        break;
+      default:
+        item.icons = chevronRight;
+        item.Link = ["/product/seller/"+item._id+"/p"];
+        break;
+    }
+  });
 
   const [font, setFont] = useState(window.innerWidth < 1200);
 
