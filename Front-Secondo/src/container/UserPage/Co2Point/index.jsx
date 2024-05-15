@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import "./index.css";
@@ -11,12 +11,59 @@ import ItemCard from "../../../components/UI/ItemCard";
 import info from "../../../icon/info.png";
 import starbucks from "../../../../public/images/starbucks.png";
 
+import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
+
 function Co2Point() {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth)
+  const userProfileInfo = auth.user;
+  console.log(userProfileInfo)
+
+  let userImage = auth.user.profilePicture;
+
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
+
+  // connect api to save data
+  const saveUser = () => {
+    console.log(username);
+    console.log(firstname);
+    console.log(lastname);
+    console.log(tel);
+    console.log(email);
+  };
+
+  const [image, setImage] = useState("");
+  const [updatingImage, setUpdatingImage] = useState(false);
+
+  const updatePic = (event) => {
+
+    const selectedImage = event.target.files[0];
+    // console.log(selectedImage)
+
+    setImage(selectedImage);
+
+    setUpdatingImage(true);
+    const form = new FormData();
+    form.append("newProfilePicture", selectedImage);
+    // console.log(selectedImage)
+    // setImage(null)
+    dispatch(updateProfilePicture(form));
+    dispatch(isUserLoggedIn());
+    // window.location.reload();
+  };
+
+  useEffect(() => {
+    if (image != null) {
+      dispatch(isUserLoggedIn());
+      setUpdatingImage(false);
+    }
+  }, [updatingImage, dispatch]);
 
   return (
     <Layout>
@@ -32,29 +79,49 @@ function Co2Point() {
               <div className="profile-detail-point">
                 Carbon Credits 96 CO₂ Credit
               </div>
-              <div className="profile-detail-point">
+              {/* <div className="profile-detail-point">
                 เงินที่มีอยู่ 4,000 บาท
               </div>
               <div className="profile-detail-point">
                 เงินที่ไม่สามารถใช้ได้ 1,000 บาท
-              </div>
+              </div> */}
             </div>
             <div className="user-profile-detail">
               <div className="profile-detail-title kanit-paragraphMedium">
                 โปรไฟล์
               </div>
               <div className="profile-pic-name-button">
-                <div
-                  style={{
-                    backgroundColor: "black",
-                    height: "96px",
-                    width: "96px",
-                    borderRadius: "50%",
-                  }}
-                ></div>
+              <div className="profile-picture-img-frame">
+                  {userImage ? (
+                  
+                    <img
+                      className="profile-picture-img"
+                      // src={auth.user.profilePicture}
+                      // src={URL.createObjectURL(image)}
+                      src={userImage}
+                      alt="Uploaded"
+                      style={{
+                        backgroundColor: "black",
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  )}
+                </div>
+
                 <div className="profile-name kanit-paragraphMedium">
-                  <p>Username : GamBlackty</p>
-                  <p>Name : Phanuphong</p>
+                  <p>Username : {userProfileInfo.username}</p>
+                  <p>Name : {userProfileInfo.firstName} {userProfileInfo.lastName}</p>
                 </div>
               </div>
             </div>
