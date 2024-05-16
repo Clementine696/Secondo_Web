@@ -77,8 +77,9 @@ const userSchema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Address'
 			},
+        product_type: String,
         price: Number,
-        shippingWay: String,
+        shipping: String,
 		pay_date: String,
 	}],
     

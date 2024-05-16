@@ -13,6 +13,7 @@ import chevronRightD from "../../icon/chevron-right.png";
 
 import "./index.css";
 import { useSelector } from "react-redux";
+import { generatePublicUrl } from "../../urlConfig";
 
 
 let productDetails = [
@@ -350,7 +351,8 @@ function checkOut() {
                 <div className="checkout-page-content-order-item-image">
                   <img
                     className="checkout-page-content-order-item-image-small"
-                    src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+                    // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+                    src={productDetails.productPictures && productDetails.productPictures.length > 0 ? generatePublicUrl(productDetails.productPictures[0].img ) : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"} alt=""
                   />
                 </div>
                 <div className="checkout-page-content-order-item-details">
@@ -360,7 +362,7 @@ function checkOut() {
                   </div>
                   <div className="checkout-page-content-order-item-details-name-seller kanit-paragraphVerySmall">
                     {/* Mungkud */}
-                    {/* {productDetails.createBy.firstName} */}
+                    {productDetails.createBy.firstName}
                   </div>
                 </div>
               </div>
