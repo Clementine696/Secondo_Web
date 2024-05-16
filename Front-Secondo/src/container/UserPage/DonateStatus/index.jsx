@@ -171,7 +171,7 @@ function donateState() {
     : [];
 
   itemDonateProduct.forEach((item) => {
-    switch (item.status.name) {
+    switch (item.status) {
       case "ประกาศบริจาค":
         item.icons = [edit, chevronRight];
         item.Link = [

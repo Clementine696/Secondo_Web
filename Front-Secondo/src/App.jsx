@@ -155,9 +155,9 @@ export default function App() {
           <Route path="donatestate/additem" element={<PrivateRoute> <PostDonateProduct /> </PrivateRoute>} />
 
           <Route path="sellstate/edititem/:productId" element={<PrivateRoute> <EditProduct /> </PrivateRoute>} />
-          <Route path="buystate/edititem" element={<PrivateRoute> <EditBuyProduct /> </PrivateRoute>} />
-          <Route path="receivestate/edititem" element={<PrivateRoute> <EditRequestProduct /> </PrivateRoute>} />
-          <Route path="donatestate/edititem" element={<PrivateRoute> <EditDonateProduct /> </PrivateRoute>} />
+          <Route path="buystate/edititem/:productId" element={<PrivateRoute> <EditBuyProduct /> </PrivateRoute>} />
+          <Route path="receivestate/edititem/:productId" element={<PrivateRoute> <EditRequestProduct /> </PrivateRoute>} />
+          <Route path="donatestate/edititem/:productId" element={<PrivateRoute> <EditDonateProduct /> </PrivateRoute>} />
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />

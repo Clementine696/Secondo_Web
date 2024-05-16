@@ -164,7 +164,7 @@ function receiveStatus() {
     : [];
 
   itemReceiveProduct.forEach((item) => {
-    switch (item.status.name) {
+    switch (item.status) {
       case "ขอรับบริจาค":
         item.icons = [edit, chevronRight];
         item.Link = [
