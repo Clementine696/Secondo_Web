@@ -25,17 +25,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBuyerProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
-// const product = [
-//   {
-//     img: productpic,
-//     label:
-//       "GATERON Milky Yellow PRO Switch (10ชิ้น/ซอง) 5 pin สวิตช์ Linear สำหรับ คีย์บอร์ด Mechanical keyboard Linear Switch",
-//     price: "0",
-//   },
-//   { label: "สินค้าชิ้นที่ 1", price: "1" },
-//   { label: "สินค้าชิ้นที่ 2", price: "2" },
-//   { label: "สินค้าชิ้นที่ 3", price: "3" },
-// ];
+const Myproduct = [
+  {
+    img: productpic,
+    label:
+      "GATERON Milky Yellow PRO Switch (10ชิ้น/ซอง) 5 pin สวิตช์ Linear สำหรับ คีย์บอร์ด Mechanical keyboard Linear Switch",
+    price: "0",
+  },
+  { label: "สินค้าชิ้นที่ 1", price: "1" },
+  { label: "สินค้าชิ้นที่ 2", price: "2" },
+  { label: "สินค้าชิ้นที่ 3", price: "3" },
+];
 
 let productDetail = [
   {
@@ -407,7 +407,7 @@ function Productsale() {
       <ModalSelectItem
         label="เลือกสินค้าจากรายการขายของคุณ"
         open={openModalSelectItem}
-        products={product}
+        products={Myproduct}
         onProductSelect={handleProductSelect}
         onClose={() => setOpenModalSelectItem(false)}
       />
