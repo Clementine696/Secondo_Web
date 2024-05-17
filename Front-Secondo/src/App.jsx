@@ -117,63 +117,47 @@ export default function App() {
           <Route path="allproduct/interest" element={<AllProductInterest />} />
           <Route path="allproduct/buyer" element={<AllProductBuyer />} />
 
-          {/* <Route path="search" element={<Search />} /> */}
-          {/* <Route path="search" element={<PrivateRoute> <Search/> </PrivateRoute>} /> */}
+          <Route path="profile" element={<PrivateRoute> <Profile /> </PrivateRoute>} />
+          <Route path="buystate" element={<PrivateRoute> <BuyState /> </PrivateRoute>} />
+          <Route path="sellstate" element={<PrivateRoute> <SellState /> </PrivateRoute>} />
+          <Route path="donatestate" element={<PrivateRoute> <DonateState /> </PrivateRoute>} />
+          <Route path="receivestate" element={<PrivateRoute> <ReceiveState /> </PrivateRoute>} />
+          <Route path="bidstate" element={<PrivateRoute> <BidState /> </PrivateRoute>} />
+          <Route path="co2point" element={<PrivateRoute> <Co2Point /> </PrivateRoute>} />
+          <Route path="fav" element={<PrivateRoute> <Fav /> </PrivateRoute>} />
+          <Route path="setting" element={<PrivateRoute> <Setting /> </PrivateRoute>} />
 
+          <Route path="account/checkout" element={<PrivateRoute> <CheckOut /> </PrivateRoute>} />
 
-          {/* <Route path="product/seller" element={<Product />} /> */}
-          {/* <Route path="/:productSlug/:productId/p" element={<Product />} /> */}
-          {/* <Route path="product/buyer" element={<Offersale />} /> */}
-          {/* <Route path="product/offerbuy" element={<Offerbuy />} /> */}
-          {/* <Route path="product/receiver" element={<Donate />} />
-          <Route path="product/donater" element={<RequireDonate />} /> */}
-
-          <Route path="profile" element={<Profile />} />
-          <Route path="buystate" element={<BuyState />} />
-          <Route path="sellstate" element={<SellState />} />
-          <Route path="donatestate" element={<DonateState />} />
-          <Route path="receivestate" element={<ReceiveState />} />
-          <Route path="bidstate" element={<BidState />} />
-          <Route path="co2point" element={<Co2Point />} />
-          <Route path="fav" element={<Fav />} />
-          <Route path="setting" element={<Setting />} />
-
-          <Route path="account/checkout" element={<CheckOut />} />
-
-          <Route path="account/shippingstatus" element={<ShippingStatus />} />
+          <Route path="account/shippingstatus" element={<PrivateRoute> <ShippingStatus /> </PrivateRoute>} />
           {/* Buy */}
-          <Route path="account/shippingstatus/buyinfo" element={<ShippingStatusBuy />} />
-          <Route path="account/shippingstatus/confirmrecieve" element={<ShippingStatusConfirm />} />
-          <Route path="account/shippingstatus/sellerreview" element={<ShippingSellerRevirw />} />
+          <Route path="account/shippingstatus/buyinfo" element={<PrivateRoute> <ShippingStatusBuy /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/confirmrecieve" element={<PrivateRoute> <ShippingStatusConfirm /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/sellerreview" element={<PrivateRoute> <ShippingSellerRevirw /> </PrivateRoute> } />
           {/* Sell */}
-          <Route path="account/shippingstatus/sellinfo" element={<ShippingStatusSell />} />
-          <Route path="account/shippingstatus/successprocess" element={<ShippingSellSucess />} />
+          <Route path="account/shippingstatus/sellinfo" element={<PrivateRoute> <ShippingStatusSell /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/successprocess" element={<PrivateRoute> <ShippingSellSucess /> </PrivateRoute>} />
           {/* Donate & Recieve */}
-          <Route path="account/shippingstatus/donateinfo" element={<ShippingStatusDonate />} />
-          <Route path="account/shippingstatus/donatesuccess" element={<ShippingDonateSucess />} />
-          <Route path="account/shippingstatus/recieveinfo" element={<ShippingStatusRecieve />} />
-          <Route path="account/shippingstatus/confirmrecievedonate" element={<ShippingStatusRConfirm />} />
-          <Route path="account/shippingstatus/recievesuccess" element={<ShippingRecieveSucess />} />
+          <Route path="account/shippingstatus/donateinfo" element={<PrivateRoute> <ShippingStatusDonate /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/donatesuccess" element={<PrivateRoute> <ShippingDonateSucess /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/recieveinfo" element={<PrivateRoute> <ShippingStatusRecieve /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/confirmrecievedonate" element={<PrivateRoute> <ShippingStatusRConfirm /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/recievesuccess" element={<PrivateRoute> <ShippingRecieveSucess /> </PrivateRoute>}/>
 
-          <Route path="offer" element={<Offer />} />
-          <Route path="offer/donate" element={<OfferDonate />} />
-          <Route path="offer/recieve" element={<OfferRecieve />} />
-          <Route path="offer/sell" element={<OfferSell />} />
-
-          {/* <Route path="account/sell/additem" element={<SellProduct />} /> */}
-          {/* <Route path="sellstate/additem" element={<SellProduct />} /> */}
-          {/* <Route path="buystate/additem" element={<PostBuyProduct />} />
-          <Route path="receivestate/additem" element={<PostRequestProduct />} />
-          <Route path="donatestate/additem" element={<PostDonateProduct />} /> */}
+          <Route path="offer" element={<PrivateRoute> <Offer /> </PrivateRoute>} />
+          <Route path="offer/donate" element={<PrivateRoute> <OfferDonate /> </PrivateRoute>} />
+          <Route path="offer/recieve" element={<PrivateRoute> <OfferRecieve /> </PrivateRoute>} />
+          <Route path="offer/sell" element={<PrivateRoute> <OfferSell /> </PrivateRoute>} />
+          
           <Route path="sellstate/additem" element={<PrivateRoute> <SellProduct /> </PrivateRoute>} />
           <Route path="buystate/additem" element={<PrivateRoute> <PostBuyProduct /> </PrivateRoute>} />
           <Route path="receivestate/additem" element={<PrivateRoute> <PostRequestProduct /> </PrivateRoute>} />
           <Route path="donatestate/additem" element={<PrivateRoute> <PostDonateProduct /> </PrivateRoute>} />
 
-          <Route path="sellstate/edititem" element={<PrivateRoute> <EditProduct /> </PrivateRoute>} />
-          <Route path="buystate/edititem" element={<PrivateRoute> <EditBuyProduct /> </PrivateRoute>} />
-          <Route path="receivestate/edititem" element={<PrivateRoute> <EditRequestProduct /> </PrivateRoute>} />
-          <Route path="donatestate/edititem" element={<PrivateRoute> <EditDonateProduct /> </PrivateRoute>} />
+          <Route path="sellstate/edititem/:productId" element={<PrivateRoute> <EditProduct /> </PrivateRoute>} />
+          <Route path="buystate/edititem/:productId" element={<PrivateRoute> <EditBuyProduct /> </PrivateRoute>} />
+          <Route path="receivestate/edititem/:productId" element={<PrivateRoute> <EditRequestProduct /> </PrivateRoute>} />
+          <Route path="donatestate/edititem/:productId" element={<PrivateRoute> <EditDonateProduct /> </PrivateRoute>} />
 
           {/* Dynamic Route */}
           <Route path="/product/seller/:productId/p" element={<Product />} />

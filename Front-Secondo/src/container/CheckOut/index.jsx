@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, Navigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
@@ -12,26 +12,77 @@ import chevronRight from "../../icon/chevron-right-red.png";
 import chevronRightD from "../../icon/chevron-right.png";
 
 import "./index.css";
+import { useSelector } from "react-redux";
+import { generatePublicUrl } from "../../urlConfig";
+
+
+let productDetails = [
+  {
+    img: [
+      // "/images/iPhone_15_Pro_Blue_Titanium_1.png",
+      // "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
+      // "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
+      // "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
+      // "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
+    ],
+    productName: "",
+    productSeller: "",
+    province: "",
+    productPrice: "",
+    productCredit: 20,
+    createBy: {
+      firstName: "ฟ"
+    }
+  },
+];
+
+
+let Address = [
+  {
+    id:"1",
+    label: "111"
+  }
+]
 
 function checkOut() {
+
+  //state 
+  const product = useSelector((state) => state.product);
+  // if(product.productDetails.length == 0){
+  //   <Navigate to="/signin" />
+  // }
+  productDetails = product.productDetails ? product.productDetails : <Navigate to="/signin" />;
+
+  const renderAddress = (addresses) => {
+    let myAddresses = [];
+    if (addresses && Array.isArray(addresses)) {
+      for (let address of addresses) {
+        myAddresses.push({
+          id: address._id,
+          label: address.address_name + " " + address.houseaddress,
+          // addressName: "",
+          // phone: address.tel,
+          // address:
+            // address.houseaddress + address.sub_district + address.district,
+          // address: address.houseaddress,
+          // subDistrict: address.sub_district,
+          // district: address.district,
+          // province: address.province,
+          // zip: address.zipcode,
+        });
+      }
+      return myAddresses;
+    }
+  };
+  const user = useSelector((state) => state.user);
+  Address = user.addresses.address ? renderAddress(user.addresses.address) : [];
+  // console.log(Address)
+
   //Modal
   const [openModel, setOpenModel] = useState(false);
 
   const [value, setValue] = useState("");
-  const [addressOption, setAddressOption] = useState([
-    {
-      value: "1",
-      label: "บ้านคเณศ",
-    },
-    {
-      value: "2",
-      label: "บ้านพุฒิพงศ์",
-    },
-    {
-      value: "3",
-      label: "บ้านฐิติพงศ์",
-    },
-  ]);
+  const [addressOption, setAddressOption] = useState([Address]);
 
   const [deliveryOption, setDeliveryOption] = useState([
     {
@@ -60,6 +111,7 @@ function checkOut() {
   const [selectedPayment, setSelectedPayment] = useState("");
   const handleAddressChange = (event) => {
     setSelectedAddress(event.target.value);
+    // console.log(selectedAddress)
   };
 
   const handleDeliveryChange = (event) => {
@@ -99,7 +151,7 @@ function checkOut() {
                     <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedAddress
                         ? addressOption.find(
-                            (address) => address.value === selectedAddress
+                            (address) => address.label === selectedAddress
                           )?.label
                         : "ที่อยู่จัดส่ง"}
                     </div>
@@ -141,14 +193,14 @@ function checkOut() {
                       <input
                         name="addressMethod"
                         type="radio"
-                        value={address.value}
+                        value={address.label}
                         id={address.value}
-                        checked={selectedAddress === address.value}
+                        checked={selectedAddress === address.label}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleAddressChange}
                         onClick={() => setVisibleAddress(false)}
                       />
-                      <label htmlFor={address.value}>{address.label}</label>
+                      <label htmlFor={address.label}>{address.label}</label>
                     </div>
                   ))}
                 </div>
@@ -171,7 +223,7 @@ function checkOut() {
                     <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedDelivery
                         ? deliveryOption.find(
-                            (deliver) => deliver.value === selectedDelivery
+                            (deliver) => deliver.label === selectedDelivery
                           )?.label
                         : "วิธีการจัดส่ง"}
                     </div>
@@ -201,14 +253,14 @@ function checkOut() {
                       <input
                         name="deliveryMethod"
                         type="radio"
-                        value={delivery.value}
+                        value={delivery.label}
                         id={delivery.value}
-                        checked={selectedDelivery === delivery.value}
+                        checked={selectedDelivery === delivery.label}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
                       />
-                      <label htmlFor={delivery.value}>{delivery.label}</label>
+                      <label htmlFor={delivery.label}>{delivery.label}</label>
                     </div>
                   ))}
                 </div>
@@ -231,7 +283,7 @@ function checkOut() {
                     <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedPayment
                         ? paymentOption.find(
-                            (payment) => payment.value === selectedPayment
+                            (payment) => payment.label === selectedPayment
                           )?.label
                         : "วิธีการชำระเงิน"}
                     </div>
@@ -272,14 +324,14 @@ function checkOut() {
                       <input
                         name="paymentMethod"
                         type="radio"
-                        value={payment.value}
+                        value={payment.label}
                         id={payment.value}
-                        checked={selectedPayment === payment.value}
+                        checked={selectedPayment === payment.label}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handlePaymentChange}
                         onClick={() => setVisiblePayment(false)}
                       />
-                      <label htmlFor={payment.value}>{payment.label}</label>
+                      <label htmlFor={payment.label}>{payment.label}</label>
                     </div>
                   ))}
                 </div>
@@ -299,21 +351,25 @@ function checkOut() {
                 <div className="checkout-page-content-order-item-image">
                   <img
                     className="checkout-page-content-order-item-image-small"
-                    src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+                    // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+                    src={productDetails.productPictures && productDetails.productPictures.length > 0 ? generatePublicUrl(productDetails.productPictures[0].img ) : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"} alt=""
                   />
                 </div>
                 <div className="checkout-page-content-order-item-details">
                   <div className="checkout-page-content-order-item-details-name-item kanit-paragraphSmall">
-                    เสื้อ COTTON แบรนด์ญี่ปุ่น
+                    {/* เสื้อ COTTON แบรนด์ญี่ปุ่น */}
+                    {productDetails.name}
                   </div>
                   <div className="checkout-page-content-order-item-details-name-seller kanit-paragraphVerySmall">
-                    Mungkud
+                    {/* Mungkud */}
+                    {productDetails.createBy.firstName}
                   </div>
                 </div>
               </div>
 
               <div className="checkout-page-content-order-item-price kanit-paragraphSmall">
-                129 บาท
+                {/* 129 บาท */}
+                {productDetails.price} บาท
               </div>
             </div>
             <div className="checkout-page-content-order-item-line-out">
@@ -325,7 +381,8 @@ function checkOut() {
                   ค่าสินค้า
                 </div>
                 <div className="checkout-page-content-order-price-item-price kanit-paragraphSmall">
-                  129 บาท
+                  {/* 129 บาท */}
+                  {productDetails.price} บาท
                 </div>
               </div>
               <div className="checkout-page-content-order-price-deliver">
@@ -333,7 +390,8 @@ function checkOut() {
                   ค่าขนส่ง
                 </div>
                 <div className="checkout-page-content-order-price-deliver-price kanit-paragraphSmall">
-                  50 บาท
+                  {/* 50 บาท */}
+                  {productDetails.shippingCost} บาท
                 </div>
               </div>
               <div className="checkout-page-content-order-price-total">
@@ -341,7 +399,7 @@ function checkOut() {
                   รวม
                 </div>
                 <div className="checkout-page-content-order-price-total-price kanit-Display-Small">
-                  179 บาท
+                  {productDetails.price + productDetails.shippingCost} บาท
                 </div>
               </div>
             </div>
@@ -352,7 +410,10 @@ function checkOut() {
               ชำระเงิน
             </button> */}
 
-            <CheckoutCreditCard label="ชำระเงิน" />
+            <CheckoutCreditCard 
+              label="ชำระเงิน"
+              address = {selectedAddress}
+            />
           </div>
         </div>
         <ModalS

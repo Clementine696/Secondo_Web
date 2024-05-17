@@ -5,16 +5,33 @@ import Layout from "../../../components/Layout";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addDonaterProduct } from "../../../actions";
+import { getDonaterProductDetailsById } from "../../../actions";
+import { generatePublicUrl } from "../../../urlConfig";
 
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
 
 import "../index";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+let productInfo = [
+  {
+    img: [
+      // "/images/iPhone_15_Pro_Blue_Titanium_1.png",
+      // "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
+      // "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
+      // "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
+      // "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
+    ],
+    productName: "",
+    productSeller: "",
+    province: "",
+    productPrice: "",
+    productCredit: 20,
+  },
+];
 
 function EditDonateProduct() {
-
   const category = useSelector((state) => state.category);
   // console.log(category)
   const dispatch = useDispatch();
@@ -22,15 +39,13 @@ function EditDonateProduct() {
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            // img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+      if (category.parentId == null) {
+        myCategories.push({
+          // img: category.image,
+          label: category.name,
+          value: category._id,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
       }
     }
 
@@ -40,13 +55,13 @@ function EditDonateProduct() {
   // const categoryItem = renderCategories(category.categories)
 
   const [selectedImages, setSelectedImages] = useState([]);
-  
+
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return file
+      return file;
     });
     // setProductPictures([...productPictures, e.target.files[0]]);
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
@@ -59,32 +74,32 @@ function EditDonateProduct() {
   const [shippingCost, setShippingCost] = useState("");
 
   // connect api to save data
-  const addProductForm = () => {
-    console.log(productName);
-    console.log(productPrice);
-    console.log(productDetail);
-    console.log(shippingCost);
-    console.log(categoryId);
-    // console.log(selectedImages);
+  // const addProductForm = () => {
+  //   console.log(productName);
+  //   console.log(productPrice);
+  //   console.log(productDetail);
+  //   console.log(shippingCost);
+  //   console.log(categoryId);
+  //   // console.log(selectedImages);
 
-    for (let pic of selectedImages) {
-      console.log("Test")
-      console.log(pic.name)
-    }
-    const form = new FormData();
-    form.append("name", productName);
-    form.append("price", productPrice);
-    form.append("specifications", "Spec");
-    form.append("description", productDetail);
-    form.append("shippingCost", shippingCost);
-    form.append("category", categoryId);
-    for (let pic of selectedImages) {
-      form.append("productPicture", pic);
-    }
-    dispatch(addDonaterProduct(form));
-  };
+  //   for (let pic of selectedImages) {
+  //     console.log("Test")
+  //     console.log(pic.name)
+  //   }
+  //   const form = new FormData();
+  //   form.append("name", productName);
+  //   form.append("price", productPrice);
+  //   form.append("specifications", "Spec");
+  //   form.append("description", productDetail);
+  //   form.append("shippingCost", shippingCost);
+  //   form.append("category", categoryId);
+  //   for (let pic of selectedImages) {
+  //     form.append("productPicture", pic);
+  //   }
+  //   dispatch(addDonaterProduct(form));
+  // };
 
-  const [value, setValue] = useState('')
+  // const [value, setValue] = useState('')
   // const optionsCategory = [
   //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
   //   {label: "รองเท้า", value: 2},
@@ -102,8 +117,104 @@ function EditDonateProduct() {
   //   navigate("/sellstate");
   // };
 
+  const product = useSelector((state) => state.product);
+
+  const location = useLocation();
+  const productId = location.pathname.split("/")[3];
+  // console.log(_id)
+
+  useEffect(() => {
+    // const { productId } = props.params.match;
+    // const location = useLocation();
+    // const _id = location.pathname.split("/")[2];
+    console.log(productId);
+    const payload = {
+      params: {
+        productId,
+      },
+    };
+
+    dispatch(getDonaterProductDetailsById(payload));
+  }, []);
+
+  // let productDetail = [];
+
+  console.log("Item in web");
+  console.log(product.productDetails);
+  const productFromApi = product.productDetails;
+  console.log(productFromApi);
+  let image_list = [];
+  const productImage = productFromApi.productPictures;
+  // console.log(productImage)
+  // console.log(productImage.length)
+  if (
+    product.productDetails.productPictures &&
+    Array.isArray(product.productDetails.productPictures)
+  ) {
+    productImage.map((item, index) => {
+      console.log(item.img);
+      image_list.push(item.img);
+      // console.log(image[index])
+    });
+  }
+
+  // console.log('new image list :')
+  //   console.log(image_list);
+  // for(let i=0;i<product.productDetails.productPictures.length;i++){
+  //   image.append(product.productDetails.productPictures[i].img);
+  //   console.log(image[i])
+  if (productImage != null) {
+    productInfo = [
+      {
+        img: image_list,
+        // img: [
+        //   "/images/iPhone_15_Pro_Blue_Titanium_1.png",
+        //   "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
+        //   "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
+        //   "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
+        //   "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
+        // ],
+        productName: productFromApi.name,
+        productSeller: productFromApi.createBy.firstName,
+        province: "กรุงเทพ",
+        productPrice: productFromApi.price,
+        productCredit: 20,
+        productDesc: productFromApi.description,
+        shippingCost: productFromApi.shippingCost,
+        // productCategory: productFromApi.category.name
+      },
+    ];
+  }
+
+  useEffect(() => {
+    if (product.productDetails) {
+      setProductName(product.productDetails.name);
+      setProductPrice(product.productDetails.price);
+      setProductDetail(product.productDetails.description);
+      setShippingCost(product.productDetails.shippingCost);
+      // setCategoryId(product.productDetails.category.name)
+      // setSelectedImages(product.productDetails.productPictures);
+    }
+  }, [product.productDetails]);
+
+  console.log(productInfo.img);
+  console.log(product.productDetails.productPictures);
+
+  // const [frameSmallImgs, setFrameSmallImgs] = useState("");
+
+  useEffect(() => {
+    if (
+      product.productDetails &&
+      Array.isArray(product.productDetails.productPictures)
+    ) {
+      const imagesArray = product.productDetails.productPictures.map((pic) =>
+        generatePublicUrl(pic.img)
+      );
+      setSelectedImages(imagesArray);
+    }
+  }, [product.productDetails]);
+
   return (
-    
     <Layout>
       <div className="background-sell-product-page">
         <div className="product-page-path-way">
@@ -213,7 +324,11 @@ function EditDonateProduct() {
                       </div>
                       <img
                         className="sell-product-content-upload-image-preview-frame-image"
-                        src={URL.createObjectURL(image)}
+                        src={
+                          typeof image === "string"
+                            ? image
+                            : URL.createObjectURL(image)
+                        }
                         alt="upload"
                       />
                     </div>
@@ -224,89 +339,98 @@ function EditDonateProduct() {
 
           <div className="sell-product-content-info-item">
             {/* <Col className="sell-product-content-info-item-group"> */}
-              <Form className="sell-product-content-info-item-input">
-                <Input
-                  Label="ชื่อสินค้า"
-                  placeholder="ระบุชื่อของสินค้า"
-                  value={productName}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductName(e.target.value);
-                  }}
-                />
+            <Form className="sell-product-content-info-item-input">
+              <Input
+                Label="ชื่อสินค้า"
+                placeholder="ระบุชื่อของสินค้า"
+                value={productName}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductName(e.target.value);
+                }}
+              />
 
-                <div className="sell-product-content-info-item-input-options">
-                  <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
-                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" 
+              <div className="sell-product-content-info-item-input-options">
+                <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">
+                  เลือกหมวดหมู่
+                </p>
+                <select
+                  className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
                   // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)} >
-                    {optionsCategory.map(optionsCategory => (
-                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <Input
-                  Label="ราคาสินค้า"
-                  placeholder="ระบุราคาของสินค้า"
-                  value={productPrice}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductPrice(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="รายละเอียดสินค้า"
-                  placeholder="ระบุรายละเอียดของสินค้า"
-                  value={productDetail}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductDetail(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="ค่าจัดส่ง"
-                  placeholder="ระบุค่าจัดส่ง"
-                  value={shippingCost}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setShippingCost(e.target.value);
-                  }}
-                />
-                </Form>
-                <div className="sell-product-content-info-item-input-button-group">
-                <Link
-                  className="btn-small-secondary kanit-paragraphMedium"
-                  style={{ textDecoration: "none" }}
-                  to="/"
+                  onChange={(e) => setCategoryId(e.target.value)}
                 >
-                  ยกเลิก
-                </Link>
-                {selectedImages.length > 10 ? (
-                  <Link
-                    className="btn-small-primary-disabled kanit-paragraphMedium w-100"
-                    // disabled={true}
-                    style={{ textDecoration: "none" }}
-                  >
-                    รูปภาพเกินกำหนด
-                  </Link>
-                ) : (
-                  <Link
-                    className="btn-small-primary kanit-paragraphMedium"
-                    // onClick={() => {
-                    //   console.log(selectedImages), "ddd";
-                    // }}
-                    onClick={addProductForm}
-                    style={{ textDecoration: "none" }}
-                    to="/donatestate"
-                  >
-                    บันทึก
-                  </Link>
-                )}
+                  {optionsCategory.map((optionsCategory) => (
+                    <option
+                      key={optionsCategory.value}
+                      value={optionsCategory.value}
+                    >
+                      {optionsCategory.label}
+                    </option>
+                  ))}
+                </select>
               </div>
+              <Input
+                Label="ราคาสินค้า"
+                placeholder="ระบุราคาของสินค้า"
+                value={productPrice}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductPrice(e.target.value);
+                }}
+              />
+              <Input
+                Label="รายละเอียดสินค้า"
+                placeholder="ระบุรายละเอียดของสินค้า"
+                value={productDetail}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductDetail(e.target.value);
+                }}
+              />
+              <Input
+                Label="ค่าจัดส่ง"
+                placeholder="ระบุค่าจัดส่ง"
+                value={shippingCost}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setShippingCost(e.target.value);
+                }}
+              />
+            </Form>
+            <div className="sell-product-content-info-item-input-button-group">
+              <Link
+                className="btn-small-secondary kanit-paragraphMedium"
+                style={{ textDecoration: "none" }}
+                to="/"
+              >
+                ยกเลิก
+              </Link>
+              {selectedImages.length > 10 ? (
+                <Link
+                  className="btn-small-primary-disabled kanit-paragraphMedium w-100"
+                  // disabled={true}
+                  style={{ textDecoration: "none" }}
+                >
+                  รูปภาพเกินกำหนด
+                </Link>
+              ) : (
+                <Link
+                  className="btn-small-primary kanit-paragraphMedium"
+                  // onClick={() => {
+                  //   console.log(selectedImages), "ddd";
+                  // }}
+                  onClick={addProductForm}
+                  style={{ textDecoration: "none" }}
+                  to="/donatestate"
+                >
+                  บันทึก
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

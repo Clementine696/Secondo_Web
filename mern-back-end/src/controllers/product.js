@@ -451,6 +451,27 @@ exports.searchProduct = async (req, res) => {
     
 }
 
+
+// exports.buyProduct = async (req, res) => {
+//     User.findOne({ _id: req.user._id })
+// }
+
+	// historys: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'Product'
+	// 		},
+	// 	address: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Address'
+	// 		},
+	// 	payment: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Payment'
+	// 		},
+	// 	pay_date: String,
+	// }],
+
 // router.get("/s/:keyword", function(req, res){
 // 	let search = req.params.keyword;
 // 	console.log(search);

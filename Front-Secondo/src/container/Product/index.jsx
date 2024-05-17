@@ -112,7 +112,7 @@ function Product() {
   }
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
-  console.log(productDetail.productName);
+  // console.log(productDetail.productName);
   let spec = [];
   // if(product.productDetails.specifications){
   //   spec = product.productDetails.specifications.split(",")
@@ -214,9 +214,8 @@ function Product() {
 
               <Row className="product-price-cc">
                 <Col className="kanit-Display-Medium price">
-                  {product.productDetails.price}
+                  {product.productDetails.price} บาท
                   {/* {productDetail[0].productPrice} */}
-                  บาท
                 </Col>
                 <Col className="kanit-Display-Medium cc">
                   {productDetail[0].productCredit} CO₂ Credit

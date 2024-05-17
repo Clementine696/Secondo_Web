@@ -87,22 +87,22 @@ const items = [
 ];
 
 //ฝากใส่ Link หน้า Edit
-items.forEach((item) => {
-  switch (item.status.name) {
-    case "มีการเสนอขาย":
-      item.icons = [useralert, chevronRight];
-      item.Link = ["/offer/sell", "/account/shippingstatus/buyinfo"];
-      break;
-    case "รอยืนยันสินค้า":
-      item.icons = [chevronRight];
-      item.Link = ["/account/shippingstatus/confirmrecieve"];
-      break;
-    default:
-      item.icons = chevronRight;
-      item.Link = ["/account/shippingstatus/buyinfo"];
-      break;
-  }
-});
+// items.forEach((item) => {
+//   switch (item.status.name) {
+//     case "มีการเสนอขาย":
+//       item.icons = [useralert, chevronRight];
+//       item.Link = ["/offer/sell", "/account/shippingstatus/buyinfo"];
+//       break;
+//     case "รอยืนยันสินค้า":
+//       item.icons = [chevronRight];
+//       item.Link = ["/account/shippingstatus/confirmrecieve"];
+//       break;
+//     default:
+//       item.icons = chevronRight;
+//       item.Link = ["/account/shippingstatus/buyinfo"];
+//       break;
+//   }
+// });
 // fillter ใน backend
 
 function BuyState() {
@@ -127,6 +127,7 @@ function BuyState() {
           description: buyerProduct.description,
           status: buyerProduct.status,
           createdAt: buyerProduct.createdAt.split("T")[0],
+          icons: [],
           // credit: 0.1,
           // children: category.children.length > 0 && renderCategories(category.children)
         });
@@ -139,6 +140,40 @@ function BuyState() {
   const itemBuyProduct = userBuyerProducts
     ? renderUserBuyer(userBuyerProducts)
     : [];
+
+  itemBuyProduct.forEach((item) => {
+    switch (item.status) {
+      case "มีการเสนอขาย":
+        item.icons = [useralert, chevronRight];
+        item.Link = [
+          "/offer/sell/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      case "รอยืนยันสินค้า":
+        item.icons = [chevronRight];
+        item.Link = ["/product/buyer/" + item._id + "/p"];
+        break;
+      case "รอการตรวจสอบ":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/buystate/edititem/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      case "Waiting":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/buystate/edititem/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      default:
+        item.icons = chevronRight;
+        item.Link = ["/account/shippingstatus/buyinfo"];
+        break;
+    }
+  });
 
   const [font, setFont] = useState(window.innerWidth < 1200);
 
