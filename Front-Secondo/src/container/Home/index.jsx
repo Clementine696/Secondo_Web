@@ -374,7 +374,7 @@ function Home() {
           <div className="group-card-header-item">
             <div className="group-card-header">
               <div className="group-card-header-topic kanit-paragraphBig">
-                สินค้าบริจาคใหม่
+                สินค้าบริจาค
               </div>
               <Link className="group-card-icon-other" to="/allproduct/donate">
                 <div className="group-card-header-other">เพิ่มเติม</div>
@@ -402,7 +402,7 @@ function Home() {
           <div className="group-card-header-item">
             <div className="group-card-header">
               <div className="group-card-header-topic kanit-paragraphBig">
-                สินค้ารับบริจาค
+                สินค้าขอรับบริจาค
               </div>
               <Link className="group-card-icon-other" to="/allproduct/recieve">
                 <div className="group-card-header-other">เพิ่มเติม</div>
