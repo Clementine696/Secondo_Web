@@ -139,7 +139,7 @@ export const searchProductsByKeyword = (payload) => {
                     productsBuyer,
                     productsDonater,
                     productsReciever
-                 }
+                }
             });
         } catch(error) {
             console.log(error);

@@ -58,6 +58,7 @@ function checkOut() {
     if (addresses && Array.isArray(addresses)) {
       for (let address of addresses) {
         myAddresses.push({
+          // value: '1',
           id: address._id,
           label: address.address_name + " " + address.houseaddress,
           // addressName: "",
@@ -82,7 +83,7 @@ function checkOut() {
   const [openModel, setOpenModel] = useState(false);
 
   const [value, setValue] = useState("");
-  const [addressOption, setAddressOption] = useState([Address]);
+  const [addressOption, setAddressOption] = useState(Address);
 
   const [deliveryOption, setDeliveryOption] = useState([
     {
@@ -116,6 +117,7 @@ function checkOut() {
 
   const handleDeliveryChange = (event) => {
     setSelectedDelivery(event.target.value);
+    console.log(selectedDelivery  )
   };
 
   const handlePaymentChange = (event) => {
@@ -193,9 +195,9 @@ function checkOut() {
                       <input
                         name="addressMethod"
                         type="radio"
-                        value={address.label}
+                        value={address.id}
                         id={address.value}
-                        checked={selectedAddress === address.label}
+                        checked={selectedAddress === address.id}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleAddressChange}
                         onClick={() => setVisibleAddress(false)}
@@ -413,6 +415,7 @@ function checkOut() {
             <CheckoutCreditCard 
               label="ชำระเงิน"
               address = {selectedAddress}
+
             />
           </div>
         </div>

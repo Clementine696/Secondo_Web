@@ -134,14 +134,16 @@ export const getUserproduct = () => {
 
         const res = await axios.get(`/product/getUserProducts`);
         if(res.status === 200){
-            const { productsSeller, productsBuyer, productsDonater, productsReciever } = res.data;
+            const { productsSeller, productsBuyer, productsDonater, productsReciever, orderSeller, orderBuyer } = res.data;
             dispatch({
                 type: userConstants.USER_GET_PRODUCT_SUCCESS,
                 payload: { 
                     productsSeller,
                     productsBuyer,
                     productsDonater,
-                    productsReciever
+                    productsReciever,
+                    orderSeller,
+                    orderBuyer,
                 }
             })
         }else{

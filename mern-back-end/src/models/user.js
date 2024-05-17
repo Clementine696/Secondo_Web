@@ -53,35 +53,80 @@ const userSchema = new mongoose.Schema({
 		},
 	],
 
-	payments: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Payment'
-		},
-	],
+	// payments: [
+	// 	{
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Payment'
+	// 	},
+	// ],
 
-	carts: [{
-		product: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Product'
-			},
-		quantity: Number
-	}],
+	// carts: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'Product'
+	// 		},
+	// 	quantity: Number
+	// }],
 
-	historys: [{
-		product: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Product'
-			},
-		address: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Address'
-			},
-        product_type: String,
-        price: Number,
-        shipping: String,
-		pay_date: String,
-	}],
+	// historysSeller: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'ProductSeller'
+	// 		},
+	// 	address: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Address'
+	// 		},
+    //     price: Number,
+    //     shipping: String,
+	// 	pay_date: String,
+	// }],
+    // historysBuyer: [{
+	// 	ref_buyer_product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'ProductBuyer'
+	// 		},
+    //     your_product: {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: 'ProductSeller'
+    //     },
+	// 	// address: {
+	// 	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	// 	ref: 'Address'
+    //     // },
+    //     // price: Number,
+    //     // shipping: String,
+	// 	// pay_date: String,
+	// }],
+    // historysDonater: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'ProductDonate'
+	// 		},
+	// 	address: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Address'
+	// 		},
+    //     text_request: {
+            
+    //     }
+    //     price: Number,
+    //     shipping: String,
+	// 	pay_date: String,
+	// }],
+    // historysRequest: [{
+	// 	product: {
+	// 			type: mongoose.Schema.Types.ObjectId,
+	// 			ref: 'ProductRequest'
+	// 		},
+	// 	address: {
+	// 		type: mongoose.Schema.Types.ObjectId,
+	// 		ref: 'Address'
+	// 		},
+    //     price: Number,
+    //     shipping: String,
+	// 	pay_date: String,
+	// }],
     
 }, { timestamps: true });
 

@@ -63,7 +63,7 @@ export default (state = initialState, action) => {
                 searchProductSeller: action.payload.productsSeller,
                 searchProductBuyer: action.payload.productsBuyer,
                 searchProductDonater: action.payload.productsDonater,
-                searchProductRequest: action.payload.productsReciever
+                searchProductRequest: action.payload.productsReciever,
             }
             break;
         case productConstants.GET_SEARCH_PRODUCT_FAILURE:

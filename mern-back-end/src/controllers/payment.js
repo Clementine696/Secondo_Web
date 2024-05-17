@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const Address = require('../models/address')
 const ProductSeller = require('../models/productSeller')
+const orderSeller = require('../models/orderSeller')
+
 const ProductBuyer = require('../models/productBuyer')
 const ProductDonate = require('../models/productDonate')
 const ProductRequest = require('../models/productRequest')
@@ -58,18 +60,23 @@ exports.sellerCheckout = (req, res) => {
                                 .exec()
                                 .then((address) => {
                                     if(address){
-                                        const history = {
-                                            product_type: 'Seller',
-                                            product,
+                                        const order = new orderSeller ({
+                                            user_owner: product.createBy,
+                                            user_customer: user,
+                                            product: product,
                                             address,
                                             price: body.price,
-                                            shipping: body.shipping
-                                        }
-                                        user.historys.push(history);
-                                        user.save();
-        
-                                        // res.status(201).json({ history });
-                                        return res.status(201).json({ history });
+                                            shipping: body.shipping,
+                                            pay_date: Date()
+                                        })
+                                        order.save().then(order => {
+                                            if(order){
+                                                res.status(201).json({ order });
+                                            }
+                                        }).catch((error) => {
+                                            console.log(error);
+                                            return res.status(400).json({ error })
+                                        });
                                         
                                     }
                                 }).catch((error) => {

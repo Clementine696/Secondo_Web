@@ -112,6 +112,7 @@ function BuyState() {
   }, []);
   const user = useSelector((state) => state.user);
   const userBuyerProducts = user.userBuyerProducts;
+  const orderBuyer = user.orderBuyer;
   // console.log(userSellerProducts)
   const renderUserBuyer = (buyerProducts) => {
     let userBuy = [];
@@ -137,11 +138,75 @@ function BuyState() {
     }
   };
 
+  const renderUserOrderBuyer = (orderBuyers) => {
+    let orderUserBuy = [];
+    if (orderBuyers && Array.isArray(orderBuyers)) {
+      for (let orderBuyer of orderBuyers) {
+        orderUserBuy.push({
+          _id: orderBuyer.product._id,
+          slug: orderBuyer.product.slug,
+          img: orderBuyer.product.productPictures[0].img,
+          name: orderBuyer.product.name,
+          price: orderBuyer.product.price,
+          carbonCredits: orderBuyer.product.carbonCredits,
+          description: orderBuyer.product.description,
+          status: orderBuyer.product.status,
+          createdAt: orderBuyer.createdAt.split("T")[0],
+          icons: [],
+          // credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+        // console.log(product)
+      }
+      return orderUserBuy;
+    }
+  };
+
   const itemBuyProduct = userBuyerProducts
     ? renderUserBuyer(userBuyerProducts)
     : [];
 
+  const orderBuyProduct = orderBuyer
+  ? renderUserOrderBuyer(orderBuyer)
+  : [];
+
+  console.log(orderBuyProduct)
+
   itemBuyProduct.forEach((item) => {
+    switch (item.status) {
+      case "มีการเสนอขาย":
+        item.icons = [useralert, chevronRight];
+        item.Link = [
+          "/offer/sell/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      case "รอยืนยันสินค้า":
+        item.icons = [chevronRight];
+        item.Link = ["/product/buyer/" + item._id + "/p"];
+        break;
+      case "รอการตรวจสอบ":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/buystate/edititem/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      case "Waiting":
+        item.icons = [edit, chevronRight];
+        item.Link = [
+          "/buystate/edititem/" + item._id,
+          "/product/buyer/" + item._id + "/p",
+        ];
+        break;
+      default:
+        item.icons = chevronRight;
+        item.Link = ["/account/shippingstatus/buyinfo"];
+        break;
+    }
+  });
+
+  orderBuyProduct.forEach((item) => {
     switch (item.status) {
       case "มีการเสนอขาย":
         item.icons = [useralert, chevronRight];
@@ -242,6 +307,70 @@ function BuyState() {
             </div>
 
             {itemBuyProduct.map((item, index) => (
+              <div className={`data-table ${resizeFontClass}`} key={index}>
+                <p className="data-item date-col">{item.createdAt}</p>
+
+                <div className="data-item desc-col">
+                  <img
+                    src={item.img ? generatePublicUrl(item.img) : ""}
+                    className="pic-product-table"
+                  ></img>
+                  <div className="product-name-desc-status">
+                    <p className="kanit-paragraphMedium product-name">
+                      {item.name}
+                    </p>
+                    <p className="kanit-paragraphSmall product-desc">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="data-item status-col">
+                  <div className="product-status-time">
+                    <p className="kanit-paragraphMedium">{item.status}</p>
+                    <p className="status-time kanit-paragraphSmall">
+                      {/* {item.status.time} */}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="data-item point-col">{item.carbonCredits}</p>
+
+                <p className="data-item price-col">{item.price}</p>
+
+                <div className="data-item func-col">
+                  {Array.isArray(item.icons) &&
+                    item.icons.map((icon, iconIndex) => (
+                      <Link
+                        key={iconIndex}
+                        className="touch-point"
+                        to={item.Link[iconIndex]}
+                      >
+                        <img
+                          className="func-icon"
+                          src={icon}
+                          alt={`icon-${iconIndex}`}
+                        />
+                      </Link>
+                    ))}
+                  {!Array.isArray(item.icons) && (
+                    <Link
+                      key="chevronRight"
+                      className="touch-point"
+                      to="/account/shippingstatus/buyinfo"
+                    >
+                      <img
+                        className="func-icon"
+                        src={chevronRight}
+                        alt={`icon`}
+                      />
+                    </Link>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {orderBuyProduct.map((item, index) => (
               <div className={`data-table ${resizeFontClass}`} key={index}>
                 <p className="data-item date-col">{item.createdAt}</p>
 

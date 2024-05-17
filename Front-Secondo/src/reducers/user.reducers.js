@@ -9,7 +9,9 @@ const initState = {
     userSellerProducts: [],
     userBuyerProducts: [],
     userDonateProducts: [],
-    userRequestProducts: []
+    userRequestProducts: [],
+    orderSeller: [],
+    orderBuyer: [],
 }
 
 export default (state = initState, action) => {
@@ -72,6 +74,8 @@ export default (state = initState, action) => {
                 userBuyerProducts: action.payload.productsBuyer,
                 userDonateProducts: action.payload.productsDonater,
                 userRequestProducts: action.payload.productsReciever,
+                orderSeller: action.payload.orderSeller,
+                orderBuyer: action.payload.orderBuyer,
             }
             break;
         case userConstants.USER_GET_PRODUCT_FAILURE:

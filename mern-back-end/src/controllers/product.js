@@ -2,9 +2,12 @@ const ProductSeller = require('../models/productSeller')
 const ProductBuyer = require('../models/productBuyer')
 const ProductDonate = require('../models/productDonate')
 const ProductRequest = require('../models/productRequest')
+const User = require('../models/user');
 const shortid = require('shortid')
 const slugify = require('slugify')
-const Category = require('../models/category')
+const Category = require('../models/category');
+const OrderSeller = require('../models/orderSeller');
+const OrderBuyer = require('../models/orderBuyer');
 
 // Seller API
 exports.createProductSeller = (req, res) => {
@@ -405,11 +408,50 @@ exports.getUserProducts = async (req, res) => {
         return product.createBy;
     });
 
+    let orderSeller = await OrderSeller.find({})
+                                        .populate({
+                                            path: 'user_owner',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    orderSeller = orderSeller.filter(function(product) {
+    return product.user_owner;
+    });
+
+    let orderBuyer = await OrderSeller.find({})
+                                        .populate({ path: 'product' })
+                                        .populate({
+                                            path: 'user_customer',
+                                            match: {
+                                                _id: id
+                                            }
+                                        })
+                                        .exec();
+    orderBuyer = orderBuyer.filter(function(product) {
+    return product.user_customer;
+    });
+
+    // User.findOne({ _id: req.user._id })
+    // // .populate({ path: 'productSeller' })
+    // // .populate({ path: 'address'})
+    //     .then((user)=>{
+    //         if(user){
+    //             console.log(user.addresses)
+    //             res.status(201).json({ historys: user.historys })
+    //         }else{
+    //             return res.status(400).json({message: 'Something went wrong'});
+    //         }
+    //     })
+
     res.status(200).json({ 
         productsSeller,
         productsBuyer,
         productsDonater,
-        productsReciever
+        productsReciever,
+        orderSeller,
+        orderBuyer
      });
 }
 
@@ -451,35 +493,3 @@ exports.searchProduct = async (req, res) => {
     
 }
 
-
-// exports.buyProduct = async (req, res) => {
-//     User.findOne({ _id: req.user._id })
-// }
-
-	// historys: [{
-	// 	product: {
-	// 			type: mongoose.Schema.Types.ObjectId,
-	// 			ref: 'Product'
-	// 		},
-	// 	address: {
-	// 		type: mongoose.Schema.Types.ObjectId,
-	// 		ref: 'Address'
-	// 		},
-	// 	payment: {
-	// 		type: mongoose.Schema.Types.ObjectId,
-	// 		ref: 'Payment'
-	// 		},
-	// 	pay_date: String,
-	// }],
-
-// router.get("/s/:keyword", function(req, res){
-// 	let search = req.params.keyword;
-// 	console.log(search);
-// 	Product.find({name: {$regex: search, $options: 'i'}}).exec(function(err, allProducts){
-// 		if(err){
-// 			console.log(err);
-// 		} else{
-// 			res.render("product/index.ejs",{products: allProducts});
-// 		}
-// 	});
-// });
