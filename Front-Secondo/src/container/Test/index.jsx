@@ -100,6 +100,7 @@ function Test() {
           desc="ชำระเงินเข้าสู่ระบบแล้ว"
           img={success}
           open={openModel}
+          onClose={() => setOpenModel(false)}
         />
 
         <ModalSale

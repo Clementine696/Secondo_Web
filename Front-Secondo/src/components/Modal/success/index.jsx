@@ -10,7 +10,7 @@ const ModalS = (props) => {
       const timer = setTimeout(() => {
         setIsVisible(false);
         props.onClose(); 
-      }, props.closeDelay || 3000);
+      }, props.closeDelay || 13000);
 
       return () => clearTimeout(timer);
     } else {
@@ -27,7 +27,7 @@ const ModalS = (props) => {
             <img src={props.img} alt="success" />
             <div className="text-title-desc-modal">
               <div className="kanit-paragraphBig">{props.label}</div>
-              <p className="kanit-paragraphSmall">{props.desc}</p>
+              <div className="kanit-paragraphSmall">{props.desc}</div>
             </div>
           </div>
         </div>

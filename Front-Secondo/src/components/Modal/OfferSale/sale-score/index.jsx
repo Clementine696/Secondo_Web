@@ -18,7 +18,7 @@ const ModalSale = (props) => {
           <img src={props.img} className="tag-icon" />
           <div className="text-title-desc-modal">
             <div className="kanit-paragraphBig">{props.label}</div>
-            <p className="kanit-paragraphSmall">{props.desc}</p>
+            <div className="kanit-paragraphSmall">{props.desc}</div>
           </div>
 
           <div className="button-pop kanit-paragraphtextMedium">

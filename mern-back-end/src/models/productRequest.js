@@ -19,9 +19,9 @@ const productRequestSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    shippingCost: {
-        type: Number,
-    },
+    // shippingCost: {
+    //     type: Number,
+    // },
     productPictures: [
         { img: {type: String} }
     ],
