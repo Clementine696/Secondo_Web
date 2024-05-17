@@ -25,8 +25,8 @@ import ModalCancle from "../../../components/Modal/Cancle";
 
 const tabItems = [
   { label: "ที่อยู่จัดส่ง", value: 1 },
-  { label: "วิธีการจ่ายเงิน", value: 2 },
-  { label: "ถอนเงิน", value: 3 },
+  // { label: "วิธีการจ่ายเงิน", value: 2 },
+  // { label: "ถอนเงิน", value: 3 },
 ];
 
 let Address = [
@@ -1042,7 +1042,7 @@ function setting() {
             </div>
           </div>
 
-          <div className={tab === 2 ? "active-content" : "content"}>
+          {/* <div className={tab === 2 ? "active-content" : "content"}>
             <div className="setting-tab-group">
               <div className="background-data-table">
                 <div className="setting-title-add">
@@ -1565,9 +1565,9 @@ function setting() {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
 
-          <div className={tab === 3 ? "active-content" : "content"}>
+          {/* <div className={tab === 3 ? "active-content" : "content"}>
             <div className="setting-tab-group">
               <div className="background-data-table">
                 <div className="setting-title-add">
@@ -1795,7 +1795,7 @@ function setting() {
                 </div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
         {/* {addresses.map((index) => (
           <ModalCancle
