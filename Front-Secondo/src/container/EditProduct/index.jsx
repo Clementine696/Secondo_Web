@@ -13,6 +13,7 @@ import RedCancel from "../../icon/close.png";
 
 import "./index.css";
 import { Link, useLocation } from "react-router-dom";
+import Textarea from "../../components/UI/Input/Textarea";
 
 let productInfo = [
   {
@@ -380,7 +381,7 @@ function EditProduct() {
                   setProductPrice(e.target.value);
                 }}
               />
-              <Input
+              <Textarea
                 Label="รายละเอียดสินค้า"
                 placeholder="ระบุรายละเอียดของสินค้า"
                 value={productDetail}

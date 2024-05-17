@@ -14,6 +14,7 @@ import RedCancel from "../../icon/close.png";
 
 import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
+import Textarea from "../../components/UI/Input/Textarea";
 
 function SellProduct() {
   const [openModel, setOpenModel] = useState(false);
@@ -244,79 +245,73 @@ function SellProduct() {
                 <select
                   className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
                   // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  onChange={(e) => setCategoryId(e.target.value)} >
+                    {optionsCategory.map(optionsCategory => (
+                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
+                    ))}
+                  </select>
+                </div>
+                <Textarea
+                  Label="ราคาสินค้า"
+                  placeholder="ระบุราคาของสินค้า"
+                  value={productPrice}
+                  type="text"
+                  errorMessage=""
+                  onChange={(e) => {
+                    setProductPrice(e.target.value);
+                  }}
+                />
+                <Input
+                  Label="รายละเอียดสินค้า"
+                  placeholder="ระบุรายละเอียดของสินค้า"
+                  value={productDetail}
+                  type="text"
+                  errorMessage=""
+                  onChange={(e) => {
+                    setProductDetail(e.target.value);
+                  }}
+                />
+                <Input
+                  Label="ค่าจัดส่ง"
+                  placeholder="ระบุค่าจัดส่ง"
+                  value={shippingCost}
+                  type="text"
+                  errorMessage=""
+                  onChange={(e) => {
+                    setShippingCost(e.target.value);
+                  }}
+                />
+                </Form>
+                <div className="sell-product-content-info-item-input-button-group">
+                <Link
+                  className="btn-small-secondary kanit-paragraphMedium"
+                  style={{ textDecoration: "none" }}
+                  to="/"
                 >
-                  {optionsCategory.map((optionsCategory) => (
-                    <option
-                      key={optionsCategory.value}
-                      value={optionsCategory.value}
-                    >
-                      {optionsCategory.label}
-                    </option>
-                  ))}
-                </select>
+                  ยกเลิก
+                </Link>
+                {selectedImages.length > 15 ? (
+                  <Link
+                    className="btn-small-primary-disabled kanit-paragraphMedium w-100"
+                    // disabled={true}
+                    style={{ textDecoration: "none" }}
+                  >
+                    รูปภาพเกินกำหนด
+                  </Link>
+                ) : (
+                  <Link
+                    className="btn-small-primary kanit-paragraphMedium"
+                    // onClick={() => {
+                    //   console.log(selectedImages), "ddd";
+                    // }}
+                    onClick={addProductForm}
+                    style={{ textDecoration: "none" }}
+                    to="/sellstate"
+                  >
+                    ลงขาย
+                  </Link>
+                )}
               </div>
-              <Input
-                Label="ราคาสินค้า"
-                placeholder="ระบุราคาของสินค้า"
-                value={productPrice}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setProductPrice(e.target.value);
-                }}
-              />
-              <Input
-                Label="รายละเอียดสินค้า"
-                placeholder="ระบุรายละเอียดของสินค้า"
-                value={productDetail}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setProductDetail(e.target.value);
-                }}
-              />
-              <Input
-                Label="ค่าจัดส่ง"
-                placeholder="ระบุค่าจัดส่ง"
-                value={shippingCost}
-                type="text"
-                errorMessage=""
-                onChange={(e) => {
-                  setShippingCost(e.target.value);
-                }}
-              />
-            </Form>
-            <div className="sell-product-content-info-item-input-button-group">
-              <Link
-                className="btn-small-secondary kanit-paragraphMedium"
-                style={{ textDecoration: "none" }}
-                to="/"
-              >
-                ยกเลิก
-              </Link>
-              {selectedImages.length > 15 ? (
-                <Link
-                  className="btn-small-primary-disabled kanit-paragraphMedium w-100"
-                  // disabled={true}
-                  style={{ textDecoration: "none" }}
-                >
-                  รูปภาพเกินกำหนด
-                </Link>
-              ) : (
-                <Link
-                  className="btn-small-primary kanit-paragraphMedium"
-                  // onClick={() => {
-                  //   console.log(selectedImages), "ddd";
-                  // }}
-                  onClick={addProductForm}
-                  style={{ textDecoration: "none" }}
-                  to="/sellstate"
-                >
-                  ลงขาย
-                </Link>
-              )}
-            </div>
           </div>
         </div>
       </div>

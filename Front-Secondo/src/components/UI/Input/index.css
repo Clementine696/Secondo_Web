@@ -21,6 +21,16 @@
     border: 1px solid var(--Outline-color);
 }
 
+.text-field-textarea {
+    display: flex;
+    height: 128px;
+    padding: 16px;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid var(--Outline-color);
+}
+
 .text-field-default:focus-within {
     border: 1px solid var(--Poutline-color);
 }
