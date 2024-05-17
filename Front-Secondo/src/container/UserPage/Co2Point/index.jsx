@@ -6,20 +6,41 @@ import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
 import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
-import ItemCard from "../../../components/UI/ItemCard";
+import VoucherCard from "../../../components/UI/ItemCard/CarbonCredits";
 
 import info from "../../../icon/info.png";
 import starbucks from "../../../../public/images/starbucks.png";
 
-import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
+import { isUserLoggedIn, payCarbonCredits, updateProfilePicture } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
 
+let myItemVoucher = [
+  {
+    img: "https://livecards.net/pl/starbucks-gift-card-40-usd-us-74176.jpg",
+    title: "บัตรของขวัญสตาร์บัค 100 บาท",
+    price: "1,000,000",
+  },
+];
+
+let itemVoucher = [
+  {
+    img: "https://filebroker-cdn.lazada.co.th/kf/Scd6e0569b74b4fcbb972b44f2a77c0015.jpg",
+    title: "บัตรของขวัญโลตัส 100 บาท",
+    price: "1,000,000",
+  },
+  // {
+  //   img: "https://cf.shopee.co.th/file/th-11134207-7r98o-ll0vvzwc01d8d5",
+  //   title: "บัตรของขวัญสตาร์บัค 500 บาท",
+  //   price: "10000",
+  // },
+];
+
 function Co2Point() {
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
   const userProfileInfo = auth.user;
-  console.log(userProfileInfo)
+  console.log(userProfileInfo);
 
   let userImage = auth.user.profilePicture;
 
@@ -42,7 +63,6 @@ function Co2Point() {
   const [updatingImage, setUpdatingImage] = useState(false);
 
   const updatePic = (event) => {
-
     const selectedImage = event.target.files[0];
     // console.log(selectedImage)
 
@@ -64,6 +84,8 @@ function Co2Point() {
       setUpdatingImage(false);
     }
   }, [updatingImage, dispatch]);
+
+  // dispatch(payCarbonCredits(itemVoucher));
 
   return (
     <Layout>
@@ -91,9 +113,8 @@ function Co2Point() {
                 โปรไฟล์
               </div>
               <div className="profile-pic-name-button">
-              <div className="profile-picture-img-frame">
+                <div className="profile-picture-img-frame">
                   {userImage ? (
-                  
                     <img
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
@@ -121,7 +142,10 @@ function Co2Point() {
 
                 <div className="profile-name kanit-paragraphMedium">
                   <p>Username : {userProfileInfo.username}</p>
-                  <p>Name : {userProfileInfo.firstName} {userProfileInfo.lastName}</p>
+                  <p>
+                    Name : {userProfileInfo.firstName}{" "}
+                    {userProfileInfo.lastName}
+                  </p>
                 </div>
               </div>
             </div>
@@ -135,8 +159,16 @@ function Co2Point() {
               </Link>
             </div>
             <div className="card-coupon">
-              <ItemCard />
-              <ItemCard />
+              {myItemVoucher.map((item, index) => (
+                <VoucherCard
+                  key={index}
+                  img={item.img}
+                  title={item.title}
+                  price={item.price}
+                />
+              ))}
+              {/* <voucherCard />
+              <voucherCard /> */}
             </div>
           </div>
 
@@ -150,19 +182,25 @@ function Co2Point() {
 
             <div className="store-coupon-exchange">
               <div className="title-pic">
-                <img src={starbucks} className="picture-store"></img>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNHQ5NRocnX5zgYCGRG9AwSYaKDbjBlkvNJBUuSL-aHw&s" className="picture-store"></img>
 
                 <div className="title-of-coupon">
                   <p className="title-store-cc kanit-paragraphMedium">
                     แลกแต้มกับ Lotus’s
                   </p>
-                  <p className="kanit-H3">1 CC = 1 บาท</p>
+                  {/* <p className="kanit-H3">1 CC = 1 บาท</p> */}
                 </div>
               </div>
 
               <div className="card-coupon">
-                <ItemCard />
-                <ItemCard />
+              {itemVoucher.map((item, index) => (
+                <VoucherCard
+                  key={index}
+                  img={item.img}
+                  title={item.title}
+                  price={item.price}
+                />
+              ))}
               </div>
             </div>
           </div>

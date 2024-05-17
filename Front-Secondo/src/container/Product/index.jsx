@@ -26,6 +26,9 @@ const pathway = [
 
 let productDetail = [
   {
+    createBy: {
+      profilepicture: ""
+    },
     img: [
       // "/images/iPhone_15_Pro_Blue_Titanium_1.png",
       // "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
@@ -35,6 +38,7 @@ let productDetail = [
     ],
     productName: "",
     productSeller: "",
+    productSellerPicture: "",
     province: "",
     productPrice: "",
     productCredit: 20,
@@ -104,6 +108,7 @@ function Product() {
         // ],
         productName: productFromApi.name,
         productSeller: productFromApi.createBy.firstName,
+        productSellerPicture: productFromApi.createBy.profilePicture,
         province: "กรุงเทพ",
         productPrice: productFromApi.price,
         productCredit: 20,
@@ -143,14 +148,18 @@ function Product() {
     }
   };
 
+  const [frameSmallImgs, setFrameSmallImgs] = useState("");
+  const [selectedImg, setSelectedImg] = useState("");
+  const [sellerImage, setSellerImage] = useState("");
+
   useEffect(() => {
     if (product.productDetails.productPictures != null) {
       setSelectedImg(product.productDetails.productPictures[0].img);
+      setSellerImage(product.productDetails.createBy.profilePicture)
     }
   }, [product.productDetails]);
 
-  const [frameSmallImgs, setFrameSmallImgs] = useState("");
-  const [selectedImg, setSelectedImg] = useState("");
+
 
   const handleImgClick = (img) => {
     setSelectedImg(img);
@@ -260,14 +269,20 @@ function Product() {
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
           {/* {product.productDetails.createBy.profilePicture} */}
-            <div
+            {/* <div
               style={{
                 backgroundColor: "black",
                 height: "72px",
                 width: "72px",
                 borderRadius: "48px",
               }}
-            ></div>
+            ></div> */}
+
+            <img
+              // className="profile-card"
+              // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
+              src={sellerImage && sellerImage.length > 0 ? sellerImage : null} alt=""
+            />
 
             <Col className="seller-name-online-button">
               <div className="seller-name-etc">
