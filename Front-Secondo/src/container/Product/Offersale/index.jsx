@@ -19,6 +19,7 @@ import "../../../components/UI/Button/index.css";
 
 import favBold from "../../../icon/like-bold.png";
 import fav from "../../../icon/like.png";
+import chevronRightT from "../../../icon/chevron-right-T.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getBuyerProductDetailsById } from "../../../actions";
@@ -244,65 +245,52 @@ function Productsale() {
               </div>
             </div>
           </div>
-          <div className="product-page-item-details-group-item-description">
-            <div className="product-title-seller-name">
-              <div className="kanit-paragraphMedium product-title">
-                {product.productDetails.name}
-              </div>
-              <Link className="seller-product" to="#seller">
-                <div className="kanit-paragraphSmall">
-                  รับซื้อโดย &nbsp;{" "}
-                  {product.productDetails.createBy
-                    ? product.productDetails.createBy.firstName
-                    : null}
+
+          <div className="product-right-content">
+            <div className="product-page-item-details-group-item-description">
+              <div className="product-title-seller-name">
+                <div className="kanit-paragraphMedium product-title">
+                  {product.productDetails.name}
                 </div>
-              </Link>
-            </div>
+                <Link className="seller-product" to="#seller">
+                  <div className="kanit-paragraphSmall">
+                    รับซื้อโดย &nbsp;{" "}
+                    {product.productDetails.createBy
+                      ? product.productDetails.createBy.firstName
+                      : null}
+                  </div>
+                </Link>
+              </div>
 
-            {/* <Row className="product-price-cc">
-              <Col className="kanit-Display-Medium price">{productDetail[0].productPrice} บาท</Col>
-              <Col className="kanit-Display-Medium cc">{productDetail[0].productCredit} CO₂ Credit</Col>
-            </Row> */}
+              <div className="divider-horz-2"></div>
 
-            {/* <Row className="product-decription">
-            <div className="kanit-paragraphtextMedium product-detail">
-                ยี่ห้อ :{productDetail[0].brand}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                วันที่ซื้อ :{productDetail[0].buyDate}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                รุ่น :{productDetail[0].model}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                การรับประกัน :{productDetail[0].guarantee}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                ความจุ :{productDetail[0].capacity}
-              </div>
-              <div className="kanit-paragraphtextMedium product-detail">
-                ขนาดหน้าจอ :{productDetail[0].size}
-              </div>
-            </Row> */}
-
-            <div className="divider-horz-2"></div>
-
-            <div className="product-button-section">
-              <button
-                className="btn-small-primary kanit-paragraphMedium"
-                onClick={() => setOpenModelSale(true)}
-              >
-                เสนอขาย
-              </button>
-              <div>
-                <button className="btn-fav" onClick={handleFavClick}>
-                  <img
-                    src={isFav ? favBold : fav}
-                    className={`btn-fav-icon ${fade ? "fade-out" : "fade-in"}`}
-                    alt="Favorite"
-                  />
+              <div className="product-button-section">
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  onClick={() => setOpenModelSale(true)}
+                >
+                  เสนอขาย
                 </button>
+                <div>
+                  <button className="btn-fav" onClick={handleFavClick}>
+                    <img
+                      src={isFav ? favBold : fav}
+                      className={`btn-fav-icon ${
+                        fade ? "fade-out" : "fade-in"
+                      }`}
+                      alt="Favorite"
+                    />
+                  </button>
+                </div>
               </div>
+            </div>
+            <div className="product-page-item-description">
+              <div className="product-description-title kanit-paragraphMedium">
+                รายละเอียดสินค้า
+              </div>
+              <p className="kanit-paragraphtextMedium">
+                {product.productDetails.description}
+              </p>
             </div>
           </div>
         </div>
@@ -367,38 +355,23 @@ function Productsale() {
           </Row> */}
         </div>
 
-        <div className="product-page-item-description">
+        {/* <div className="product-page-item-description">
           <div className="product-description-title kanit-paragraphMedium">
             รายละเอียดสินค้า
           </div>
           <p className="kanit-paragraphtextMedium">
             {product.productDetails.description}
           </p>
-        </div>
+        </div> */}
 
         <div className="group-card-header-item">
           <div className="group-card-header">
             <div className="group-card-header-topic kanit-paragraphBig">
               สินค้าน่าสนใจ
             </div>
-            <Link className="group-card-icon-other">
+            <Link className="group-card-icon-other" to="/allproduct/interest">
               <div className="group-card-header-other">เพิ่มเติม</div>
-              <svg
-                className="icon-arrow-right-24"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                  stroke="#D0C58A"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              <img className="icon-arrow-right-24" src={chevronRightT} />
             </Link>
           </div>
           <HDivider />

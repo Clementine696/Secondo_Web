@@ -14,6 +14,7 @@ import success from "../../../icon/success-check.png";
 
 import favBold from "../../../icon/like-bold.png";
 import fav from "../../../icon/like.png";
+import chevronRightT from "../../../icon/chevron-right-T.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getDonaterProductDetailsById } from "../../../actions";
@@ -351,24 +352,9 @@ function RequireDonate() {
             <div className="group-card-header-topic kanit-paragraphBig">
               สินค้าน่าสนใจ
             </div>
-            <Link className="group-card-icon-other">
+            <Link className="group-card-icon-other" to="/allproduct/interest">
               <div className="group-card-header-other">เพิ่มเติม</div>
-              <svg
-                className="icon-arrow-right-24"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M9 18L13.5858 13.4142C14.3668 12.6332 14.3668 11.3668 13.5858 10.5858L9 6"
-                  stroke="#D0C58A"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              <img className="icon-arrow-right-24" src={chevronRightT} />
             </Link>
           </div>
           <HDivider />

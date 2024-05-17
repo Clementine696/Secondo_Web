@@ -124,7 +124,7 @@ min-width: 86px;
 
 div.desc-col, p.desc-col {
 display: flex;
-min-width: 318px;
+width: 400px;
 flex-direction: row;
 }
 
@@ -137,7 +137,7 @@ color: var(--Soutline-color);
 }
 
 p.point-col {
-min-width: 80px;
+min-width: 100px;
 }
 
 p.price-col {
@@ -150,22 +150,22 @@ min-width: 120px;
 
 @media (min-width: 1500px) {
 div.desc-col, p.desc-col {
-  min-width: 30%;
+  min-width: 318px;
 }
 p.date-col {
   min-width: 142px;
 }
 div.status-col, p.status-col {
-  min-width: 286px;
+  min-width: 200px;
 }
 p.point-col {
   display: flex;
-  min-width: 5%;
+  min-width: 100;
   align-self: stretch;
 }
 p.price-col {
   display: flex;
-  min-width: 5%;
+  min-width: 100;
   align-self: stretch;
 }
 div.func-col, p.func-col {
