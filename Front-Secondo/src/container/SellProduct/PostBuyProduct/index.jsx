@@ -12,6 +12,7 @@ import RedCancel from "../../../icon/close.png";
 
 import "../index";
 import { Link, useNavigate } from "react-router-dom";
+import Textarea from "../../../components/UI/Input/Textarea";
 
 function PostBuyProduct() {
 
@@ -256,7 +257,7 @@ function PostBuyProduct() {
                     setProductPrice(e.target.value);
                   }}
                 />
-                <Input
+                <Textarea
                   Label="รายละเอียดสินค้า"
                   placeholder="ระบุรายละเอียดของสินค้า"
                   value={productDetail}

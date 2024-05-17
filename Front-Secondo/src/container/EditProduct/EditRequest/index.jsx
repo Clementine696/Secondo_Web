@@ -13,6 +13,7 @@ import RedCancel from "../../../icon/close.png";
 
 import "../index";
 import { Link, useLocation } from "react-router-dom";
+import Textarea from "../../../components/UI/Input/Textarea";
 
 let productInfo = [
   {
@@ -365,7 +366,7 @@ function EditRequestProduct() {
                     ))}
                   </select>
                 </div>
-                <Input
+                {/* <Input
                   Label="ราคาสินค้า"
                   placeholder="ระบุราคาของสินค้า"
                   value={productPrice}
@@ -374,8 +375,8 @@ function EditRequestProduct() {
                   onChange={(e) => {
                     setProductPrice(e.target.value);
                   }}
-                />
-                <Input
+                /> */}
+                <Textarea
                   Label="รายละเอียดสินค้า"
                   placeholder="ระบุรายละเอียดของสินค้า"
                   value={productDetail}
@@ -385,7 +386,7 @@ function EditRequestProduct() {
                     setProductDetail(e.target.value);
                   }}
                 />
-                <Input
+                {/* <Input
                   Label="ค่าจัดส่ง"
                   placeholder="ระบุค่าจัดส่ง"
                   value={shippingCost}
@@ -394,7 +395,7 @@ function EditRequestProduct() {
                   onChange={(e) => {
                     setShippingCost(e.target.value);
                   }}
-                />
+                /> */}
                 </Form>
                 <div className="sell-product-content-info-item-input-button-group">
                 <Link

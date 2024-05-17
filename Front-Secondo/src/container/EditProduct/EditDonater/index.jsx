@@ -13,6 +13,7 @@ import RedCancel from "../../../icon/close.png";
 
 import "../index";
 import { Link, useLocation } from "react-router-dom";
+import Textarea from "../../../components/UI/Input/Textarea";
 
 let productInfo = [
   {
@@ -370,7 +371,7 @@ function EditDonateProduct() {
                   ))}
                 </select>
               </div>
-              <Input
+              {/* <Input
                 Label="ราคาสินค้า"
                 placeholder="ระบุราคาของสินค้า"
                 value={productPrice}
@@ -379,8 +380,8 @@ function EditDonateProduct() {
                 onChange={(e) => {
                   setProductPrice(e.target.value);
                 }}
-              />
-              <Input
+              /> */}
+              <Textarea
                 Label="รายละเอียดสินค้า"
                 placeholder="ระบุรายละเอียดของสินค้า"
                 value={productDetail}
