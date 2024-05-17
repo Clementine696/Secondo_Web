@@ -26,9 +26,17 @@
     color: var(--Default-text);
 }
 
+/* .desc-popup-sucess {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+} */
+
 .text-title-desc-modal {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: stretch;
     gap: 8px;
 }

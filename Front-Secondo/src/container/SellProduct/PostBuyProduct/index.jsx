@@ -2,11 +2,13 @@ import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 import Layout from "../../../components/Layout";
+import ModalS from "../../../components/Modal/success";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addBuyerProduct } from "../../../actions";
 
+import success from "../../../icon/success-check.png";
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
 
@@ -15,6 +17,19 @@ import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../../components/UI/Input/Textarea";
 
 function PostBuyProduct() {
+  const [openModel, setOpenModel] = useState(false);
+  const [navigateToSellstate, setNavigateToSellstate] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigateToSellstate) {
+      const timer = setTimeout(() => {
+        navigate("/sellstate");
+      }, 5000); // 5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [navigateToSellstate, navigate]);
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -61,17 +76,18 @@ function PostBuyProduct() {
 
   // connect api to save data
   const addProductForm = () => {
-    console.log(productName);
-    console.log(productPrice);
-    console.log(productDetail);
-    console.log(shippingCost);
-    console.log(categoryId);
+    // console.log(productName);
+    // console.log(productPrice);
+    // console.log(productDetail);
+    // console.log(shippingCost);
+    // console.log(categoryId);
     // console.log(selectedImages);
+    setOpenModel(true);
 
-    for (let pic of selectedImages) {
-      console.log("Test")
-      console.log(pic.name)
-    }
+    // for (let pic of selectedImages) {
+    //   console.log("Test")
+    //   console.log(pic.name)
+    // }
     const form = new FormData();
     form.append("name", productName);
     form.append("price", productPrice);
@@ -83,6 +99,8 @@ function PostBuyProduct() {
       form.append("productPicture", pic);
     }
     dispatch(addBuyerProduct(form));
+
+    setNavigateToSellstate(true);
   };
 
   const [value, setValue] = useState('')
@@ -295,30 +313,30 @@ function PostBuyProduct() {
                     รูปภาพเกินกำหนด
                   </Link>
                 ) : (
-                  <Link
+                  <button
                     className="btn-small-primary kanit-paragraphMedium"
                     // onClick={() => {
                     //   console.log(selectedImages), "ddd";
                     // }}
                     onClick={addProductForm}
                     style={{ textDecoration: "none" }}
-                    to="/buystate"
+                    
                   >
                     รับซื้อ
-                  </Link>
+                  </button>
                 )}
               </div>
           </div>
         </div>
       </div>
 
-      {/* <button
-          className="btn-small-primary kanit-paragraphMedium"
-          type="submit"
-          onClick={addProductForm}
-        >
-          ลงขาย
-        </button> */}
+      <ModalS
+        label="การประกาศรับซื้อสำเร็จ"
+        desc="รอการตรวจสอบจากทาง Secondo"
+        img={success}
+        open={openModel}
+        onClose={() => setOpenModel(false)}
+      />
     </Layout>
   );
 }

@@ -336,10 +336,11 @@ function SellProduct() {
       </div>
 
       <ModalS
-        label="ชำระเงินสำเร็จ"
-        desc="ชำระเงินเข้าสู่ระบบแล้ว"
+        label="การประกาศขายสำเร็จ"
+        desc="รอการตรวจสอบจากทาง Secondo"
         img={success}
         open={openModel}
+        onClose={() => setOpenModel(false)}
       />
     </Layout>
   );

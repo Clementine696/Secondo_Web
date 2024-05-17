@@ -2,11 +2,13 @@ import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../../components/UI/Input";
 import Layout from "../../../components/Layout";
+import ModalS from "../../../components/Modal/success";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDonaterProduct } from "../../../actions";
 
+import success from "../../../icon/success-check.png";
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
 
@@ -15,6 +17,19 @@ import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../../components/UI/Input/Textarea";
 
 function PostDonateProduct() {
+  const [openModel, setOpenModel] = useState(false);
+  const [navigateToSellstate, setNavigateToSellstate] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigateToSellstate) {
+      const timer = setTimeout(() => {
+        navigate("/sellstate");
+      }, 5000); // 5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [navigateToSellstate, navigate]);
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -295,30 +310,29 @@ function PostDonateProduct() {
                     รูปภาพเกินกำหนด
                   </Link>
                 ) : (
-                  <Link
+                  <button
                     className="btn-small-primary kanit-paragraphMedium"
                     // onClick={() => {
                     //   console.log(selectedImages), "ddd";
                     // }}
                     onClick={addProductForm}
                     style={{ textDecoration: "none" }}
-                    to="/donatestate"
                   >
                     ลงบริจาค
-                  </Link>
+                  </button>
                 )}
               </div>
           </div>
         </div>
       </div>
 
-      {/* <button
-          className="btn-small-primary kanit-paragraphMedium"
-          type="submit"
-          onClick={addProductForm}
-        >
-          ลงขาย
-        </button> */}
+      <ModalS
+        label="การประกาศบริจาคสำเร็จ"
+        desc="รอการตรวจสอบจากทาง Secondo"
+        img={success}
+        open={openModel}
+        onClose={() => setOpenModel(false)}
+      />
     </Layout>
   );
 }

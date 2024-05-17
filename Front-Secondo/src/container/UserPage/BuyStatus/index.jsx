@@ -418,7 +418,7 @@ function BuyState() {
                       </Link>
                     ))}
                   {!Array.isArray(item.icons) && (
-                    <Link
+                    <button
                       key="chevronRight"
                       className="touch-point"
                       to="/account/shippingstatus/buyinfo"
@@ -428,7 +428,7 @@ function BuyState() {
                         src={chevronRight}
                         alt={`icon`}
                       />
-                    </Link>
+                    </button>
                   )}
                 </div>
               </div>
