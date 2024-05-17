@@ -21,6 +21,7 @@ import ttb from "../../../../public/images/ttb.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addUserAddress, addUserCreditCardPayment } from "../../../actions";
+import ModalCancle from "../../../components/Modal/Cancle";
 
 const tabItems = [
   { label: "ที่อยู่จัดส่ง", value: 1 },
@@ -126,7 +127,7 @@ function setting() {
           addressName: "",
           phone: address.tel,
           // address:
-            // address.houseaddress + address.sub_district + address.district,
+          // address.houseaddress + address.sub_district + address.district,
           address: address.houseaddress,
           subDistrict: address.sub_district,
           district: address.district,
@@ -611,6 +612,16 @@ function setting() {
     editedWithdraw,
   ]);
 
+  const [openModel, setOpenModel] = useState(false);
+
+  useEffect(() => {
+    if (openModel) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openModel]);
+
   return (
     <Layout>
       <div className="user-page">
@@ -702,7 +713,7 @@ function setting() {
                             <p className="kanit-paragraphBig">ที่อยู่จัดส่ง</p>
                             <button
                               className="add-product-user-page btn-small-link-ghost kanit-paragraphMedium"
-                              onClick={() => handleDeleteAddress(index)}
+                              onClick={() => setOpenModel(true)}
                             >
                               ลบ
                             </button>
@@ -864,6 +875,13 @@ function setting() {
                               บันทึก
                             </button>
                           </div>
+                          <ModalCancle
+                            label="ต้องการลบข้อมูลที่อยู่จัดส่งหรือไม่"
+                            desc="กดยืนยันเพื่อลบข้อมูลที่อยู่จัดส่ง"
+                            open={openModel}
+                            onClose={() => setOpenModel(false)}
+                            onConfirm={() => handleDeleteAddress(index)}
+                          />
                         </div>
                       ) : null}
                     </div>
@@ -1779,6 +1797,15 @@ function setting() {
             </div>
           </div>
         </div>
+        {/* {addresses.map((index) => (
+          <ModalCancle
+            label="ต้องการลบข้อมูลที่อยู่จัดส่งหรือไม่"
+            desc="กดยืนยันเพื่อลบข้อมูลที่อยู่จัดส่ง"
+            open={openModel}
+            onClose={() => setOpenModel(false)}
+            onConfirm={() => handleDeleteAddress(index)}
+          />
+        ))} */}
       </div>
     </Layout>
   );
