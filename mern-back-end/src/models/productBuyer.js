@@ -35,7 +35,7 @@ const productBuyerSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: 'Waiting'
+        default: 'รอการตรวจสอบ'
     },
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true},
     createBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},

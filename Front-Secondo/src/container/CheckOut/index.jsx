@@ -112,12 +112,12 @@ function checkOut() {
   const [selectedPayment, setSelectedPayment] = useState("");
   const handleAddressChange = (event) => {
     setSelectedAddress(event.target.value);
-    // console.log(selectedAddress)
+    console.log(selectedAddress)
   };
 
   const handleDeliveryChange = (event) => {
     setSelectedDelivery(event.target.value);
-    console.log(selectedDelivery  )
+    console.log(selectedDelivery)
   };
 
   const handlePaymentChange = (event) => {
@@ -153,7 +153,7 @@ function checkOut() {
                     <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedAddress
                         ? addressOption.find(
-                            (address) => address.label === selectedAddress
+                            (address) => address.id === selectedAddress
                           )?.label
                         : "ที่อยู่จัดส่ง"}
                     </div>
@@ -196,7 +196,7 @@ function checkOut() {
                         name="addressMethod"
                         type="radio"
                         value={address.id}
-                        id={address.value}
+                        id={address.id}
                         checked={selectedAddress === address.id}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleAddressChange}
@@ -225,7 +225,7 @@ function checkOut() {
                     <div className="checkout-page-content-method-address-group-detail-group-desc kanit-paragraphSmall">
                       {selectedDelivery
                         ? deliveryOption.find(
-                            (deliver) => deliver.label === selectedDelivery
+                            (deliver) => deliver.value === selectedDelivery
                           )?.label
                         : "วิธีการจัดส่ง"}
                     </div>
@@ -255,9 +255,9 @@ function checkOut() {
                       <input
                         name="deliveryMethod"
                         type="radio"
-                        value={delivery.label}
-                        id={delivery.id}
-                        checked={selectedDelivery === delivery.id}
+                        value={delivery.value}
+                        id={delivery.value}
+                        checked={selectedDelivery === delivery.value}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
@@ -272,7 +272,7 @@ function checkOut() {
               </div>
             </div>
 
-            <div className="checkout-page-content-method-address">
+            {/* <div className="checkout-page-content-method-address">
               <div className="checkout-page-content-method-address-group">
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
@@ -341,7 +341,7 @@ function checkOut() {
               <div className="checkout-page-content-method-address-line-frame">
                 <div className="checkout-page-content-method-address-line"></div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="checkout-page-content-order">
