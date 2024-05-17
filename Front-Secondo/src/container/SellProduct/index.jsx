@@ -2,11 +2,13 @@ import React from "react";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import Layout from "../../components/Layout";
+import ModalS from "../../components/Modal/success";
 
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSellerProduct } from "../../actions";
 
+import success from "../../icon/success-check.png";
 import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
 
@@ -14,6 +16,7 @@ import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function SellProduct() {
+  const [openModel, setOpenModel] = useState(false);
 
   const category = useSelector((state) => state.category);
   // console.log(category)
@@ -22,15 +25,13 @@ function SellProduct() {
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            // img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+      if (category.parentId == null) {
+        myCategories.push({
+          // img: category.image,
+          label: category.name,
+          value: category._id,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
       }
     }
 
@@ -40,13 +41,13 @@ function SellProduct() {
   // const categoryItem = renderCategories(category.categories)
 
   const [selectedImages, setSelectedImages] = useState([]);
-  
+
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return file
+      return file;
     });
     // setProductPictures([...productPictures, e.target.files[0]]);
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
@@ -60,15 +61,16 @@ function SellProduct() {
 
   // connect api to save data
   const addProductForm = () => {
-    console.log(productName);
-    console.log(productPrice);
-    console.log(productDetail);
-    console.log(shippingCost);
-    console.log(categoryId);
+    // console.log(productName);
+    // console.log(productPrice);
+    // console.log(productDetail);
+    // console.log(shippingCost);
+    // console.log(categoryId);
     // console.log(selectedImages);
+    setOpenModel(true)
 
     for (let pic of selectedImages) {
-      console.log("Test")
+      console.log("Test");
       // console.log(pic.name)
     }
     const form = new FormData();
@@ -84,7 +86,7 @@ function SellProduct() {
     dispatch(addSellerProduct(form));
   };
 
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState("");
   // const optionsCategory = [
   //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
   //   {label: "รองเท้า", value: 2},
@@ -103,7 +105,6 @@ function SellProduct() {
   // };
 
   return (
-    
     <Layout>
       <div className="background-sell-product-page">
         <div className="product-page-path-way">
@@ -224,100 +225,108 @@ function SellProduct() {
 
           <div className="sell-product-content-info-item">
             {/* <Col className="sell-product-content-info-item-group"> */}
-              <Form className="sell-product-content-info-item-input">
-                <Input
-                  Label="ชื่อสินค้า"
-                  placeholder="ระบุชื่อของสินค้า"
-                  value={productName}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductName(e.target.value);
-                  }}
-                />
+            <Form className="sell-product-content-info-item-input">
+              <Input
+                Label="ชื่อสินค้า"
+                placeholder="ระบุชื่อของสินค้า"
+                value={productName}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductName(e.target.value);
+                }}
+              />
 
-                <div className="sell-product-content-info-item-input-options">
-                  <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
-                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" 
+              <div className="sell-product-content-info-item-input-options">
+                <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">
+                  เลือกหมวดหมู่
+                </p>
+                <select
+                  className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
                   // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)} >
-                    {optionsCategory.map(optionsCategory => (
-                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <Input
-                  Label="ราคาสินค้า"
-                  placeholder="ระบุราคาของสินค้า"
-                  value={productPrice}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductPrice(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="รายละเอียดสินค้า"
-                  placeholder="ระบุรายละเอียดของสินค้า"
-                  value={productDetail}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductDetail(e.target.value);
-                  }}
-                />
-                <Input
-                  Label="ค่าจัดส่ง"
-                  placeholder="ระบุค่าจัดส่ง"
-                  value={shippingCost}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setShippingCost(e.target.value);
-                  }}
-                />
-                </Form>
-                <div className="sell-product-content-info-item-input-button-group">
-                <Link
-                  className="btn-small-secondary kanit-paragraphMedium"
-                  style={{ textDecoration: "none" }}
-                  to="/"
+                  onChange={(e) => setCategoryId(e.target.value)}
                 >
-                  ยกเลิก
-                </Link>
-                {selectedImages.length > 15 ? (
-                  <Link
-                    className="btn-small-primary-disabled kanit-paragraphMedium w-100"
-                    // disabled={true}
-                    style={{ textDecoration: "none" }}
-                  >
-                    รูปภาพเกินกำหนด
-                  </Link>
-                ) : (
-                  <Link
-                    className="btn-small-primary kanit-paragraphMedium"
-                    // onClick={() => {
-                    //   console.log(selectedImages), "ddd";
-                    // }}
-                    onClick={addProductForm}
-                    style={{ textDecoration: "none" }}
-                    to="/sellstate"
-                  >
-                    ลงขาย
-                  </Link>
-                )}
+                  {optionsCategory.map((optionsCategory) => (
+                    <option
+                      key={optionsCategory.value}
+                      value={optionsCategory.value}
+                    >
+                      {optionsCategory.label}
+                    </option>
+                  ))}
+                </select>
               </div>
+              <Input
+                Label="ราคาสินค้า"
+                placeholder="ระบุราคาของสินค้า"
+                value={productPrice}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductPrice(e.target.value);
+                }}
+              />
+              <Input
+                Label="รายละเอียดสินค้า"
+                placeholder="ระบุรายละเอียดของสินค้า"
+                value={productDetail}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setProductDetail(e.target.value);
+                }}
+              />
+              <Input
+                Label="ค่าจัดส่ง"
+                placeholder="ระบุค่าจัดส่ง"
+                value={shippingCost}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setShippingCost(e.target.value);
+                }}
+              />
+            </Form>
+            <div className="sell-product-content-info-item-input-button-group">
+              <Link
+                className="btn-small-secondary kanit-paragraphMedium"
+                style={{ textDecoration: "none" }}
+                to="/"
+              >
+                ยกเลิก
+              </Link>
+              {selectedImages.length > 15 ? (
+                <Link
+                  className="btn-small-primary-disabled kanit-paragraphMedium w-100"
+                  // disabled={true}
+                  style={{ textDecoration: "none" }}
+                >
+                  รูปภาพเกินกำหนด
+                </Link>
+              ) : (
+                <Link
+                  className="btn-small-primary kanit-paragraphMedium"
+                  // onClick={() => {
+                  //   console.log(selectedImages), "ddd";
+                  // }}
+                  onClick={addProductForm}
+                  style={{ textDecoration: "none" }}
+                  to="/sellstate"
+                >
+                  ลงขาย
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* <button
-          className="btn-small-primary kanit-paragraphMedium"
-          type="submit"
-          onClick={addProductForm}
-        >
-          ลงขาย
-        </button> */}
+      <ModalS
+        label="ชำระเงินสำเร็จ"
+        desc="ชำระเงินเข้าสู่ระบบแล้ว"
+        img={success}
+        open={openModel}
+      />
     </Layout>
   );
 }

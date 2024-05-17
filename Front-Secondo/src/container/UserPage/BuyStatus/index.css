@@ -119,33 +119,33 @@
 }
 
 p.date-col {
-min-width: 86px;
+  min-width: 96px;
 }
 
 div.desc-col, p.desc-col {
-display: flex;
-width: 400px;
-flex-direction: row;
+  display: flex;
+  width: 400px;
+  flex-direction: row;
 }
 
 div.status-col, p.status-col {
-min-width: 200px;
+  min-width: 184px;
 }
 
 p.status-time {
-color: var(--Soutline-color);
+  color: var(--Soutline-color);
 }
 
 p.point-col {
-min-width: 100px;
+  min-width: 100px;
 }
 
 p.price-col {
-min-width: 104px;
+  min-width: 104px;
 }
 
 div.func-col, p.func-col {
-min-width: 120px;
+  min-width: 120px;
 }
 
 @media (min-width: 1500px) {

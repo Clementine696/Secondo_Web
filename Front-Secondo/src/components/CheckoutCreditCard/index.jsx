@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import Script from "react-load-script";
 import axios from "../../helpers/axios";
 
+import ModalS from "../Modal/success";
+
+import success from "../../icon/success-check.png";
+
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sellerCheckout } from "../../actions";
@@ -9,20 +13,21 @@ import { sellerCheckout } from "../../actions";
 let OmiseCard;
 
 function CreditCard(props) {
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
   const productDetails = product.productDetails;
-  const summaryPrice = productDetails.price + productDetails.shippingCost
+  const summaryPrice = productDetails.price + productDetails.shippingCost;
+
+  const [openModel, setOpenModel] = useState(false);
 
   const buyProductForm = () => {
     const data = {
       item_id: productDetails._id,
       price: summaryPrice,
       address_id: props.address,
-      shipping: props.shipping
-    }
-    dispatch(sellerCheckout(data))
+      shipping: props.shipping,
+    };
+    dispatch(sellerCheckout(data));
     // console.log(productDetails._id);
     // console.log(productDetails.name);
     // console.log(props.address)
@@ -56,25 +61,25 @@ function CreditCard(props) {
 
   const omiseCardHandler = () => {
     OmiseCard.open({
-      amount: (summaryPrice) * 100,
+      amount: summaryPrice * 100,
       onCreateTokenSuccess: async (token) => {
         console.log(token);
         const res = await axios.post(`/payment`, {
           email: "borntodev@gmail.com",
           name: "Borntodev",
-          amount: (summaryPrice) * 100,
+          amount: summaryPrice * 100,
           token: token,
           headers: {
             "Content-Type": "application/json",
           },
         });
         console.log(res);
-        if(res.data.status == 'successful'){
-          console.log('success');
+        if (res.data.status == "successful") {
+          console.log("success");
           buyProductForm();
-          // Popup เด้ง // Nav ไป การซื้อของฉัน
-        }else{
-          console.log('not success');
+          setOpenModel(true);
+        } else {
+          console.log("not success");
         }
       },
       onFormClosed: () => {},
@@ -95,10 +100,22 @@ function CreditCard(props) {
         defer
       />
       <form>
-        <button className="btn-small-primary btn-payment kanit-paragraphMedium" id="credit-card" type="button" onClick={handleClick}>
+        <button
+          className="btn-small-primary btn-payment kanit-paragraphMedium"
+          id="credit-card"
+          type="button"
+          onClick={handleClick}
+        >
           {props.label}
         </button>
       </form>
+      
+      <ModalS
+        label="ชำระเงินสำเร็จ"
+        desc="ชำระเงินเข้าสู่ระบบแล้ว"
+        img={success}
+        open={openModel}
+      />
     </div>
   );
 }
