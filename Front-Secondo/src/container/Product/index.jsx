@@ -268,18 +268,8 @@ function Product() {
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
-          {/* {product.productDetails.createBy.profilePicture} */}
-            {/* <div
-              style={{
-                backgroundColor: "black",
-                height: "72px",
-                width: "72px",
-                borderRadius: "48px",
-              }}
-            ></div> */}
-
             <img
-              // className="profile-card"
+              className="profile-card"
               // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
               src={sellerImage && sellerImage.length > 0 ? sellerImage : null} alt=""
             />

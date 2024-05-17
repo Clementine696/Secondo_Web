@@ -279,8 +279,8 @@ function donateState() {
                     className="pic-product-table"
                   ></img>
                   <div className="product-name-desc-status">
-                    <p className="kanit-paragraphMedium">{item.name}</p>
-                    <p className="kanit-paragraphSmall">{item.description}</p>
+                    <p className="kanit-paragraphMedium product-name">{item.name}</p>
+                    <p className="kanit-paragraphSmall product-desc">{item.description}</p>
                   </div>
                 </div>
 

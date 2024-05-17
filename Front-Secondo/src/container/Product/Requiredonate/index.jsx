@@ -165,11 +165,13 @@ function RequireDonate() {
       product.productDetails.productPictures.length > 0
     ) {
       setSelectedImg(product.productDetails.productPictures[0].img);
+      setSellerImage(product.productDetails.createBy.profilePicture)
     }
   }, [product.productDetails.productPictures]);
 
   const [frameSmallImgs, setFrameSmallImgs] = useState("");
   const [selectedImg, setSelectedImg] = useState("");
+  const [sellerImage, setSellerImage] = useState("");
 
   const handleImgClick = (img) => {
     setSelectedImg(img);
@@ -286,14 +288,11 @@ function RequireDonate() {
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
-            <div
-              style={{
-                backgroundColor: "black",
-                height: "72px",
-                width: "72px",
-                borderRadius: "48px",
-              }}
-            ></div>
+          <img
+              className="profile-card"
+              // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
+              src={sellerImage && sellerImage.length > 0 ? sellerImage : null} alt=""
+            />
 
             <Col className="seller-name-online-button">
               <div className="seller-name-etc">
