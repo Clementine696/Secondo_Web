@@ -77,7 +77,7 @@ function Co2Point() {
           <div className="profile-display">
             <div className="profile-show-detail kanit-paragraphMedium">
               <div className="profile-detail-point">
-                Carbon Credits 96 CO₂ Credit
+                Carbon Credits {auth.user.carbonCredits} CO₂ Credit
               </div>
               {/* <div className="profile-detail-point">
                 เงินที่มีอยู่ 4,000 บาท

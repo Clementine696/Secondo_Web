@@ -6,3 +6,10 @@ export const sellerCheckout = form => {
         console.log(res);
     }
 }
+
+export const payCarbonCredits = form => {
+    return async dispatch => {
+        const res = await axios.post(`/payment/payCarbonCredits`, form)
+        console.log(res);
+    }
+}
