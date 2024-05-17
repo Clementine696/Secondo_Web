@@ -149,7 +149,7 @@ function receiveStatus() {
             name: receiverProduct.name,
             description: receiverProduct.description,
             status: receiverProduct.status,
-            createdAt: receiverProduct.createdAt,
+            createdAt: receiverProduct.createdAt.split("T")[0],
             // credit: 0.1,
             // children: category.children.length > 0 && renderCategories(category.children)
           });

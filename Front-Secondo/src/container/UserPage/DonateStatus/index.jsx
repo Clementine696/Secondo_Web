@@ -151,7 +151,7 @@ function donateState() {
             carbonCredits: donaterProduct.carbonCredits,
             description: donaterProduct.description,
             status: donaterProduct.status,
-            createdAt: donaterProduct.createdAt,
+            createdAt: donaterProduct.createdAt.split("T")[0],
             // credit: 0.1,
             // children: category.children.length > 0 && renderCategories(category.children)
           });
