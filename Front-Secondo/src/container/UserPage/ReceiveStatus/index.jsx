@@ -142,18 +142,19 @@ function receiveStatus() {
     let userReceive = [];
     if (receiverProducts && Array.isArray(receiverProducts)) {
       for (let receiverProduct of receiverProducts) {
-        userReceive.push({
-          _id: receiverProduct._id,
-          slug: receiverProduct.slug,
-          img: receiverProduct.productPictures[0].img,
-          name: receiverProduct.name,
-          description: receiverProduct.description,
-          status: receiverProduct.status,
-          createdAt: receiverProduct.createdAt,
-          // credit: 0.1,
-          // children: category.children.length > 0 && renderCategories(category.children)
-        });
-        // console.log(product)
+          userReceive.push({
+            _id: receiverProduct._id,
+            slug: receiverProduct.slug,
+            img: receiverProduct.productPictures[0].img,
+            name: receiverProduct.name,
+            description: receiverProduct.description,
+            status: receiverProduct.status,
+            createdAt: receiverProduct.createdAt.split("T")[0],
+            icons: [],
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
       }
       return userReceive;
     }
