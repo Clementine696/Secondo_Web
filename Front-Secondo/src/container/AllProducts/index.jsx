@@ -49,7 +49,7 @@ function AllProduct() {
           All Product
         </label>
         {fourItemInterest.map((group, groupIndex) => (
-          <div className="all-group-card" key={`group-${groupIndex}`}>
+          <div className="all-group-card">
             {group.map((item, index) => (
               <ItemCard
                 key={index}

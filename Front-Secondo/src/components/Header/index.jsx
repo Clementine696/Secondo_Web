@@ -142,7 +142,7 @@ function Index() {
   //search
   const [searchKeyword, setSearchKeyword] = useState("");
   //dropdown profile
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);  
 
   let menuRef = useRef();
 
@@ -202,8 +202,9 @@ function Index() {
               placeholder="ค้นหา สินค้าที่คุณสนใจ"
             />
             <Link to={`/search/${searchKeyword}`}>
-              <img src={searchb} className="search-icon" />
+            <img src={searchb} className="search-icon"/>
             </Link>
+            
           </Form>
         </Col>
 
@@ -265,6 +266,8 @@ function Index() {
             {auth.authenticate ? "" : renderNonLoggedInLinks()}
 
             {auth.authenticate ? renderProfileLoggedIn() : ""}
+
+            
 
             {/* <div className="icon-hamburger">
               <svg
