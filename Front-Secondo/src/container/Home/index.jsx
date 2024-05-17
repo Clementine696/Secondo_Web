@@ -251,19 +251,19 @@ function Home() {
 
   // const itemInterest = renderProducts(product.productsSeller); //TODO:
   const itemInterest = product.productsSeller
-    ? renderProducts(product.productsSeller)
+    ? renderProducts(product.productsSeller).slice(-4)
     : [];
 
   const itemBuyer = product.productsBuyer
-    ? renderProducts(product.productsBuyer)
+    ? renderProducts(product.productsBuyer).slice(-4)
     : [];
 
   const itemReceive = product.productsDonater
-    ? renderProductsDonate(product.productsDonater)
+    ? renderProductsDonate(product.productsDonater).slice(-4)
     : [];
 
   const itemDonate = product.productsReciever
-    ? renderProductsDonate(product.productsReciever)
+    ? renderProductsDonate(product.productsReciever).slice(-4)
     : [];
   // console.log(itemInterest)
   return (
