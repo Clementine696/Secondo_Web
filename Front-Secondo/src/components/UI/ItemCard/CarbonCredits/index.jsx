@@ -1,24 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "../index.css";
 
 import { generatePublicUrl } from "../../../../urlConfig";
 import ModalConfirm from "../../../Modal/Confirm";
+import { payCarbonCredits } from "../../../../actions";
 // import { payCarbonCredits } from "../../../../actions";
 
 function VoucherCard(props) {
+  const dispatch = useDispatch();
   const [openModel, setOpenModel] = useState(false);
+  const [carbonCredits, setCarbonCredits] = useState(props.carbon);
 
   useEffect(() => {
-    if (
-      openModel
-    ) {
+    if (openModel) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
   }, [openModel]);
+
+  const buyProductForm = () => {
+    const data = {
+      carboncredits: props.carbon,
+    };
+    dispatch(payCarbonCredits(data));
+    setOpenModel(false);
+    // console.log(data);
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    setCarbonCredits(carbonCredits);
+    console.log(carbonCredits)
+  }, [carbonCredits]);
 
   return (
     <div className="frame-card-item tp-transform">
@@ -53,7 +70,7 @@ function VoucherCard(props) {
           </div>
           <div className="card-item-credit-context">
             <div className="card-item-credit-price pull-left">
-              {props.price} CO₂ Credit
+              {props.carbon} CO₂ Credit
             </div>
             {/* <div className="card-item-credit-carbon pull-right">
             {props.credit} CO₂ Credit
@@ -66,6 +83,7 @@ function VoucherCard(props) {
         desc="กดยืนยันเพื่อแลกใช้ Carbon Credits เป็น Voucher"
         open={openModel}
         onClose={() => setOpenModel(false)}
+        onConfirm={buyProductForm}
       />
     </div>
   );

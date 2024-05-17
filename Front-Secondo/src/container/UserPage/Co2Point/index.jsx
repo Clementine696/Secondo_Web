@@ -19,7 +19,7 @@ let myItemVoucher = [
   {
     img: "https://livecards.net/pl/starbucks-gift-card-40-usd-us-74176.jpg",
     title: "บัตรของขวัญสตาร์บัค 100 บาท",
-    price: "1,000,000",
+    carbon: 1000000,
   },
 ];
 
@@ -27,7 +27,7 @@ let itemVoucher = [
   {
     img: "https://filebroker-cdn.lazada.co.th/kf/Scd6e0569b74b4fcbb972b44f2a77c0015.jpg",
     title: "บัตรของขวัญโลตัส 100 บาท",
-    price: "1,000,000",
+    carbon: 1000000,
   },
   // {
   //   img: "https://cf.shopee.co.th/file/th-11134207-7r98o-ll0vvzwc01d8d5",
@@ -40,6 +40,7 @@ function Co2Point() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const userProfileInfo = auth.user;
+  const myCarbonCredits = auth.user.carbonCredits;
   console.log(userProfileInfo);
 
   let userImage = auth.user.profilePicture;
@@ -87,6 +88,10 @@ function Co2Point() {
 
   // dispatch(payCarbonCredits(itemVoucher));
 
+  useEffect(() => {
+    dispatch(isUserLoggedIn());
+  }, [dispatch]);
+
   return (
     <Layout>
       <div className="user-page">
@@ -99,7 +104,7 @@ function Co2Point() {
           <div className="profile-display">
             <div className="profile-show-detail kanit-paragraphMedium">
               <div className="profile-detail-point">
-                Carbon Credits {auth.user.carbonCredits} CO₂ Credit
+                Carbon Credits {myCarbonCredits} CO₂ Credit
               </div>
               {/* <div className="profile-detail-point">
                 เงินที่มีอยู่ 4,000 บาท
@@ -164,7 +169,7 @@ function Co2Point() {
                   key={index}
                   img={item.img}
                   title={item.title}
-                  price={item.price}
+                  carbon={item.carbon}
                 />
               ))}
               {/* <voucherCard />
@@ -198,7 +203,7 @@ function Co2Point() {
                   key={index}
                   img={item.img}
                   title={item.title}
-                  price={item.price}
+                  carbon={item.carbon}
                 />
               ))}
               </div>

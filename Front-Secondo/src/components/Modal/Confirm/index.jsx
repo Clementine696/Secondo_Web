@@ -2,8 +2,16 @@ import React from "react";
 import Input from "../../../components/UI/Input";
 
 import "../Cancle/index.css";
+import { payCarbonCredits } from "../../../actions";
 
 const ModalConfirm = (props) => {
+  // const buyProductForm = () => {
+  //   const data = {
+  //     carboncredits: props.carbon
+  //   }
+  //   dispatch(payCarbonCredits(data))
+  // };
+
   return (
     <>
       {props.open && (
