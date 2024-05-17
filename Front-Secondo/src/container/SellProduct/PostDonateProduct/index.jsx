@@ -246,7 +246,7 @@ function PostDonateProduct() {
                     ))}
                   </select>
                 </div>
-                <Input
+                {/* <Input
                   Label="ราคาสินค้า"
                   placeholder="ระบุราคาของสินค้า"
                   value={productPrice}
@@ -255,7 +255,7 @@ function PostDonateProduct() {
                   onChange={(e) => {
                     setProductPrice(e.target.value);
                   }}
-                />
+                /> */}
                 <Input
                   Label="รายละเอียดสินค้า"
                   placeholder="ระบุรายละเอียดของสินค้า"

@@ -266,7 +266,7 @@ function PostBuyProduct() {
                     setProductDetail(e.target.value);
                   }}
                 />
-                <Input
+                {/* <Input
                   Label="ค่าจัดส่ง"
                   placeholder="ระบุค่าจัดส่ง"
                   value={shippingCost}
@@ -275,7 +275,7 @@ function PostBuyProduct() {
                   onChange={(e) => {
                     setShippingCost(e.target.value);
                   }}
-                />
+                /> */}
                 </Form>
                 <div className="sell-product-content-info-item-input-button-group">
                 <Link

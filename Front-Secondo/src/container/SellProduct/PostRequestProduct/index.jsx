@@ -246,7 +246,7 @@ function PostRequestProduct() {
                     ))}
                   </select>
                 </div>
-                <Input
+                {/* <Input
                   Label="ราคาสินค้า"
                   placeholder="ระบุราคาของสินค้า"
                   value={productPrice}
@@ -255,7 +255,7 @@ function PostRequestProduct() {
                   onChange={(e) => {
                     setProductPrice(e.target.value);
                   }}
-                />
+                /> */}
                 <Input
                   Label="รายละเอียดสินค้า"
                   placeholder="ระบุรายละเอียดของสินค้า"
@@ -266,7 +266,7 @@ function PostRequestProduct() {
                     setProductDetail(e.target.value);
                   }}
                 />
-                <Input
+                {/* <Input
                   Label="ค่าจัดส่ง"
                   placeholder="ระบุค่าจัดส่ง"
                   value={shippingCost}
@@ -275,7 +275,7 @@ function PostRequestProduct() {
                   onChange={(e) => {
                     setShippingCost(e.target.value);
                   }}
-                />
+                /> */}
                 </Form>
                 <div className="sell-product-content-info-item-input-button-group">
                 <Link
