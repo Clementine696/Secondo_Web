@@ -257,7 +257,7 @@ function checkOut() {
                         type="radio"
                         value={delivery.label}
                         id={delivery.value}
-                        checked={selectedDelivery === delivery.label}
+                        checked={selectedDelivery === delivery.id}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
@@ -415,7 +415,7 @@ function checkOut() {
             <CheckoutCreditCard 
               label="ชำระเงิน"
               address = {selectedAddress}
-
+              shipping = {selectedDelivery}
             />
           </div>
         </div>

@@ -3,17 +3,26 @@ import Script from "react-load-script";
 import axios from "../../helpers/axios";
 
 import "./index.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sellerCheckout } from "../../actions";
 
 let OmiseCard;
 
 function CreditCard(props) {
 
+  const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
   const productDetails = product.productDetails;
   const summaryPrice = productDetails.price + productDetails.shippingCost
 
   const buyProductForm = () => {
+    const data = {
+      item_id: productDetails._id,
+      price: summaryPrice,
+      address_id: props.address,
+      shipping: props.shipping
+    }
+    dispatch(sellerCheckout(data))
     // console.log(productDetails._id);
     // console.log(productDetails.name);
     // console.log(props.address)

@@ -158,6 +158,7 @@ export const getUserproduct = () => {
     }
 }
 
+
 // router.post('/:id/checkoutconfirm', middleware.isLoggedIn, function(req, res){
 // 	User.findById(req.params.id, function(err, foundUser){
 // 		if(err){
