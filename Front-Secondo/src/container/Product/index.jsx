@@ -259,6 +259,7 @@ function Product() {
 
         <div className="seller-detail-in-product">
           <Col className="seller-profile-name">
+          {/* {product.productDetails.createBy.profilePicture} */}
             <div
               style={{
                 backgroundColor: "black",

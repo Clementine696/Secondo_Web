@@ -67,7 +67,7 @@ exports.getProductSellerDetailsById = (req, res) => {
     if(productId){
         ProductSeller.findOne({ _id: productId })
         .populate({ path: 'category', select: '_id name'})
-        .populate({ path: 'createBy', select: '_id firstName'})
+        .populate({ path: 'createBy', select: '_id firstName profilePicture'})
         .exec()
         .then((product) => {
             if(product){
@@ -139,7 +139,7 @@ exports.getProductBuyerDetailsById = (req, res) => {
     if(productId){
         ProductBuyer.findOne({ _id: productId })
         .populate({ path: 'category', select: '_id name'})
-        .populate({ path: 'createBy', select: '_id firstName'})
+        .populate({ path: 'createBy', select: '_id firstName profilePicture'})
         .exec()
         .then((product) => {
             if(product){
@@ -211,7 +211,7 @@ exports.getProductDonaterDetailsById = (req, res) => {
     if(productId){
         ProductDonate.findOne({ _id: productId })
         .populate({ path: 'category', select: '_id name'})
-        .populate({ path: 'createBy', select: '_id firstName'})
+        .populate({ path: 'createBy', select: '_id firstName profilePicture'})
         .exec()
         .then((product) => {
             if(product){
@@ -283,7 +283,7 @@ exports.getProductRecieverDetailsById = (req, res) => {
     if(productId){
         ProductRequest.findOne({ _id: productId })
         .populate({ path: 'category', select: '_id name'})
-        .populate({ path: 'createBy', select: '_id firstName'})
+        .populate({ path: 'createBy', select: '_id firstName profilePicture'})
         .exec()
         .then((product) => {
             if(product){
