@@ -14,22 +14,30 @@ function AllProductInterest() {
 
   const renderProducts = (products) => {
     let myProducts = [];
-    for (let product of products) {
-      myProducts.push({
-        _id: product._id,
-        slug: product.slug,
-        img: product.productPictures,
-        title: product.name,
-        province: "กรุงเทพ",
-        price: product.price,
-        credit: 0.1,
-        // children: category.children.length > 0 && renderCategories(category.children)
-      });
+    if (products && Array.isArray(products)) {
+      for (let product of products) {
+        if (product.verify === true) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
+      }
+      return myProducts;
     }
-    return myProducts;
   };
 
-  const itemInterest = renderProducts(product.products);
+  const itemInterest = product.productsSeller
+    ? renderProducts(product.productsSeller)
+    : [];
 
   //แบ่ง 4
   const fourItemInterest = itemInterest.reduce((acc, curr, index) => {
@@ -40,7 +48,7 @@ function AllProductInterest() {
     acc[fourIndex].push(curr);
     return acc;
   }, []);
-  console.log("List array" ,fourItemInterest);
+  // console.log("List array", fourItemInterest);
 
   return (
     <Layout>
@@ -49,7 +57,7 @@ function AllProductInterest() {
           สินค้าน่าสนใจ
         </label>
         {fourItemInterest.map((group, groupIndex) => (
-          <div className="all-group-card">
+          <div className="all-group-card" key={`group-${groupIndex}`}>
             {group.map((item, index) => (
               <ItemCard
                 key={index}
