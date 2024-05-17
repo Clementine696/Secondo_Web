@@ -256,7 +256,7 @@ function checkOut() {
                         name="deliveryMethod"
                         type="radio"
                         value={delivery.label}
-                        id={delivery.value}
+                        id={delivery.id}
                         checked={selectedDelivery === delivery.id}
                         // onChange={(e) => setValue(e.target.value)}
                         onChange={handleDeliveryChange}

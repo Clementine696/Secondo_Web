@@ -57,7 +57,7 @@ function Index() {
   const dispatch = useDispatch();
   const profilePic = auth.user.profilePicture;
   const userName = auth.user.username;
-  const userCredit = auth.user.credit;
+  const userCredit = auth.user.carbonCredits;
   // console.log(profilePic)
 
   const logout = () => {

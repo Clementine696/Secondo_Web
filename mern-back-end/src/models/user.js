@@ -53,6 +53,9 @@ const userSchema = new mongoose.Schema({
 		},
 	],
 
+    money: { type: Number },
+    carbonCredits: { type: Number},
+
 	// payments: [
 	// 	{
 	// 		type: mongoose.Schema.Types.ObjectId,
