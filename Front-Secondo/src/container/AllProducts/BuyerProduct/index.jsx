@@ -49,7 +49,7 @@ function AllProductBuyer() {
           สินค้ารับซื้อ
         </label>
         {fourItemInterest.map((group, groupIndex) => (
-          <div className="all-group-card">
+          <div className="all-group-card" key={`group-${groupIndex}`}>
             {group.map((item, index) => (
               <ItemCard
                 key={index}

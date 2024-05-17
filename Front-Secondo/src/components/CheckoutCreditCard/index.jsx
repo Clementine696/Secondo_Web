@@ -72,6 +72,7 @@ function CreditCard(props) {
         if(res.data.status == 'successful'){
           console.log('success');
           buyProductForm();
+          // Popup เด้ง // Nav ไป การซื้อของฉัน
         }else{
           console.log('not success');
         }
