@@ -23,9 +23,9 @@ const productBuyerSchema = new mongoose.Schema({
         trim: true
         // max: 5000
     },
-    shippingCost: {
-        type: Number,
-    },
+    // shippingCost: {
+    //     type: Number,
+    // },
     productPictures: [
         { img: {type: String} }
     ],
