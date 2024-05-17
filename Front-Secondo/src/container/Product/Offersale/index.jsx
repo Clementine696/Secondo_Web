@@ -25,7 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBuyerProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
-const Myproduct = [
+let Myproduct = [
   {
     img: productpic,
     label:
@@ -64,9 +64,13 @@ const pathway = [
 function Productsale() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
+  const user = useSelector((state) => state.user);
 
   const location = useLocation();
   const productId = location.pathname.split("/")[3];
+
+
+
   // console.log(_id)
 
   useEffect(() => {
@@ -210,6 +214,30 @@ function Productsale() {
     setSelectedImg(img);
     setFrameSmallImgs(img);
   };
+
+  const renderUserSeller = (produserSellerProductsucts) => {
+    let myProducts = [];
+    if (produserSellerProductsucts && Array.isArray(produserSellerProductsucts)) {
+        for (let product of produserSellerProductsucts) {
+            myProducts.push({
+              _id: product._id,
+              slug: product.slug,
+              img: product.productPictures,
+              title: product.name,
+              province: "กรุงเทพ",
+              price: product.price,
+              credit: product.carbonCredits,
+              // credit: 0.1,
+              // children: category.children.length > 0 && renderCategories(category.children)
+            });
+            // console.log(product)
+      }
+      return myProducts;
+    }
+  };
+
+  user_product = user.userSellerproducts;
+  // Myproduct 
 
   return (
     <Layout>

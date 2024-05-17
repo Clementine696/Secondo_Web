@@ -253,7 +253,7 @@ function donateState() {
               />
               <img src={searchy} className="search-icon-filter"></img>
             </Form>
-            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium">
+            <Link className="add-product-user-page btn-small-secondary kanit-paragraphMedium" to="/donatestate/additem">
               <img src={add} className="add-icon"></img>
               เพิ่มสินค้าบริจาค
             </Link>
