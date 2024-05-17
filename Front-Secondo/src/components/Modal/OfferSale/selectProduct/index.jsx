@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 
 import cancel from "../../../../icon/cancel.png";
+import { getUserproduct } from "../../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../../urlConfig";
 
 const ModalSelectItem = (props) => {
   if (!props.open) return null;
@@ -11,6 +14,39 @@ const ModalSelectItem = (props) => {
     props.onClose();
     // console.log(selectedProduct)
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserproduct());
+  }, []);
+  const user = useSelector((state) => state.user);
+  const userSellerProducts = user.userSellerProducts;
+
+  const renderUserSeller = (sellerProducts) => {
+    let userSell = [];
+    if (sellerProducts && Array.isArray(sellerProducts)) {
+      for (let sellerProduct of sellerProducts) {
+        userSell.push({
+          _id: sellerProduct._id,
+          slug: sellerProduct.slug,
+          img: sellerProduct.productPictures[0].img,
+          name: sellerProduct.name,
+          price: sellerProduct.price,
+          carbonCredits: sellerProduct.carbonCredits,
+          description: sellerProduct.description,
+          status: sellerProduct.status,
+          createdAt: sellerProduct.createdAt.split("T")[0],
+          icons: [],
+        });
+        // console.log(product)
+      }
+      return userSell;
+    }
+  };
+
+  const itemSellProduct = userSellerProducts
+    ? renderUserSeller(userSellerProducts)
+    : [];
 
   return (
     <div className="overlay">
@@ -31,15 +67,15 @@ const ModalSelectItem = (props) => {
             </div>
 
             <div className="product-select-column">
-              {props.products.map((product, index) => (
+              {itemSellProduct.map((item, index) => (
                 <div
                   className="select-list-product kanit-paragraphSmall"
                   key={index}
-                  onClick={() => handleProductSelect(product)}
+                  onClick={() => handleProductSelect(item)}
                 >
-                  <img src={product.img} className="img-product-select" />
-                  <p className="title-product-select">{product.label}</p>
-                  <p className="price-product-select">{product.price}</p>
+                  <img src={item.img ? generatePublicUrl(item.img) : ""} className="img-product-select" />
+                  <p className="title-product-select">{item.name}</p>
+                  <p className="price-product-select">{item.price}</p>
                 </div>
               ))}
             </div>

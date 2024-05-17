@@ -236,7 +236,7 @@ function Productsale() {
     }
   };
 
-  user_product = user.userSellerproducts;
+  // user_product = user.userSellerproducts;
   // Myproduct 
 
   return (
@@ -422,7 +422,7 @@ function Productsale() {
 
       <ModalSale
         label="เสนอขายสินค้า"
-        desc="ซื้อโทรศัพท์ iphone14"
+        // desc="ซื้อโทรศัพท์ iphone14"
         img={tag}
         open={openModelSale}
         onClose={() => setOpenModelSale(false)}

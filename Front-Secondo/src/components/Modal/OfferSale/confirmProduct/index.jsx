@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { generatePublicUrl } from "../../../../urlConfig";
 
 import cancel from "../../../../icon/cancel.png";
 
@@ -18,14 +19,14 @@ const ModalConfirmItem = (props) => {
           <div className="product-confirm">
             <div className="kanit-paragraphBig modal-title">{props.label}</div>
             <div className="product-img-title">
-              <img src={props.img} className="img-product"/>
-              <p className="product-title kanit-paragraphSmall">{props.title}</p>
+              <img src={props.img ? generatePublicUrl(props.img) : ""} className="img-product"/>
+              <p className="product-title kanit-paragraphSmall">{props.name}</p>
             </div>
           </div>
 
           <div className="button-pop kanit-paragraphMedium">
             <button className="btn-small-primary" onClick={props.onClick}>เสนอขาย</button>
-            <button className="btn-small-secondary">ลงขายสินค้าใหม่</button>
+            <button className="btn-small-secondary" >ลงขายสินค้าใหม่</button>
           </div>
         </div>
       </div>
