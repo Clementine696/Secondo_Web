@@ -285,7 +285,7 @@ function PostRequestProduct() {
                 >
                   ยกเลิก
                 </Link>
-                {selectedImages.length > 10 ? (
+                {selectedImages.length > 15 ? (
                   <Link
                     className="btn-small-primary-disabled kanit-paragraphMedium w-100"
                     // disabled={true}
