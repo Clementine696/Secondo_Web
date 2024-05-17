@@ -99,3 +99,19 @@ exports.sellerCheckout = (req, res) => {
             }
         })
 }
+
+exports.payCarbonCredits = (req, res) => {
+    body = req.body;
+    User.findOne({ _id: req.user._id })
+    .then((user)=>{
+        if(user){
+            const NewCarbonCredits = user.carbonCredits - body.carboncredits;
+            user.carbonCredits = NewCarbonCredits;
+            user.save();
+            // console.log(user.addresses)
+            res.status(201).json({ user: user })
+        }else{
+            return res.status(400).json({message: 'Something went wrong'});
+        }
+    })
+}
