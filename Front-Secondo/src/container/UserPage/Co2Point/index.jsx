@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { isUserLoggedIn, payCarbonCredits, updateProfilePicture } from "../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 
 import "./index.css";
 import "../../../styles.css";
@@ -8,12 +11,9 @@ import Layout from "../../../components/Layout";
 import Sidebar from "../../../components/Sidemenu";
 import VoucherCard from "../../../components/UI/ItemCard/CarbonCredits";
 
+import user from "../../../icon/user.png";
 import info from "../../../icon/info.png";
 import starbucks from "../../../../public/images/starbucks.png";
-
-import { isUserLoggedIn, payCarbonCredits, updateProfilePicture } from "../../../actions";
-import { useDispatch, useSelector } from "react-redux";
-import { generatePublicUrl } from "../../../urlConfig";
 
 let myItemVoucher = [
   {
@@ -141,7 +141,7 @@ function Co2Point() {
                         width: "96px",
                         borderRadius: "50%",
                       }}
-                    ></div>
+                    ><img>src={user}</img></div>
                   )}
                 </div>
 

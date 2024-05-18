@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { generatePublicUrl } from "../../../urlConfig";
 import Input from "../../../components/UI/Input";
+import Layout from "../../../components/Layout";
+import Sidebar from "../../../components/Sidemenu";
+import ModalCancle from "../../../components/Modal/Cancle";
 
 import "./index.css";
 import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
-import Layout from "../../../components/Layout";
-import Sidebar from "../../../components/Sidemenu";
-import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
-import { useDispatch, useSelector } from "react-redux";
-import { generatePublicUrl } from "../../../urlConfig";
+import user from "../../../icon/user.png";
 
 function Profile() {
-
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state) => state.auth);
   const userProfileInfo = auth.user;
-  console.log(userProfileInfo)
+  console.log(userProfileInfo);
+
+  const [openModalCancle, setOpenModalCancle] = useState(false);
 
   // const renderUserProfile = (userProfiles) => {
   //   let myUserProfile = [];
@@ -39,7 +42,7 @@ function Profile() {
   // const userProfile = userProfileInfo
   //   ? renderUserProfile(userProfileInfo)
   //   : [];
-    
+
   // console.log(userProfile);
 
   // useEffect(() => {
@@ -63,11 +66,15 @@ function Profile() {
     console.log(email);
   };
 
+  const popupSave = () => {
+    saveUser();
+    setOpenModalCancle(true);
+  };
+
   const [image, setImage] = useState("");
   const [updatingImage, setUpdatingImage] = useState(false);
 
   const updatePic = (event) => {
-
     const selectedImage = event.target.files[0];
     // console.log(selectedImage)
 
@@ -132,7 +139,6 @@ function Profile() {
                 ></div> */}
                 <div className="profile-picture-img-frame">
                   {userImage ? (
-                  
                     <img
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
@@ -154,13 +160,18 @@ function Profile() {
                         width: "96px",
                         borderRadius: "50%",
                       }}
-                    ></div>
+                    >
+                      <img>src={user} </img>
+                    </div>
                   )}
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">
                   <p>Username : {userProfileInfo.username}</p>
-                  <p>Name : {userProfileInfo.firstName} {userProfileInfo.lastName}</p>
+                  <p>
+                    Name : {userProfileInfo.firstName}{" "}
+                    {userProfileInfo.lastName}
+                  </p>
                 </div>
                 <div className="button-upload-pic kanit-paragraphMedium">
                   <input
@@ -180,8 +191,7 @@ function Profile() {
             </div>
           </div>
 
-
-            <div className="background-data">
+          <div className="background-data">
             <Form className="input-profile">
               <Input
                 Label="ชื่อผู้ใช้"
@@ -224,6 +234,16 @@ function Profile() {
                 }}
               />
               <Input
+                Label="ที่อยู่จังหวัด"
+                placeholder="ที่อยู่จังหวัด"
+                value={userProfileInfo.Hometown}
+                type="text"
+                errorMessage=""
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <Input
                 Label="อีเมลล์"
                 placeholder="อีเมลล์"
                 value={userProfileInfo.email}
@@ -238,14 +258,21 @@ function Profile() {
               <button
                 className="btn-small-primary kanit-paragraphMedium"
                 type="submit"
-                onClick={saveUser}
+                onClick={popupSave}
               >
                 บันทึก
               </button>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
+      <ModalCancle
+        label="ยืนยันการแก้ไขข้อมูล"
+        // desc="คุณต้องการยกเลิกการขายสินค้าชิ้นนี้ใช่หรือไม่"
+        open={openModalCancle}
+        onClose={() => setOpenModalCancle(false)}
+        onConfirm={() => setOpenModalCancle(false)}
+      />
     </Layout>
   );
 }

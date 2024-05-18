@@ -24,8 +24,8 @@ function PostRequestProduct() {
   useEffect(() => {
     if (navigateToSellstate) {
       const timer = setTimeout(() => {
-        navigate("/sellstate");
-      }, 5000); // 5 seconds delay
+        navigate("/receivestate");
+      }, 4000); // 4 seconds delay
 
       return () => clearTimeout(timer);
     }

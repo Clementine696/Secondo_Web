@@ -24,8 +24,8 @@ function PostDonateProduct() {
   useEffect(() => {
     if (navigateToSellstate) {
       const timer = setTimeout(() => {
-        navigate("/sellstate");
-      }, 5000); // 5 seconds delay
+        navigate("/donatestate");
+      }, 4000); // 4 seconds delay
 
       return () => clearTimeout(timer);
     }
@@ -76,17 +76,18 @@ function PostDonateProduct() {
 
   // connect api to save data
   const addProductForm = () => {
-    console.log(productName);
-    console.log(productPrice);
-    console.log(productDetail);
-    console.log(shippingCost);
-    console.log(categoryId);
+    // console.log(productName);
+    // console.log(productPrice);
+    // console.log(productDetail);
+    // console.log(shippingCost);
+    // console.log(categoryId);
     // console.log(selectedImages);
+    setOpenModel(true);
 
-    for (let pic of selectedImages) {
-      console.log("Test")
-      console.log(pic.name)
-    }
+    // for (let pic of selectedImages) {
+    //   console.log("Test")
+    //   console.log(pic.name)
+    // }
     const form = new FormData();
     form.append("name", productName);
     form.append("price", productPrice);
@@ -98,6 +99,8 @@ function PostDonateProduct() {
       form.append("productPicture", pic);
     }
     dispatch(addDonaterProduct(form));
+
+    setNavigateToSellstate(true);
   };
 
   const [value, setValue] = useState('')

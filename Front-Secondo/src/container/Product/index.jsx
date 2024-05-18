@@ -3,7 +3,6 @@ import { Row, Col } from "react-bootstrap";
 import Layout from "../../components/Layout";
 import ItemCard from "../../components/UI/ItemCard";
 import HDivider from "../../components/UI/DividerHorizontal";
-import VDivider from "../../components/UI/DividerVentical";
 import { Link, json, useLocation } from "react-router-dom";
 import Pathway from "../../components/UI/Pathway";
 
