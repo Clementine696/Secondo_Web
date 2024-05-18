@@ -22,7 +22,7 @@ import fav from "../../../icon/like.png";
 import chevronRightT from "../../../icon/chevron-right-T.png";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getBuyerProductDetailsById } from "../../../actions";
+import { buyerCheckout, getBuyerProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
 let Myproduct = [
@@ -64,7 +64,7 @@ const pathway = [
 function Productsale() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
 
   const location = useLocation();
   const productId = location.pathname.split("/")[3];
@@ -104,6 +104,18 @@ function Productsale() {
     // console.log(product);
   };
 
+  const offer_product = () => {
+    console.log(productId)
+    console.log(selectedProduct._id)
+    const data = {
+      buyer_id: productId,
+      seller_id: selectedProduct._id
+    }
+    dispatch(buyerCheckout(data));
+    // console.log(selectedProduct)
+    // setOpenModelConfirmItem(false)
+  }
+
   //scroll
   useEffect(() => {
     if (
@@ -118,14 +130,14 @@ function Productsale() {
     }
   }, [openModel, openModelSale, openModalSelectItem, openModelConfirmItem]);
 
-  console.log(openModel);
+  // console.log(openModel);
 
   // let productDetail = [];
 
   console.log("Item in web");
   // console.log(product.productDetails)
   const productFromApi = product.productDetails;
-  console.log(productFromApi);
+  // console.log(productFromApi);
   let image_list = [];
   const productImage = productFromApi.productPictures;
   // console.log(productImage)
@@ -135,14 +147,14 @@ function Productsale() {
     Array.isArray(product.productDetails.productPictures)
   ) {
     productImage.map((item, index) => {
-      console.log(item.img);
+      // console.log(item.img);
       image_list.push(item.img);
       // console.log(image[index])
     });
   }
 
   // console.log('new image list :')
-  console.log(image_list);
+  // console.log(image_list);
   // for(let i=0;i<product.productDetails.productPictures.length;i++){
   //   image.append(product.productDetails.productPictures[i].img);
   //   console.log(image[i])
@@ -418,6 +430,7 @@ function Productsale() {
         img={success}
         open={openModel}
         onClose={() => setOpenModel(false)}
+        // nClose={() => setOpenModel(false)}
       />
 
       <ModalSale
@@ -444,11 +457,11 @@ function Productsale() {
         <ModalConfirmItem
           label="คุณต้องการที่จะเสนอขายสินค้าชิ้นนี้"
           img={selectedProduct.img}
-          title={selectedProduct.label}
+          title={selectedProduct.name}
           open={openModelConfirmItem}
           onClose={() => setOpenModelConfirmItem(false)}
           onClick={() => {
-            setOpenModelConfirmItem(false), setOpenModel(true);
+            setOpenModelConfirmItem(false), setOpenModel(true), offer_product();
           }}
         />
       )}
