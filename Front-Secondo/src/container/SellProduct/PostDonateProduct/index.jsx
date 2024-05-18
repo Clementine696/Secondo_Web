@@ -15,9 +15,11 @@ import RedCancel from "../../../icon/close.png";
 import "../index";
 import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../../components/UI/Input/Textarea";
+import ModalCancle from "../../../components/Modal/Cancle";
 
 function PostDonateProduct() {
   const [openModel, setOpenModel] = useState(false);
+  const [openModalCancel, setModalCancel] = useState(false);
   const [navigateToSellstate, setNavigateToSellstate] = useState(false);
   const navigate = useNavigate();
 
@@ -300,7 +302,8 @@ function PostDonateProduct() {
                 <Link
                   className="btn-small-secondary kanit-paragraphMedium"
                   style={{ textDecoration: "none" }}
-                  to="/"
+                  // to="/"
+                  onClick={() => setModalCancel(true)}
                 >
                   ยกเลิก
                 </Link>
@@ -335,6 +338,15 @@ function PostDonateProduct() {
         img={success}
         open={openModel}
         onClose={() => setOpenModel(false)}
+      />
+      <ModalCancle
+        label="ต้องการยกเลิกการลงขายสินค้าหรือไม่"
+        desc="กดยืนยันเพื่อยกเลิกการลงขายสินค้า"
+        open={openModalCancel}
+        onClose={() => setModalCancel(false)}
+        onConfirm={() => {
+          navigate("/donatestate");
+        }}
       />
     </Layout>
   );

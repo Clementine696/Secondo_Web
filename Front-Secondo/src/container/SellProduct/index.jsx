@@ -15,10 +15,13 @@ import RedCancel from "../../icon/close.png";
 import "./index.css";
 import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../components/UI/Input/Textarea";
+import ModalCancle from "../../components/Modal/Cancle";
 
 function SellProduct() {
   const [openModel, setOpenModel] = useState(false);
+  const [openModalCancel, setModalCancel] = useState(false);
   const [navigateToSellstate, setNavigateToSellstate] = useState(false);
+  // const [navigateBack, setNavigateBack] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -306,7 +309,8 @@ function SellProduct() {
               <Link
                 className="btn-small-secondary kanit-paragraphMedium"
                 style={{ textDecoration: "none" }}
-                to="/"
+                // to="/sellstate"
+                onClick={() => setModalCancel(true)}
               >
                 ยกเลิก
               </Link>
@@ -341,6 +345,16 @@ function SellProduct() {
         img={success}
         open={openModel}
         onClose={() => setOpenModel(false)}
+      />
+
+      <ModalCancle
+        label="ต้องการยกเลิกการลงขายสินค้าหรือไม่"
+        desc="กดยืนยันเพื่อยกเลิกการลงขายสินค้า"
+        open={openModalCancel}
+        onClose={() => setModalCancel(false)}
+        onConfirm={() => {
+          navigate("/sellstate");
+        }}
       />
     </Layout>
   );
