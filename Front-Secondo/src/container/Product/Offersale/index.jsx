@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
@@ -69,8 +69,6 @@ function Productsale() {
   const location = useLocation();
   const productId = location.pathname.split("/")[3];
 
-
-
   // console.log(_id)
 
   useEffect(() => {
@@ -103,6 +101,28 @@ function Productsale() {
     setOpenModelConfirmItem(true); // Open the confirm product modal
     // console.log(product);
   };
+
+  const [navigateTobuyerState, setNavigateTobuyerState] = useState(false);
+  // const [navigateBack, setNavigateBack] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigateTobuyerState) {
+      const timer = setTimeout(() => {
+        navigate("/sellstate");
+      }, 4000); // 4 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [navigateTobuyerState, navigate]);
+
+
+  const confirmOffersale = () => {
+    setOpenModel(true);
+
+    setNavigateTobuyerState(true);
+    
+  }
 
   //scroll
   useEffect(() => {
@@ -448,7 +468,7 @@ function Productsale() {
           open={openModelConfirmItem}
           onClose={() => setOpenModelConfirmItem(false)}
           onClick={() => {
-            setOpenModelConfirmItem(false), setOpenModel(true);
+            setOpenModelConfirmItem(false), confirmOffersale();
           }}
         />
       )}

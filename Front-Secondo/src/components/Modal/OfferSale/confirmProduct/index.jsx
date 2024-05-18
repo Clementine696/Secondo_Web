@@ -25,7 +25,7 @@ const ModalConfirmItem = (props) => {
           </div>
 
           <div className="button-pop kanit-paragraphMedium">
-            <button className="btn-small-primary" onClick={props.onClick}>เสนอขาย</button>
+            <button className="btn-small-primary" onClick={props.onClick}>{props.textButton}</button>
             <button className="btn-small-secondary" >ลงขายสินค้าใหม่</button>
           </div>
         </div>

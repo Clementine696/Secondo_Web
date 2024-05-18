@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import ItemCard from "../../../components/UI/ItemCard";
 import HDivider from "../../../components/UI/DividerHorizontal";
@@ -104,6 +104,25 @@ function Donate() {
     // console.log(product);
   };
 
+  const [navigateToDonateState, setNavigateToDonateState] = useState(false);
+  // const [navigateBack, setNavigateBack] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigateToDonateState) {
+      const timer = setTimeout(() => {
+        navigate("/donatestate");
+      }, 4000); // 4 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [navigateToDonateState, navigate]);
+
+  const confirmDonate = () => {
+    setOpenModel(true);
+
+    setNavigateToDonateState(true);
+  };
   //scroll
   useEffect(() => {
     if (
@@ -202,7 +221,7 @@ function Donate() {
       product.productDetails.productPictures.length > 0
     ) {
       setSelectedImg(product.productDetails.productPictures[0].img);
-      setSellerImage(product.productDetails.createBy.profilePicture)
+      setSellerImage(product.productDetails.createBy.profilePicture);
     }
   }, [product.productDetails.productPictures]);
 
@@ -421,7 +440,7 @@ function Donate() {
 
       <ModalSale
         label="เสนอจากของที่คุณบริจาคอยู่"
-        desc="ซื้อโทรศัพท์ iphone14"
+        // desc="ซื้อโทรศัพท์ iphone14"
         img={donate}
         open={openModelSale}
         onClose={() => setOpenModelSale(false)}
@@ -445,9 +464,10 @@ function Donate() {
           img={selectedProduct.img}
           title={selectedProduct.label}
           open={openModelConfirmItem}
+          textButton="เสนอบริจาค"
           onClose={() => setOpenModelConfirmItem(false)}
           onClick={() => {
-            setOpenModelConfirmItem(false), setOpenModel(true);
+            setOpenModelConfirmItem(false), confirmDonate();
           }}
         />
       )}
