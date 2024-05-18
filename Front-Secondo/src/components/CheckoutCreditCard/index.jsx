@@ -80,7 +80,10 @@ function CreditCard(props) {
           console.log("success");
           buyProductForm();
           setOpenModel(true);
-          navigate("/sellstate");
+          const timer = setTimeout(() => {
+            navigate("/buystate");
+          }, 4000);
+          return () => clearTimeout(timer);
         } else {
           console.log("not success");
         }
@@ -112,7 +115,7 @@ function CreditCard(props) {
           {props.label}
         </button>
       </form>
-      
+
       <ModalS
         label="ชำระเงินสำเร็จ"
         desc="ชำระเงินเข้าสู่ระบบแล้ว"

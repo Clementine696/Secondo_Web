@@ -13,7 +13,7 @@ import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
 import user from "../../../icon/user.png";
 
-console.log(user)
+// console.log(user)
 
 function Profile() {
   const dispatch = useDispatch();
@@ -30,9 +30,9 @@ function Profile() {
   //       myUserProfile.push({
   //           _id: userProfile._id,
   //           slug: userProfile.slug,
-  //           username: userProfile.username,
+  //           userName: userProfile.userName,
   //           firstname: userProfile.firstName,
-  //           lastname: userProfile.lastName,
+  //           lastName: userProfile.lastName,
   //           // tel: userProfile.description,
   //           email: userProfile.email,
   //         });
@@ -53,18 +53,20 @@ function Profile() {
 
   let userImage = auth.user.profilePicture;
 
-  const [username, setUsername] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [userName, setUserName] = useState(userProfileInfo.userName || "");
+  const [firstName, setFirstName] = useState(userProfileInfo.firstName || "");
+  const [lastName, setLastName] = useState(userProfileInfo.lastName || "");
   const [tel, setTel] = useState("");
-  const [email, setEmail] = useState("");
+  const [hometown, setHometown] = useState("");
+  const [email, setEmail] = useState(userProfileInfo.email || "");
 
   // connect api to save data
   const saveUser = () => {
-    console.log(username);
-    console.log(firstname);
-    console.log(lastname);
+    console.log(userName);
+    console.log(firstName);
+    console.log(lastName);
     console.log(tel);
+    console.log(hometown);
     console.log(email);
   };
 
@@ -168,7 +170,7 @@ function Profile() {
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">
-                  <p>Username : {userProfileInfo.username}</p>
+                  <p>Username : {userProfileInfo.userName}</p>
                   <p>
                     Name : {userProfileInfo.firstName}{" "}
                     {userProfileInfo.lastName}
@@ -196,32 +198,32 @@ function Profile() {
             <Form className="input-profile">
               <Input
                 Label="ชื่อผู้ใช้"
-                // placeholder={userProfile.username}
-                value={userProfileInfo.username}
+                // placeholder={userProfile.userName}
+                value={userName}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
-                  setUsername(e.target.value);
+                  setUserName(e.target.value);
                 }}
               />
               <Input
                 Label="ชื่อจริง"
                 // placeholder={userProfile.firstname}
-                value={userProfileInfo.firstName}
+                value={firstName}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
-                  setFirstname(e.target.value);
+                  setFirstName(e.target.value);
                 }}
               />
               <Input
                 Label="นามสกุล"
                 placeholder="นามสกุล"
-                value={userProfileInfo.lastName}
+                value={lastName}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
-                  setLastname(e.target.value);
+                  setLastName(e.target.value);
                 }}
               />
               <Input
@@ -241,13 +243,13 @@ function Profile() {
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setHometown(e.target.value);
                 }}
               />
               <Input
                 Label="อีเมลล์"
                 placeholder="อีเมลล์"
-                value={userProfileInfo.email}
+                value={email}
                 type="email"
                 errorMessage=""
                 onChange={(e) => {

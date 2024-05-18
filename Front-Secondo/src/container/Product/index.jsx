@@ -51,6 +51,7 @@ function Product() {
   const product = useSelector((state) => state.product);
 
   const location = useLocation();
+  const { pathname } = useLocation();
   const productId = location.pathname.split("/")[3];
   // console.log(_id)
 
@@ -58,6 +59,11 @@ function Product() {
     // const { productId } = props.params.match;
     // const location = useLocation();
     // const _id = location.pathname.split("/")[2];
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
     console.log(productId);
     const payload = {
       params: {
@@ -66,7 +72,7 @@ function Product() {
     };
 
     dispatch(getSellerProductDetailsById(payload));
-  }, []);
+  }, [pathname, dispatch, productId]);
 
   // let productDetail = [];
 
@@ -154,11 +160,9 @@ function Product() {
   useEffect(() => {
     if (product.productDetails.productPictures != null) {
       setSelectedImg(product.productDetails.productPictures[0].img);
-      setSellerImage(product.productDetails.createBy.profilePicture)
+      setSellerImage(product.productDetails.createBy.profilePicture);
     }
   }, [product.productDetails]);
-
-
 
   const handleImgClick = (img) => {
     setSelectedImg(img);
@@ -270,7 +274,8 @@ function Product() {
             <img
               className="profile-card"
               // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png" //TODO:
-              src={sellerImage && sellerImage.length > 0 ? sellerImage : null} alt=""
+              src={sellerImage && sellerImage.length > 0 ? sellerImage : null}
+              alt=""
             />
 
             <Col className="seller-name-online-button">

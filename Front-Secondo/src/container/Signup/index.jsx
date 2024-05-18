@@ -3,75 +3,63 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
 
-import { Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions';
-import { signup } from '../../actions';
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../actions";
+import { signup } from "../../actions";
 
 import "./index.css";
 import "../../styles.css";
 import "../../components/UI/Button/index.css";
 
 function Signup() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [regisPassword, setRegisPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const auth = useSelector(state => state.auth)
-  const user = useSelector(state => state.user)
+  const auth = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // connect api to save data
   const userRegister = (e) => {
     e.preventDefault();
 
-    // console.log(email);
-    // console.log(regisPassword);
-    const password = regisPassword
-    const user = {
-        // email: 'riz@gmail.com', 
-        // password:'123456'
-        firstName, lastName, email, password
+    if (regisPassword !== confirmPassword) {
+      setError("รหัสผ่านไม่ตรงกัน");
+      return;
     }
+
+    setError("");
+    const password = regisPassword;
+    const user = {
+      // email: 'riz@gmail.com',
+      // password:'123456'
+      firstName,
+      lastName,
+      email,
+      password,
+    };
     // console.log(user);
     dispatch(signup(user));
-    
-    // const userlogin = {
-    //   email, password
-    // }
-    // dispatch(login(userlogin));
-    // const userlogin = {
-    //     email, password
-    // }
-    // dispatch(login(userlogin));
-
   };
 
-  // const userLogin = (e) => {
-  //   const userlogin = {
-  //     email, password
-  //   }
-  //   dispatch(login(userlogin));
-  // }
-
-  // if(auth.authenticate){
-  //   return <Navigate to="/" />
-  // }
-
-  if(user.signupsuccess){
+  if (user.signupsuccess) {
     // userLogin()
-    return <Navigate to="/Signin" />
+    return <Navigate to="/Signin" />;
     // return <p>Loading...!</p>
   }
+  console.log(lastName);
 
   return (
     <Container className="main-content">
       <Row className="row-content">
         <Col className="col-left">
           <div className="content-left">
-          <div
+            <div
               style={{
                 width: "100px",
                 height: "100px",
@@ -112,6 +100,7 @@ function Signup() {
                       value={firstName}
                       type="text"
                       errorMessage=""
+                      // autoComplete="off"
                       onChange={(e) => {
                         setFirstName(e.target.value);
                       }}
@@ -121,9 +110,10 @@ function Signup() {
                     <Input
                       Label="นามสกุล"
                       placeholder="นามสกุล"
-                      value={lastName}
+                      value={lastName != "" ? lastName : null}
                       type="text"
                       errorMessage=""
+                      // autoComplete="off"
                       onChange={(e) => {
                         setLastName(e.target.value);
                       }}
@@ -137,6 +127,7 @@ function Signup() {
                   value={email}
                   type="email"
                   errorMessage=""
+                  autoComplete="off"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -148,6 +139,7 @@ function Signup() {
                   value={regisPassword}
                   type="password"
                   errorMessage=""
+                  autoComplete="off"
                   onChange={(e) => {
                     setRegisPassword(e.target.value);
                   }}
@@ -158,21 +150,15 @@ function Signup() {
                   placeholder="ยืนยันรหัสผ่าน"
                   value={confirmPassword}
                   type="password"
-                  errorMessage=""
+                  autoComplete="off"
+                  errorMessage={error}
+                  isInvalid={error !== ""}
                   onChange={(e) => {
                     setConfirmPassword(e.target.value);
                   }}
                 />
 
-                {/* <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalCheck"
-                  >
-                    <Col>
-                      <Form.Check label="Remember me" />
-                    </Col>
-                  </Form.Group> */}
+                {/* {error && <div className="error-msg">{error}</div>} */}
 
                 <Row className="mb-3">
                   <Col>
@@ -185,40 +171,6 @@ function Signup() {
                     </button>
                   </Col>
                 </Row>
-
-                {/* <Row className="mb-3">
-                  <div className="kanit-paragraphSmall horizontal-divider">
-                    or
-                  </div>
-                </Row> */}
-
-                {/* <Row className="mb-3">
-                  <Col>
-                    <button className="btn-small-secondary kanit-paragraphMedium">
-                      เข้าสู่ระบบด้วย Google
-                    </button>
-                  </Col>
-                </Row> */}
-
-                {/* <Row className="content-3">
-                  <div className="agreement-law-text kanit-paragraphSmall">
-                    <div>การดำเนินการต่อแสดงว่าคุณได้อ่านและยอมรับ</div>
-                    <Link className="" to="#pricing">
-                      ข้อกำหนดการใช้งาน
-                    </Link>{" "}
-                    และ{" "}
-                    <Link className="" to="#pricing">
-                      นโยบายความเป็นส่วนตัว
-                    </Link>
-                  </div>
-
-                  <div className="agreement-law-text kanit-paragraphSmall">
-                    ยังไม่มีบัญชี Secondo ใช่ไหม{" "}
-                    <Link className="" to="/signup">
-                      สร้างบัญชีใหม่
-                    </Link>
-                  </div>
-                </Row> */}
               </Form>
             </Col>
           </Row>

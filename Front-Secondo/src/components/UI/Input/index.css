@@ -46,3 +46,7 @@
 .text-field-errored {
     border: 1px solid var(--Error-color);
 }
+
+.red-text {
+    color: var(--Error-color) !important;
+  }

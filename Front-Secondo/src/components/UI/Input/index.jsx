@@ -9,13 +9,20 @@ const Input = (props) => {
         {props.Label}
       </Form.Label>
       <Form.Control
-        className="kanit-paragraphSmall text-field-default"
+        className={`kanit-paragraphSmall text-field-default ${
+          props.isInvalid ? "text-field-errored" : ""
+        }`}
         type={props.type}
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
+        // autoComplete="off"
       />
-      <Form.Text className="text-muted">{props.errorMessage}</Form.Text>
+      {props.isInvalid && (
+        <Form.Text className="text-muted error-message red-text kanit-paragraphSmall">
+          {props.errorMessage}
+        </Form.Text>
+      )}
     </Form.Group>
   );
 };
