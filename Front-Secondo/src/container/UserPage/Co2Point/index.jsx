@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { isUserLoggedIn, payCarbonCredits, updateProfilePicture } from "../../../actions";
+import {
+  isUserLoggedIn,
+  payCarbonCredits,
+  updateProfilePicture,
+} from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
 
@@ -141,7 +145,9 @@ function Co2Point() {
                         width: "96px",
                         borderRadius: "50%",
                       }}
-                    ><img>src={user}</img></div>
+                    >
+                      {/* <img>src={user}</img> */}
+                    </div>
                   )}
                 </div>
 
@@ -187,7 +193,10 @@ function Co2Point() {
 
             <div className="store-coupon-exchange">
               <div className="title-pic">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNHQ5NRocnX5zgYCGRG9AwSYaKDbjBlkvNJBUuSL-aHw&s" className="picture-store"></img>
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNHQ5NRocnX5zgYCGRG9AwSYaKDbjBlkvNJBUuSL-aHw&s"
+                  className="picture-store"
+                ></img>
 
                 <div className="title-of-coupon">
                   <p className="title-store-cc kanit-paragraphMedium">
@@ -198,14 +207,14 @@ function Co2Point() {
               </div>
 
               <div className="card-coupon">
-              {itemVoucher.map((item, index) => (
-                <VoucherCard
-                  key={index}
-                  img={item.img}
-                  title={item.title}
-                  carbon={item.carbon}
-                />
-              ))}
+                {itemVoucher.map((item, index) => (
+                  <VoucherCard
+                    key={index}
+                    img={item.img}
+                    title={item.title}
+                    carbon={item.carbon}
+                  />
+                ))}
               </div>
             </div>
           </div>

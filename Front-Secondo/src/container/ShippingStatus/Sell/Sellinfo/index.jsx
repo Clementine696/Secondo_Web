@@ -3,10 +3,16 @@ import Layout from "../../../../components/Layout";
 import StatusCheck from "../../../../components/UI/ShippingCheck";
 import NextStep from "../../../../components/UI/NextStep";
 import { Link, useLocation } from "react-router-dom";
+import ModalSellerTag from "../../../../components/Modal/SellerTag";
 
 import "../../index.css";
 import "../../../../components/UI/Button/index.css";
-import { getBuyerProductDetailsById, getSellerProductDetailsById } from "../../../../actions";
+import {
+  getBuyerProductDetailsById,
+  getSellerProductDetailsById,
+} from "../../../../actions";
+import shippingIcon from "../../../../icon/shipping.png";
+
 import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../../urlConfig";
 
@@ -53,14 +59,14 @@ let shipping = [
   },
 ];
 
-
 function Buyinfo() {
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
 
   const location = useLocation();
   const productId = location.pathname.split("/")[4];
+
+  const [sellerTag, setSellerTag] = useState(false);
   // console.log(productId)
 
   useEffect(() => {
@@ -82,7 +88,7 @@ function Buyinfo() {
 
   const productFromApi = product.productDetails;
   console.log(productFromApi);
-  
+
   let image_list = [];
   const productImage = productFromApi.productPictures;
   // console.log(productImage)
@@ -105,11 +111,9 @@ function Buyinfo() {
   useEffect(() => {
     if (product.productDetails.productPictures != null) {
       setSelectedImg(product.productDetails.productPictures[0].img);
-      setSellerImage(product.productDetails.createBy.profilePicture)
+      setSellerImage(product.productDetails.createBy.profilePicture);
     }
   }, [product.productDetails]);
-
-
 
   const handleImgClick = (img) => {
     setSelectedImg(img);
@@ -151,11 +155,13 @@ function Buyinfo() {
                   ))}
                 </div>
               </div>
-
             </div>
             <div className="shipping-button-group">
               <div className="group-button-1">
-                <button className="btn-small-primary kanit-paragraphMedium">
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  onClick={() => setSellerTag(true)}
+                >
                   ส่งสินค้า
                 </button>
                 <button className="btn-small-secondary kanit-paragraphMedium">
@@ -180,7 +186,11 @@ function Buyinfo() {
                       // src={test}
                     />
                   </div>
-                  <p className="kanit-paragraphMedium">{product.productDetails && product.productDetails.createBy ? product.productDetails.createBy.firstName : null}</p>
+                  <p className="kanit-paragraphMedium">
+                    {product.productDetails && product.productDetails.createBy
+                      ? product.productDetails.createBy.firstName
+                      : null}
+                  </p>
                 </div>
 
                 <div className="shipping-status">
@@ -194,13 +204,15 @@ function Buyinfo() {
             </div>
 
             <div className="shipping-product-detail-bg">
-              <p className="kanit-paragraphSmall">{product.productDetails.name}</p>
+              <p className="kanit-paragraphSmall">
+                {product.productDetails.name}
+              </p>
               <div className="outline">
                 <div className="inline"></div>
               </div>
-              
+
               <div className="shipping-very-detail kanit-paragraphSmall">
-                {product.productDetails.description}  
+                {product.productDetails.description}
               </div>
 
               <div className="outline">
@@ -208,15 +220,22 @@ function Buyinfo() {
               </div>
               <div className="product-price">
                 <p className="kanit-paragraphSmall">ราคาสินค้า</p>
-                <p className="kanit-valueList">{product.productDetails.price}</p>
+                <p className="kanit-valueList">
+                  {product.productDetails.price}
+                </p>
               </div>
               <div className="ship-price">
                 <p className="kanit-paragraphSmall">ค่าจัดส่ง</p>
-                <p className="kanit-valueList">{product.productDetails.shippingCost}</p>
+                <p className="kanit-valueList">
+                  {product.productDetails.shippingCost}
+                </p>
               </div>
               <div className="totla-product-ship-price">
                 <p className="kanit-paragraphSmall">ยอดรวมสุทธิ</p>
-                <p className="kanit-valueList">{product.productDetails.price + product.productDetails.shippingCost}</p>
+                <p className="kanit-valueList">
+                  {product.productDetails.price +
+                    product.productDetails.shippingCost}
+                </p>
               </div>
             </div>
 
@@ -247,6 +266,11 @@ function Buyinfo() {
           </div>
         </div>
       </div>
+      <ModalSellerTag
+        img={shippingIcon}
+        open={sellerTag}
+        onClose={() => setSellerTag(false)}
+      />
     </Layout>
   );
 }

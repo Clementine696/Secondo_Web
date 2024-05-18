@@ -7,6 +7,8 @@ import { isUserLoggedIn, login } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import Logo from "../../../public/images/Logo_secondo.png";
+
 import "./index.css";
 import "../../styles.css";
 import "../../components/UI/Button/index.css";
@@ -62,7 +64,7 @@ function Signin() {
                 height: "100px",
                 backgroundColor: "green",
               }}
-            ></div>
+            ><img src={Logo} /></div>
             <div className="kanit-Display-Large">
               ซื้อขายและบริจาคสินค้ามือสอง
             </div>

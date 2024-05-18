@@ -10,15 +10,15 @@
     align-items: flex-start;
     gap: 32px;
     align-self: stretch;
-    flex-direction: row;
 }
 
 .shipping-left-content {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    flex: 1 0 0;
+    align-self: stretch;
 }
 
 .small-img {
@@ -51,12 +51,12 @@
 }
 
 .shipping-right-content {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
     align-self: stretch;
+    flex: 1 0 0;
 }
 
 .shipping-order-seller-details {

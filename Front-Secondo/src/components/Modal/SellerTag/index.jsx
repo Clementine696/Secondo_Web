@@ -7,6 +7,8 @@ import Input from "../../UI/Input";
 import cancel from "../../../icon/cancel.png";
 
 const ModalSellerTag = (props) => {
+  const [Tag, setTag] = React.useState("");
+
   if (!props.open) return null;
 
   return (
@@ -28,14 +30,16 @@ const ModalSellerTag = (props) => {
           <Form className="form-seller-tag">
             <Input
               placeholder="ใส่เลขพัสดุ (Tracking No.)"
-              value={Text}
-              type="number"
+              value={Tag}
+              type="text"
               errorMessage=""
               onChange={(e) => {
-                setEmail(e.target.value);
+                setTag(e.target.value);
               }}
             />
           </Form>
+
+          <button className="btn-small-primary kanit-paragraphMedium">ตกลง</button>
         </div>
       </div>
     </div>

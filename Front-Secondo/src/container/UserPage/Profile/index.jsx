@@ -143,14 +143,8 @@ function Profile() {
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
                       // src={URL.createObjectURL(image)}
-                      src={userImage}
+                      src={userImage ? userImage : generatePublicUrl(user)}
                       alt="Uploaded"
-                      style={{
-                        backgroundColor: "black",
-                        height: "96px",
-                        width: "96px",
-                        borderRadius: "50%",
-                      }}
                     />
                   ) : (
                     <div
@@ -161,7 +155,7 @@ function Profile() {
                         borderRadius: "50%",
                       }}
                     >
-                      <img>src={user} </img>
+                      {/* <img>src={user} </img> */}
                     </div>
                   )}
                 </div>
