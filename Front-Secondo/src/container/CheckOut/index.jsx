@@ -15,7 +15,6 @@ import "./index.css";
 import { useSelector } from "react-redux";
 import { generatePublicUrl } from "../../urlConfig";
 
-
 let productDetails = [
   {
     img: [
@@ -31,27 +30,29 @@ let productDetails = [
     productPrice: "",
     productCredit: 20,
     createBy: {
-      firstName: "ฟ"
-    }
+      firstName: "ฟ",
+    },
   },
 ];
 
-
 let Address = [
   {
-    id:"1",
-    label: "111"
-  }
-]
+    id: "1",
+    label: "111",
+  },
+];
 
 function checkOut() {
-
-  //state 
+  //state
   const product = useSelector((state) => state.product);
   // if(product.productDetails.length == 0){
   //   <Navigate to="/signin" />
   // }
-  productDetails = product.productDetails ? product.productDetails : <Navigate to="/signin" />;
+  productDetails = product.productDetails ? (
+    product.productDetails
+  ) : (
+    <Navigate to="/signin" />
+  );
 
   const renderAddress = (addresses) => {
     let myAddresses = [];
@@ -64,7 +65,7 @@ function checkOut() {
           // addressName: "",
           // phone: address.tel,
           // address:
-            // address.houseaddress + address.sub_district + address.district,
+          // address.houseaddress + address.sub_district + address.district,
           // address: address.houseaddress,
           // subDistrict: address.sub_district,
           // district: address.district,
@@ -112,12 +113,12 @@ function checkOut() {
   const [selectedPayment, setSelectedPayment] = useState("");
   const handleAddressChange = (event) => {
     setSelectedAddress(event.target.value);
-    console.log(selectedAddress)
+    console.log(selectedAddress);
   };
 
   const handleDeliveryChange = (event) => {
     setSelectedDelivery(event.target.value);
-    console.log(selectedDelivery)
+    console.log(selectedDelivery);
   };
 
   const handlePaymentChange = (event) => {
@@ -129,6 +130,7 @@ function checkOut() {
   const [visiblePayment, setVisiblePayment] = useState(false);
 
   // console.log(omiseCard);
+  const isCheckoutReady = selectedAddress && selectedDelivery;
 
   return (
     <Layout>
@@ -141,7 +143,10 @@ function checkOut() {
         <div className="checkout-page-content">
           <div className="checkout-page-content-method">
             <div className="checkout-page-content-method-address">
-              <div className="checkout-page-content-method-address-group">
+              <div
+                className="checkout-page-content-method-address-group"
+                onClick={() => setVisibleAddress(true)}
+              >
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
                     1
@@ -172,9 +177,8 @@ function checkOut() {
                   ) : (
                     <Link
                       style={{ textDecoration: "none" }}
-                      to=""
+                      // to=""
                       className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
-                      onClick={() => setVisibleAddress(true)}
                     >
                       แก้ไข
                       <img className="check-out-icon" src={chevronRightD} />
@@ -213,7 +217,10 @@ function checkOut() {
             </div>
 
             <div className="checkout-page-content-method-address">
-              <div className="checkout-page-content-method-address-group">
+              <div
+                className="checkout-page-content-method-address-group"
+                onClick={() => setVisibleDev(true)}
+              >
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
                     2
@@ -235,7 +242,6 @@ function checkOut() {
                   <Link
                     style={{ textDecoration: "none" }}
                     className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
-                    onClick={() => setVisibleDev(true)}
                   >
                     แก้ไข
                     <img className="check-out-icon" src={chevronRightD} />
@@ -354,7 +360,15 @@ function checkOut() {
                   <img
                     className="checkout-page-content-order-item-image-small"
                     // src="https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
-                    src={productDetails.productPictures && productDetails.productPictures.length > 0 ? generatePublicUrl(productDetails.productPictures[0].img ) : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"} alt=""
+                    src={
+                      productDetails.productPictures &&
+                      productDetails.productPictures.length > 0
+                        ? generatePublicUrl(
+                            productDetails.productPictures[0].img
+                          )
+                        : "https://www.tescophoto.com/media/catalog/product/cache/a2112a15e5165072db3b22495c91a3ca/9/3/9320.png"
+                    }
+                    alt=""
                   />
                 </div>
                 <div className="checkout-page-content-order-item-details">
@@ -412,11 +426,13 @@ function checkOut() {
               ชำระเงิน
             </button> */}
 
-            <CheckoutCreditCard 
-              label="ชำระเงิน"
-              address = {selectedAddress}
-              shipping = {selectedDelivery}
-            />
+            {isCheckoutReady && (
+              <CheckoutCreditCard
+                label="ชำระเงิน"
+                address={selectedAddress}
+                shipping={selectedDelivery}
+              />
+            )}
           </div>
         </div>
       </div>
