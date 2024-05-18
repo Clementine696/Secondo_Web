@@ -6,6 +6,7 @@ import DropdownItem from "../../components/UI/DropdownProfile";
 import DropdownList from "../../components/UI/DropdownList";
 import DropdownNoti from "../../components/UI/DropdownNotification";
 
+
 import user from "../../icon/user.png";
 import bag from "../../icon/bag.png";
 import tag from "../../icon/tag.png";
@@ -80,7 +81,7 @@ function Index() {
             setOpen(!open);
           }}
         >
-          <img className="profile-img" src={profilePic}></img>
+          <img className="profile-img" src={profilePic ? profilePic : user}></img>
           <div>
             <p className="kanit-paragraphtextMedium">{userName}</p>
             <p className="kanit-paragraphSmall">{userCredit} Credit</p>

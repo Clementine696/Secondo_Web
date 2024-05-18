@@ -123,32 +123,32 @@ function Co2Point() {
               </div>
               <div className="profile-pic-name-button">
                 <div className="profile-picture-img-frame">
-                  {userImage ? (
+                  {/* {userImage ? ( */}
                     <img
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
                       // src={URL.createObjectURL(image)}
-                      src={userImage}
+                      src={userImage ? userImage : user}
                       alt="Uploaded"
-                      style={{
-                        backgroundColor: "black",
-                        height: "96px",
-                        width: "96px",
-                        borderRadius: "50%",
-                      }}
+                      // style={{
+                      //   backgroundColor: "black",
+                      //   height: "96px",
+                      //   width: "96px",
+                      //   borderRadius: "50%",
+                      // }}
                     />
-                  ) : (
-                    <div
+                  {/* ) : ( */}
+                    {/* <div
                       style={{
                         backgroundColor: "black",
                         height: "96px",
                         width: "96px",
                         borderRadius: "50%",
                       }}
-                    >
+                    > */}
                       {/* <img>src={user}</img> */}
-                    </div>
-                  )}
+                    {/* </div> */}
+                  {/* )} */}
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">

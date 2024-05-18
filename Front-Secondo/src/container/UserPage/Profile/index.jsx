@@ -13,6 +13,8 @@ import "../../../styles.css";
 import "../../../components/UI/Button/index.css";
 import user from "../../../icon/user.png";
 
+console.log(user)
+
 function Profile() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -138,26 +140,26 @@ function Profile() {
                   }}
                 ></div> */}
                 <div className="profile-picture-img-frame">
-                  {userImage ? (
+                  {/* {userImage ? ( */}
                     <img
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
                       // src={URL.createObjectURL(image)}
-                      src={userImage ? userImage : generatePublicUrl(user)}
+                      src={userImage ? userImage : user}
                       alt="Uploaded"
                     />
-                  ) : (
-                    <div
+                  {/* ) : ( */}
+                    {/* <div
                       style={{
                         backgroundColor: "black",
                         height: "96px",
                         width: "96px",
                         borderRadius: "50%",
                       }}
-                    >
+                    > */}
                       {/* <img>src={user} </img> */}
-                    </div>
-                  )}
+                    {/* </div> */}
+                  {/* )} */}
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">
