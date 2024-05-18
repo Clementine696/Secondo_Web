@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin'],
         default: 'user'
     },
-    Hometown: {
+    hometown: {
         type: String,
     },
     contactNumber: { type: String },

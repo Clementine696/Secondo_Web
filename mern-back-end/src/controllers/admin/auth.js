@@ -38,7 +38,10 @@ exports.signup = (req, res) => {
             lastName,
             email,
             hash_password,
-            username: shortid.generate(),
+            // username: shortid.generate(),
+            // username: email.split('@')[0] + shortid.generate(),
+            username: email.split('@')[0],
+            hometown: 'กรุงเทพ',
             role: 'admin'
         });
 
@@ -243,6 +246,22 @@ exports.getAddress = (req, res) => {
         })
 }
 
+exports.updateAddress = (req, res) => {
+    User.findOne({ _id: req.user._id })
+    .populate({ path: 'addresses' })
+        .then((user)=>{
+            if(user){
+
+                Address.findOneAndUpdate()
+
+                // console.log(user.addresses)
+                res.status(201).json({ address: user.addresses })
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
+}
+
 // exports.deleteAddress = (req, res) => {
 //     User.findOne({ _id: req.user._id })
 //     .populate({ path: 'addresses' })
@@ -293,4 +312,32 @@ exports.getPayment = (req, res) => {
                 return res.status(400).json({message: 'Something went wrong'});
             }
         })
+}
+
+exports.updateProfileData = (req, res) => {
+
+    const {
+        username, firstName, lastName, email, contactNumber, hometown,
+    } = req.body;
+
+    User.findOne({_id: req.user._id})
+    .then(async (user)=>{
+
+        user.username = username;
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.email = email;
+        user.contactNumber = contactNumber;
+        user.hometown = hometown;
+
+        user.save().then(user => {
+            if(user){
+                res.status(201).json({ user });
+            }
+        }).catch((error) => {
+            console.log(error);
+            return res.status(400).json({ error })
+        });
+
+    })
 }

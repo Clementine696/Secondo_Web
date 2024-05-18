@@ -9,6 +9,7 @@ const addressSchema = new mongoose.Schema({
 		username: String
 	},
 	address_name: String,
+	address_author: String,
 	receiver: String,
 	tel: String,
 

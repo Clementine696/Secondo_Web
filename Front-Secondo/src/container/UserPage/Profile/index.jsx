@@ -239,7 +239,7 @@ function Profile() {
               <Input
                 Label="ที่อยู่จังหวัด"
                 placeholder="กรอกที่อยู่จังหวัด"
-                value={userProfileInfo.Hometown ? userProfileInfo.Hometown : ""}
+                value={userProfileInfo.hometown ? userProfileInfo.hometown : ""}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
@@ -253,7 +253,7 @@ function Profile() {
                 type="email"
                 errorMessage=""
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  // setEmail(e.target.value);
                 }}
               />
             </Form>
