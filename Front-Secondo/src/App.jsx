@@ -131,9 +131,6 @@ export default function App() {
 
           <Route path="account/shippingstatus" element={<PrivateRoute> <ShippingStatus /> </PrivateRoute>} />
 
-          {/* Sell */}
-          <Route path="account/shippingstatus/sellinfo" element={<PrivateRoute> <ShippingStatusSell /> </PrivateRoute>} />
-          <Route path="account/shippingstatus/successprocess" element={<PrivateRoute> <ShippingSellSucess /> </PrivateRoute>} />
           {/* Donate & Recieve */}
           <Route path="account/shippingstatus/donateinfo" element={<PrivateRoute> <ShippingStatusDonate /> </PrivateRoute>} />
           <Route path="account/shippingstatus/donatesuccess" element={<PrivateRoute> <ShippingDonateSucess /> </PrivateRoute>} />
@@ -166,6 +163,10 @@ export default function App() {
           <Route path="account/shippingstatus/buyinfo/:productId" element={<PrivateRoute> <ShippingStatusBuy /> </PrivateRoute>} />
           <Route path="account/shippingstatus/confirmrecieve" element={<PrivateRoute> <ShippingStatusConfirm /> </PrivateRoute>} />
           <Route path="account/shippingstatus/sellerreview" element={<PrivateRoute> <ShippingSellerRevirw /> </PrivateRoute> } />
+
+          {/* Sell */}
+          <Route path="account/shippingstatus/sellinfo/:productId" element={<PrivateRoute> <ShippingStatusSell /> </PrivateRoute>} />
+          <Route path="account/shippingstatus/successprocess" element={<PrivateRoute> <ShippingSellSucess /> </PrivateRoute>} />
 
           <Route path="search/:keyword" element={<Search />} />
 

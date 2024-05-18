@@ -149,11 +149,11 @@ function sellState() {
         item.icons = [edit, chevronRight];
         item.Link = ["/sellstate/edititem/"+item._id, "/product/seller/"+item._id+"/p"];
         break;
-      case "ที่ต้องจัดส่ง":
+      case "รอการจัดส่ง":
         item.icons = [shipping, chevronRight];
         item.Link = [
           "/account/shippingstatus/sellinfo",
-          "/product/seller/"+item._id+"/p",
+          "/account/shippingstatus/sellinfo/"+item._id,
         ];
         break;
       case "รอการตรวจสอบ":

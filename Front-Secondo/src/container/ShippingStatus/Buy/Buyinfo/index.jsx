@@ -180,7 +180,7 @@ function Buyinfo() {
                       // src={test}
                     />
                   </div>
-                  <p className="kanit-paragraphMedium">{product.productDetails.createBy.firstName}</p>
+                  <p className="kanit-paragraphMedium">{product.productDetails && product.productDetails.createBy ? product.productDetails.createBy.firstName : null}</p>
                 </div>
 
                 <div className="shipping-status">
