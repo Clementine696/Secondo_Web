@@ -211,7 +211,7 @@ function Home() {
     let myProducts = [];
     if (products && Array.isArray(products)) {
         for (let product of products) {
-          if(product.verify === true){
+          if(product.verify === true && (product.status === "ประกาศขาย" || product.status === "รับซื้อ" || product.status === "มีการเสนอขาย" )){
             myProducts.push({
               _id: product._id,
               slug: product.slug,
@@ -234,7 +234,7 @@ function Home() {
     let myProducts = [];
     if (products && Array.isArray(products)) {
       for (let product of products) {
-        if(product.verify === true){
+        if(product.verify === true && (product.status === "ประกาศบริจาค" || product.status === "ขอรับบริจาค")){
           myProducts.push({
             _id: product._id,
             slug: product.slug,

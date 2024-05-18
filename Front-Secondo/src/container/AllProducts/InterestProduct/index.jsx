@@ -16,7 +16,7 @@ function AllProductInterest() {
     let myProducts = [];
     if (products && Array.isArray(products)) {
       for (let product of products) {
-        if (product.verify === true) {
+        if(product.verify === true && (product.status === "ประกาศขาย" )){
           myProducts.push({
             _id: product._id,
             slug: product.slug,

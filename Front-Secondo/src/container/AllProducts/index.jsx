@@ -15,16 +15,18 @@ function AllProduct() {
   const renderProducts = (products) => {
     let myProducts = [];
     for (let product of products) {
-      myProducts.push({
-        _id: product._id,
-        slug: product.slug,
-        img: product.productPictures,
-        title: product.name,
-        province: "กรุงเทพ",
-        price: product.price,
-        credit: 0.1,
-        // children: category.children.length > 0 && renderCategories(category.children)
-      });
+      if(product.verify === true && (product.status === "ประกาศขาย" || product.status === "รับซื้อ" || product.status === "มีการเสนอขาย" )){
+        myProducts.push({
+          _id: product._id,
+          slug: product.slug,
+          img: product.productPictures,
+          title: product.name,
+          province: "กรุงเทพ",
+          price: product.price,
+          credit: 0.1,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
+      }
     }
     return myProducts;
   };

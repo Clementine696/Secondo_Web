@@ -23,6 +23,9 @@ const orderSellerSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    order_tag: {
+        type: String
+    }
     // payment: {
     //     type: String,
     //     require: true

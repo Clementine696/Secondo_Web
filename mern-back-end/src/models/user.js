@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
 	],
 
     money: { type: Number },
-    carbonCredits: { type: Number},
+    carbonCredits: { type: Number, default: 0},
 
 	// payments: [
 	// 	{
