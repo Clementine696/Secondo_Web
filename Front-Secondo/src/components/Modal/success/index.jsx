@@ -10,7 +10,7 @@ const ModalS = (props) => {
       const timer = setTimeout(() => {
         setIsVisible(false);
         props.onClose(); 
-      }, props.closeDelay || 13000);
+      }, props.closeDelay || 3000);
 
       return () => clearTimeout(timer);
     } else {

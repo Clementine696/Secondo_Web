@@ -235,8 +235,8 @@ function Profile() {
               />
               <Input
                 Label="ที่อยู่จังหวัด"
-                placeholder="ที่อยู่จังหวัด"
-                value={userProfileInfo.Hometown}
+                placeholder="กรอกที่อยู่จังหวัด"
+                value={userProfileInfo.Hometown ? userProfileInfo.Hometown : ""}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
