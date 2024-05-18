@@ -9,11 +9,13 @@ import success from "../../icon/success-check.png";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sellerCheckout } from "../../actions";
+import { useNavigate } from "react-router-dom";
 
 let OmiseCard;
 
 function CreditCard(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const product = useSelector((state) => state.product);
   const productDetails = product.productDetails;
   const summaryPrice = productDetails.price + productDetails.shippingCost;
@@ -78,6 +80,7 @@ function CreditCard(props) {
           console.log("success");
           buyProductForm();
           setOpenModel(true);
+          navigate("/sellstate");
         } else {
           console.log("not success");
         }

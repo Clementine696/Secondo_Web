@@ -419,12 +419,6 @@ function checkOut() {
             />
           </div>
         </div>
-        <ModalS
-          label="ชำระเงินสำเร็จ"
-          desc="ชำระเงินเข้าสู่ระบบแล้ว"
-          img={success}
-          open={openModel}
-        />
       </div>
     </Layout>
   );
