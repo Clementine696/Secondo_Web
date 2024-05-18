@@ -87,16 +87,16 @@ function Buyinfo() {
   const productImage = productFromApi.productPictures;
   // console.log(productImage)
   // console.log(productImage.length)
-  // if (
-  //   product.productDetails.productPictures &&
-  //   Array.isArray(product.productDetails.productPictures)
-  // ) {
-  //   productImage.map((item, index) => {
-  //     console.log(item.img);
-  //     image_list.push(item.img);
-  //     // console.log(image[index])
-  //   });
-  // }
+  if (
+    product.productDetails.productPictures &&
+    Array.isArray(product.productDetails.productPictures)
+  ) {
+    productImage.map((item, index) => {
+      console.log(item.img);
+      image_list.push(item.img);
+      // console.log(image[index])
+    });
+  }
 
   const [frameSmallImgs, setFrameSmallImgs] = useState("");
   const [selectedImg, setSelectedImg] = useState("");
@@ -180,7 +180,7 @@ function Buyinfo() {
                       // src={test}
                     />
                   </div>
-                  <p className="kanit-paragraphMedium">{product.productDetails.createBy}</p>
+                  <p className="kanit-paragraphMedium">{product.productDetails.createBy.firstName}</p>
                 </div>
 
                 <div className="shipping-status">
@@ -189,7 +189,7 @@ function Buyinfo() {
               </div>
               <div className="shipping-order kanit-paragraphSmall">
                 <p>Order ID</p>
-                <p>{product.productDetails.description}</p>
+                {/* <p>{product.productDetails.description}</p> */}
               </div>
             </div>
 
