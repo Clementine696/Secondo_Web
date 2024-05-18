@@ -467,6 +467,7 @@ function Productsale() {
           img={selectedProduct.img}
           title={selectedProduct.name}
           open={openModelConfirmItem}
+          textButton="เสนอขาย"
           onClose={() => setOpenModelConfirmItem(false)}
           onClick={() => {
             setOpenModelConfirmItem(false), confirmOffersale();
