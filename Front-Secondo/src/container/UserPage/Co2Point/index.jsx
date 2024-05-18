@@ -130,12 +130,11 @@ function Co2Point() {
                       // src={URL.createObjectURL(image)}
                       src={userImage ? userImage : user}
                       alt="Uploaded"
-                      // style={{
-                      //   backgroundColor: "black",
-                      //   height: "96px",
-                      //   width: "96px",
-                      //   borderRadius: "50%",
-                      // }}
+                      style={{
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
                     />
                   {/* ) : ( */}
                     {/* <div

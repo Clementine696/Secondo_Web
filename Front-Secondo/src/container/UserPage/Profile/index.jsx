@@ -142,6 +142,11 @@ function Profile() {
                 <div className="profile-picture-img-frame">
                   {/* {userImage ? ( */}
                     <img
+                      style={{
+                        height: "96px",
+                        width: "96px",
+                        borderRadius: "50%",
+                      }}
                       className="profile-picture-img"
                       // src={auth.user.profilePicture}
                       // src={URL.createObjectURL(image)}
