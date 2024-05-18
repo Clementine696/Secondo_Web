@@ -201,41 +201,24 @@ function BuyState() {
         break;
       default:
         item.icons = chevronRight;
-        item.Link = ["/account/shippingstatus/buyinfo"];
+        item.Link = "/account/shippingstatus/buyinfo";
         break;
     }
   });
 
   orderBuyProduct.forEach((item) => {
     switch (item.status) {
-      case "มีการเสนอขาย":
-        item.icons = [useralert, chevronRight];
-        item.Link = [
-          "/offer/sell/" + item._id,
-          "/product/buyer/" + item._id + "/p",
-        ];
-        break;
-      case "รอยืนยันสินค้า":
+      case "รอการจัดส่ง":
+        console.log(item)
         item.icons = [chevronRight];
-        item.Link = ["/product/buyer/" + item._id + "/p"];
-        break;
-      case "รอการตรวจสอบ":
-        item.icons = [edit, chevronRight];
         item.Link = [
-          "/buystate/edititem/" + item._id,
-          "/product/buyer/" + item._id + "/p",
-        ];
-        break;
-      case "Waiting":
-        item.icons = [edit, chevronRight];
-        item.Link = [
-          "/buystate/edititem/" + item._id,
-          "/product/buyer/" + item._id + "/p",
+          // "/offer/sell/" + item._id,
+          "/account/shippingstatus/buyinfo/" + item._id,
         ];
         break;
       default:
         item.icons = chevronRight;
-        item.Link = ["/account/shippingstatus/buyinfo"];
+        item.Link = "/product/buyer/" + item._id + "/p";
         break;
     }
   });

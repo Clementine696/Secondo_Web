@@ -15,10 +15,10 @@ const ModalSelectItem = (props) => {
     // console.log(selectedProduct)
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserproduct());
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getUserproduct());
+  // }, []);
   const user = useSelector((state) => state.user);
   const userSellerProducts = user.userSellerProducts;
 

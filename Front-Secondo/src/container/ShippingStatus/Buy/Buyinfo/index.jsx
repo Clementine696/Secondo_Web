@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import Layout from "../../../../components/Layout";
 import StatusCheck from "../../../../components/UI/ShippingCheck";
 import NextStep from "../../../../components/UI/NextStep";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "../../index.css";
 import "../../../../components/UI/Button/index.css";
+import { getSellerProductDetailsById } from "../../../../actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const product = {
+let product_detail = {
   orderID: "123564798",
   sellername: "Chisu Okami",
   productName:
@@ -22,7 +24,7 @@ const product = {
   date: "11 พ.ย. 2566",
 };
 
-const shipping = [
+let shipping = [
   {
     status: true,
     num: "1",
@@ -65,8 +67,10 @@ const shipping = [
   },
 ];
 
+
 function Buyinfo() {
-  const {
+
+  let {
     orderID,
     sellername,
     productName,
@@ -78,9 +82,46 @@ function Buyinfo() {
     battery,
     display,
     date,
-  } = product;
+  } = product_detail;
 
   const totalPrice = productPrice + shippingPrice;
+
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product);
+
+  const location = useLocation();
+  const productId = location.pathname.split("/")[4];
+  console.log(productId)
+
+  useEffect(() => {
+    // const { productId } = props.params.match;
+    // const location = useLocation();
+    // const _id = location.pathname.split("/")[2];
+    console.log(productId);
+    const payload = {
+      params: {
+        productId,
+      },
+    };
+
+    dispatch(getSellerProductDetailsById(payload));
+  }, []);
+
+  const productDetails = product.productDetails;
+  console.log(productDetails)
+
+  // orderID,
+  // sellername,
+  // productName = product.productDetails.productName;
+  // productPrice,
+  // shippingPrice,
+  // model,
+  // warranty,
+  // weight,
+  // battery,
+  // display,
+  // date,
+
 
   return (
     <Layout>
@@ -157,7 +198,7 @@ function Buyinfo() {
             </div>
 
             <div className="shipping-product-detail-bg">
-              <p className="kanit-paragraphSmall">{productName}</p>
+              <p className="kanit-paragraphSmall">{productDetails.productName}</p>
               <div className="outline">
                 <div className="inline"></div>
               </div>

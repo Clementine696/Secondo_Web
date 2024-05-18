@@ -7,7 +7,8 @@ const ProductBuyer = require('../models/productBuyer')
 const ProductDonate = require('../models/productDonate')
 const ProductRequest = require('../models/productRequest')
 
-const env = require('dotenv')
+const env = require('dotenv');
+const orderBuyer = require('../models/orderBuyer');
 env.config();
 
 var omise = require('omise')({
@@ -114,4 +115,50 @@ exports.payCarbonCredits = (req, res) => {
             return res.status(400).json({message: 'Something went wrong'});
         }
     })
+}
+
+
+exports.buyerCheckout = (req, res) => {
+    const body = req.body;
+
+    User.findOne({ _id: req.user._id })
+        .then((user)=>{
+            if(user){
+                // console.log(user);
+                ProductBuyer.findOne({ _id: body.buyer_id })
+                .then((productBuyer) => {
+                    if(productBuyer.status != 'รับซื้อ')
+                        return res.status(200).json({ message: "Product is not avalible" });
+                    else{
+                        ProductSeller.findOne({ _id: body.seller_id })
+                        .then((productSeller) => {
+                        if(productSeller.status != 'ประกาศขาย')
+                            return res.status(200).json({ message: "Product is not avalible" });
+                        else{
+                            const order = new orderBuyer ({
+                                user_owner: productBuyer.createBy,
+                                user_customer: user,
+                                product_owner: productBuyer,
+                                product_customer: productSeller,
+                                offer_date: Date()
+                            })
+                            order.save().then(order => {
+                                if(order){
+                                    res.status(201).json({ order });
+                                }
+                            }).catch((error) => {
+                                console.log(error);
+                                return res.status(400).json({ error })
+                            });
+                        }
+                        })
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                    return res.status(400).json({ error })
+                })
+            }else{
+                return res.status(400).json({message: 'Something went wrong'});
+            }
+        })
 }
