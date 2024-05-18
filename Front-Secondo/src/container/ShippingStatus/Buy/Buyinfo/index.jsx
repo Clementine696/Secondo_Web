@@ -6,23 +6,9 @@ import { Link, useLocation } from "react-router-dom";
 
 import "../../index.css";
 import "../../../../components/UI/Button/index.css";
-import { getSellerProductDetailsById } from "../../../../actions";
+import { getBuyerProductDetailsById, getSellerProductDetailsById } from "../../../../actions";
 import { useDispatch, useSelector } from "react-redux";
-
-let product_detail = {
-  orderID: "123564798",
-  sellername: "Chisu Okami",
-  productName:
-    "GATERON Milky Yellow PRO Switch (10ชิ้น/ซอง) 5 pin สวิตช์ Linear สำหรับ คีย์บอร์ด Mechanical keyboard Linear Switch",
-  productPrice: 800,
-  shippingPrice: 50,
-  model: "iPhone 15 Pro Blue Titanium",
-  warranty: "2 ปี",
-  weight: "215 กรัม",
-  battery: "4310 mAh",
-  display: "6.1 นิ้ว",
-  date: "11 พ.ย. 2566",
-};
+import { generatePublicUrl } from "../../../../urlConfig";
 
 let shipping = [
   {
@@ -70,28 +56,12 @@ let shipping = [
 
 function Buyinfo() {
 
-  let {
-    orderID,
-    sellername,
-    productName,
-    productPrice,
-    shippingPrice,
-    model,
-    warranty,
-    weight,
-    battery,
-    display,
-    date,
-  } = product_detail;
-
-  const totalPrice = productPrice + shippingPrice;
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
 
   const location = useLocation();
   const productId = location.pathname.split("/")[4];
-  console.log(productId)
+  // console.log(productId)
 
   useEffect(() => {
     // const { productId } = props.params.match;
@@ -107,21 +77,44 @@ function Buyinfo() {
     dispatch(getSellerProductDetailsById(payload));
   }, []);
 
-  const productDetails = product.productDetails;
-  console.log(productDetails)
+  // const productDetails = product.productDetails;
+  // console.log(productDetails)
 
-  // orderID,
-  // sellername,
-  // productName = product.productDetails.productName;
-  // productPrice,
-  // shippingPrice,
-  // model,
-  // warranty,
-  // weight,
-  // battery,
-  // display,
-  // date,
+  const productFromApi = product.productDetails;
+  console.log(productFromApi);
+  
+  let image_list = [];
+  const productImage = productFromApi.productPictures;
+  // console.log(productImage)
+  // console.log(productImage.length)
+  // if (
+  //   product.productDetails.productPictures &&
+  //   Array.isArray(product.productDetails.productPictures)
+  // ) {
+  //   productImage.map((item, index) => {
+  //     console.log(item.img);
+  //     image_list.push(item.img);
+  //     // console.log(image[index])
+  //   });
+  // }
 
+  const [frameSmallImgs, setFrameSmallImgs] = useState("");
+  const [selectedImg, setSelectedImg] = useState("");
+  const [sellerImage, setSellerImage] = useState("");
+
+  useEffect(() => {
+    if (product.productDetails.productPictures != null) {
+      setSelectedImg(product.productDetails.productPictures[0].img);
+      setSellerImage(product.productDetails.createBy.profilePicture)
+    }
+  }, [product.productDetails]);
+
+
+
+  const handleImgClick = (img) => {
+    setSelectedImg(img);
+    setFrameSmallImgs(img);
+  };
 
   return (
     <Layout>
@@ -132,30 +125,33 @@ function Buyinfo() {
             <div className="product-page-item-details-group-picture-seller">
               <div className="product-page-item-details-group-picture-seller-big-picture">
                 <img
-                  className="big-img"
-                  src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
+                  className="big-img" //TODO:
+                  // src={product.productDetails.productPictures ? generatePublicUrl(product.productDetails.productPictures[0].img) : ""}
+                  // src={product.productDetails.productPictures ? generatePublicUrl(selectedImg) : ""}
+                  src={selectedImg ? generatePublicUrl(selectedImg) : ""}
                 />
               </div>
+
               <div className="product-page-item-details-group-picture-seller-small-picture">
-                <div className="col-small-pic">
-                  <img
-                    className="small-img"
-                    src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                  />
-                </div>
-                <div className="col-small-pic">
-                  <img
-                    className="small-img"
-                    src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                  />
-                </div>
-                <div className="col-small-pic">
-                  <img
-                    className="small-img"
-                    src="/images/iPhone_15_Pro_Blue_Titanium_1.png"
-                  />
+                <div className="small-img-container">
+                  {image_list.map((img, index) => (
+                    <div key={index} className="col-small-pic">
+                      <img
+                        className={`small-img-product ${
+                          frameSmallImgs === img ? "selected" : ""
+                        }`}
+                        src={
+                          product.productDetails.productPictures
+                            ? generatePublicUrl(img)
+                            : ""
+                        }
+                        onClick={() => handleImgClick(img)}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
+
             </div>
             <div className="shipping-button-group">
               <div className="group-button-1">
@@ -184,7 +180,7 @@ function Buyinfo() {
                       // src={test}
                     />
                   </div>
-                  <p className="kanit-paragraphMedium">{sellername}</p>
+                  <p className="kanit-paragraphMedium">{product.productDetails.createBy}</p>
                 </div>
 
                 <div className="shipping-status">
@@ -193,67 +189,34 @@ function Buyinfo() {
               </div>
               <div className="shipping-order kanit-paragraphSmall">
                 <p>Order ID</p>
-                <p>{orderID}</p>
+                <p>{product.productDetails.description}</p>
               </div>
             </div>
 
             <div className="shipping-product-detail-bg">
-              <p className="kanit-paragraphSmall">{productDetails.productName}</p>
+              <p className="kanit-paragraphSmall">{product.productDetails.name}</p>
               <div className="outline">
                 <div className="inline"></div>
               </div>
+              
               <div className="shipping-very-detail kanit-paragraphSmall">
-                {model && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">รุ่น</p>
-                    <p className="detail2">{model}</p>
-                  </div>
-                )}
-                {warranty && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">การรับประกัน</p>
-                    <p className="detail2">{warranty}</p>
-                  </div>
-                )}
-                {weight && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">น้ำหนัก</p>
-                    <p className="detail2">{weight}</p>
-                  </div>
-                )}
-                {battery && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">ความจุแบตเตอรี่</p>
-                    <p className="detail2">{battery}</p>
-                  </div>
-                )}
-                {display && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">ขนาดหน้าจอ</p>
-                    <p className="detail2">{display}</p>
-                  </div>
-                )}
-                {date && (
-                  <div className="shipping-product-detail">
-                    <p className="detail1">วันที่ซื้อ</p>
-                    <p className="detail2">{date}</p>
-                  </div>
-                )}
+                {product.productDetails.description}  
               </div>
+
               <div className="outline">
                 <div className="inline"></div>
               </div>
               <div className="product-price">
                 <p className="kanit-paragraphSmall">ราคาสินค้า</p>
-                <p className="kanit-valueList">{productPrice}</p>
+                <p className="kanit-valueList">{product.productDetails.price}</p>
               </div>
               <div className="ship-price">
                 <p className="kanit-paragraphSmall">ค่าจัดส่ง</p>
-                <p className="kanit-valueList">{shippingPrice}</p>
+                <p className="kanit-valueList">{product.productDetails.shippingCost}</p>
               </div>
               <div className="totla-product-ship-price">
                 <p className="kanit-paragraphSmall">ยอดรวมสุทธิ</p>
-                <p className="kanit-valueList">{totalPrice}</p>
+                <p className="kanit-valueList">{product.productDetails.price + product.productDetails.shippingCost}</p>
               </div>
             </div>
 

@@ -23,26 +23,26 @@ const pathway = [
   { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 4, nevigate: "/seller" },
 ];
 
-let productDetail = [
-  {
-    createBy: {
-      profilepicture: ""
-    },
-    img: [
-      // "/images/iPhone_15_Pro_Blue_Titanium_1.png",
-      // "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
-      // "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
-      // "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
-      // "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
-    ],
-    productName: "",
-    productSeller: "",
-    productSellerPicture: "",
-    province: "",
-    productPrice: "",
-    productCredit: 20,
-  },
-];
+// let productDetail = [
+//   {
+//     createBy: {
+//       profilepicture: ""
+//     },
+//     img: [
+//       // "/images/iPhone_15_Pro_Blue_Titanium_1.png",
+//       // "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
+//       // "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
+//       // "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
+//       // "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
+//     ],
+//     productName: "",
+//     productSeller: "",
+//     productSellerPicture: "",
+//     province: "",
+//     productPrice: "",
+//     productCredit: 20,
+//   },
+// ];
 
 function Product() {
   /////////////////////////////////////////////////////////////////////////////
@@ -94,27 +94,27 @@ function Product() {
   // for(let i=0;i<product.productDetails.productPictures.length;i++){
   //   image.append(product.productDetails.productPictures[i].img);
   //   console.log(image[i])
-  if (productImage != null) {
-    productDetail = [
-      {
-        img: image_list,
-        // img: [
-        //   "/images/iPhone_15_Pro_Blue_Titanium_1.png",
-        //   "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
-        //   "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
-        //   "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
-        //   "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
-        // ],
-        productName: productFromApi.name,
-        productSeller: productFromApi.createBy.firstName,
-        productSellerPicture: productFromApi.createBy.profilePicture,
-        province: "กรุงเทพ",
-        productPrice: productFromApi.price,
-        productCredit: 20,
-        productDesc: productFromApi.description,
-      },
-    ];
-  }
+  // if (productImage != null) {
+  //   productDetail = [
+  //     {
+  //       img: image_list,
+  //       // img: [
+  //       //   "/images/iPhone_15_Pro_Blue_Titanium_1.png",
+  //       //   "https://images.macrumors.com/t/TkNh1oQ0-9TnnBjDnLyuz6yLkjE=/1600x0/article-new/2023/09/iPhone-15-General-Feature-Black.jpg",
+  //       //   "https://helios-i.mashable.com/imagery/reviews/02acfjrNcFF60tTa2SpGTsu/hero-image.fill.size_1248x702.v1695728230.jpg",
+  //       //   "https://i.guim.co.uk/img/media/3ccc410f49f75f456340f21c37ecf0ef31ae2bc1/368_82_2608_1565/master/2608.jpg?width=1200&quality=85&auto=format&fit=max&s=ec1eda86ea625851c6b39f01fbdeb699",
+  //       //   "https://ishop.com.uy/wp-content/uploads/2022/05/senales-de-que-necesitas-llevar-tu-iphone-a-reparacion-1080x675.jpg",
+  //       // ],
+  //       productName: productFromApi.name,
+  //       productSeller: productFromApi.createBy.firstName,
+  //       productSellerPicture: productFromApi.createBy.profilePicture,
+  //       province: "กรุงเทพ",
+  //       productPrice: productFromApi.price,
+  //       productCredit: 20,
+  //       productDesc: productFromApi.description,
+  //     },
+  //   ];
+  // }
   /////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
   // console.log(productDetail.productName);
@@ -227,7 +227,7 @@ function Product() {
                   {/* {productDetail[0].productPrice} */}
                 </Col>
                 <Col className="kanit-Display-Medium cc">
-                  {productDetail[0].productCredit} CO₂ Credit
+                  {product.productDetails.carbonCredits} CO₂ Credit
                 </Col>
               </Row>
 
