@@ -348,8 +348,8 @@ function PostRequestProduct() {
         onClose={() => setOpenModel(false)}
       />
       <ModalCancle
-        label="ต้องการยกเลิกการลงขายสินค้าหรือไม่"
-        desc="กดยืนยันเพื่อยกเลิกการลงขายสินค้า"
+        label="ต้องการยกเลิกการขอรับบริจาคสินค้าหรือไม่"
+        desc="กดยืนยันเพื่อยกเลิกการขอรับบริจาคสินค้า"
         open={openModalCancel}
         onClose={() => setModalCancel(false)}
         onConfirm={() => {

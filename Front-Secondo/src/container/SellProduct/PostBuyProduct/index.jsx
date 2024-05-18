@@ -341,8 +341,8 @@ function PostBuyProduct() {
         onClose={() => setOpenModel(false)}
       />
       <ModalCancle
-        label="ต้องการยกเลิกการลงขายสินค้าหรือไม่"
-        desc="กดยืนยันเพื่อยกเลิกการลงขายสินค้า"
+        label="ต้องการยกเลิกการรับซื้อสินค้าหรือไม่"
+        desc="กดยืนยันเพื่อยกเลิกการรับซื้อสินค้า"
         open={openModalCancel}
         onClose={() => setModalCancel(false)}
         onConfirm={() => {

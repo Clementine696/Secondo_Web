@@ -340,8 +340,8 @@ function PostDonateProduct() {
         onClose={() => setOpenModel(false)}
       />
       <ModalCancle
-        label="ต้องการยกเลิกการลงขายสินค้าหรือไม่"
-        desc="กดยืนยันเพื่อยกเลิกการลงขายสินค้า"
+        label="ต้องการยกเลิกการบริจาคสินค้าหรือไม่"
+        desc="กดยืนยันเพื่อยกเลิกการบริจาคสินค้า"
         open={openModalCancel}
         onClose={() => setModalCancel(false)}
         onConfirm={() => {
