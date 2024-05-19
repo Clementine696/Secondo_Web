@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link, Navigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
@@ -30,7 +30,7 @@ let productDetails = [
     productPrice: "",
     productCredit: 20,
     createBy: {
-      firstName: "ฟ",
+      firstName: "",
     },
   },
 ];
@@ -97,37 +97,55 @@ function checkOut() {
     },
   ]);
 
-  const [paymentOption, setPaymentOption] = useState([
-    {
-      value: "6",
-      label: "Master Card ending 1123",
-    },
-    {
-      value: "7",
-      label: "Master Card ending 3968",
-    },
-  ]);
+  // const [paymentOption, setPaymentOption] = useState([
+  //   {
+  //     value: "6",
+  //     label: "Master Card ending 1123",
+  //   },
+  //   {
+  //     value: "7",
+  //     label: "Master Card ending 3968",
+  //   },
+  // ]);
 
+  const navigate = useNavigate();
   const [selectedAddress, setSelectedAddress] = useState("");
-  const [selectedDelivery, setSelectedDelivery] = useState("");
-  const [selectedPayment, setSelectedPayment] = useState("");
+  const [visibleAddress, setVisibleAddress] = useState(false);
+
+  const handleAddressClick = () => {
+    if (addressOption.length === 0) {
+      navigate("/setting");
+    } else {
+      setVisibleAddress(!visibleAddress);
+    }
+  };
+
   const handleAddressChange = (event) => {
     setSelectedAddress(event.target.value);
-    console.log(selectedAddress);
+    setVisibleAddress(false);
+  };
+
+  const [selectedDelivery, setSelectedDelivery] = useState("");
+  const [visibleDelivery, setVisibleDelivery] = useState(false);
+
+  const handleDeliveryClick = () => {
+    if (deliveryOption.length === 0) {
+      navigate("/setting");
+    } else {
+      setVisibleDelivery(!visibleDelivery);
+    }
   };
 
   const handleDeliveryChange = (event) => {
     setSelectedDelivery(event.target.value);
-    console.log(selectedDelivery);
+    setVisibleDelivery(false);
   };
 
-  const handlePaymentChange = (event) => {
-    setSelectedPayment(event.target.value);
-  };
-
-  const [visibleAddress, setVisibleAddress] = useState(false);
-  const [visibleDev, setVisibleDev] = useState(false);
-  const [visiblePayment, setVisiblePayment] = useState(false);
+  // const [selectedPayment, setSelectedPayment] = useState("");
+  // const [visiblePayment, setVisiblePayment] = useState(false);
+  // const handlePaymentChange = (event) => {
+  //   setSelectedPayment(event.target.value);
+  // };
 
   // console.log(omiseCard);
   const isCheckoutReady = selectedAddress && selectedDelivery;
@@ -145,7 +163,7 @@ function checkOut() {
             <div className="checkout-page-content-method-address">
               <div
                 className="checkout-page-content-method-address-group"
-                onClick={() => setVisibleAddress(true)}
+                onClick={handleAddressClick}
               >
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
@@ -172,17 +190,21 @@ function checkOut() {
                       to="/setting"
                     >
                       กรุณาเพิ่มที่อยู่การจัดส่ง
-                      <img className="check-out-icon" src={chevronRight} />
+                      <img
+                        className="check-out-icon"
+                        src={chevronRight}
+                        alt="chevron right"
+                      />
                     </Link>
                   ) : (
-                    <Link
-                      style={{ textDecoration: "none" }}
-                      // to=""
-                      className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
-                    >
+                    <span className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium">
                       แก้ไข
-                      <img className="check-out-icon" src={chevronRightD} />
-                    </Link>
+                      <img
+                        className="check-out-icon"
+                        src={chevronRightD}
+                        alt="chevron right"
+                      />
+                    </span>
                   )}
                 </div>
               </div>
@@ -191,10 +213,10 @@ function checkOut() {
                   <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
                     การจัดส่ง
                   </div>
-                  {addressOption.map((address) => (
+                  {addresses.map((address) => (
                     <div
                       className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
-                      key={address.value}
+                      key={address.id}
                     >
                       <input
                         name="addressMethod"
@@ -202,11 +224,9 @@ function checkOut() {
                         value={address.id}
                         id={address.id}
                         checked={selectedAddress === address.id}
-                        // onChange={(e) => setValue(e.target.value)}
                         onChange={handleAddressChange}
-                        onClick={() => setVisibleAddress(false)}
                       />
-                      <label htmlFor={address.label}>{address.label}</label>
+                      <label htmlFor={address.id}>{address.label}</label>
                     </div>
                   ))}
                 </div>
@@ -219,7 +239,7 @@ function checkOut() {
             <div className="checkout-page-content-method-address">
               <div
                 className="checkout-page-content-method-address-group"
-                onClick={() => setVisibleDev(true)}
+                onClick={handleDeliveryClick}
               >
                 <div className="checkout-page-content-method-address-group-detail">
                   <div className="checkout-page-content-method-address-group-detail-number">
@@ -239,16 +259,27 @@ function checkOut() {
                   </div>
                 </div>
                 <div className="checkout-page-content-method-address-group-edit">
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
-                  >
-                    แก้ไข
-                    <img className="check-out-icon" src={chevronRightD} />
-                  </Link>
+                  {deliveryOption.length === 0 ? (
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium"
+                    >
+                      แก้ไข
+                      <img className="check-out-icon" src={chevronRightD} />
+                    </Link>
+                  ) : (
+                    <span className="checkout-page-content-method-address-group-edit-text kanit-paragraphtextMedium">
+                      แก้ไข
+                      <img
+                        className="check-out-icon"
+                        src={chevronRightD}
+                        alt="chevron right"
+                      />
+                    </span>
+                  )}
                 </div>
               </div>
-              {visibleDev && (
+              {visibleDelivery && (
                 <div className="checkout-page-content-method-hide">
                   <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
                     การจัดส่ง
@@ -256,19 +287,19 @@ function checkOut() {
                   {deliveryOption.map((delivery) => (
                     <div
                       className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
-                      key={delivery.value}
+                      key={delivery.id}
                     >
                       <input
                         name="deliveryMethod"
                         type="radio"
-                        value={delivery.value}
-                        id={delivery.value}
-                        checked={selectedDelivery === delivery.value}
-                        // onChange={(e) => setValue(e.target.value)}
+                        value={delivery.id}
+                        id={delivery.id}
+                        checked={selectedDelivery === delivery.id}
+                        // onChange={(e) => setValue(e.target.id)}
                         onChange={handleDeliveryChange}
                         onClick={() => setVisibleDev(false)}
                       />
-                      <label htmlFor={delivery.label}>{delivery.label}</label>
+                      <label htmlFor={delivery.id}>{delivery.label}</label>
                     </div>
                   ))}
                 </div>

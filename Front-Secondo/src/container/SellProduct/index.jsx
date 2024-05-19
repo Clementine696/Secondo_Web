@@ -1,27 +1,24 @@
-import React from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addSellerProduct } from "../../actions";
+import { Container, Form } from "react-bootstrap";
+
 import Input from "../../components/UI/Input";
 import Layout from "../../components/Layout";
 import ModalS from "../../components/Modal/success";
-
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addSellerProduct } from "../../actions";
-
 import success from "../../icon/success-check.png";
 import Cancel from "../../icon/cancel.png";
 import RedCancel from "../../icon/close.png";
-
-import "./index.css";
-import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../components/UI/Input/Textarea";
 import ModalCancle from "../../components/Modal/Cancle";
+
+import "./index.css";
 
 function SellProduct() {
   const [openModel, setOpenModel] = useState(false);
   const [openModalCancel, setModalCancel] = useState(false);
   const [navigateToSellstate, setNavigateToSellstate] = useState(false);
-  // const [navigateBack, setNavigateBack] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,36 +66,33 @@ function SellProduct() {
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
+  const initialCategory = "เสื้อผ้าและแฟชั่น";
+  const initialCategoryOption = optionsCategory.find(
+    (category) => category.label === initialCategory
+  );
+
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDetail, setProductDetail] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState(
+    initialCategoryOption ? initialCategoryOption.value : null
+  );
   const [shippingCost, setShippingCost] = useState("");
 
   // connect api to save data
   const addProductForm = () => {
-    // console.log(productName);
-    // console.log(productPrice);
-    // console.log(productDetail);
-    // console.log(shippingCost);
-    // console.log(categoryId);
-    // console.log(selectedImages);
     setOpenModel(true);
 
-    // for (let pic of selectedImages) {
-    //   console.log("Test");
-    //   // console.log(pic.name)
-    // }
     const form = new FormData();
     form.append("name", productName);
     form.append("price", productPrice);
-    // form.append("specifications", "Spec");
     form.append("description", productDetail);
     form.append("shippingCost", shippingCost);
     form.append("category", categoryId);
     for (let pic of selectedImages) {
       form.append("productPicture", pic);
     }
+
     dispatch(addSellerProduct(form));
 
     setNavigateToSellstate(true);

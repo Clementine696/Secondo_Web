@@ -59,6 +59,7 @@
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
+  cursor: pointer;
 }
 
 .checkout-page-content-method-address-group-detail {
