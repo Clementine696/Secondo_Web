@@ -54,13 +54,6 @@ let productDetail = [
   },
 ];
 
-const pathway = [
-  { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "รับซื้อ", value: 2, nevigate: "/search" },
-  { label: "เสื้อผ้า", value: 3, nevigate: "" },
-  { label: "เสื้อ COTTON แบรนด์ญี่ปุ่น", value: 4, nevigate: "/product/buyer" },
-];
-
 function Productsale() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
@@ -258,6 +251,15 @@ function Productsale() {
 
   // user_product = user.userSellerproducts;
   // Myproduct 
+
+  const pathway = [
+    { label: "หน้าหลัก", value: 1, nevigate: "/" },
+    { label: "รับซื้อ", value: 2, nevigate: "/allproduct/buyer" },
+    { label: product.productDetails.category
+      ? product.productDetails.category.name
+      : null, value: 3, nevigate: "" },
+    { label: product.productDetails.name, value: 4, nevigate: "" },
+  ];
 
   return (
     <Layout>
