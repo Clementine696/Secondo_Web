@@ -250,21 +250,38 @@ exports.getAddress = (req, res) => {
 exports.updateAddress = (req, res) => {
 
     const id = req.body.address_id
-    const data = {
+    const {
         address_name, address_author, tel, houseaddress, sub_district, district, province, zipcode
     } = req.body;
 
-    User.findOne({ _id: req.user._id })
-    .populate({ path: 'addresses' })
-        .then((user)=>{
-            if(user){
-                const updatedAddress = Address.findOneAndUpdate({_id: id}, data);
+    const data = {
+        address_name, address_author, tel, houseaddress, sub_district, district, province, zipcode
+    }
+
+    console.log(data)
+
+    Address.findOneAndUpdate({_id: id}, data).then((updatedAddress)=>{
+        if(updatedAddress){
+            // console.log(user.addresses)
+            res.status(201).json({ address: updatedAddress })
+        }else{
+            return res.status(400).json({message: 'Something went wrong'});
+        }
+    })
                 // console.log(user.addresses)
-                res.status(201).json({ address: updatedAddress })
-            }else{
-                return res.status(400).json({message: 'Something went wrong'});
-            }
-        })
+                // res.status(201).json({ address: updatedAddress })
+
+    // User.findOne({ _id: req.user._id })
+    // .populate({ path: 'addresses' })
+    //     .then((user)=>{
+    //         if(user){
+    //             const updatedAddress = Address.findOneAndUpdate({_id: id}, data);
+    //             // console.log(user.addresses)
+    //             res.status(201).json({ address: updatedAddress })
+    //         }else{
+    //             return res.status(400).json({message: 'Something went wrong'});
+    //         }
+    //     })
 }
 
 // exports.deleteAddress = (req, res) => {
