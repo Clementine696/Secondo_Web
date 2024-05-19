@@ -83,7 +83,7 @@ function checkOut() {
   //Modal
   const [openModel, setOpenModel] = useState(false);
 
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [addressOption, setAddressOption] = useState(Address);
 
   const [deliveryOption, setDeliveryOption] = useState([
@@ -213,7 +213,7 @@ function checkOut() {
                   <div className="checkout-page-content-method-hide-option-header kanit-paragraphSmall">
                     การจัดส่ง
                   </div>
-                  {addresses.map((address) => (
+                  {Address.map((address) => (
                     <div
                       className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
                       key={address.id}
@@ -287,17 +287,17 @@ function checkOut() {
                   {deliveryOption.map((delivery) => (
                     <div
                       className="checkout-page-content-method-hide-option-choices kanit-paragraphtextMedium"
-                      key={delivery.id}
+                      key={delivery.value}
                     >
                       <input
                         name="deliveryMethod"
                         type="radio"
-                        value={delivery.id}
-                        id={delivery.id}
-                        checked={selectedDelivery === delivery.id}
+                        value={delivery.value}
+                        id={delivery.value}
+                        checked={selectedDelivery === delivery.value}
                         // onChange={(e) => setValue(e.target.id)}
                         onChange={handleDeliveryChange}
-                        onClick={() => setVisibleDev(false)}
+                        onClick={() => setVisibleDelivery(false)}
                       />
                       <label htmlFor={delivery.id}>{delivery.label}</label>
                     </div>
