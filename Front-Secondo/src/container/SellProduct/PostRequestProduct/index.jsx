@@ -1,21 +1,19 @@
-import React from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addReceiverProduct } from "../../../actions";
+import { Container, Form } from "react-bootstrap";
+
 import Input from "../../../components/UI/Input";
 import Layout from "../../../components/Layout";
 import ModalS from "../../../components/Modal/success";
-
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addReceiverProduct } from "../../../actions";
-
 import success from "../../../icon/success-check.png";
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
-
-import "../index";
-import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../../components/UI/Input/Textarea";
 import ModalCancle from "../../../components/Modal/Cancle";
+
+import "../index";
 
 function PostRequestProduct() {
   const [openModel, setOpenModel] = useState(false);
@@ -53,7 +51,7 @@ function PostRequestProduct() {
     return myCategories;
   };
 
-  // const categoryItem = renderCategories(category.categories)
+  const optionsCategory = renderCategories(category.categories);
 
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -69,19 +67,34 @@ function PostRequestProduct() {
   };
 
   const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
   const [productDetail, setProductDetail] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [shippingCost, setShippingCost] = useState("");
+
+  const [errors, setErrors] = useState({
+    productName: "",
+    productDetail: "",
+    categoryId: "",
+  });
 
   // connect api to save data
   const addProductForm = () => {
-    // console.log(productName);
-    // console.log(productPrice);
-    // console.log(productDetail);
-    // console.log(shippingCost);
-    // console.log(categoryId);
-    // console.log(selectedImages);
+    // Validation check
+    let validationErrors = {};
+
+    if (!productName) {
+      validationErrors.productName = "กรุณากรอกชื่อสินค้า";
+    }
+    if (!productDetail) {
+      validationErrors.productDetail = "กรุณากรอกรายละเอียดสินค้า";
+    }
+    if (!categoryId) {
+      validationErrors.categoryId = "กรุณาเลือกหมวดหมู่สินค้า";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     setOpenModel(true);
 
     // for (let pic of selectedImages) {
@@ -98,28 +111,11 @@ function PostRequestProduct() {
     for (let pic of selectedImages) {
       form.append("productPicture", pic);
     }
+
     dispatch(addReceiverProduct(form));
 
     setNavigateToSellstate(true);
   };
-
-  const [value, setValue] = useState("");
-  // const optionsCategory = [
-  //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
-  //   {label: "รองเท้า", value: 2},
-  //   {label: "ความงามและของใช้ส่วนตัว", value: 3},
-  // ];
-  const optionsCategory = renderCategories(category.categories);
-
-  // function HandleSelect(event) {
-  //   setValue(event.target.value);
-  // }
-
-  // const navigate = useNavigate();
-
-  // const nevigateToSellstate = () => {
-  //   navigate("/sellstate");
-  // };
 
   return (
     <Layout>
@@ -250,9 +246,11 @@ function PostRequestProduct() {
                 placeholder="ระบุชื่อของสินค้า"
                 value={productName}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.productName}
+                isInvalid={errors.productName !== ""}
                 onChange={(e) => {
                   setProductName(e.target.value);
+                  setErrors((prev) => ({ ...prev, productName: "" }));
                 }}
               />
 
@@ -261,9 +259,14 @@ function PostRequestProduct() {
                   เลือกหมวดหมู่
                 </p>
                 <select
-                  className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
-                  // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  className={`sell-product-content-info-item-input-options-category kanit-paragraphtextMedium ${
+                    errors.categoryId ? "input-invalid" : ""
+                  }`}
+                  value={categoryId}
+                  onChange={(e) => {
+                    setCategoryId(e.target.value);
+                    setErrors((prev) => ({ ...prev, categoryId: "" }));
+                  }}
                 >
                   {optionsCategory.map((optionsCategory) => (
                     <option
@@ -274,37 +277,22 @@ function PostRequestProduct() {
                     </option>
                   ))}
                 </select>
+                {errors.categoryId && (
+                  <div className="error-msg">{errors.categoryId}</div>
+                )}
               </div>
-              {/* <Input
-                  Label="ราคาสินค้า"
-                  placeholder="ระบุราคาของสินค้า"
-                  value={productPrice}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductPrice(e.target.value);
-                  }}
-                /> */}
               <Textarea
                 Label="รายละเอียดสินค้า"
                 placeholder="ระบุรายละเอียดของสินค้า"
                 value={productDetail}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.productDetail}
+                isInvalid={errors.productDetail !== ""}
                 onChange={(e) => {
                   setProductDetail(e.target.value);
+                  setErrors((prev) => ({ ...prev, productDetail: "" }));
                 }}
               />
-              {/* <Input
-                  Label="ค่าจัดส่ง"
-                  placeholder="ระบุค่าจัดส่ง"
-                  value={shippingCost}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setShippingCost(e.target.value);
-                  }}
-                /> */}
             </Form>
             <div className="sell-product-content-info-item-input-button-group">
               <Link

@@ -154,7 +154,7 @@
   height: 200px;
 
   border-radius: 24px;
-  border: 2px dashed var(--Etc-Outline, #74747e);
+  border: 2px dashed var(--Outline-color);
 }
 
 .sell-product-content-upload-image-input {
@@ -196,4 +196,14 @@
 
 .color-text-img-error {
   color: var(--White-color);
+}
+
+.input-invalid {
+  border: 1px solid var(--Error-color);
+}
+
+.error-message {
+  color: var(--Error-color);
+  font-size: 12px;
+  margin-top: 4px;
 }

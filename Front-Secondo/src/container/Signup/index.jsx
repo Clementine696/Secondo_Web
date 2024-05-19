@@ -127,7 +127,6 @@ function Signup() {
                   value={email}
                   type="email"
                   errorMessage=""
-                  autoComplete="off"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -138,8 +137,8 @@ function Signup() {
                   placeholder="รหัสผ่าน"
                   value={regisPassword}
                   type="password"
-                  errorMessage=""
-                  autoComplete="off"
+                  errorMessage={error}
+                  isInvalid={error !== ""}
                   onChange={(e) => {
                     setRegisPassword(e.target.value);
                   }}
@@ -150,7 +149,6 @@ function Signup() {
                   placeholder="ยืนยันรหัสผ่าน"
                   value={confirmPassword}
                   type="password"
-                  autoComplete="off"
                   errorMessage={error}
                   isInvalid={error !== ""}
                   onChange={(e) => {

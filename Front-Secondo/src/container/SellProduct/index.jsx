@@ -51,7 +51,7 @@ function SellProduct() {
     return myCategories;
   };
 
-  // const categoryItem = renderCategories(category.categories)
+  const optionsCategory = renderCategories(category.categories);
 
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -66,22 +66,59 @@ function SellProduct() {
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
   };
 
-  const initialCategory = "เสื้อผ้าและแฟชั่น";
-  const initialCategoryOption = optionsCategory.find(
-    (category) => category.label === initialCategory
-  );
-
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productDetail, setProductDetail] = useState("");
-  const [categoryId, setCategoryId] = useState(
-    initialCategoryOption ? initialCategoryOption.value : null
-  );
+  const [categoryId, setCategoryId] = useState("");
   const [shippingCost, setShippingCost] = useState("");
+
+  const [errors, setErrors] = useState({
+    productName: "",
+    productPrice: "",
+    productDetail: "",
+    categoryId: "",
+    shippingCost: "",
+  });
+
+  useEffect(() => {
+    if (optionsCategory.length > 0) {
+      const defaultCategory = optionsCategory.find(
+        (option) => option.label === "เสื้อผ้าและแฟชั่น"
+      );
+      if (defaultCategory) {
+        setCategoryId(defaultCategory.value);
+      }
+    }
+  }, [optionsCategory]);
 
   // connect api to save data
   const addProductForm = () => {
+    // Validation check
+    let validationErrors = {};
+
+    if (!productName) {
+      validationErrors.productName = "กรุณากรอกชื่อสินค้า";
+    }
+    if (!productPrice) {
+      validationErrors.productPrice = "กรุณากรอกราคาสินค้า";
+    }
+    if (!productDetail) {
+      validationErrors.productDetail = "กรุณากรอกรายละเอียดสินค้า";
+    }
+    if (!categoryId) {
+      validationErrors.categoryId = "กรุณาเลือกหมวดหมู่สินค้า";
+    }
+    if (!shippingCost) {
+      validationErrors.shippingCost = "กรุณากรอกค่าจัดส่ง";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     setOpenModel(true);
+    console.log(categoryId);
 
     const form = new FormData();
     form.append("name", productName);
@@ -97,24 +134,6 @@ function SellProduct() {
 
     setNavigateToSellstate(true);
   };
-
-  const [value, setValue] = useState("");
-  // const optionsCategory = [
-  //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
-  //   {label: "รองเท้า", value: 2},
-  //   {label: "ความงามและของใช้ส่วนตัว", value: 3},
-  // ];
-  const optionsCategory = renderCategories(category.categories);
-
-  // function HandleSelect(event) {
-  //   setValue(event.target.value);
-  // }
-
-  // const navigate = useNavigate();
-
-  // const nevigateToSellstate = () => {
-  //   navigate("/sellstate");
-  // };
 
   return (
     <Layout>
@@ -185,7 +204,7 @@ function SellProduct() {
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-            <label className="sell-product-content-upload-image-label kanit-Display-Large">
+            <div className="sell-product-content-upload-image-label kanit-Display-Large">
               Click to add images
               <input
                 className="sell-product-content-upload-image-input"
@@ -195,7 +214,7 @@ function SellProduct() {
                 multiple
                 accept="image/*"
               />
-            </label>
+            </div>
 
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
@@ -203,7 +222,7 @@ function SellProduct() {
                   return (
                     <div
                       className="sell-product-content-upload-image-preview-frame"
-                      key="image"
+                      key={index}
                     >
                       <div className="frame-out-icon-cancel">
                         <button
@@ -243,9 +262,11 @@ function SellProduct() {
                 placeholder="ระบุชื่อของสินค้า"
                 value={productName}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.productName}
+                isInvalid={errors.productName !== ""}
                 onChange={(e) => {
                   setProductName(e.target.value);
+                  setErrors((prev) => ({ ...prev, productName: "" }));
                 }}
               />
 
@@ -254,9 +275,14 @@ function SellProduct() {
                   เลือกหมวดหมู่
                 </p>
                 <select
-                  className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium"
-                  // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  className={`sell-product-content-info-item-input-options-category kanit-paragraphtextMedium ${
+                    errors.categoryId ? "input-invalid" : ""
+                  }`}
+                  value={categoryId}
+                  onChange={(e) => {
+                    setCategoryId(e.target.value);
+                    setErrors((prev) => ({ ...prev, categoryId: "" }));
+                  }}
                 >
                   {optionsCategory.map((optionsCategory) => (
                     <option
@@ -267,15 +293,20 @@ function SellProduct() {
                     </option>
                   ))}
                 </select>
+                {errors.categoryId && (
+                  <div className="error-msg">{errors.categoryId}</div>
+                )}
               </div>
               <Input
                 Label="ราคาสินค้า"
                 placeholder="ระบุราคาของสินค้า"
                 value={productPrice}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.productPrice}
+                isInvalid={errors.productPrice !== ""}
                 onChange={(e) => {
                   setProductPrice(e.target.value);
+                  setErrors((prev) => ({ ...prev, productPrice: "" }));
                 }}
               />
               <Textarea
@@ -283,9 +314,11 @@ function SellProduct() {
                 placeholder="ระบุรายละเอียดของสินค้า"
                 value={productDetail}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.productDetail}
+                isInvalid={errors.productDetail !== ""}
                 onChange={(e) => {
                   setProductDetail(e.target.value);
+                  setErrors((prev) => ({ ...prev, productDetail: "" }));
                 }}
               />
               <Input
@@ -293,9 +326,11 @@ function SellProduct() {
                 placeholder="ระบุค่าจัดส่ง"
                 value={shippingCost}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.shippingCost}
+                isInvalid={errors.shippingCost !== ""}
                 onChange={(e) => {
                   setShippingCost(e.target.value);
+                  setErrors((prev) => ({ ...prev, shippingCost: "" }));
                 }}
               />
             </Form>

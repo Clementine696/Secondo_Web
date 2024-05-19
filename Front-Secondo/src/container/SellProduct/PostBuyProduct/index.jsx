@@ -40,31 +40,29 @@ function PostBuyProduct() {
   const renderCategories = (categories) => {
     let myCategories = [];
     for (let category of categories) {
-      if(category.parentId == null){
-        myCategories.push(
-          {
-            // img: category.image,
-            label: category.name,
-            value: category._id,
-            // children: category.children.length > 0 && renderCategories(category.children)
-          }
-        );
+      if (category.parentId == null) {
+        myCategories.push({
+          // img: category.image,
+          label: category.name,
+          value: category._id,
+          // children: category.children.length > 0 && renderCategories(category.children)
+        });
       }
     }
 
     return myCategories;
   };
 
-  // const categoryItem = renderCategories(category.categories)
+  const optionsCategory = renderCategories(category.categories);
 
   const [selectedImages, setSelectedImages] = useState([]);
-  
+
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFilesArray = Array.from(selectedFiles);
 
     const imagesArray = selectedFilesArray.map((file) => {
-      return file
+      return file;
     });
     // setProductPictures([...productPictures, e.target.files[0]]);
     setSelectedImages((previousImages) => previousImages.concat(imagesArray));
@@ -76,20 +74,48 @@ function PostBuyProduct() {
   const [categoryId, setCategoryId] = useState("");
   const [shippingCost, setShippingCost] = useState("");
 
+  const [errors, setErrors] = useState({
+    productName: "",
+    productPrice: "",
+    productDetail: "",
+    categoryId: "",
+  });
+
+  useEffect(() => {
+    if (optionsCategory.length > 0) {
+      const defaultCategory = optionsCategory.find(
+        (option) => option.label === "เสื้อผ้าและแฟชั่น"
+      );
+      if (defaultCategory) {
+        setCategoryId(defaultCategory.value);
+      }
+    }
+  }, [optionsCategory]);
+
   // connect api to save data
   const addProductForm = () => {
-    // console.log(productName);
-    // console.log(productPrice);
-    // console.log(productDetail);
-    // console.log(shippingCost);
-    // console.log(categoryId);
-    // console.log(selectedImages);
+    // Validation check
+    let validationErrors = {};
+
+    if (!productName) {
+      validationErrors.productName = "กรุณากรอกชื่อสินค้า";
+    }
+    if (!productPrice) {
+      validationErrors.productPrice = "กรุณากรอกราคาสินค้า";
+    }
+    if (!productDetail) {
+      validationErrors.productDetail = "กรุณากรอกรายละเอียดสินค้า";
+    }
+    if (!categoryId) {
+      validationErrors.categoryId = "กรุณาเลือกหมวดหมู่สินค้า";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     setOpenModel(true);
 
-    // for (let pic of selectedImages) {
-    //   console.log("Test")
-    //   console.log(pic.name)
-    // }
     const form = new FormData();
     form.append("name", productName);
     form.append("price", productPrice);
@@ -105,26 +131,7 @@ function PostBuyProduct() {
     setNavigateToSellstate(true);
   };
 
-  const [value, setValue] = useState('')
-  // const optionsCategory = [
-  //   {label: "เสื้อผ้าและแฟชั่น", value: 1},
-  //   {label: "รองเท้า", value: 2},
-  //   {label: "ความงามและของใช้ส่วนตัว", value: 3},
-  // ];
-  const optionsCategory = renderCategories(category.categories);
-
-  // function HandleSelect(event) {
-  //   setValue(event.target.value);
-  // }
-
-  // const navigate = useNavigate();
-
-  // const nevigateToSellstate = () => {
-  //   navigate("/sellstate");
-  // };
-
   return (
-    
     <Layout>
       <div className="background-sell-product-page">
         <div className="product-page-path-way">
@@ -245,90 +252,102 @@ function PostBuyProduct() {
 
           <div className="sell-product-content-info-item">
             {/* <Col className="sell-product-content-info-item-group"> */}
-              <Form className="sell-product-content-info-item-input">
-                <Input
-                  Label="ชื่อสินค้า"
-                  placeholder="ระบุชื่อของสินค้า"
-                  value={productName}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductName(e.target.value);
-                  }}
-                />
+            <Form className="sell-product-content-info-item-input">
+              <Input
+                Label="ชื่อสินค้า"
+                placeholder="ระบุชื่อของสินค้า"
+                value={productName}
+                type="text"
+                errorMessage={errors.productName}
+                isInvalid={errors.productName !== ""}
+                onChange={(e) => {
+                  setProductName(e.target.value);
+                  setErrors((prev) => ({ ...prev, productName: "" }));
+                }}
+              />
 
-                <div className="sell-product-content-info-item-input-options">
-                  <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">เลือกหมวดหมู่</p>
-                  <select className="sell-product-content-info-item-input-options-category kanit-paragraphtextMedium" 
-                  // onChange={HandleSelect}
-                  onChange={(e) => setCategoryId(e.target.value)} >
-                    {optionsCategory.map(optionsCategory => (
-                      <option key={optionsCategory.value} value={optionsCategory.value}>{optionsCategory.label}</option>
-                    ))}
-                  </select>
-                </div>
-                <Input
-                  Label="ราคาสินค้า"
-                  placeholder="ระบุราคาของสินค้า"
-                  value={productPrice}
-                  type="text"
-                  errorMessage=""
+              <div className="sell-product-content-info-item-input-options">
+                <p className="sell-product-content-info-item-input-options-topic kanit-paragraphtextMedium">
+                  เลือกหมวดหมู่
+                </p>
+                <select
+                  className={`sell-product-content-info-item-input-options-category kanit-paragraphtextMedium ${
+                    errors.categoryId ? "input-invalid" : ""
+                  }`}
+                  value={categoryId}
                   onChange={(e) => {
-                    setProductPrice(e.target.value);
+                    setCategoryId(e.target.value);
+                    setErrors((prev) => ({ ...prev, categoryId: "" }));
                   }}
-                />
-                <Textarea
-                  Label="รายละเอียดสินค้า"
-                  placeholder="ระบุรายละเอียดของสินค้า"
-                  value={productDetail}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setProductDetail(e.target.value);
-                  }}
-                />
-                {/* <Input
-                  Label="ค่าจัดส่ง"
-                  placeholder="ระบุค่าจัดส่ง"
-                  value={shippingCost}
-                  type="text"
-                  errorMessage=""
-                  onChange={(e) => {
-                    setShippingCost(e.target.value);
-                  }}
-                /> */}
-                </Form>
-                <div className="sell-product-content-info-item-input-button-group">
-                <Link
-                  className="btn-small-secondary kanit-paragraphMedium"
-                  style={{ textDecoration: "none" }}
-                  // to="/"
-                  onClick={() => setModalCancel(true)}
                 >
-                  ยกเลิก
-                </Link>
-                {selectedImages.length > 15 ? (
-                  <Link
-                    className="btn-small-primary-disabled kanit-paragraphMedium w-100"
-                    // disabled={true}
-                    style={{ textDecoration: "none" }}
-                  >
-                    รูปภาพเกินกำหนด
-                  </Link>
-                ) : (
-                  <button
-                    className="btn-small-primary kanit-paragraphMedium"
-                    // onClick={() => {
-                    //   console.log(selectedImages), "ddd";
-                    // }}
-                    onClick={addProductForm}
-                    style={{ textDecoration: "none" }}
-                    
-                  >
-                    รับซื้อ
-                  </button>
+                  {optionsCategory.map((optionsCategory) => (
+                    <option
+                      key={optionsCategory.value}
+                      value={optionsCategory.value}
+                    >
+                      {optionsCategory.label}
+                    </option>
+                  ))}
+                </select>
+                {errors.categoryId && (
+                  <div className="error-msg">{errors.categoryId}</div>
                 )}
               </div>
+              <Input
+                Label="ราคาสินค้า"
+                placeholder="ระบุราคาของสินค้า"
+                value={productPrice}
+                type="text"
+                errorMessage={errors.productPrice}
+                isInvalid={errors.productPrice !== ""}
+                onChange={(e) => {
+                  setProductPrice(e.target.value);
+                  setErrors((prev) => ({ ...prev, productPrice: "" }));
+                }}
+              />
+              <Textarea
+                Label="รายละเอียดสินค้า"
+                placeholder="ระบุรายละเอียดของสินค้า"
+                value={productDetail}
+                type="text"
+                errorMessage={errors.productDetail}
+                isInvalid={errors.productDetail !== ""}
+                onChange={(e) => {
+                  setProductDetail(e.target.value);
+                  setErrors((prev) => ({ ...prev, productDetail: "" }));
+                }}
+              />
+            </Form>
+            <div className="sell-product-content-info-item-input-button-group">
+              <Link
+                className="btn-small-secondary kanit-paragraphMedium"
+                style={{ textDecoration: "none" }}
+                // to="/"
+                onClick={() => setModalCancel(true)}
+              >
+                ยกเลิก
+              </Link>
+              {selectedImages.length > 15 ? (
+                <Link
+                  className="btn-small-primary-disabled kanit-paragraphMedium w-100"
+                  // disabled={true}
+                  style={{ textDecoration: "none" }}
+                >
+                  รูปภาพเกินกำหนด
+                </Link>
+              ) : (
+                <button
+                  className="btn-small-primary kanit-paragraphMedium"
+                  // onClick={() => {
+                  //   console.log(selectedImages), "ddd";
+                  // }}
+                  onClick={addProductForm}
+                  style={{ textDecoration: "none" }}
+                >
+                  รับซื้อ
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
