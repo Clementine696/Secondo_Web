@@ -43,9 +43,30 @@ let itemVoucher = [
 function Co2Point() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+  const coupon = useSelector((state) => state.category.coupons);
   const userProfileInfo = auth.user;
   const myCarbonCredits = auth.user.carbonCredits;
   console.log(userProfileInfo);
+
+  const renderCoupon = (coupons) => {
+    let couponCard = [];
+    if (coupons && Array.isArray(coupons)) {
+      for (let coupon of coupons) {
+          couponCard.push({
+            _id: coupon._id,
+            img: coupon.couponImage,
+            title: coupon.name,
+            price: coupon.price,
+            desc: coupon.description
+            });
+          }
+      return couponCard;
+    }
+  };
+
+  const couponCard = coupon
+    ? renderCoupon(coupon).slice(-4)
+    : [];
 
   let userImage = auth.user.profilePicture;
 
@@ -206,12 +227,12 @@ function Co2Point() {
               </div>
 
               <div className="card-coupon">
-                {itemVoucher.map((item, index) => (
+                {couponCard.map((item, index) => (
                   <VoucherCard
                     key={index}
                     img={item.img}
                     title={item.title}
-                    carbon={item.carbon}
+                    carbon={item.price}
                   />
                 ))}
               </div>
