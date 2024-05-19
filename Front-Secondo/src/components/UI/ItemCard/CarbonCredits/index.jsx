@@ -13,6 +13,8 @@ function VoucherCard(props) {
   const dispatch = useDispatch();
   const [openModel, setOpenModel] = useState(false);
   const [carbonCredits, setCarbonCredits] = useState(props.carbon);
+  const [couponImg, setCouponImg] = useState(props.img);
+  const [couponTitle, setCouponTitle] = useState(props.title);
 
   useEffect(() => {
     if (openModel) {
@@ -24,18 +26,25 @@ function VoucherCard(props) {
 
   const buyProductForm = () => {
     const data = {
-      carboncredits: props.carbon,
+      carboncredits: props.carbon
     };
     dispatch(payCarbonCredits(data));
     setOpenModel(false);
     // console.log(data);
+    // console.log(carbonCredits);
+    // console.log(props.img);
+    // console.log(props.title);
     window.location.reload();
   };
 
   useEffect(() => {
     setCarbonCredits(carbonCredits);
-    console.log(carbonCredits)
-  }, [carbonCredits]);
+    setCouponImg(couponImg);
+    setCouponTitle(couponTitle);
+    console.log(carbonCredits);
+    console.log(couponImg);
+    console.log(couponTitle);
+  }, [carbonCredits], [couponImg], [couponTitle]);
 
   return (
     <div className="frame-card-item tp-transform">

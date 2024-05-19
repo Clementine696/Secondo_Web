@@ -20,7 +20,7 @@ import kbank from "../../../../public/images/kbank.png";
 import ttb from "../../../../public/images/ttb.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAddress, addUserCreditCardPayment } from "../../../actions";
+import { addUserAddress, addUserCreditCardPayment, getAddress } from "../../../actions";
 import ModalCancle from "../../../components/Modal/Cancle";
 
 const tabItems = [
@@ -347,6 +347,7 @@ function setting() {
     // console.log(newAddress.province);
     // console.log(newAddress.zip);
     setAddAddress(false);
+    dispatch(getAddress());
   };
 
   //add payment
