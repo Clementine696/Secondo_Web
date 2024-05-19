@@ -298,8 +298,8 @@ function setting() {
       // form.append("zipcode", newAddress.zip);
       const formAddress = {
         
-        address_name: newAddress.addressName,
-        address_author: newAddress.name,
+        address_name: newAddress.name,
+        address_author: newAddress.addressName,
         tel: newAddress.phone,
         houseaddress: newAddress.address,
         sub_district: newAddress.subDistrict,
