@@ -268,6 +268,7 @@ function PostRequestProduct() {
                     setErrors((prev) => ({ ...prev, categoryId: "" }));
                   }}
                 >
+                  <option>select category</option>
                   {optionsCategory.map((optionsCategory) => (
                     <option
                       key={optionsCategory.value}
@@ -278,7 +279,7 @@ function PostRequestProduct() {
                   ))}
                 </select>
                 {errors.categoryId && (
-                  <div className="error-msg">{errors.categoryId}</div>
+                  <div className="error-message">{errors.categoryId}</div>
                 )}
               </div>
               <Textarea

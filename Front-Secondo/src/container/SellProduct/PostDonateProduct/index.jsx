@@ -78,17 +78,6 @@ function PostDonateProduct() {
     shippingCost: "",
   });
 
-  useEffect(() => {
-    if (optionsCategory.length > 0) {
-      const defaultCategory = optionsCategory.find(
-        (option) => option.label === "เสื้อผ้าและแฟชั่น"
-      );
-      if (defaultCategory) {
-        setCategoryId(defaultCategory.value);
-      }
-    }
-  }, [optionsCategory]);
-
   // connect api to save data
   const addProductForm = () => {
     // Validation check
@@ -277,6 +266,7 @@ function PostDonateProduct() {
                     setErrors((prev) => ({ ...prev, categoryId: "" }));
                   }}
                 >
+                  <option>select category</option>
                   {optionsCategory.map((optionsCategory) => (
                     <option
                       key={optionsCategory.value}
@@ -287,7 +277,7 @@ function PostDonateProduct() {
                   ))}
                 </select>
                 {errors.categoryId && (
-                  <div className="error-msg">{errors.categoryId}</div>
+                  <div className="error-message">{errors.categoryId}</div>
                 )}
               </div>
               <Textarea
@@ -307,9 +297,11 @@ function PostDonateProduct() {
                 placeholder="ระบุค่าจัดส่ง"
                 value={shippingCost}
                 type="text"
-                errorMessage=""
+                errorMessage={errors.shippingCost}
+                isInvalid={errors.shippingCost !== ""}
                 onChange={(e) => {
                   setShippingCost(e.target.value);
+                  setErrors((prev) => ({ ...prev, shippingCost: "" }));
                 }}
               />
             </Form>

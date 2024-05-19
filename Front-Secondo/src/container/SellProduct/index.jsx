@@ -80,17 +80,6 @@ function SellProduct() {
     shippingCost: "",
   });
 
-  // useEffect(() => {
-  //   if (optionsCategory.length > 0) {
-  //     const defaultCategory = optionsCategory.find(
-  //       (option) => option.label === "เสื้อผ้าและแฟชั่น"
-  //     );
-  //     if (defaultCategory) {
-  //       setCategoryId(defaultCategory.value);
-  //     }
-  //   }
-  // }, [optionsCategory]);
-
   // connect api to save data
   const addProductForm = () => {
     // Validation check
@@ -281,7 +270,7 @@ function SellProduct() {
                   value={categoryId}
                   onChange={(e) => {
                     setCategoryId(e.target.value);
-                    setErrors((prev) => ({ ...prev, categoryId: "" }));
+                    setErrors((prev) => ({ ...prev, categoryId: "" })); //cheeck error
                   }}
                 >
                   <option>select category</option>
