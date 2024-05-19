@@ -54,17 +54,6 @@ const productDetail = [
   },
 ];
 
-const pathway = [
-  { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "ขอรับบริจาค", value: 2, nevigate: "/search" },
-  { label: "เสื้อผ้า", value: 3, nevigate: "" },
-  {
-    label: "เสื้อ COTTON แบรนด์ญี่ปุ่น",
-    value: 4,
-    nevigate: "/product/request",
-  },
-];
-
 function Donate() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
@@ -233,6 +222,15 @@ function Donate() {
     setSelectedImg(img);
     setFrameSmallImgs(img);
   };
+
+  const pathway = [
+    { label: "หน้าหลัก", value: 1, nevigate: "/" },
+    { label: "รับบริจาค", value: 2, nevigate: "/allproduct/recieve" },
+    { label: product.productDetails.category
+      ? product.productDetails.category.name
+      : null, value: 3, nevigate: "" },
+    { label: product.productDetails.name, value: 4, nevigate: "" },
+  ];
 
   return (
     <Layout>
