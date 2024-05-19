@@ -1,21 +1,19 @@
-import React from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import Input from "../../../components/UI/Input";
-import Layout from "../../../components/Layout";
-import ModalS from "../../../components/Modal/success";
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addBuyerProduct } from "../../../actions";
 
+import Input from "../../../components/UI/Input";
+import Layout from "../../../components/Layout";
+import ModalS from "../../../components/Modal/success";
 import success from "../../../icon/success-check.png";
 import Cancel from "../../../icon/cancel.png";
 import RedCancel from "../../../icon/close.png";
-
-import "../index";
-import { Link, useNavigate } from "react-router-dom";
 import Textarea from "../../../components/UI/Input/Textarea";
 import ModalCancle from "../../../components/Modal/Cancle";
+
+import "../index";
 
 function PostBuyProduct() {
   const [openModel, setOpenModel] = useState(false);

@@ -204,7 +204,7 @@ function SellProduct() {
         <div className="sell-product-topic">เพิ่มสินค้าสำหรับการขาย</div>
         <div className="sell-product-content">
           <div className="sell-product-content-upload-image">
-            <div className="sell-product-content-upload-image-label kanit-Display-Large">
+            <label className="sell-product-content-upload-image-label kanit-Display-Large">
               Click to add images
               <input
                 className="sell-product-content-upload-image-input"
@@ -214,7 +214,7 @@ function SellProduct() {
                 multiple
                 accept="image/*"
               />
-            </div>
+            </label>
 
             <div className="sell-product-content-upload-image-preview">
               {selectedImages &&
