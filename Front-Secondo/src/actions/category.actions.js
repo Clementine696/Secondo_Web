@@ -11,11 +11,14 @@ export const getAllCategory = () => {
     
         if(res.status === 200){
             
-            const { categoryList } = res.data;
+            const { categoryList, coupons } = res.data;
 
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_SUCCESS,
-                payload: { categories: categoryList }
+                payload: { 
+                    categories: categoryList,
+                    coupons: coupons 
+                }
             });
         }else{
             dispatch({

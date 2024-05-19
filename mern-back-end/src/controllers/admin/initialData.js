@@ -3,6 +3,7 @@ const ProductSeller = require('../../models/productSeller')
 const ProductBuyer = require('../../models/productBuyer')
 const ProductDonate = require('../../models/productDonate')
 const ProductRequest = require('../../models/productRequest')
+const Coupon = require('../../models/coupon')
 
 function createCategories(categories, parentId = null){
 
@@ -49,12 +50,17 @@ exports.initialData = async (req, res) => {
                                         .select('_id name slug specifications description shippingCost productPictures verify status category createBy')
                                         .populate({ path: 'category', select: '_id name'})
                                         .exec();
+    const coupons = await Coupon.find({})
+                                        // .select('_id name slug specifications description shippingCost productPictures verify status category createBy')
+                                        // .populate({ path: 'category', select: '_id name'})
+                                        .exec();
     res.status(200).json({
         categories: createCategories(categories),
         productsSeller,
         productsBuyer,
         productsDonater,
-        productsReciever
+        productsReciever,
+        coupons
     })
 
 }

@@ -2,6 +2,7 @@ import { categoryConstants } from "../actions/constants";
 
 const initState = {
     categories : [],
+    coupons: [],
     loading: false,
     error: null
 };
@@ -51,7 +52,8 @@ export default (state = initState, actions) => {
         case categoryConstants.GET_ALL_CATEGORIES_SUCCESS:
             state = {
                 ...state,
-                categories: actions.payload.categories
+                categories: actions.payload.categories,
+                coupons: actions.payload.coupons
             }
             break;
         case categoryConstants.ADD_NEW_CATEGORY_REQUEST:

@@ -1,5 +1,5 @@
 const express = require('express');
-const { addCategory, getCategory, updateCategories, deleteCategories } = require('../controllers/category');
+const { addCategory, getCategory, updateCategories, deleteCategories, addCoupon, getCoupon } = require('../controllers/category');
 const { requireSignin, adminMiddleware } = require('../common-middleware');
 const router = express.Router();
 const shortid = require('shortid')
@@ -24,5 +24,7 @@ router.get('/category/getcategory', getCategory);
 router.post('/category/update', upload.array('categoryImage'), updateCategories);
 router.post('/category/delete', deleteCategories);
 
+router.post('/coupon/add', requireSignin, adminMiddleware, upload.single('couponImage'), addCoupon);
+router.get('/coupon/get', getCoupon);
 
 module.exports = router;

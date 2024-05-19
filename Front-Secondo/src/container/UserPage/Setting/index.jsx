@@ -122,7 +122,7 @@ function setting() {
     if (addresses && Array.isArray(addresses)) {
       for (let address of addresses) {
         myAddresses.push({
-          id: address.id,
+          id: address._id,
           addressName: address.address_author,
           name: address.address_name,
           phone: address.tel,
@@ -135,6 +135,7 @@ function setting() {
           zip: address.zipcode,
         });
       }
+      // console.log(myAddresses)
       return myAddresses;
     }
   };
@@ -483,6 +484,7 @@ function setting() {
     setEditAddressForm(index);
     const editedAddress = addresses[index];
     setEditedAddress({ ...editedAddress });
+
     // console.log(editedAddress)
     // console.log(index)
   };
@@ -491,6 +493,24 @@ function setting() {
     const updatedAddresses = addresses.map((address, index) =>
       index === editAddressForm ? editedAddress : address
     );
+    // console.log(editAddressForm)
+    const update = (updatedAddresses[editAddressForm]);
+
+    const data = {
+      address_id : update.id, 
+      address_name: update.name, 
+      address_author: update.addressName, 
+      tel: update.phone, 
+      houseaddress: update.address, 
+      sub_district: update.subDistrict, 
+      district: update.district, 
+      province: update.province, 
+      zipcode: update.zip
+    }
+
+    console.log("data")
+    console.log(data)
+
     setAddresses(updatedAddresses);
   };
 

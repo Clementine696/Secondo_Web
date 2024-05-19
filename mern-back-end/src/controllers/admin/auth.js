@@ -249,7 +249,8 @@ exports.getAddress = (req, res) => {
 
 exports.updateAddress = (req, res) => {
 
-    const {
+    const id = req.body.address_id
+    const data = {
         address_name, address_author, tel, houseaddress, sub_district, district, province, zipcode
     } = req.body;
 
@@ -257,11 +258,9 @@ exports.updateAddress = (req, res) => {
     .populate({ path: 'addresses' })
         .then((user)=>{
             if(user){
-
-                Address.findOneAndUpdate()
-
+                const updatedAddress = Address.findOneAndUpdate({_id: id}, data);
                 // console.log(user.addresses)
-                res.status(201).json({ address: user.addresses })
+                res.status(201).json({ address: updatedAddress })
             }else{
                 return res.status(400).json({message: 'Something went wrong'});
             }

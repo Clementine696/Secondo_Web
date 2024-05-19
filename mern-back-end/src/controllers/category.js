@@ -2,6 +2,7 @@ const Category = require('../models/category');
 const slugify = require('slugify');
 const shortid = require('shortid');
 const fs = require('fs');
+const Coupon = require('../models/coupon');
 
 function createCategories(categories, parentId = null){
 
@@ -79,7 +80,16 @@ exports.getCategory = (req, res) => {
 
             const categoryList = createCategories(categories);
 
-            return res.status(200).json({ categoryList });
+            Coupon.find({})
+                .then((coupons) => {
+                    if(coupons){
+                        return res.status(200).json({ categoryList, coupons });
+                        // return res.status(200).json({ coupons });
+                    }
+                }).catch((error) => {
+                    return res.status(400).json({ error })
+                })
+
         }
         
     }).catch((error) => {
@@ -163,3 +173,47 @@ exports.deleteCategories = async (req, res) => {
 //             console.log("\nDeleted file");
 //         }
 //     }));
+
+exports.addCoupon = (req, res) => {
+
+    const couponObj = {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        // slug: slugify(req.body.name)
+    }
+
+    if(req.file){
+        couponObj.couponImage = process.env.API + '/public/' + req.file.filename;
+        console.log(req.file.filename);
+    }
+    
+    // return res.status(201).json({ couponObj });
+    const cat = new Coupon(couponObj);
+
+    cat.save().then(coupon => {
+        coupon === cat; // true
+        // if(error) return res.status(400).json({ error })
+
+        if(coupon){
+            return res.status(201).json({ coupon });
+        }
+
+    }).catch((error) => {
+        return res.status(400).json({ error })
+        console.log(err);
+        // res.send(400, "Bad Request");
+    });
+    
+}
+
+exports.getCoupon = (req, res) => {
+    Coupon.find({})
+    .then((coupons) => {
+        if(coupons){
+            return res.status(200).json({ coupons });
+        }
+    }).catch((error) => {
+        return res.status(400).json({ error })
+    })
+}
