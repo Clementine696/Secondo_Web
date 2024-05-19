@@ -116,6 +116,14 @@ export const addUserAddress = (form) => {
     return async dispatch => {
         const res = await axios.post(`admin/address/new`, form)
         // console.log(res);
+        // console.log('here be addAdress');
+    }
+}
+
+export const updateUserAddress = (form) => {
+    return async dispatch => {
+        const res = await axios.post(`admin/address/update`, form)
+        // console.log(res);
         console.log('here be addAdress');
     }
 }

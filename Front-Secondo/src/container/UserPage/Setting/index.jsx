@@ -20,7 +20,7 @@ import kbank from "../../../../public/images/kbank.png";
 import ttb from "../../../../public/images/ttb.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addUserAddress, addUserCreditCardPayment, getAddress } from "../../../actions";
+import { addUserAddress, addUserCreditCardPayment, getAddress, updateUserAddress } from "../../../actions";
 import ModalCancle from "../../../components/Modal/Cancle";
 
 const tabItems = [
@@ -512,6 +512,8 @@ function setting() {
     console.log("data")
     console.log(data)
 
+    dispatch(updateUserAddress(data));
+    
     setAddresses(updatedAddresses);
   };
 
