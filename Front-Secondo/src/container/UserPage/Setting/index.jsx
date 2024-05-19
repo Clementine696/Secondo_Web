@@ -851,7 +851,7 @@ function setting() {
                                     onChange={(e) =>
                                       setEditedAddress({
                                         ...editedAddress,
-                                        province: e.target.value,
+                                        subDistrict: e.target.value,
                                       })
                                     }
                                   />
@@ -868,7 +868,7 @@ function setting() {
                                     onChange={(e) =>
                                       setEditedAddress({
                                         ...editedAddress,
-                                        province: e.target.value,
+                                        district: e.target.value,
                                       })
                                     }
                                   />

@@ -284,6 +284,7 @@ function SellProduct() {
                     setErrors((prev) => ({ ...prev, categoryId: "" }));
                   }}
                 >
+                  <option>select category</option>
                   {optionsCategory.map((optionsCategory) => (
                     <option
                       key={optionsCategory.value}
