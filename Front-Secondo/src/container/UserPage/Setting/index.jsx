@@ -122,9 +122,9 @@ function setting() {
     if (addresses && Array.isArray(addresses)) {
       for (let address of addresses) {
         myAddresses.push({
-          // id: address.id,
+          id: address.id,
+          addressName: address.address_author,
           name: address.address_name,
-          addressName: "",
           phone: address.tel,
           // address:
           // address.houseaddress + address.sub_district + address.district,
@@ -297,7 +297,9 @@ function setting() {
       // form.append("province", newAddress.province);
       // form.append("zipcode", newAddress.zip);
       const formAddress = {
+        
         address_name: newAddress.addressName,
+        address_author: newAddress.name,
         tel: newAddress.phone,
         houseaddress: newAddress.address,
         sub_district: newAddress.subDistrict,
@@ -663,7 +665,7 @@ function setting() {
                     >
                       <div className="text-address kanit-paragraphtextMedium">
                         <p>
-                          {address.name} {address.phone}
+                          {address.addressName} {address.name} {address.phone}
                         </p>
                         <p>
                           {address.address} {address.subDistrict}{" "}

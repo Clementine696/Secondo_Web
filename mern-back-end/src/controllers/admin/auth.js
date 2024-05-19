@@ -199,7 +199,7 @@ exports.updateProfilePicture = (req, res) => {
 exports.newAddress = (req, res) => {
 
     const {
-        address_name, tel, houseaddress, sub_district, district, province, zipcode
+        address_name, address_author, tel, houseaddress, sub_district, district, province, zipcode
     } = req.body;
 
     User.findOne({ _id: req.user._id })
@@ -209,6 +209,7 @@ exports.newAddress = (req, res) => {
 
                 const address = new Address({
                     address_name,
+                    address_author,
                     tel,
                     houseaddress,
                     sub_district,
@@ -247,6 +248,11 @@ exports.getAddress = (req, res) => {
 }
 
 exports.updateAddress = (req, res) => {
+
+    const {
+        address_name, address_author, tel, houseaddress, sub_district, district, province, zipcode
+    } = req.body;
+
     User.findOne({ _id: req.user._id })
     .populate({ path: 'addresses' })
         .then((user)=>{

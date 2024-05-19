@@ -19,7 +19,7 @@ function Profile() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const userProfileInfo = auth.user;
-  console.log(userProfileInfo);
+  // console.log(userProfileInfo);
 
   const [openModalCancle, setOpenModalCancle] = useState(false);
 
