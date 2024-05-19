@@ -255,7 +255,7 @@ function Search() {
     };
 
     dispatch(searchProductsByKeyword(payload));
-  }, []);
+  }, [keyword]);
 
   const handleFormProductType = (label) => {
     console.log(label);
