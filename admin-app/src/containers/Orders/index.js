@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types'
 import Layout from '../../components/Layout'
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Modal from "../../components/UI/Modal";
 import Input from "../../components/UI/Input";
 function Orders(props) {
+
+    const coupon = useSelector((state) => state.category.coupons);
 
     //New Category
     const [name, setName] = useState("");
@@ -92,8 +95,58 @@ function Orders(props) {
     
   return (
     <Layout sidebar>
-        Coupon
-        <Button onClick={handleShow}>Add New Coupon</Button>
+        <Container>
+          <Row>
+            <Col md={12}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h3>Coupon</h3>
+                <div className="actionBtnContainer">
+                  <Button onClick={handleShow}>Add New Coupon</Button>
+                </div>
+                
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <Table style={{ fontSize: 12 }} responsive="sm">
+                {/* First Table */}
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Coupon Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                  </tr>
+                </thead>
+
+                <tbody className="table-bg">
+                  {
+                    coupon.length > 0 ?
+                      coupon.map((coupon, index) =>
+                        <tr className="product-items">
+                          <td>{index + 1}</td>
+                          <td>{coupon.name}</td>
+                          <td>{coupon.price}</td>
+                          <td>{coupon.description}</td>
+                          <td>
+                            <img style={{ width:20, height:20 }} src ={coupon.couponImage}></img>
+                          </td>
+                        </tr>
+
+                      ) : null
+                  }
+                </tbody>
+              </Table>
+              {/* <ul>{renderCategories(category.categories)}</ul> */}
+              {/* Coupon */}
+            </Col>
+          </Row>
+        </Container>
+      
+        
+
         {renderAddCouponModal()}
     </Layout>
   )
