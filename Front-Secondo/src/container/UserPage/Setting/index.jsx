@@ -264,61 +264,89 @@ function setting() {
     zip: "",
   });
 
+  const [errors, setErrors] = useState({
+      name: "",
+      addressName: "",
+      phone: "",
+      address: "",
+      subDistrict: "",
+      district: "",
+      province: "",
+      zip: "",
+  });
+
   const saveAddress = () => {
-    if (
-      newAddress.name &&
-      newAddress.addressName &&
-      newAddress.phone &&
-      newAddress.address &&
-      newAddress.subDistrict &&
-      newAddress.district &&
-      newAddress.province &&
-      newAddress.zip
-    ) {
-      // const form = new FormData();
-      const updatedAddresses = [...addresses, newAddress];
-      setAddresses(updatedAddresses);
-      setNewAddress({
-        // id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
-        name: "",
-        addressName: "",
-        phone: "",
-        address: "",
-        subDistrict: "",
-        district: "",
-        province: "",
-        zip: "",
-      });
-      // form.append("address_name", newAddress.addressName);
-      // form.append("tel", newAddress.phone);
-      // form.append("houseaddress", newAddress.address);
-      // form.append("sub_district", newAddress.subDistrict);
-      // form.append("district", newAddress.district);
-      // form.append("province", newAddress.province);
-      // form.append("zipcode", newAddress.zip);
-      const formAddress = {
-        
-        address_name: newAddress.name,
-        address_author: newAddress.addressName,
-        tel: newAddress.phone,
-        houseaddress: newAddress.address,
-        sub_district: newAddress.subDistrict,
-        district: newAddress.district,
-        province: newAddress.province,
-        zipcode: newAddress.zip,
-      };
-      dispatch(addUserAddress(formAddress));
-      //   console.log(newAddress.addressName);
-      // console.log(newAddress.phone);
-      // console.log(newAddress.address);
-      // console.log(newAddress.subDistrict);
-      // console.log(newAddress.district);
-      // console.log(newAddress.province);
-      // console.log(newAddress.zip);
-      setAddAddress(false);
-    } else {
-      alert("กรอกข้อมูล");
+    let validationErrors = {};
+
+    if (!newAddress.name) {
+      validationErrors.name = "กรุณากรอกชื่อผู้รับสินค้า";
     }
+    if (!newAddress.addressName) {
+      validationErrors.addressName = "กรุณากรอกชื่อที่อยู่จัดส่ง";
+    }
+    if (!newAddress.phone) {
+      validationErrors.phone = "กรุณากรอกเบอร์โทรศัพท์";
+    }
+    if (!newAddress.address) {
+      validationErrors.address = "กรุณากรอกบ้านเลขที่ ซอย หมู่";
+    }
+    if (!newAddress.subDistrict) {
+      validationErrors.subDistrict = "กรุณากรอกตำบล";
+    }
+    if (!newAddress.district) {
+      validationErrors.district = "กรุณากรอกอำเภอ";
+    }
+    if (!newAddress.province) {
+      validationErrors.province = "กรุณากรอกจังหวัด";
+    }
+    if (!newAddress.zip) {
+      validationErrors.zip = "กรุณากรอกรหัสไปรษณีย์";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    // const form = new FormData();
+    const updatedAddresses = [...addresses, newAddress];
+    setAddresses(updatedAddresses);
+    setNewAddress({
+      // id: (parseInt(addresses[addresses.length - 1].id) + 1).toString(),
+      name: "",
+      addressName: "",
+      phone: "",
+      address: "",
+      subDistrict: "",
+      district: "",
+      province: "",
+      zip: "",
+    });
+    // form.append("address_name", newAddress.addressName);
+    // form.append("tel", newAddress.phone);
+    // form.append("houseaddress", newAddress.address);
+    // form.append("sub_district", newAddress.subDistrict);
+    // form.append("district", newAddress.district);
+    // form.append("province", newAddress.province);
+    // form.append("zipcode", newAddress.zip);
+    const formAddress = {
+      address_name: newAddress.name,
+      address_author: newAddress.addressName,
+      tel: newAddress.phone,
+      houseaddress: newAddress.address,
+      sub_district: newAddress.subDistrict,
+      district: newAddress.district,
+      province: newAddress.province,
+      zipcode: newAddress.zip,
+    };
+    dispatch(addUserAddress(formAddress));
+    //   console.log(newAddress.addressName);
+    // console.log(newAddress.phone);
+    // console.log(newAddress.address);
+    // console.log(newAddress.subDistrict);
+    // console.log(newAddress.district);
+    // console.log(newAddress.province);
+    // console.log(newAddress.zip);
+    setAddAddress(false);
   };
 
   //add payment
@@ -904,13 +932,15 @@ function setting() {
                             placeholder="ชื่อที่อยู่"
                             value={newAddress.addressName}
                             type="text"
-                            errorMessage=""
+                            errorMessage={errors.addressName}
+                            isInvalid={errors.addressName !== ""}
                             onChange={(e) => {
                               // setAddressname(e.target.value);
                               setNewAddress({
                                 ...newAddress,
                                 addressName: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, addressName: "" }));
                             }}
                           />
                         </Col>
@@ -920,13 +950,15 @@ function setting() {
                             placeholder="ชื่อ นามสกุล"
                             value={newAddress.name}
                             type="text"
-                            errorMessage=""
+                            errorMessage={errors.name}
+                            isInvalid={errors.name !== ""}
                             onChange={(e) => {
                               // setUsername(e.target.value);
                               setNewAddress({
                                 ...newAddress,
                                 name: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, name: "" }));
                             }}
                           />
                         </Col>
@@ -936,12 +968,14 @@ function setting() {
                             placeholder="เบอร์โทร"
                             value={newAddress.phone}
                             type="number"
-                            errorMessage=""
+                            errorMessage={errors.phone}
+                            isInvalid={errors.phone !== ""}
                             onChange={(e) => {
                               setNewAddress({
                                 ...newAddress,
                                 phone: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, phone: "" }));
                             }}
                           />
                         </Col>
@@ -951,12 +985,14 @@ function setting() {
                         placeholder="บ้านเลขที่ ซอย หมู่"
                         value={newAddress.address}
                         type="text"
-                        errorMessage=""
+                        errorMessage={errors.address}
+                        isInvalid={errors.address !== ""}
                         onChange={(e) => {
                           setNewAddress({
                             ...newAddress,
                             address: e.target.value,
                           });
+                          setErrors((prev) => ({ ...prev, address: "" }));
                         }}
                       />
                       <Row className="setting-add-address-form-row">
@@ -966,12 +1002,14 @@ function setting() {
                             placeholder="ตำบล"
                             value={newAddress.subDistrict}
                             type="text"
-                            errorMessage=""
+                            errorMessage={errors.subDistrict}
+                            isInvalid={errors.subDistrict !== ""}
                             onChange={(e) => {
                               setNewAddress({
                                 ...newAddress,
                                 subDistrict: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, subDistrict: "" }));
                             }}
                           />
                         </Col>
@@ -981,12 +1019,14 @@ function setting() {
                             placeholder="อำเภอ"
                             value={newAddress.district}
                             type="text"
-                            errorMessage=""
+                            errorMessage={errors.district}
+                            isInvalid={errors.district !== ""}
                             onChange={(e) => {
                               setNewAddress({
                                 ...newAddress,
                                 district: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, district: "" }));
                             }}
                           />
                         </Col>
@@ -996,12 +1036,14 @@ function setting() {
                             placeholder="จังหวัด"
                             value={newAddress.province}
                             type="text"
-                            errorMessage=""
+                            errorMessage={errors.province}
+                            isInvalid={errors.province !== ""}
                             onChange={(e) => {
                               setNewAddress({
                                 ...newAddress,
                                 province: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, province: "" }));
                             }}
                           />
                         </Col>
@@ -1011,12 +1053,14 @@ function setting() {
                             placeholder="รหัสไปรษณีย์"
                             value={newAddress.zip}
                             type="number"
-                            errorMessage=""
+                            errorMessage={errors.zip}
+                            isInvalid={errors.zip !== ""}
                             onChange={(e) => {
                               setNewAddress({
                                 ...newAddress,
                                 zip: e.target.value,
                               });
+                              setErrors((prev) => ({ ...prev, zip: "" }));
                             }}
                           />
                         </Col>
