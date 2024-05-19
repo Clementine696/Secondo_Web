@@ -73,10 +73,10 @@ function Profile() {
     console.log(tel);
     console.log(hometown);
     console.log(email);
+    dispatch()
   };
 
   const popupSave = () => {
-    saveUser();
     setOpenModalCancle(true);
   };
 
@@ -148,20 +148,20 @@ function Profile() {
                 ></div> */}
                 <div className="profile-picture-img-frame">
                   {/* {userImage ? ( */}
-                    <img
-                      style={{
-                        height: "96px",
-                        width: "96px",
-                        borderRadius: "50%",
-                      }}
-                      className="profile-picture-img"
-                      // src={auth.user.profilePicture}
-                      // src={URL.createObjectURL(image)}
-                      src={userImage ? userImage : user}
-                      alt="Uploaded"
-                    />
+                  <img
+                    style={{
+                      height: "96px",
+                      width: "96px",
+                      borderRadius: "50%",
+                    }}
+                    className="profile-picture-img"
+                    // src={auth.user.profilePicture}
+                    // src={URL.createObjectURL(image)}
+                    src={userImage ? userImage : user}
+                    alt="Uploaded"
+                  />
                   {/* ) : ( */}
-                    {/* <div
+                  {/* <div
                       style={{
                         backgroundColor: "black",
                         height: "96px",
@@ -169,8 +169,8 @@ function Profile() {
                         borderRadius: "50%",
                       }}
                     > */}
-                      {/* <img>src={user} </img> */}
-                    {/* </div> */}
+                  {/* <img>src={user} </img> */}
+                  {/* </div> */}
                   {/* )} */}
                 </div>
 
@@ -279,7 +279,10 @@ function Profile() {
         // desc="คุณต้องการยกเลิกการขายสินค้าชิ้นนี้ใช่หรือไม่"
         open={openModalCancle}
         onClose={() => setOpenModalCancle(false)}
-        onConfirm={() => setOpenModalCancle(false)}
+        onConfirm={() => {
+          setOpenModalCancle(false);
+          saveUser();
+        }}
       />
     </Layout>
   );
