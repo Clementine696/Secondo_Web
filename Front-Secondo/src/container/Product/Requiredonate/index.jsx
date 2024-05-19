@@ -20,17 +20,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDonaterProductDetailsById } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
-const pathway = [
-  { label: "หน้าหลัก", value: 1, nevigate: "/" },
-  { label: "บริจาค", value: 2, nevigate: "/search" },
-  { label: "เสื้อผ้า", value: 3, nevigate: "" },
-  {
-    label: "เสื้อ COTTON แบรนด์ญี่ปุ่น",
-    value: 4,
-    nevigate: "/product/donate",
-  },
-];
-
 let productDetail = [
   {
     img: [
@@ -177,6 +166,15 @@ function RequireDonate() {
     setSelectedImg(img);
     setFrameSmallImgs(img);
   };
+
+  const pathway = [
+    { label: "หน้าหลัก", value: 1, nevigate: "/" },
+    { label: "บริจาค", value: 2, nevigate: "/allproduct/donate" },
+    { label: product.productDetails.category
+      ? product.productDetails.category.name
+      : null, value: 3, nevigate: "" },
+    { label: product.productDetails.name, value: 4, nevigate: "" },
+  ];
 
   return (
     <Layout>
