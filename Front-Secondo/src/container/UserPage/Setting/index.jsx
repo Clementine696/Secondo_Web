@@ -349,6 +349,7 @@ function setting() {
     // console.log(newAddress.zip);
     setAddAddress(false);
     dispatch(getAddress());
+    window.location.reload();
   };
 
   //add payment
