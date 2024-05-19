@@ -203,21 +203,26 @@ function Home() {
   const renderProducts = (products) => {
     let myProducts = [];
     if (products && Array.isArray(products)) {
-        for (let product of products) {
-          if(product.verify === true && (product.status === "ประกาศขาย" || product.status === "รับซื้อ" || product.status === "มีการเสนอขาย" )){
-            myProducts.push({
-              _id: product._id,
-              slug: product.slug,
-              img: product.productPictures,
-              title: product.name,
-              province: "กรุงเทพ",
-              price: product.price,
-              credit: product.carbonCredits,
-              // credit: 0.1,
-              // children: category.children.length > 0 && renderCategories(category.children)
-            });
-            // console.log(product)
-          }
+      for (let product of products) {
+        if (
+          product.verify === true &&
+          (product.status === "ประกาศขาย" ||
+            product.status === "รับซื้อ" ||
+            product.status === "มีการเสนอขาย")
+        ) {
+          myProducts.push({
+            _id: product._id,
+            slug: product.slug,
+            img: product.productPictures,
+            title: product.name,
+            province: "กรุงเทพ",
+            price: product.price,
+            credit: product.carbonCredits,
+            // credit: 0.1,
+            // children: category.children.length > 0 && renderCategories(category.children)
+          });
+          // console.log(product)
+        }
       }
       return myProducts;
     }
@@ -227,7 +232,11 @@ function Home() {
     let myProducts = [];
     if (products && Array.isArray(products)) {
       for (let product of products) {
-        if(product.verify === true && (product.status === "ประกาศบริจาค" || product.status === "ขอรับบริจาค")){
+        if (
+          product.verify === true &&
+          (product.status === "ประกาศบริจาค" ||
+            product.status === "ขอรับบริจาค")
+        ) {
           myProducts.push({
             _id: product._id,
             slug: product.slug,
@@ -235,30 +244,58 @@ function Home() {
             title: product.name,
             province: "กรุงเทพ",
             // children: category.children.length > 0 && renderCategories(category.children)
-            });
-          }
+          });
         }
+      }
       return myProducts;
     }
   };
 
-  // const itemInterest = renderProducts(product.productsSeller); //TODO:
   const itemInterest = product.productsSeller
-    ? renderProducts(product.productsSeller).slice(-4)
+    ? renderProducts(product.productsSeller)
     : [];
-
   const itemBuyer = product.productsBuyer
-    ? renderProducts(product.productsBuyer).slice(-4)
+    ? renderProducts(product.productsBuyer)
     : [];
-
   const itemReceive = product.productsDonater
-    ? renderProductsDonate(product.productsDonater).slice(-4)
+    ? renderProductsDonate(product.productsDonater)
+    : [];
+  const itemDonate = product.productsReciever
+    ? renderProductsDonate(product.productsReciever)
     : [];
 
-  const itemDonate = product.productsReciever
-    ? renderProductsDonate(product.productsReciever).slice(-4)
-    : [];
-  // console.log(itemInterest)
+  // Shuffle function
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  // Shuffle the interest products
+  const shuffledInterest = shuffleArray(itemInterest).slice(-4);
+  const shuffledBuyer = shuffleArray(itemBuyer).slice(-4);
+  const shuffleReceive = shuffleArray(itemReceive).slice(-4);
+  const shuffleDonate = shuffleArray(itemDonate).slice(-4);
+
+  // const itemInterest = renderProducts(product.productsSeller); //TODO:
+  // const itemInterest = product.productsSeller
+  //   ? renderProducts(product.productsSeller).slice(-4)
+  //   : [];
+
+  // const itemBuyer = product.productsBuyer
+  //   ? renderProducts(product.productsBuyer).slice(-4)
+  //   : [];
+
+  // const itemReceive = product.productsDonater
+  //   ? renderProductsDonate(product.productsDonater).slice(-4)
+  //   : [];
+
+  // const itemDonate = product.productsReciever
+  //   ? renderProductsDonate(product.productsReciever).slice(-4)
+  //   : [];
+  // // console.log(itemInterest)
   return (
     <Layout>
       <div className="background-home">
@@ -319,7 +356,7 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemInterest.map((item, index) => (
+              {shuffledInterest.map((item, index) => (
                 <ItemCard
                   key={index}
                   img={item.img}
@@ -341,14 +378,14 @@ function Home() {
               <div className="group-card-header-topic kanit-paragraphBig">
                 สินค้ารับซื้อใหม่
               </div>
-              <Link className="group-card-icon-other" to="/allproduct/buyer" >
+              <Link className="group-card-icon-other" to="/allproduct/buyer">
                 <div className="group-card-header-other">เพิ่มเติม</div>
                 <img className="icon-arrow-right-24" src={chevronRightT} />
               </Link>
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemBuyer.map((item, index) => (
+              {shuffledBuyer.map((item, index) => (
                 <ItemCardBuy
                   key={index}
                   img={item.img}
@@ -376,7 +413,7 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-              {itemReceive.map((item, index) => (
+              {shuffleReceive.map((item, index) => (
                 <ItemCardDonate
                   key={index}
                   img={item.img}
@@ -404,7 +441,7 @@ function Home() {
             </div>
             <HDivider />
             <div className="group-card-item">
-            {itemDonate.map((item, index) => (
+              {shuffleDonate.map((item, index) => (
                 <ItemCardReceive
                   key={index}
                   img={item.img}
