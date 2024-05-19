@@ -47,18 +47,23 @@ function Profile() {
 
   // console.log(userProfile);
 
-  // useEffect(() => {
-  //   dispatch(isUserLoggedIn());
-  // }, [auth.authenticate]);
-
   let userImage = auth.user.profilePicture;
 
-  const [userName, setUserName] = useState(userProfileInfo.userName || "");
+  const [userName, setUserName] = useState(userProfileInfo.username || "");
   const [firstName, setFirstName] = useState(userProfileInfo.firstName || "");
   const [lastName, setLastName] = useState(userProfileInfo.lastName || "");
-  const [tel, setTel] = useState("");
-  const [hometown, setHometown] = useState("");
+  const [tel, setTel] = useState(userProfileInfo.contactNumber || "");
+  const [hometown, setHometown] = useState(userProfileInfo.hometown || "");
   const [email, setEmail] = useState(userProfileInfo.email || "");
+
+  useEffect(() => {
+    setUserName(userProfileInfo.username || "");
+    setFirstName(userProfileInfo.firstName || "");
+    setLastName(userProfileInfo.lastName || "");
+    setTel(userProfileInfo.contactNumber || "");
+    setHometown(userProfileInfo.hometown || "");
+    setEmail(userProfileInfo.email || "");
+  }, [auth.authenticate]);
 
   // connect api to save data
   const saveUser = () => {
@@ -239,7 +244,7 @@ function Profile() {
               <Input
                 Label="ที่อยู่จังหวัด"
                 placeholder="กรอกที่อยู่จังหวัด"
-                value={userProfileInfo.hometown ? userProfileInfo.hometown : ""}
+                value={hometown}
                 type="text"
                 errorMessage=""
                 onChange={(e) => {
@@ -253,7 +258,7 @@ function Profile() {
                 type="email"
                 errorMessage=""
                 onChange={(e) => {
-                  // setEmail(e.target.value);
+                  setEmail(e.target.value);
                 }}
               />
             </Form>
