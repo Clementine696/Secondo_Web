@@ -339,16 +339,22 @@ exports.getPayment = (req, res) => {
 exports.updateProfileData = (req, res) => {
 
     const {
-        username, firstName, lastName, email, contactNumber, hometown,
+        username, firstName, lastName, contactNumber, hometown
     } = req.body;
 
+    const data = {
+        username, firstName, lastName, contactNumber, hometown
+    }
+
+    // console.log('da')
+    // console.log(data);
     User.findOne({_id: req.user._id})
-    .then(async (user)=>{
+    .then((user)=>{
 
         user.username = username;
         user.firstName = firstName;
         user.lastName = lastName;
-        user.email = email;
+        // user.email = email;
         user.contactNumber = contactNumber;
         user.hometown = hometown;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
-import { isUserLoggedIn, updateProfilePicture } from "../../../actions";
+import { isUserLoggedIn, updateProfilePicture, updateprofileData } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { generatePublicUrl } from "../../../urlConfig";
 import Input from "../../../components/UI/Input";
@@ -67,13 +67,21 @@ function Profile() {
 
   // connect api to save data
   const saveUser = () => {
-    console.log(userName);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(tel);
-    console.log(hometown);
-    console.log(email);
-    dispatch()
+    // console.log(userName);
+    // console.log(firstName);
+    // console.log(lastName);
+    // console.log(tel);
+    // console.log(hometown);
+    const data = {
+      username: userName,
+      firstName, 
+      lastName, 
+      contactNumber: tel, 
+      hometown
+    }
+    // console.log(email);
+    dispatch(updateprofileData(data));
+    window.location.reload();
   };
 
   const popupSave = () => {

@@ -143,3 +143,10 @@ export const signout = () => {
 //         console.log(res);
 //     }
 // }
+
+export const updateprofileData = form => {
+    return async dispatch => {
+        const res = await axios.post(`/admin/profile/update`, form)
+        console.log(res);
+    }
+}
