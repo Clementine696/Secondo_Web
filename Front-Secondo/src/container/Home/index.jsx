@@ -190,20 +190,13 @@ function Home() {
 
   const slicedArray1 = categoryItem.slice(0, 8);
   const slicedArray2 = categoryItem.slice(8, 16);
-  // console.log(slicedArray)
-  // const categoryList = createCategoryList(category.categories)
-  // console.log("SHeeshshshshshshshhs")
-  // console.log(categoryList)
 
   const [isExpanded, setIsExpanded] = useState(false);
-  // const moreCategory = useRef(null);
 
   const handleToggleExpand = () => {
     setIsExpanded(!isExpanded);
     console.log("toggle:", isExpanded);
   };
-
-  // const scrollToRef = useRef(null);
 
   const product = useSelector((state) => state.product);
 

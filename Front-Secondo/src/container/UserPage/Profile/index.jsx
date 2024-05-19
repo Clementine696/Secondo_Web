@@ -127,7 +127,7 @@ function Profile() {
                 Cabon Credits 96 CO₂ Credit
               </div> */}
               <div className="profile-detail-point">
-                เงินที่มีอยู่ 4,000 บาท
+                เงินที่มีอยู่ในระบบ 4,000 บาท
               </div>
               {/* <div className="profile-detail-point">
                 เงินที่ไม่สามารถใช้ได้ 1,000 บาท
@@ -175,7 +175,7 @@ function Profile() {
                 </div>
 
                 <div className="profile-name kanit-paragraphMedium">
-                  <p>Username : {userProfileInfo.userName}</p>
+                  <p>Email : {userProfileInfo.email}</p>
                   <p>
                     Name : {userProfileInfo.firstName}{" "}
                     {userProfileInfo.lastName}
@@ -251,7 +251,7 @@ function Profile() {
                   setHometown(e.target.value);
                 }}
               />
-              <Input
+              {/* <Input
                 Label="อีเมลล์"
                 placeholder="อีเมลล์"
                 value={email}
@@ -260,7 +260,7 @@ function Profile() {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-              />
+              /> */}
             </Form>
             <div>
               <button
