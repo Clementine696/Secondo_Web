@@ -3,9 +3,9 @@ import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import { Link } from "react-router-dom";
 
-import { isUserLoggedIn, login } from '../../actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { isUserLoggedIn, login } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 import Logo from "../../../public/images/Logo_secondo.png";
 
@@ -16,16 +16,16 @@ import "../../components/UI/Button/index.css";
 function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
-  const [error, setError] = useState('');
-  const auth = useSelector(state => state.auth)
+
+  const [error, setError] = useState("");
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   // connect api to save data
   const logIn = (e) => {
     e.preventDefault();
 
-    const user = {email, password}
-    dispatch(login(user))
+    const user = { email, password };
+    dispatch(login(user));
     // console.log(auth.error)
     // dispatch(login(user)).then((res) => {
     //   console.log(res)
@@ -33,26 +33,26 @@ function Signin() {
     // console.log("test")
     // console.log(res[Promise])
     // login(user);
-    
+
     // console.log(email);
     // console.log(password);
   };
 
   useEffect(() => {
-    if(!auth.authenticate){
+    if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-  }, [auth.authenticate])
+  }, [auth.authenticate]);
 
   // if(){
   //     console.log(auth)
   // }
   // console.log(auth)
 
-  if(auth.authenticate){
-    return <Navigate to="/" />
+  if (auth.authenticate) {
+    return <Navigate to="/" />;
   }
-  
+
   return (
     <Container className="main-content">
       <Row className="row-content">
@@ -64,18 +64,20 @@ function Signin() {
                 height: "100px",
                 backgroundColor: "green",
               }}
-            ><img src={Logo} /></div>
+            >
+              <img src={Logo} />
+            </div>
             <div className="kanit-Display-Large">
               ซื้อขายและบริจาคสินค้ามือสอง
             </div>
-            <div className="kanit-paragraphVerySmall">
+            <div className="kanit-paragraphSmall">
               ส่งต่อสิ่งของที่คุณไม่ใช้งาน <br />
               เพื่อเป็นประโยชน์ให้คนที่ต้องการ
             </div>
             <br />
-            <div className="kanit-paragraphVerySmall">
+            {/* <div className="kanit-paragraphVerySmall">
               : <br />:
-            </div>
+            </div> */}
           </div>
         </Col>
         <Col className="col-right">
@@ -92,8 +94,8 @@ function Signin() {
             <Col className="p-0">
               <Form>
                 <Input
-                  Label="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
-                  placeholder="อีเมลหรือหมายเลขโทรศัพท์มือถือ"
+                  Label="อีเมล"
+                  placeholder="อีเมล"
                   value={email}
                   type="email"
                   errorMessage=""
@@ -125,19 +127,19 @@ function Signin() {
                   </Col>
                 </Row>
 
-                <Row className="mb-3">
+                {/* <Row className="mb-3">
                   <div className="kanit-paragraphSmall horizontal-divider">
                     or
                   </div>
-                </Row>
+                </Row> */}
 
-                <Row className="mb-3">
+                {/* <Row className="mb-3">
                   <Col>
                     <button className="btn-small-secondary kanit-paragraphMedium">
                       เข้าสู่ระบบด้วย Google
                     </button>
                   </Col>
-                </Row>
+                </Row> */}
 
                 <Row className="agreement-law-content">
                   <div className="agreement-law-text kanit-paragraphSmall">

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions";
 import { signup } from "../../actions";
 
+import Logo from "../../../public/images/Logo_secondo.png";
+
 import "./index.css";
 import "../../styles.css";
 import "../../components/UI/Button/index.css";
@@ -65,7 +67,9 @@ function Signup() {
                 height: "100px",
                 backgroundColor: "green",
               }}
-            ></div>
+            >
+              <img src={Logo} />
+            </div>
             <div className="kanit-Display-Large">
               ซื้อขายและบริจาคสินค้ามือสอง
             </div>
@@ -74,9 +78,9 @@ function Signup() {
               เพื่อเป็นประโยชน์ให้คนที่ต้องการ
             </div>
             <br />
-            <div className="kanit-paragraphVerySmall">
+            {/* <div className="kanit-paragraphVerySmall">
               : <br />:
-            </div>
+            </div> */}
           </div>
         </Col>
         <Col className="col-right">
