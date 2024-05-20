@@ -81,6 +81,7 @@ function Profile() {
     }
     // console.log(email);
     dispatch(updateprofileData(data));
+    // window.scrollTo(0, 0);
     window.location.reload();
   };
 
