@@ -681,7 +681,7 @@ function setting() {
       <div className="user-page">
         <Sidebar />
         <div className="user-content">
-          <div className="buy-page-title kanit-Display-Large">การตั้งค่า</div>
+          {/* <div className="buy-page-title kanit-Display-Large">การตั้งค่า</div> */}
 
           <Tabs
             tabMenu={tabItems}

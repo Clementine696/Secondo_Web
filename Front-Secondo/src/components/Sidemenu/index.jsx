@@ -89,7 +89,7 @@ const Sidemenu = () => {
             <div className="icon-menu-sidebar">
             <img src={setting} className="sidemenu-icon"></img>
             </div>
-            ตั้งค่า
+            ที่อยู่จัดส่ง
           </Link>
         </li>
       </ul>
