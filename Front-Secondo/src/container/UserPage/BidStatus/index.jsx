@@ -111,7 +111,7 @@ function bidState() {
           <div className={tab === 1 ? "active-content" : "content"}>
             <div className="background-data-table">
               <div className="header-table-data kanit-paragraphMedium">
-                <p className="header-item date-col">วันที่ซื้อ</p>
+                <p className="header-item date-col">วันที่</p>
                 <p className="header-item desc-col">รายละเอียดสินค้า</p>
                 <p className="header-item status-col">สถานะ</p>
                 <p className="header-item point-col">CO₂ Credit</p>
@@ -163,7 +163,7 @@ function bidState() {
           <div className={tab === 2 ? "active-content" : "content"}>
             <div className="background-data-table">
               <div className="header-table-data kanit-paragraphMedium">
-                <p className="header-item date-col">วันที่ซื้อ</p>
+                <p className="header-item date-col">วันที่</p>
                 <p className="header-item desc-col">รายละเอียดสินค้า</p>
                 <p className="header-item status-col">สถานะ</p>
                 <p className="header-item point-col">แต้ม CC</p>
