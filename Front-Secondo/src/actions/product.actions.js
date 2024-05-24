@@ -150,3 +150,33 @@ export const searchProductsByKeyword = (payload) => {
         }
     }
 }
+
+export const categoryProductsByKeyword = (payload) => {
+    return async dispatch => {
+        console.log('Cating')
+        dispatch({ type: productConstants.GET_SEARCH_PRODUCT_REQUEST });
+        let res;
+        try {
+            const { keyword } = payload.params;
+            console.log(keyword)
+            res = await axios.post(`/product/c/${keyword}`);
+            console.log(res);
+            const { productsSeller, productsBuyer, productsDonater, productsReciever } = res.data;
+            dispatch({
+                type: productConstants.GET_SEARCH_PRODUCT_SUCCESS,
+                payload: { 
+                    productsSeller,
+                    productsBuyer,
+                    productsDonater,
+                    productsReciever
+                }
+            });
+        } catch(error) {
+            console.log(error);
+            dispatch({
+                type: productConstants.GET_SEARCH_PRODUCT_FAILURE,
+                payload: { error: res.data.error }
+            });
+        }
+    }
+}

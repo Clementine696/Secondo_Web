@@ -169,6 +169,7 @@ export default function App() {
           <Route path="account/shippingstatus/successprocess" element={<PrivateRoute> <ShippingSellSucess /> </PrivateRoute>} />
 
           <Route path="search/:keyword" element={<Search />} />
+          <Route path="c/:keyword" element={<Search />} />
 
           <Route path="test" element={<Test />} />
         </Routes>

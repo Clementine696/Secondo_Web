@@ -202,6 +202,7 @@ function Index() {
               type="text"
               placeholder="ค้นหา สินค้าที่คุณสนใจ"
             />
+            
             <Link to={`/search/${searchKeyword}`}>
               <img src={searchb} className="search-icon" />
             </Link>

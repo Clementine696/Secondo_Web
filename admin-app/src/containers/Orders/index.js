@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Modal from "../../components/UI/Modal";
 import Input from "../../components/UI/Input";
+import { IoCheckboxOutline, IoCheckboxSharp, IoCaretDownSharp, IoCaretForward, IoCheckmarkCircleOutline, IoAddOutline, IoTrash, IoPencilSharp } from "react-icons/io5";
+
 function Orders(props) {
 
     const coupon = useSelector((state) => state.category.coupons);
@@ -101,7 +103,11 @@ function Orders(props) {
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <h3>Coupon</h3>
                 <div className="actionBtnContainer">
-                  <Button onClick={handleShow}>Add New Coupon</Button>
+                  {/* <Button onClick={handleShow}>Add New Coupon</Button> */}
+                  <span>Actions: </span>
+                  <button onClick={handleShow}> <IoAddOutline  /> <span>Add</span></button>
+                  <button onClick={handleShow}> <IoTrash /> <span>Delete</span></button>
+                  <button onClick={handleShow}> <IoPencilSharp /> <span>Edit</span></button>
                 </div>
                 
               </div>

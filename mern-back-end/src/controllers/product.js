@@ -461,8 +461,55 @@ exports.searchProduct = async (req, res) => {
     // res.status(201).json({ keyword })
     if(keyword){
         // let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}}).exec();
+        let productsSeller = await ProductSeller.find({})
+                .populate({
+                    path: 'category',
+                    match: {
+                        name: keyword
+                    }
+                })
+                .exec();
+        productsSeller = productsSeller.filter(function(product) {
+            return product.category;
+        });
 
-        let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+        // let productsBuyer = await ProductSeller.find({})
+        //         .populate({
+        //             path: 'category',
+        //             match: {
+        //                 name: keyword
+        //             }
+        //         })
+        //         .exec();
+        // productsSeller = productsSeller.filter(function(product) {
+        //     return product.category;
+        // });
+
+        // let productsSeller = await ProductBuyer.find({})
+        //         .populate({
+        //             path: 'category',
+        //             match: {
+        //                 name: keyword
+        //             }
+        //         })
+        //         .exec();
+        // productsSeller = productsSeller.filter(function(product) {
+        //     return product.category;
+        // });
+
+        // let productsSeller = await ProductSeller.find({})
+        //         .populate({
+        //             path: 'category',
+        //             match: {
+        //                 name: keyword
+        //             }
+        //         })
+        //         .exec();
+        // productsSeller = productsSeller.filter(function(product) {
+        //     return product.category;
+        // });
+
+        // let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
         let productsBuyer = await ProductBuyer.find({ name: {$regex: keyword, $options: 'i'}, verify: true }).exec();
         let productsDonater = await ProductDonate.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
         let productsReciever = await ProductRequest.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
@@ -493,3 +540,40 @@ exports.searchProduct = async (req, res) => {
     
 }
 
+exports.categoryProduct = async (req, res) => {
+    const { keyword } = req.params;
+    // return res.status(200).json({ message: productId })
+    // res.status(201).json({ keyword })
+    if(keyword){
+        // let productsSeller = await ProductSeller.find({ name: {$regex: keyword, $options: 'i'}}).exec();
+
+        let productsSeller = await ProductSeller.find({ category: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+        let productsBuyer = await ProductBuyer.find({ name: {$regex: keyword, $options: 'i'}, verify: true }).exec();
+        let productsDonater = await ProductDonate.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+        let productsReciever = await ProductRequest.find({ name: {$regex: keyword, $options: 'i'}, verify: true}).exec();
+
+        res.status(201).json({ 
+            productsSeller,
+            productsBuyer,
+            productsDonater,
+            productsReciever
+        })
+    
+        // ProductSeller.find({ name: {$regex: keyword, $options: 'i'}})
+        // .then((product) => {
+        //     if(product){
+        //         return res.status(200).json({ product });
+        //     }
+        // }).catch((error) => {
+        //     console.log(error);
+        //     return res.status(400).json({ error })
+        // })
+        // .then((findproduct)
+        // {
+        //     res.status(201).json({ findproduct })
+        // })
+    }else{
+        return res.status(400).json({ error: 'params required' });
+    }
+    
+}
