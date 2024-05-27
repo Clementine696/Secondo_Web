@@ -23,7 +23,7 @@ let myItemVoucher = [
   {
     img: "https://livecards.net/pl/starbucks-gift-card-40-usd-us-74176.jpg",
     title: "บัตรของขวัญสตาร์บัค 100 บาท",
-    carbon: 1000000,
+    carbon: 1000,
   },
 ];
 
