@@ -4,7 +4,7 @@
 - Modeling database, creating API, use API on front-end.
 
 # About this project
-- This is ecommerce project about selling second-hand product.
+- This is e-commerce project about selling second-hand product.
 - Users can sign up to sell products by adding their own products to the website.
 - Users can buy the selling product from website.
 
